@@ -1,0 +1,13 @@
+syntax: glob
+Dianet/Dianet/Dianet.Droid/obj/*
+Dianet/Dianet/Dianet.Droid/bin/*
+Dianet/Dianet/Dianet.iOS/obj/*
+Dianet/Dianet/Dianet.iOS/bin/*
+Dianet/Dianet/Dianet.UWP/obj/*
+Dianet/Dianet/Dianet.UWP/bin/*
+Dianet/Dianet/Dianet/obj/*
+Dianet/Dianet/Dianet/bin/*
+Dianet/Dianet/Dianet.Windows/obj/*
+Dianet/Dianet/Dianet.Windows/bin/*
+Dianet/Dianet/Dianet.WinPhone/obj/*
+Dianet/Dianet/Dianet.WinPhone/bin/*
