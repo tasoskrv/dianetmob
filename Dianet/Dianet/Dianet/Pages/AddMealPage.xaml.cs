@@ -8,16 +8,11 @@ using Xamarin.Forms;
 
 namespace Dianet.Pages
 {
-    public partial class Myday : ContentPage
+    public partial class AddMealPage : ContentPage
     {
-        public Myday()
+        public AddMealPage()
         {
             InitializeComponent();
-        }
-
-        async void OnAddMealClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddMealPage());
         }
     }
 }

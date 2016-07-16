@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace Dianet
+namespace Dianet.Pages
 {
     public partial class SignUpPage : ContentPage
     {

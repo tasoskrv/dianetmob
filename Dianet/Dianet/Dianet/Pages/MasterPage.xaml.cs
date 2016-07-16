@@ -7,7 +7,7 @@ using Dianet.Model;
 
 using Xamarin.Forms;
 
-namespace Dianet
+namespace Dianet.Pages
 {
     public partial class MasterPage : ContentPage
     {

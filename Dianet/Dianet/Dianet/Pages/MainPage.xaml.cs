@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Dianet.Model;
 
-namespace Dianet
+namespace Dianet.Pages
 {
     public partial class MainPage : MasterDetailPage
     {
