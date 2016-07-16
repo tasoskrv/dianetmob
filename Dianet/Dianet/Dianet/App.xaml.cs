@@ -9,11 +9,19 @@ namespace Dianet
 {
     public partial class App : Application
     {
+        public static bool IsUserLoggedIn { get; set; }
+
         public App()
         {
-            InitializeComponent();
-
-            MainPage = new Dianet.MainPage();
+            if (!IsUserLoggedIn)
+            {
+                MainPage = new MainPage();
+                //MainPage = new NavigationPage(new MasterPage());
+            }
+            else
+            {
+                MainPage = new MainPage();
+            }
         }
 
         protected override void OnStart()
