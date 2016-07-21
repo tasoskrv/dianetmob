@@ -33,7 +33,7 @@ namespace Dianet.Pages
            // {
            //     App.IsUserLoggedIn = true;
           //      Navigation.InsertPageBefore(new MainPage(), this);
-          //      await Navigation.PopAsync();
+                await Navigation.PopAsync();
           //  }
          //   else
          //   {

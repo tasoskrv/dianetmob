@@ -12,11 +12,14 @@
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*" />
       <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
-    <Button Text="Top Left" Grid.Row="0" Grid.Column="0" />
-    <Button Text="Top Right" Grid.Row="0" Grid.Column="1" />
-    <Button Text="Bottom Left" Grid.Row="1" Grid.Column="0" />
-    <Button Text="Bottom Right" Grid.Row="1" Grid.Column="1" />
+    <Button Text="Breakfast" Grid.Row="1" Grid.Column="0" Clicked="OnAddBreakfastClicked" />
+    <Button Text="Lunch" Grid.Row="1" Grid.Column="1"  Clicked="OnAddLunchClicked"/>
+    <Button Text="Dinner" Grid.Row="1" Grid.Column="2" Clicked="OnAddDinnerClicked"/>
+    <Button Text="Snack" Grid.Row="2" Grid.Column="0" Clicked="OnAddSnackClicked"/>
+    <Button Text="Exercise" Grid.Row="2" Grid.Column="1" Clicked="OnAddExerciseClicked"/>
+    <Button Text="Record Weight" Grid.Row="2" Grid.Column="2" Clicked="OnAddRecordWeightClicked"/>
   </Grid>
   
 </ContentPage>
