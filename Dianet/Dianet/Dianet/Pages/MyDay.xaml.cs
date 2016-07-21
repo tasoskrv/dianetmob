@@ -17,7 +17,12 @@ namespace Dianet.Pages
 
         async void OnAddMealClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddMealPage());
+            await Navigation.PushAsync(new AddMealPage());    
+        }
+
+        async void OnAddWeightClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddWeightPage());     
         }
     }
 }

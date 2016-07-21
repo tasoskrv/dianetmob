@@ -5,6 +5,7 @@
              Title="My day">
   <ContentPage.ToolbarItems>
     <ToolbarItem Text=""  Clicked="OnAddMealClicked" Icon="plus.png"/>
+    <ToolbarItem Text=""  Clicked="OnAddWeightClicked" Icon="weight.png"/>
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
     <StackLayout>
