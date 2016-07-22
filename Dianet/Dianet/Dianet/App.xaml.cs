@@ -5,13 +5,13 @@ using System.Text;
 
 using Xamarin.Forms;
 using Dianet.Pages;
+using Dianet.DB;
 
 namespace Dianet
 {
     public partial class App : Application
     {
         public static bool IsUserLoggedIn { get; set; }
-
         public App()
         {
             if (!IsUserLoggedIn)

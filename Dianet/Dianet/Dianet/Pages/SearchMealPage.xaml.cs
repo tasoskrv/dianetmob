@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Dianet.Model;
+using Dianet.DB;
 
 namespace Dianet.Pages
 {
@@ -18,6 +19,7 @@ namespace Dianet.Pages
         {
             InitializeComponent();
             ListViewSearch.ItemsSource = records;
+            var con =StorageManager.GetConnection();
 
         }
 
