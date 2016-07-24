@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,13 @@ using System.Threading.Tasks;
 
 namespace Dianet.DB.Entities
 {
-    class Settings
+    public class Settings
     {
+        [PrimaryKey]
+        public int IDSettings { get; set; }
+
+        public int TrialPeriod { get; set; }
+
+        public int RemindWeight { get; set; }
     }
 }
