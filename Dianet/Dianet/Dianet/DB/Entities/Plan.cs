@@ -1,0 +1,29 @@
+﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Dianet.DB.Entities
+{
+    public class Plan
+    {
+        [PrimaryKey]
+        public int IDPlan { get; set; }
+
+        [ForeignKey(typeof(User))]
+        public int IDUser { get; set; }
+
+        public double Goal { get; set; }
+
+        public DateTime GoalDate { get; set; }
+
+        public int UserStep { get; set; }
+
+        public int PlanType { get; set; }
+
+        public DateTime InsertDate { get; set; }
+    }
+}
