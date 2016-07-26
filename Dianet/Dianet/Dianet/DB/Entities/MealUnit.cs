@@ -28,6 +28,4 @@ namespace Dianet.DB.Entities
         public double Fat { get; set; }
 
     }
-
-}
 }

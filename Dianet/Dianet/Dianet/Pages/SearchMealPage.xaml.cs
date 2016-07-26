@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Dianet.Model;
 using Dianet.DB;
+using SQLite;
+using Dianet.DB.Entities;
 
 namespace Dianet.Pages
 {
@@ -15,11 +17,12 @@ namespace Dianet.Pages
         private ObservableCollection<SearchRecord> records = new ObservableCollection<SearchRecord>();
 
         public int Mode { get; set; }
+        SQLiteConnection conn=null;
         public SearchMealPage()
         {
             InitializeComponent();
             ListViewSearch.ItemsSource = records;
-            var con =StorageManager.GetConnection();
+            conn =StorageManager.GetConnection();
 
         }
 
@@ -30,9 +33,13 @@ namespace Dianet.Pages
 
         public void OnSearchBarTextChanged(object sender, EventArgs eventArgs)
         {
-            records.Add(new SearchRecord { DisplayName="OK" });
+            records.Clear();
+            IEnumerable<Meal> meals= conn.Query<Meal>("SELECT name FROM meal WHERE name LIKE ?", "%"+ASearchBar.Text+"%");
+            foreach (Meal meal in meals)
+            {
+                records.Add(new SearchRecord { DisplayName = meal.Name });
+            }
         }
-        
 
         protected override void OnAppearing()
         {
