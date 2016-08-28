@@ -12,14 +12,12 @@ namespace Dianet
     public partial class App : Application
     {
         public static bool IsUserLoggedIn { get; set; }
-        //public Page EntryPage { get; set; }
         public App()
         {
-            //EntryPage = new EntryPage();
+
             if (!IsUserLoggedIn)
             {
-                MainPage = new MainPage();
-                //MainPage = new NavigationPage(new MasterPage());
+                MainPage = new LoginPage();
             }
             else
             {

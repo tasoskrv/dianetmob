@@ -22,18 +22,19 @@ namespace Dianet.Pages
 
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-           // var user = new User
-           // {
-           //     Username = usernameEntry.Text,
-           //     Password = passwordEntry.Text
-           // };
+            // var user = new User
+            // {
+            //     Username = usernameEntry.Text,
+            //     Password = passwordEntry.Text
+            // };
 
-           // var isValid = AreCredentialsCorrect(user);
-           // if (isValid)
-           // {
-           //     App.IsUserLoggedIn = true;
-          //      Navigation.InsertPageBefore(new MainPage(), this);
-                await Navigation.PopAsync();
+            // var isValid = AreCredentialsCorrect(user);
+            // if (isValid)
+            // {
+            //     App.IsUserLoggedIn = true;
+            //      Navigation.InsertPageBefore(new MainPage(), this);
+            App.Current.MainPage = new MainPage();
+            //await Navigation.PopAsync();
           //  }
          //   else
          //   {
