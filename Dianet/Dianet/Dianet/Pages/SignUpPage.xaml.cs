@@ -14,5 +14,11 @@ namespace Dianet.Pages
         {
             InitializeComponent();
         }
+
+        void OnSaveButtonClicked(object sender, EventArgs e)
+        {
+            //await Navigation.PushAsync(new SignUpPage());
+            App.Current.MainPage = new MainPage();
+        }
     }
 }

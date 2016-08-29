@@ -8,10 +8,10 @@
   <ContentPage.Content>
     <StackLayout VerticalOptions="StartAndExpand">
       <Label Text="Username" />
-      <Entry x:Name="usernameEntry" Placeholder="username" />
+      <Entry x:Name="usernameEntry" Keyboard="Email" />
       <Label Text="Password" />
-      <Entry x:Name="passwordEntry" IsPassword="true" />
-      <Button Text="Login" Clicked="OnLoginButtonClicked" />
+      <Entry x:Name="passwordEntry" IsPassword="true" Keyboard="Text"/>
+      <Button Text="LOGIN" Clicked="OnLoginButtonClicked" />
       <Label x:Name="messageLabel" />
     </StackLayout>
   </ContentPage.Content>

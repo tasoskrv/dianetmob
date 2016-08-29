@@ -14,10 +14,10 @@ namespace Dianet
         public static bool IsUserLoggedIn { get; set; }
         public App()
         {
-
+            IsUserLoggedIn = false;
             if (!IsUserLoggedIn)
             {
-                MainPage = new LoginPage();
+                MainPage = new StartPage();
             }
             else
             {
