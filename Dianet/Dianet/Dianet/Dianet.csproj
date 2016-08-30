@@ -91,6 +91,9 @@
     <Compile Include="Pages\SearchMealPage.xaml.cs">
       <DependentUpon>SearchMealPage.xaml</DependentUpon>
     </Compile>
+	<Compile Include="Pages\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SubscriptionPage.xaml.cs">
       <DependentUpon>SubscriptionPage.xaml</DependentUpon>
     </Compile>
@@ -223,7 +226,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\EntryPage.xaml">
+    <EmbeddedResource Include="Pages\StartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
