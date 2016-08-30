@@ -43,7 +43,7 @@ namespace Dianet.Pages
             {
                 Title = "Βάρος",
                 IconSource = "weight.png",
-                TargetType = typeof(Myday)
+                TargetType = typeof(MyWeight)
             });
 
             masterPageItems.Add(new MenuElement
