@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 using Xamarin.Forms;
 
@@ -17,8 +14,29 @@ namespace Dianet.Pages
 
         void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new SignUpPage());
-            App.Current.MainPage = new MainPage();
+            if (CheckValidMail())
+            {
+                App.Current.MainPage = new MainPage();
+            }
+        }
+
+        void OnValidateEmail(object sender, EventArgs e)
+        {
+            CheckValidMail();
+        }
+
+        private bool CheckValidMail()
+        {
+            string pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
+            if (!Regex.IsMatch(emailEntry.Text, pattern))
+            {
+                DisplayAlert("Please", "enter a valid email", "OK");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

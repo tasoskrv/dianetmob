@@ -4,16 +4,12 @@
              x:Class="Dianet.Pages.SignUpPage">
   <ContentPage.Content>
     <StackLayout VerticalOptions="StartAndExpand">
-      <Label Text="Name" />
-      <Entry x:Name="nameEntry" Keyboard="Text" />
-      <Label Text="Surname" />
-      <Entry x:Name="surnameEntry" Keyboard="Text" />
-      <Label Text="Email" />
-      <Entry x:Name="emailEntry" Keyboard="Email"/>      
-      <Label Text="Password" />
-      <Entry x:Name="passwdEntry" IsPassword="True" Keyboard="Text"/>
+      <Entry x:Name="nameEntry" Placeholder="Name" Keyboard="Text" />
+      <Entry x:Name="surnameEntry" Placeholder="Surname" Keyboard="Text" />
+      <Entry x:Name="emailEntry" Placeholder="Email" Keyboard="Email" Completed="OnValidateEmail" />      
+      <Entry x:Name="passwdEntry" Placeholder="Password" IsPassword="True" Keyboard="Text"/>
       <Label Text="Date of birth" />
-      <DatePicker Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/> 
+      <DatePicker Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" /> 
       <Button Text="SAVE" Clicked="OnSaveButtonClicked" />
       <Label x:Name="messageLabel" />
     </StackLayout>

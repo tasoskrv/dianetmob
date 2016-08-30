@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 using Xamarin.Forms;
 
@@ -20,8 +17,31 @@ namespace Dianet.Pages
             await Navigation.PushAsync(new SignUpPage());
         }
 
-        async void OnLoginButtonClicked(object sender, EventArgs e)
+        void OnValidateEmail(object sender, EventArgs e)
         {
+            CheckValidMail();
+        }
+
+        private bool CheckValidMail()
+        {
+            string pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
+            if (!Regex.IsMatch(usernameEntry.Text, pattern))
+            {
+                DisplayAlert("Please", "enter a valid email", "OK");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        void OnLoginButtonClicked(object sender, EventArgs e)
+        {
+            if (CheckValidMail())
+            { 
+               App.Current.MainPage = new MainPage();
+            }
             // var user = new User
             // {
             //     Username = usernameEntry.Text,
@@ -33,14 +53,13 @@ namespace Dianet.Pages
             // {
             //     App.IsUserLoggedIn = true;
             //      Navigation.InsertPageBefore(new MainPage(), this);
-            App.Current.MainPage = new MainPage();
             //await Navigation.PopAsync();
-          //  }
-         //   else
-         //   {
-         //       messageLabel.Text = "Login failed";
-         //       passwordEntry.Text = string.Empty;
-          //  }
+            //  }
+            //   else
+            //   {
+            //       messageLabel.Text = "Login failed";
+            //       passwordEntry.Text = string.Empty;
+            //  }
         }
 
        // bool AreCredentialsCorrect(User user)
