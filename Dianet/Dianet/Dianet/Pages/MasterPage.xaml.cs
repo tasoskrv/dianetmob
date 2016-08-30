@@ -29,42 +29,42 @@ namespace Dianet.Pages
             {
                 Title = "Προφιλ",
                 IconSource = "profile.png",
-                TargetType = typeof(Myday)
+                TargetType = typeof(ProfilePage)
             });
 
             masterPageItems.Add(new MenuElement
             {
                 Title = "Στόχοι",
                 IconSource = "goal.png",
-                TargetType = typeof(Myday)
+                TargetType = typeof(GoalPage)
             });
 
             masterPageItems.Add(new MenuElement
             {
                 Title = "Βάρος",
                 IconSource = "weight.png",
-                TargetType = typeof(Myday)
+                TargetType = typeof(MyWeight)
             });
 
             masterPageItems.Add(new MenuElement
             {
                 Title = "Alerts",
                 IconSource = "alarm.png",
-                TargetType = typeof(Myday)
+                TargetType = typeof(AlertPage)
             });
 
             masterPageItems.Add(new MenuElement
             {
                 Title = "Συνδρομή",
                 IconSource = "myday.png",
-                TargetType = typeof(Myday)
+                TargetType = typeof(SubscriptionPage)
             });
 
             masterPageItems.Add(new MenuElement
             {
                 Title = "Φαγητά μου",
                 IconSource = "myfood.png",
-                TargetType = typeof(Myday)
+                TargetType = typeof(MyFoodPage)
             });
 
             listView.ItemsSource = masterPageItems;
