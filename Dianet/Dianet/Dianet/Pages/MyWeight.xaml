@@ -2,13 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dianet.Pages.MyWeight">
-  <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+  <StackLayout VerticalOptions="StartAndExpand" >
     <Label Text="Ημερομηνία" FontSize="22" FontAttributes="Bold"/>
     <DatePicker Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
     <Label Text="" FontSize="10"/>
     <Label Text="Βάρος" FontSize="22" FontAttributes="Bold"/>
     
-    <Entry  VerticalOptions="Center" HorizontalTextAlignment="Center" Placeholder="Εισάγετε το βάρος σας.." TextColor="Navy" FontSize="18"/> <!--θα μπει number picker -->
+    <Entry  Keyboard="Numeric" VerticalOptions="StartAndExpand"  Placeholder="Εισάγετε το βάρος σας.." TextColor="Navy" FontSize="18"/> <!--θα μπει number picker -->
     <Label Text="" FontSize="30"/>
     
     <Button Text="Αποθήκευση" VerticalOptions="End" HorizontalOptions="End" />
