@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,17 @@ using Dianet.Model;
 using Dianet.DB;
 using SQLite;
 using Dianet.DB.Entities;
+using Newtonsoft.Json.Linq;
+using System.Net;
+using System.IO;
+
 
 namespace Dianet.Pages
 {
     public partial class SearchMealPage : ContentPage
     {
         private ObservableCollection<SearchRecord> records = new ObservableCollection<SearchRecord>();
-
+        protected string url = "http://dianet.cloudocean.gr/api/v1/meal/getall";
         public int Mode { get; set; }
         SQLiteConnection conn=null;
         public SearchMealPage()
@@ -41,7 +46,7 @@ namespace Dianet.Pages
             }
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             if (Mode == 1)
             {
@@ -58,6 +63,18 @@ namespace Dianet.Pages
             {
                 Title = "Snack";
             }
+
+            //HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            //request.ContentType = "application/json";
+            //request.Method = "GET";
+
+            //WebResponse response = await request.GetResponseAsync();
+            //Stream stream = response.GetResponseStream();
+
+           
+
+            //   MealService service = JsonConvert.DeserializeObject<MealService>(json);
+
         }
     }
 }
