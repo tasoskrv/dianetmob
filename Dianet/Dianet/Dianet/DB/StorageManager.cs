@@ -61,6 +61,20 @@ namespace Dianet.DB
             user.UpdateDate = DateTime.Now;
             condb.Insert(user);
 
+            user = new User();
+            user.IdUser = 2;
+            user.FirstName = "Mara";
+            user.LastName = "Patroni";
+            user.Height = 170;
+            user.Birthdate = new DateTime(1985, 07, 07);
+            user.Email = "patroni85@gmail.com";
+            user.Gender = 2;
+            user.HeightType = 1;
+            user.InsertDate = DateTime.Now;
+            user.Password = "1234";
+            user.UpdateDate = DateTime.Now;
+            condb.Insert(user);
+
             Meal meal = new Meal();
             meal.IDMeal = 1;
             meal.Name = "Μπριζόλα";
