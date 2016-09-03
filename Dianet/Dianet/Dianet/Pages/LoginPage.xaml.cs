@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Dianet.Service;
+using System;
 using System.Text.RegularExpressions;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Dianet.Pages
@@ -25,7 +26,7 @@ namespace Dianet.Pages
         private bool CheckValidMail()
         {
             string pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
-            if (!Regex.IsMatch(usernameEntry.Text, pattern))
+            if (usernameEntry.Text==null || !Regex.IsMatch(usernameEntry.Text, pattern))
             {
                 DisplayAlert("Please", "enter a valid email", "OK");
                 return false;
@@ -36,8 +37,10 @@ namespace Dianet.Pages
             }
         }
 
-        void OnLoginButtonClicked(object sender, EventArgs e)
+        private async void OnLoginButtonClicked(object sender, EventArgs e)
         {
+            //Παράδειγμα κλήσης service
+            //MealService serv = await ServiceConnector.GetServiceData<MealService>("/meal/getall");
             if (CheckValidMail())
             { 
                App.Current.MainPage = new MainPage();
