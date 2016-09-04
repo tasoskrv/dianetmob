@@ -107,6 +107,7 @@
     <Compile Include="Service\ExerciseService.cs" />
     <Compile Include="Service\MealService.cs" />
     <Compile Include="Service\ModelService.cs" />
+    <Compile Include="Service\ServiceConnection.cs" />
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

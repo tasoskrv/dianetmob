@@ -13,7 +13,8 @@ using Dianet.DB.Entities;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
-
+using Dianet.Service;
+using System.Net.Http;
 
 namespace Dianet.Pages
 {
@@ -64,14 +65,21 @@ namespace Dianet.Pages
                 Title = "Snack";
             }
 
-            //HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
-            //request.ContentType = "application/json";
-            //request.Method = "GET";
+            // string url = "http://dianet.cloudocean.gr/api/v1/meal/getall";
+
+
+            //Task<MealService> response = ServiceConnection.GetServiceData<MealService>("meal/getall");
+            //-------------------------------------------------------------------------------------
+            // HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            // request.ContentType = "application/json";
+            // request.Method = "GET";
 
             //WebResponse response = await request.GetResponseAsync();
-            //Stream stream = response.GetResponseStream();
-
-           
+            // Stream stream = response.GetResponseStream();
+            //-------------------------------------------------------------------------------------
+            //var httpClient = new HttpClient();
+            // HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
+            //var response = await httpClient.SendAsync(request);
 
             //   MealService service = JsonConvert.DeserializeObject<MealService>(json);
 
