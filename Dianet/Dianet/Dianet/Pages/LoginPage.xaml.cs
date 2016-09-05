@@ -44,10 +44,10 @@ namespace Dianet.Pages
         }
         
 
-        private void OnLoginButtonClicked(object sender, EventArgs e)
+        private async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            //Παράδειγμα κλήσης service
-            //MealService serv = await ServiceConnector.GetServiceData<MealService>("/meal/getall");            
+            //Παράδειγμα κλήσης service     
+            MealService serv = await ServiceConnector.GetServiceData<MealService>("/meal/getall");            
             var user = new User
             {
                 Email = usernameEntry.Text,
