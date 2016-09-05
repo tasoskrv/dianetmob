@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SQLite;
 using Xamarin.Forms;
 using Dianet.DB.Entities;
+using Dianet.Service;
 
 namespace Dianet.DB
 {
@@ -115,6 +116,18 @@ namespace Dianet.DB
             meal.UpdateDate = DateTime.Now;
             condb.Insert(meal);
         }
-    }
+        
+        public static void InsertMealData(SQLiteConnection condb, Meal newMeal)
+        {
+            Meal meal = new Meal();
+            meal.Name = newMeal.Name;
+            meal.Description = newMeal.Description;
+            meal.IDLang = newMeal.IDLang;
+            meal.Fertility = newMeal.Fertility;
+            condb.Insert(meal);
+        }
+
+
+        }
 }
 

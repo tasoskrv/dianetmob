@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using SQLite;
 using Dianet.DB;
 using System.Collections.Generic;
+using Dianet.Factory;
 
 namespace Dianet.Pages
 {
@@ -43,11 +44,13 @@ namespace Dianet.Pages
             }
         }
         
-
         private async void OnLoginButtonClicked(object sender, EventArgs e)
         {
             //Παράδειγμα κλήσης service     
-            MealService serv = await ServiceConnector.GetServiceData<MealService>("/meal/getall");            
+            MealService serv = await ServiceConnector.GetServiceData<MealService>("/meal/getall");
+            
+           //Κληση InsertMeal
+                     
             var user = new User
             {
                 Email = usernameEntry.Text,
@@ -64,7 +67,7 @@ namespace Dianet.Pages
                     //Navigation.InsertPageBefore(new MainPage(), this);
                 }
             }
-            //await Navigation.PopAsync();
+                        //await Navigation.PopAsync();
             //  }
             //   else
             //   {
