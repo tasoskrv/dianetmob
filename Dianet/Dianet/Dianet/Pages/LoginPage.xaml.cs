@@ -48,7 +48,7 @@ namespace Dianet.Pages
         {
             //Παράδειγμα κλήσης service     
             MealService serv = await ServiceConnector.GetServiceData<MealService>("/meal/getall");
-            
+            serv.InsertMeals();
            //Κληση InsertMeal
                      
             var user = new User

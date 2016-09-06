@@ -52,7 +52,6 @@
     <Compile Include="DB\ISQLite.cs" />
     <Compile Include="DB\StorageManager.cs" />
     <Compile Include="DB\Entities\Exercise.cs" />
-    <Compile Include="Factory\MealFactory.cs" />
     <Compile Include="Model\MenuElement.cs" />
     <Compile Include="Model\SearchRecord.cs" />
     <Compile Include="DB\Entities\User.cs" />
