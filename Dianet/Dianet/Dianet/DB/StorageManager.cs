@@ -50,7 +50,7 @@ namespace Dianet.DB
         {
             User user = new User();
             user.IdUser = 1;
-            user.FirstName = "spyros";
+            user.FirstName = "Spyros";
             user.LastName = "Karavanis";
             user.Height = 180;
             user.Birthdate = new DateTime(1987, 08, 04);
@@ -70,6 +70,20 @@ namespace Dianet.DB
             user.Birthdate = new DateTime(1985, 07, 07);
             user.Email = "patroni85@gmail.com";
             user.Gender = 2;
+            user.HeightType = 1;
+            user.InsertDate = DateTime.Now;
+            user.Password = "1234";
+            user.UpdateDate = DateTime.Now;
+            condb.Insert(user);
+
+            user = new User();
+            user.IdUser = 3;
+            user.FirstName = "Thanos";
+            user.LastName = "Koutsopoulos";
+            user.Height = 180;
+            user.Birthdate = new DateTime(1986, 08, 26);
+            user.Email = "koutsopoulosath@gmail.com";
+            user.Gender = 1;
             user.HeightType = 1;
             user.InsertDate = DateTime.Now;
             user.Password = "1234";

@@ -7,7 +7,6 @@ using Xamarin.Forms;
 using SQLite;
 using Dianet.DB;
 using System.Collections.Generic;
-using Dianet.Factory;
 
 namespace Dianet.Pages
 {
@@ -44,13 +43,19 @@ namespace Dianet.Pages
             }
         }
         
-        private async void OnLoginButtonClicked(object sender, EventArgs e)
+        private void OnLoginButtonClicked(object sender, EventArgs e)
         {
             //Παράδειγμα κλήσης service     
-            MealService serv = await ServiceConnector.GetServiceData<MealService>("/meal/getall");
-            serv.InsertMeals();
-           //Κληση InsertMeal
-                     
+            //MealService serv = await ServiceConnector.GetServiceData<MealService>("/meal/getall");
+            //serv.InsertMeals();
+            //Κληση InsertMeal            
+
+            if ((usernameEntry.Text == null) || (passwordEntry.Text == null) || (usernameEntry.Text == "") || (passwordEntry.Text == ""))
+            {
+                DisplayAlert("Please", "enter your credentials", "OK");
+                return;
+            }
+
             var user = new User
             {
                 Email = usernameEntry.Text,
@@ -66,37 +71,20 @@ namespace Dianet.Pages
                     App.Current.MainPage = new MainPage();
                     //Navigation.InsertPageBefore(new MainPage(), this);
                 }
-            }
-                        //await Navigation.PopAsync();
-            //  }
-            //   else
-            //   {
-            //       messageLabel.Text = "Login failed";
-            //       passwordEntry.Text = string.Empty;
-            //  }
+            }               
         }
 
         bool AreCredentialsCorrect(User user)
         {
-            //int usrCount = 0;
-            int usrCount = 1;
-            IEnumerable<User> usrs = conn.Query<User>("SELECT IdUser FROM User WHERE Email ='" + user.Email + "' AND Password ='" + user.Password + "'");
-            foreach (User usr in usrs)
-            {
-                usrCount++;
-                if (usr.IdUser != 0)
-                    return true;
-            }
+            int usrCount = 0;
+            IEnumerable<User> usrs = conn.Query<User>("SELECT IdUser,FirstName,LastName,Height,Birthdate,Email,Gender,HeightType,Password FROM User WHERE Email ='" + user.Email + "' AND Password ='" + user.Password + "'");
+            foreach (User usr in usrs)            
+                usrCount++;            
 
-            //int usrMlCount = 0;
-            int usrMlCount = 1;
-            IEnumerable<User> usrMls = conn.Query<User>("SELECT IdUser FROM User WHERE Email = '" + user.Email + "'");
-            foreach (User usr in usrMls)
-            {
+            int usrMlCount = 0;
+            IEnumerable<User> usrMls = conn.Query<User>("SELECT IdUser,FirstName,LastName,Height,Birthdate,Email,Gender,HeightType,Password FROM User WHERE Email = '" + user.Email + "'");
+            foreach (User usr in usrMls)            
                 usrMlCount++;
-                if (usr.IdUser != 0)
-                    return true;
-            }
             
             if (usrCount == 1)
             {
@@ -114,8 +102,7 @@ namespace Dianet.Pages
                     DisplayAlert("Sorry", "you are not logged in", "Please sign up");
                     return false;
                 }
-            }
-            //return user.Username == Constants.Username && user.Password == Constants.Password;            
+            }                     
         }
     } 
 }
