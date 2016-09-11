@@ -12,7 +12,7 @@ namespace Dianet.DB.Entities
         [PrimaryKey]
         public int IdUser { get; set; }
 
-        public int FacebookID { get; set; }
+        public double FacebookID { get; set; }
 
         [MaxLength(45)]
         public string FirstName { get; set; }

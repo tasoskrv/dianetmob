@@ -39,7 +39,7 @@ namespace Dianet.DB
                 condb.CreateTable<UserFood>();
                 condb.CreateTable<UserMeal>();
                 condb.CreateTable<Weight>();
-                InsertDemoData(condb);
+                //InsertDemoData(condb);
                 return true;
             }
             catch {

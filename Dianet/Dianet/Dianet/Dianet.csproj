@@ -104,11 +104,9 @@
     <Compile Include="Pages\SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Service\ExerciseService.cs" />
-    <Compile Include="Service\MealService.cs" />
     <Compile Include="Service\ModelService.cs" />
     <Compile Include="Service\ServiceConnector.cs" />
-    <Compile Include="Service\UserService.cs" />
+    <Compile Include="Utils\GenLib.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\MainPage.xaml">
