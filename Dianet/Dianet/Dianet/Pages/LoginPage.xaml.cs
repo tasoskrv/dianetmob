@@ -82,7 +82,7 @@ namespace Dianet.Pages
             }
             // return true;
             //πχ χρήστης   /user/login/username=spiros.karavanis@gmail.com/password=545
-            ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/username='" + user.Email + "'/password='" + user.Password + "'");
+            ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/username=" + user.Email + "/password=" + user.Password);
             if (srvUser.totalRows > 0) {
                 srvUser.InsertAllToDB();
                 GenLib.FullServiceLoadAndStore();
