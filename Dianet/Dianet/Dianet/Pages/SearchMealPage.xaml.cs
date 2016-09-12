@@ -64,7 +64,7 @@ namespace Dianet.Pages
             {
                 Title = "Snack";
             }
-
+            records.Clear();
             // string url = "http://dianet.cloudocean.gr/api/v1/meal/getall";
 
 
