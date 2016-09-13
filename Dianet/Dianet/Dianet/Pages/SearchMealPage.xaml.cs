@@ -37,6 +37,12 @@ namespace Dianet.Pages
            
         }
 
+        public  async void OnItemTapped(object sender, ItemTappedEventArgs eventArgs)
+        {
+           
+           await  DisplayAlert( Title +" Added!","you choose "+ Title ,"Ok"); //θελω να περασω το ονομα του γευματος απλα δεν ξερω πως θα το παρω απο το sender
+        }
+
         public void OnSearchBarTextChanged(object sender, EventArgs eventArgs)
         {
             records.Clear();

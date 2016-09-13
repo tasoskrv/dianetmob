@@ -9,7 +9,7 @@
                        SearchButtonPressed="OnSearchBarPressed"
                        CancelButtonColor="Gray"
                        TextChanged="OnSearchBarTextChanged" />
-    <ListView x:Name="ListViewSearch">
+    <ListView x:Name="ListViewSearch" ItemTapped="OnItemTapped">
       <!-- Refreshing="OnRefresButtonTapped"-->
       <!-- ItemTapped="DirectoryListOnItemTapped"-->
       <ListView.ItemTemplate>
