@@ -46,7 +46,7 @@ namespace Dianet.Pages
             //await Navigation.PushModalAsync(SelectMealPage);
 
             //await  Navigation.PushModalAsync(pg);
-            if (answer != "cancel" || answer !=null)
+            if (answer != "cancel" && answer !=null)
             {
                 await Navigation.PushAsync(selectPage);
             }
