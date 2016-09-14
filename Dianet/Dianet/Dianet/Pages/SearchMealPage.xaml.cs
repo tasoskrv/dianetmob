@@ -20,6 +20,7 @@ namespace Dianet.Pages
 {
     public partial class SearchMealPage : ContentPage
     {
+        private SelectMealPage selectPage = new SelectMealPage();
         private ObservableCollection<SearchRecord> records = new ObservableCollection<SearchRecord>();
         protected string url = "http://dianet.cloudocean.gr/api/v1/meal/getall";
         public int Mode { get; set; }
@@ -36,20 +37,28 @@ namespace Dianet.Pages
         {
            
         }
-
-        public  async void OnItemTapped(object sender, ItemTappedEventArgs eventArgs)
+        
+        public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-           
-           await  DisplayAlert( Title +" Added!","you choose "+ Title ,"Ok"); //θελω να περασω το ονομα του γευματος απλα δεν ξερω πως θα το παρω απο το sender
+            var myMeal = e.Item as SearchRecord;
+            //var pg = new SelectMealPage();
+            var answer =  await  DisplayActionSheet("Add "+Title+" ?","cancel",null,myMeal.DisplayName);
+            //await Navigation.PushModalAsync(SelectMealPage);
+
+            //await  Navigation.PushModalAsync(pg);
+            if (answer != "cancel" || answer !=null)
+            {
+                await Navigation.PushAsync(selectPage);
+            }
         }
 
         public void OnSearchBarTextChanged(object sender, EventArgs eventArgs)
         {
             records.Clear();
-            IEnumerable<Meal> meals= conn.Query<Meal>("SELECT name FROM meal WHERE name LIKE ?", "%"+ASearchBar.Text+"%");
+            IEnumerable<Meal> meals= conn.Query<Meal>("SELECT name, IDMeal FROM meal WHERE name LIKE ?", "%"+ASearchBar.Text+"%");
             foreach (Meal meal in meals)
             {
-                records.Add(new SearchRecord { DisplayName = meal.Name });
+                records.Add(new SearchRecord { DisplayName = meal.Name , Id = meal.IDMeal});
             }
         }
 
