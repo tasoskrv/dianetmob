@@ -12,6 +12,9 @@ namespace Dianet.DB.Entities
         [PrimaryKey]
         public int IdUser { get; set; }
 
+        [MaxLength(45)]
+        public double AccessToken { get; set; }
+
         public double FacebookID { get; set; }
 
         [MaxLength(45)]

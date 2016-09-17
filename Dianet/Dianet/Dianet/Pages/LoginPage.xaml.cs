@@ -82,7 +82,7 @@ namespace Dianet.Pages
                PerformLogin();
                return;
             }             
-            //πχ χρήστης   /user/login/username=spiros.karavanis@gmail.com/password=545
+            //πχ χρήστης   /user/login/username=spiros.karavanis1@gmail.com/password=12345
             ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/username=" + user.Email + "/password=" + user.Password);
             if (srvUser.totalRows > 0) {
                 srvUser.InsertAllToDB();
