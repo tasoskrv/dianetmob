@@ -1,9 +1,4 @@
 ﻿using Dianet.DB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dianet.Service
 {
@@ -27,5 +22,13 @@ namespace Dianet.Service
         {
             StorageManager.InsertData<T>(AObj);
         }
+    }
+
+    class NewUserService<T>
+    {
+        public int UserId { get; set; }
+        public bool success { get; set; }
+
+        public T[] data { get; set; }
     }
 }

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dianet.Pages.SignUpPage2">
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="StartAndExpand">
+      <Picker x:Name="SexPicker" Title="Sex" SelectedIndexChanged="OnSexChanged" HorizontalOptions="FillAndExpand">
+        <Picker.Items>
+          <x:String>Male</x:String>
+          <x:String>Female</x:String>          
+        </Picker.Items>
+      </Picker>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+        <Entry x:Name="heightEntry" Placeholder="Height" Keyboard="Numeric" />
+        <Picker x:Name="HeightPicker" Title="Height" SelectedIndexChanged="OnHeightChanged" HorizontalOptions="FillAndExpand">
+          <Picker.Items>
+            <x:String>Cm</x:String>
+            <x:String>In</x:String>
+          </Picker.Items>
+        </Picker>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+        <Entry x:Name="weightEntry" Placeholder="Weight" Keyboard="Numeric" />
+        <Picker x:Name="WeightPicker" Title="Weight" SelectedIndexChanged="OnWeightChanged" HorizontalOptions="FillAndExpand">
+          <Picker.Items>
+            <x:String>Kg</x:String>
+            <x:String>Lbs</x:String>
+          </Picker.Items>
+        </Picker>
+      </StackLayout>  
+      <Picker x:Name="WristPicker" Title="Wrist" SelectedIndexChanged="OnWristChanged" HorizontalOptions="FillAndExpand">
+        <Picker.Items>
+          <x:String>Small</x:String>
+          <x:String>Medium</x:String>
+          <x:String>Large</x:String>
+        </Picker.Items>
+      </Picker>
+      <Button Text="START" VerticalOptions="Center" Clicked="OnStartButtonClicked" />
+    </StackLayout>
+  </ContentPage.Content>
+
+</ContentPage>

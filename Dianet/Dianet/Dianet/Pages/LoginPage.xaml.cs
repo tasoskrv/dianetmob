@@ -75,26 +75,23 @@ namespace Dianet.Pages
         } 
         public async void AreCredentialsCorrect(User user)
         {
+            //ICollection<User> usrs = conn.Query<User>("SELECT FirstName FROM User WHERE IdUser=2");
             ICollection<User> usrs = conn.Query<User>("SELECT IdUser,FirstName,LastName,Height,Birthdate,Email,Gender,HeightType,Password FROM User WHERE Email ='" + user.Email + "' AND Password ='" + user.Password + "'");
-            if (usrs.Count > 0) {
-                PerformLogin();
-                return;
-            }
-            // return true;
+            if (usrs.Count > 0)
+            {
+               PerformLogin();
+               return;
+            }             
             //πχ χρήστης   /user/login/username=spiros.karavanis@gmail.com/password=545
             ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/username=" + user.Email + "/password=" + user.Password);
             if (srvUser.totalRows > 0) {
                 srvUser.InsertAllToDB();
-                GenLib.FullServiceLoadAndStore();
+                //GenLib.FullServiceLoadAndStore();
                 PerformLogin();
                 return;
             }
-            //serv.in
-
            
-            await  DisplayAlert("Sorry", "the credentials you have entered are wrong", "Forgot it?");
-            
-            //return false;                     
+            await DisplayAlert("Sorry", "the credentials you have entered are wrong", "Forgot it?");                                           
         }
     } 
 }

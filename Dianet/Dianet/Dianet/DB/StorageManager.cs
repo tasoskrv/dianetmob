@@ -58,7 +58,7 @@ namespace Dianet.DB
             user.Gender = 1;
             user.HeightType = 1;
             user.InsertDate = DateTime.Now;
-            user.Password = "1234";
+            user.Password = "545";
             user.UpdateDate = DateTime.Now;
             condb.Insert(user);
 

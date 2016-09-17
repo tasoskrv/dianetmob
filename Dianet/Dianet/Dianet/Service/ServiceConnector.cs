@@ -24,6 +24,16 @@ namespace Dianet.Service
             return default(T);
         }
 
-        
+        public static async Task<T> InsertServiceData<T>(string url)
+        {
+            var uri = new Uri(BaseUrl + url);
+            var response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();                
+                return JsonConvert.DeserializeObject<T>(content);
+            }
+            return default(T);
+        }
     }
 }
