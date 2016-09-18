@@ -15,5 +15,7 @@ namespace Dianet.DB.Entities
         public int TrialPeriod { get; set; }
 
         public int RemindWeight { get; set; }
+
+        public int LastLoggedIn { get; set; }
     }
 }

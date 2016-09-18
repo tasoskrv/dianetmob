@@ -39,7 +39,7 @@ namespace Dianet.DB
                 condb.CreateTable<UserFood>();
                 condb.CreateTable<UserMeal>();
                 condb.CreateTable<Weight>();
-                //InsertDemoData(condb);
+                InsertDemoData(condb);
                 return true;
             }
             catch {
@@ -54,11 +54,11 @@ namespace Dianet.DB
             user.LastName = "Karavanis";
             user.Height = 180;
             user.Birthdate = new DateTime(1987, 08, 04);
-            user.Email = "spiroskaravanis@gmail.com";
+            user.Email = "spiroskaravanis2@gmail.com";
             user.Gender = 1;
             user.HeightType = 1;
             user.InsertDate = DateTime.Now;
-            user.Password = "545";
+            user.Password = "12345";
             user.UpdateDate = DateTime.Now;
             condb.Insert(user);
 
@@ -144,6 +144,11 @@ namespace Dianet.DB
         public static void InsertData<T>(T model)
         {
             db.Insert(model);
+        }
+
+        public static void UpdateData<T>(T model)
+        {
+            db.Update(model);
         }
     }
 }
