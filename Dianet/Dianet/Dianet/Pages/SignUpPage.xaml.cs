@@ -17,17 +17,22 @@ namespace Dianet.Pages
         async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             if (AllFieldsAreFilled() && CheckValidMail())
-            {                
-                //NewUserService<User> srvNewUser = await ServiceConnector.GetServiceData<NewUserService<User>>("user/insertUser/firstname=" + nameEntry.Text + "/lastname=" + surnameEntry.Text + "/email=" + emailEntry.Text + "/password=" + passwdEntry.Text + "/birthdate=" + birthDateEntry.Text + "/insertdate=" + DateTime.Now + "/updatedate=" + DateTime.Now);
-                //if ((srvNewUser.success == true) && (srvNewUser.UserId > 0))
-                //{
-                    //srvNewUser.InsertAllToDB();                                        
-                 //   return;
-                //}
-                //App.Current.MainPage = new SignUpPage2();
-                App.Current.MainPage = new MainPage();
+            {
+                int token = GetRegistrationToken(nameEntry.Text, passwdEntry.Text);
+                ModelService<User> srvNewUser = await ServiceConnector.GetServiceData<ModelService<User>>("user/insertUser/firstname=" + nameEntry.Text + "/lastname=" + surnameEntry.Text + "/email=" + emailEntry.Text + "/password=" + passwdEntry.Text + "/insertdate=" + DateTime.Now + "/updatedate=" + DateTime.Now + "/token=" + token);
+                if ((srvNewUser.success == true) && (srvNewUser.UserId > 0))
+                {
+                    srvNewUser.InsertAllToDB();
+                    App.Current.MainPage = new SignUpPage2();
+                    return;
+                }                                
                 return;
             }
+        }
+
+        private int GetRegistrationToken(string mail, string pass)
+        {
+            return (mail.Length * pass.Length * 9999888);
         }
 
         void OnValidateEmail(object sender, EventArgs e)

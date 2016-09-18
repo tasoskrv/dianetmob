@@ -6,6 +6,7 @@ namespace Dianet.Service
     {
         public int totalRows { get; set; }
         public bool success { get; set; }
+        public int UserId { get; set; }
 
         public T[] data { get; set; }
 
@@ -22,13 +23,10 @@ namespace Dianet.Service
         {
             StorageManager.InsertData<T>(AObj);
         }
-    }
 
-    class NewUserService<T>
-    {
-        public int UserId { get; set; }
-        public bool success { get; set; }
-
-        public T[] data { get; set; }
-    }
+        public void UpdateData(T Aobj)
+        {
+            StorageManager.UpdateData<T>(Aobj);
+        }
+    }    
 }

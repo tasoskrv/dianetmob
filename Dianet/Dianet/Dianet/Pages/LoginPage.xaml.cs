@@ -65,29 +65,32 @@ namespace Dianet.Pages
 
             if (CheckValidMail())
             {
-               AreCredentialsCorrect(user);
-                
+               AreCredentialsCorrect(user);                
             }               
         }
-        private void PerformLogin() {
+
+        private void PerformLogin(int id)
+        {            
             App.IsUserLoggedIn = true;
             App.Current.MainPage = new MainPage();
-        } 
+        }
+         
         public async void AreCredentialsCorrect(User user)
-        {
-            //ICollection<User> usrs = conn.Query<User>("SELECT FirstName FROM User WHERE IdUser=2");
-            ICollection<User> usrs = conn.Query<User>("SELECT IdUser,FirstName,LastName,Height,Birthdate,Email,Gender,HeightType,Password FROM User WHERE Email ='" + user.Email + "' AND Password ='" + user.Password + "'");
+        {            
+            ICollection<User> usrs = conn.Query<User>("SELECT IdUser,FirstName,LastName,Height,Birthdate,Email,Gender,HeightType,Password FROM User WHERE Email ='" + user.Email + "' AND Password ='" + user.Password + "'");            
+            //IEnumerator<User> enm = usrs.GetEnumerator();            
             if (usrs.Count > 0)
             {
-               PerformLogin();
+               PerformLogin(240);
                return;
             }             
-            //πχ χρήστης   /user/login/username=spiros.karavanis1@gmail.com/password=12345
-            ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/username=" + user.Email + "/password=" + user.Password);
-            if (srvUser.totalRows > 0) {
+            //πχ χρήστης   /user/login/username=spiroskaravanis2@gmail.com/password=12345
+            ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/username=" + user.Email + "/password=" + user.Password);            
+            if (srvUser.totalRows > 0)
+            {
                 srvUser.InsertAllToDB();
                 //GenLib.FullServiceLoadAndStore();
-                PerformLogin();
+                PerformLogin(srvUser.UserId);
                 return;
             }
            
