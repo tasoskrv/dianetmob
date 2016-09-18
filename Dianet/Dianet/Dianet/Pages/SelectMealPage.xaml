@@ -3,10 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dianet.Pages.SelectMealPage">
   <ContentPage.Content>
-    <StackLayout VerticalOptions="StartAndExpand">
-
-      <Label Text="Coming soon.." />
+ 
+    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" >
+      
+      <Picker x:Name="unitPicker" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit ">
+         <Picker.Items>
+          <x:String>-</x:String>
+          <x:String>Pounds</x:String>
+          <x:String>Ounces</x:String>
+          <x:String>Grams</x:String>
+          <x:String>Cups</x:String>
+          <x:String>Pints</x:String>
+          <x:String>Dry Cups</x:String>
+          <x:String>Cups</x:String>
+          <x:String>Pints</x:String>
+          <x:String>Liters</x:String>
+          <x:String>Tablespoons</x:String>
+          <x:String>Quarts</x:String>
+         </Picker.Items>
+      </Picker>      
+      
+        <Picker x:Name="counter1Picker" Title="Counter" SelectedIndex="1" IsEnabled="False">
+        <Picker.Items>
+          <x:String>-</x:String>
+          <x:String>1</x:String>
+          <x:String>2</x:String>
+          <x:String>3</x:String>
+          <x:String>4</x:String>
+          <x:String>5</x:String>
+        </Picker.Items>
+        <Picker.SelectedIndex >1</Picker.SelectedIndex>
+      </Picker>
+      <Picker x:Name="counter2Picker" Title="Counter" IsEnabled="False">
+        <Picker.Items>
+          <x:String>-</x:String>
+          <x:String>1/8</x:String>
+          <x:String>1/4</x:String>
+          <x:String>1/3</x:String>
+          <x:String>1/2</x:String>
+          <x:String>2/3</x:String>
+          <x:String>3/4</x:String>          
+        </Picker.Items>
+        <Picker.SelectedIndex >1</Picker.SelectedIndex>
+      </Picker>
+     <Button Text="Choose" VerticalOptions="EndAndExpand" Clicked="OnChooseBtnClicked" />  
     </StackLayout>
-  </ContentPage.Content>
-  
+
+  </ContentPage.Content> 
 </ContentPage>
