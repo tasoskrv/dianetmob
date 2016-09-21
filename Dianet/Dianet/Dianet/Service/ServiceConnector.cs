@@ -24,10 +24,11 @@ namespace Dianet.Service
             return default(T);
         }
 
-        public static async Task<T> InsertServiceData<T>(string url)
+        public static async Task<T> InsertServiceData<T>(string url, Object AObject)
         {
+            var stringContent = new StringContent(AObject.ToString(), Encoding.UTF8, "application/x-www-form-urlencoded");
             var uri = new Uri(BaseUrl + url);
-            var response = await client.GetAsync(uri);
+            var response = await client.PostAsync(uri, stringContent);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();                

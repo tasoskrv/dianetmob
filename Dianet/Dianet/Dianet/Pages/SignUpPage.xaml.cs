@@ -18,8 +18,16 @@ namespace Dianet.Pages
         {
             if (AllFieldsAreFilled() && CheckValidMail())
             {
-                int token = GetRegistrationToken(nameEntry.Text, passwdEntry.Text);
-                ModelService<User> srvNewUser = await ServiceConnector.GetServiceData<ModelService<User>>("user/insertUser/firstname=" + nameEntry.Text + "/lastname=" + surnameEntry.Text + "/email=" + emailEntry.Text + "/password=" + passwdEntry.Text + "/insertdate=" + DateTime.Now + "/updatedate=" + DateTime.Now + "/token=" + token);
+                int token = GetRegistrationToken(emailEntry.Text, passwdEntry.Text);
+                User user = new User();
+                user.FirstName = nameEntry.Text;
+                user.LastName = surnameEntry.Text;
+                user.Email = emailEntry.Text;
+                user.Password = passwdEntry.Text;
+                user.InsertDate = DateTime.Now;
+                user.UpdateDate = user.InsertDate;
+                user.AccessToken = token.ToString();
+                ModelService<User> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/insertUser/",user);
                 if ((srvNewUser.success == true) && (srvNewUser.UserId > 0))
                 {
                     srvNewUser.InsertAllToDB();
