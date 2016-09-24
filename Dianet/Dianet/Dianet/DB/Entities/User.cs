@@ -37,9 +37,9 @@ namespace Dianet.DB.Entities
 
         public double Skeleton { get; set; }
 
-        public DateTime Birthdate { get; set; }
+        public DateTime? Birthdate { get; set; }
 
-        public DateTime RemindDate { get; set; }
+        public DateTime? RemindDate { get; set; }
 
         public DateTime InsertDate { get; set; }
 
@@ -90,10 +90,10 @@ namespace Dianet.DB.Entities
                 str += "&heighttype=" + HeightType.ToString();
             if (Skeleton != -1)
                 str += "&skeleton=" + Skeleton.ToString();
-            if (Birthdate != DateTime.MinValue)
-                str += "&birthdate=" + Birthdate.ToString("yyyyMMdd");
-            if (RemindDate != DateTime.MinValue)
-                str += "&reminddate=" + RemindDate.ToString("yyyyMMdd");
+            if (Birthdate != null)
+                str += "&birthdate=" + Birthdate.Value.ToString("yyyyMMdd");
+            if (RemindDate != null)
+                str += "&reminddate=" + RemindDate.Value.ToString("yyyyMMdd");
             if (InsertDate != DateTime.MinValue)
                 str += "&insertdate=" + InsertDate.ToString("yyyyMMdd");
             if (UpdateDate != DateTime.MinValue)

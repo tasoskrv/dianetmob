@@ -1,4 +1,5 @@
-﻿using Dianet.DB.Entities;
+﻿using Dianet.DB;
+using Dianet.DB.Entities;
 using Dianet.Service;
 using System;
 using System.Text.RegularExpressions;
@@ -12,29 +13,43 @@ namespace Dianet.Pages
         public SignUpPage()
         {
             InitializeComponent();
+            StorageManager.GetConnection();
         }
 
         async void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            if (AllFieldsAreFilled() && CheckValidMail())
+            try
             {
-                int token = GetRegistrationToken(emailEntry.Text, passwdEntry.Text);
-                User user = new User();
-                user.FirstName = nameEntry.Text;
-                user.LastName = surnameEntry.Text;
-                user.Email = emailEntry.Text;
-                user.Password = passwdEntry.Text;
-                user.InsertDate = DateTime.Now;
-                user.UpdateDate = user.InsertDate;
-                user.AccessToken = token.ToString();
-                ModelService<User> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/insertUser/",user);
-                if ((srvNewUser.success == true) && (srvNewUser.UserId > 0))
+                if (AllFieldsAreFilled() && CheckValidMail())
                 {
-                    srvNewUser.InsertAllToDB();
-                    App.Current.MainPage = new SignUpPage2();
+                    int token = GetRegistrationToken(emailEntry.Text, passwdEntry.Text);
+                    User user = new User();
+                    user.FirstName = nameEntry.Text;
+                    user.LastName = surnameEntry.Text;
+                    user.Email = emailEntry.Text;
+                    user.Password = passwdEntry.Text;
+                    user.InsertDate = DateTime.Now;
+                    user.UpdateDate = user.InsertDate;
+                    user.Birthdate = birthDate.Date;
+                    user.AccessToken = token.ToString();
+                    ModelService<User> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/insert/", user);
+                    if ((srvNewUser.success == true) && (srvNewUser.ID > 0))
+                    {                        
+                        user.IdUser = srvNewUser.ID;
+                        user.AccessToken = srvNewUser.AccessToken;
+                        srvNewUser.InsertRecordToDB(user);
+                        App.Current.MainPage = new SignUpPage2();
+                        return;
+                    }
+                    else {
+                        await DisplayAlert("Warning", srvNewUser.message, "OK");
+                    }
+                    
                     return;
-                }                                
-                return;
+                }
+            }
+            catch (Exception ex) {
+                await DisplayAlert("Error", ex.Message, "OK");
             }
         }
 

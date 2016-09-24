@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DB\ConnectionInfo.cs" />
     <Compile Include="DB\Entities\Alert.cs" />
     <Compile Include="DB\Entities\Meal.cs" />
     <Compile Include="DB\Entities\MealUnit.cs" />

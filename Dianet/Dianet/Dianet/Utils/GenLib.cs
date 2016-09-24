@@ -12,9 +12,15 @@ namespace Dianet.Utils
     {
         public async static void FullServiceLoadAndStore()
         {
-            ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall");
-            servMeal.InsertAllToDB();
-            
+            try
+            {
+                ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall");
+                servMeal.InsertAllToDB();
+            }
+            catch (Exception ex){
+
+            }
+
             //Να προστεθούν όσες υπηρεσίες χρειάζεται 
 
         }

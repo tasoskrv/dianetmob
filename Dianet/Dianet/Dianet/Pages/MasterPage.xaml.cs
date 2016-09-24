@@ -67,6 +67,13 @@ namespace Dianet.Pages
                 TargetType = typeof(MyFoodPage)
             });
 
+            masterPageItems.Add(new MenuElement
+            {
+                Title = "Έξοδος",
+                IconSource = "logout.png",
+                TargetType = typeof(StartPage)
+            });
+
             listView.ItemsSource = masterPageItems;
         }
     }

@@ -15,6 +15,11 @@ namespace Dianet.DB
     {
         static SQLiteConnection db=null;
 
+        static ConnectionInfo info = new ConnectionInfo();
+
+        public static ConnectionInfo GetConnectionInfo() {
+            return info;
+        }
         public static SQLiteConnection GetConnection()
         {
             if (db == null) {
@@ -39,96 +44,18 @@ namespace Dianet.DB
                 condb.CreateTable<UserFood>();
                 condb.CreateTable<UserMeal>();
                 condb.CreateTable<Weight>();
-                InsertDemoData(condb);
+                InsertData(condb);
                 return true;
             }
             catch {
                 return false;
             }
         }
-        public static void InsertDemoData(SQLiteConnection condb)
+        public static void InsertData(SQLiteConnection condb)
         {
-            User user = new User();
-            user.IdUser = 1;
-            user.FirstName = "Spyros";
-            user.LastName = "Karavanis";
-            user.Height = 180;
-            user.Birthdate = new DateTime(1987, 08, 04);
-            user.Email = "spiroskaravanis2@gmail.com";
-            user.Gender = 1;
-            user.HeightType = 1;
-            user.InsertDate = DateTime.Now;
-            user.Password = "12345";
-            user.UpdateDate = DateTime.Now;
-            condb.Insert(user);
-
-            user = new User();
-            user.IdUser = 2;
-            user.FirstName = "Mara";
-            user.LastName = "Patroni";
-            user.Height = 170;
-            user.Birthdate = new DateTime(1985, 07, 07);
-            user.Email = "patroni85@gmail.com";
-            user.Gender = 2;
-            user.HeightType = 1;
-            user.InsertDate = DateTime.Now;
-            user.Password = "1234";
-            user.UpdateDate = DateTime.Now;
-            condb.Insert(user);
-
-            user = new User();
-            user.IdUser = 3;
-            user.FirstName = "Thanos";
-            user.LastName = "Koutsopoulos";
-            user.Height = 180;
-            user.Birthdate = new DateTime(1986, 08, 26);
-            user.Email = "koutsopoulosath@gmail.com";
-            user.Gender = 1;
-            user.HeightType = 1;
-            user.InsertDate = DateTime.Now;
-            user.Password = "1234";
-            user.UpdateDate = DateTime.Now;
-            condb.Insert(user);
-
-            Meal meal = new Meal();
-            meal.IDMeal = 1;
-            meal.Name = "Μπριζόλα";
-            meal.Description = "me ladaki";
-            meal.IDLang = 1;
-            meal.Fertility = "";
-            meal.InsertDate = DateTime.Now;
-            meal.UpdateDate = DateTime.Now;
-            condb.Insert(meal);
-
-            meal = new Meal();
-            meal.IDMeal = 2;
-            meal.Name = "Μπριζόλα με πατάτες";
-            meal.Description = "me ladaki";
-            meal.IDLang = 1;
-            meal.Fertility = "";
-            meal.InsertDate = DateTime.Now;
-            meal.UpdateDate = DateTime.Now;
-            condb.Insert(meal);
-
-            meal = new Meal();
-            meal.IDMeal = 3;
-            meal.Name = "Μπριζόλα με ρύζι";
-            meal.Description = "me ladaki";
-            meal.IDLang = 1;
-            meal.Fertility = "";
-            meal.InsertDate = DateTime.Now;
-            meal.UpdateDate = DateTime.Now;
-            condb.Insert(meal);
-
-            meal = new Meal();
-            meal.IDMeal = 4;
-            meal.Name = "Ντομάτα";
-            meal.Description = "me ladaki";
-            meal.IDLang = 1;
-            meal.Fertility = "";
-            meal.InsertDate = DateTime.Now;
-            meal.UpdateDate = DateTime.Now;
-            condb.Insert(meal);
+            Settings set = new Settings();
+            set.IDSettings = 1;
+            condb.Insert(set);
         }
 
         //public static void InsertMealData(SQLiteConnection condb, Meal newMeal)

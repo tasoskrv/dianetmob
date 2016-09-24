@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +14,7 @@ namespace Dianet.Service
     {
         private static string BaseUrl = "http://dianet.cloudocean.gr/api/v1";
         private static HttpClient client = new HttpClient();
+        private static IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" };
         public static async Task<T> GetServiceData<T>(string url)
         {
             var uri = new Uri(BaseUrl + url);
@@ -19,7 +22,7 @@ namespace Dianet.Service
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<T>(content);
+                return JsonConvert.DeserializeObject<T>(content, dateTimeConverter);
             }
             return default(T);
         }
@@ -32,7 +35,7 @@ namespace Dianet.Service
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();                
-                return JsonConvert.DeserializeObject<T>(content);
+                return JsonConvert.DeserializeObject<T>(content, dateTimeConverter);
             }
             return default(T);
         }

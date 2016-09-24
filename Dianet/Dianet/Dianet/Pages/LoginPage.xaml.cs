@@ -69,32 +69,43 @@ namespace Dianet.Pages
             }               
         }
 
-        private void PerformLogin(int id)
-        {            
+        private void PerformLogin(User user)
+        {
+
+            StorageManager.GetConnectionInfo().LoginUser = user;
+            Settings settings = new Settings();
+            settings.IDSettings = 1;
+            settings.LastLoggedIn = user.IdUser;
+            StorageManager.UpdateData<Settings>(settings);
             App.IsUserLoggedIn = true;
             App.Current.MainPage = new MainPage();
         }
-         
+
         public async void AreCredentialsCorrect(User user)
-        {            
-            ICollection<User> usrs = conn.Query<User>("SELECT IdUser,FirstName,LastName,Height,Birthdate,Email,Gender,HeightType,Password FROM User WHERE Email ='" + user.Email + "' AND Password ='" + user.Password + "'");            
-            //IEnumerator<User> enm = usrs.GetEnumerator();            
+        {
+            List<User> usrs = conn.Query<User>("SELECT IdUser,FirstName,LastName,Height,Birthdate,Email,Gender,HeightType,Password, AccessToken FROM User WHERE Email ='" + user.Email + "' AND Password ='" + user.Password + "'");
             if (usrs.Count > 0)
             {
-               PerformLogin(240);
-               return;
-            }             
-            //πχ χρήστης   /user/login/username=spiroskaravanis2@gmail.com/password=12345
-            ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/username=" + user.Email + "/password=" + user.Password);            
-            if (srvUser.totalRows > 0)
-            {
-                srvUser.InsertAllToDB();
-                //GenLib.FullServiceLoadAndStore();
-                PerformLogin(srvUser.UserId);
+                PerformLogin(usrs[0]);
                 return;
             }
-           
-            await DisplayAlert("Sorry", "the credentials you have entered are wrong", "Forgot it?");                                           
+            //πχ χρήστης   /user/login/username=spiroskaravanis2@gmail.com/password=12345
+            try
+            {
+                ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/email=" + user.Email + "/password=" + user.Password);
+                if (srvUser.totalRows > 0)
+                {
+                    srvUser.InsertAllToDB();
+                    GenLib.FullServiceLoadAndStore();
+                    PerformLogin(srvUser.data[0]);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+            await DisplayAlert("Sorry", "the credentials you have entered are wrong", "Forgot it?");
         }
     } 
 }

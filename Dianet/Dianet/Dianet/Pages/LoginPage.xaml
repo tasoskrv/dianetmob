@@ -5,7 +5,7 @@
   <ContentPage.Content>
     <StackLayout VerticalOptions="StartAndExpand">
       <Entry x:Name="usernameEntry" Placeholder="Username - Enter a valid email" Keyboard="Email" Completed="OnValidateEmail"/>
-      <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true" Keyboard="Text"/>
+      <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true"/>
       <Button Text="LOGIN" Clicked="OnLoginButtonClicked" />
       <Button Text="SIGNUP" Clicked="OnSignUpButtonClicked" />
       <Label x:Name="messageLabel" />

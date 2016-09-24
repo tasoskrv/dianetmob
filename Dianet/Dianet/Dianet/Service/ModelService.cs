@@ -6,7 +6,10 @@ namespace Dianet.Service
     {
         public int totalRows { get; set; }
         public bool success { get; set; }
-        public int UserId { get; set; }
+        public string message { get; set; }
+        public int ID { get; set; }
+        public string AccessToken { get; set; }
+
 
         public T[] data { get; set; }
 
