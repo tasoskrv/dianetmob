@@ -59,8 +59,8 @@ namespace Dianet.DB.Entities
             Height = -1;
             HeightType = -1;
             Skeleton = -1;
-            Birthdate = DateTime.MinValue;
-            RemindDate = DateTime.MinValue;
+            Birthdate = null;
+            RemindDate = null;
             InsertDate = DateTime.MinValue;
             UpdateDate = DateTime.MinValue;
             AdjustDiet = -1;
