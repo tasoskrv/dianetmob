@@ -10,9 +10,13 @@ namespace Dianet.Pages
 {
     public partial class SelectMealPage : ContentPage
     {
+        public int IDMealSelected{ get; set; }
         public SelectMealPage()
         {           
             InitializeComponent();
+        }
+        public void CalcUnits() {
+
         }
 
         void OnUnitChosen(object sender, EventArgs e)
@@ -37,7 +41,8 @@ namespace Dianet.Pages
 
         async void OnChooseBtnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Myday());
+            await Navigation.PopToRootAsync();
+            // await Navigation.PushAsync(new Myday());
         }
     }
 }

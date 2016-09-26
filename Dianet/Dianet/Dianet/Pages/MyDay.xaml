@@ -1,15 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:me="clr-namespace:Dianet.Pages;assembly=Dianet"
              x:Class="Dianet.Pages.Myday"
              Title="My day">
-  <ContentPage.ToolbarItems>
-    <ToolbarItem Text=""  Clicked="OnAddMealClicked" Icon="plus.png"/>
-    <ToolbarItem Text=""  Clicked="OnAddWeightClicked" Icon="weight.png"/>
-  </ContentPage.ToolbarItems>
-  <ContentPage.Content>
-    <StackLayout>
-
-    </StackLayout>
-  </ContentPage.Content>
-</ContentPage>
+  <TabbedPage.Children>
+    <me:DashboardPage/>
+    <me:LogPage/>
+  </TabbedPage.Children>
+</TabbedPage>

@@ -8,21 +8,15 @@ using Xamarin.Forms;
 
 namespace Dianet.Pages
 {
-    public partial class Myday : ContentPage
+    public partial class Myday : TabbedPage
     {
         public Myday()
         {
             InitializeComponent();
         }
-
-        async void OnAddMealClicked(object sender, EventArgs e)
+        protected async override void OnAppearing()
         {
-            await Navigation.PushAsync(new AddMealPage());    
-        }
-
-        async void OnAddWeightClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddWeightPage());     
+            var answer = await DisplayActionSheet("Load Data.. ?", "cancel", null, "ΝΑΙ", "ΟΧΙ");
         }
     }
 }

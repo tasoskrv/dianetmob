@@ -21,33 +21,35 @@ namespace Dianet.Pages
     public partial class SearchMealPage : ContentPage
     {
         private SelectMealPage selectPage = new SelectMealPage();
-        private ObservableCollection<SearchRecord> records = new ObservableCollection<SearchRecord>();
+        private ObservableCollection<Meal> records = new ObservableCollection<Meal>();
         protected string url = "http://dianet.cloudocean.gr/api/v1/meal/getall";
         public int Mode { get; set; }
-        SQLiteConnection conn=null;
+        SQLiteConnection conn = null;
         public SearchMealPage()
         {
             InitializeComponent();
             ListViewSearch.ItemsSource = records;
-            conn =StorageManager.GetConnection();
+            conn = StorageManager.GetConnection();
 
         }
 
         public void OnSearchBarPressed(object sender, EventArgs eventArgs)
         {
-           
+
         }
-        
+
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var myMeal = e.Item as SearchRecord;
+            Meal myMeal = e.Item as Meal;
             //var pg = new SelectMealPage();
-            var answer =  await  DisplayActionSheet("Add "+Title+" ?","cancel",null,myMeal.DisplayName);
+            var answer = await DisplayActionSheet("Add " + Title + " ?", "cancel", null,"ΝΑΙ","ΟΧΙ");
             //await Navigation.PushModalAsync(SelectMealPage);
-
+            
             //await  Navigation.PushModalAsync(pg);
-            if (answer != "cancel" && answer !=null)
+            if (answer == "ΝΑΙ")
             {
+                selectPage.IDMealSelected = myMeal.IDMeal;
+                selectPage.CalcUnits();
                 await Navigation.PushAsync(selectPage);
             }
         }
@@ -55,14 +57,14 @@ namespace Dianet.Pages
         public void OnSearchBarTextChanged(object sender, EventArgs eventArgs)
         {
             records.Clear();
-            IEnumerable<Meal> meals= conn.Query<Meal>("SELECT name, IDMeal FROM meal WHERE name LIKE ?", "%"+ASearchBar.Text+"%");
+            IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal FROM meal WHERE name LIKE ?", "%"+ASearchBar.Text+"%");
             foreach (Meal meal in meals)
             {
-                records.Add(new SearchRecord { DisplayName = meal.Name , Id = meal.IDMeal});
+                records.Add(new Meal { Name = meal.Name , IDMeal = meal.IDMeal});
             }
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             if (Mode == 1)
             {

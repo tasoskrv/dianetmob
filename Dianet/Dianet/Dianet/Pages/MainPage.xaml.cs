@@ -26,10 +26,16 @@ namespace Dianet.Pages
         {
             var item = e.SelectedItem as MenuElement;
             if (item != null)
-            {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
-                masterPage.ListView.SelectedItem = null;
-                IsPresented = false;
+            {   if (item.TargetType == typeof(StartPage))
+                {
+                    App.Current.MainPage = new StartPage();
+                }
+                else
+                {
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
+                    masterPage.ListView.SelectedItem = null;
+                    IsPresented = false;
+                }
             }
         }
 
