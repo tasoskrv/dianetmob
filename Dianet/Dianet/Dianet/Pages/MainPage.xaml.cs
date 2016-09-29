@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Dianet.Model;
+using Dianet.DB;
+using Dianet.DB.Entities;
 
 namespace Dianet.Pages
 {
@@ -28,6 +30,10 @@ namespace Dianet.Pages
             if (item != null)
             {   if (item.TargetType == typeof(StartPage))
                 {
+                    Settings settings = StorageManager.GetConnectionInfo().Settings;
+                    settings.LastLoggedIn = 0;
+                    settings.LastSyncDate = DateTime.MinValue;
+                    StorageManager.UpdateData<Settings>(settings);
                     App.Current.MainPage = new StartPage();
                 }
                 else

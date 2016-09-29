@@ -73,11 +73,8 @@ namespace Dianet.Pages
         {
 
             StorageManager.GetConnectionInfo().LoginUser = user;
-            Settings settings = new Settings();
-            settings.IDSettings = 1;
-            settings.LastLoggedIn = user.IdUser;
-            StorageManager.UpdateData<Settings>(settings);
-            App.IsUserLoggedIn = true;
+            StorageManager.GetConnectionInfo().Settings.LastLoggedIn = user.IdUser;
+            StorageManager.UpdateData<Settings>(StorageManager.GetConnectionInfo().Settings);
             App.Current.MainPage = new MainPage();
         }
 
@@ -87,6 +84,7 @@ namespace Dianet.Pages
             if (usrs.Count > 0)
             {
                 PerformLogin(usrs[0]);
+                GenLib.FullServiceLoadAndStore();
                 return;
             }
             //πχ χρήστης   /user/login/username=spiroskaravanis2@gmail.com/password=12345
@@ -96,8 +94,8 @@ namespace Dianet.Pages
                 if (srvUser.totalRows > 0)
                 {
                     srvUser.InsertAllToDB();
-                    GenLib.FullServiceLoadAndStore();
                     PerformLogin(srvUser.data[0]);
+                    GenLib.FullServiceLoadAndStore();
                     return;
                 }
             }

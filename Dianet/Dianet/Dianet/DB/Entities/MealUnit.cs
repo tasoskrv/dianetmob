@@ -27,5 +27,9 @@ namespace Dianet.DB.Entities
 
         public double Fat { get; set; }
 
+        public DateTime InsertDate { get; set; }
+
+        public DateTime UpdateDate { get; set; }
+
     }
 }

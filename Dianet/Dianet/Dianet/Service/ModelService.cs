@@ -9,6 +9,7 @@ namespace Dianet.Service
         public string message { get; set; }
         public int ID { get; set; }
         public string AccessToken { get; set; }
+        public int ErrorCode { get; set; }
 
 
         public T[] data { get; set; }

@@ -17,5 +17,7 @@ namespace Dianet.DB.Entities
         public int RemindWeight { get; set; }
 
         public int LastLoggedIn { get; set; }
+
+        public DateTime LastSyncDate { get; set; }
     }
 }

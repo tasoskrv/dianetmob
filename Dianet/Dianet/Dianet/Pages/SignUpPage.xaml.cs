@@ -28,20 +28,26 @@ namespace Dianet.Pages
                     user.LastName = surnameEntry.Text;
                     user.Email = emailEntry.Text;
                     user.Password = passwdEntry.Text;
-                    user.InsertDate = DateTime.Now;
-                    user.UpdateDate = user.InsertDate;
+                  //  user.InsertDate = DateTime.Now;
+                  //  user.UpdateDate = user.InsertDate;
                     user.Birthdate = birthDate.Date;
                     user.AccessToken = token.ToString();
                     ModelService<User> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/insert/", user);
-                    if ((srvNewUser.success == true) && (srvNewUser.ID > 0))
-                    {                        
+                    if ((srvNewUser.success == true) && (srvNewUser.ID > 0) && !(srvNewUser.ErrorCode > 0))
+                    {
+                        user.InsertDate = DateTime.UtcNow;
+                        user.UpdateDate = user.InsertDate;
                         user.IdUser = srvNewUser.ID;
                         user.AccessToken = srvNewUser.AccessToken;
                         srvNewUser.InsertRecordToDB(user);
                         App.Current.MainPage = new SignUpPage2();
                         return;
                     }
-                    else {
+                    else if (srvNewUser.ErrorCode == 2) {
+                        await DisplayAlert("Warning", "O Χρήστης υπάρχει ήδη!", "OK");
+                    }
+                    else
+                    {
                         await DisplayAlert("Warning", srvNewUser.message, "OK");
                     }
                     

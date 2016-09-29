@@ -14,7 +14,7 @@ namespace Dianet.Service
     {
         private static string BaseUrl = "http://dianet.cloudocean.gr/api/v1";
         private static HttpClient client = new HttpClient();
-        private static IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" };
+        private static IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
         public static async Task<T> GetServiceData<T>(string url)
         {
             var uri = new Uri(BaseUrl + url);
