@@ -17,8 +17,8 @@ namespace Dianet.Utils
             {
                 User loginUser = StorageManager.GetConnectionInfo().LoginUser;
                 Settings settings = StorageManager.GetConnectionInfo().Settings;
-                string gencall = "/accesstoken = " + loginUser.AccessToken + " / upddate = " + settings.LastSyncDate.ToString("yyyyMMdd");
-                string usercall = gencall + "/userid=" + loginUser.IdUser.ToString();
+                string gencall = "/accesstoken=" + loginUser.AccessToken + "/upddate=" + settings.LastSyncDate.ToString("yyyyMMdd");
+                string usercall = gencall + "/iduser=" + loginUser.IdUser.ToString();
 
                 //general calls
                 ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall" + gencall);

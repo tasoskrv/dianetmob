@@ -15,6 +15,8 @@ namespace Dianet.Service
         private static string BaseUrl = "http://dianet.cloudocean.gr/api/v1";
         private static HttpClient client = new HttpClient();
         private static IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
+        private static BooleanJsonConverter boolConverter = new BooleanJsonConverter();
+
         public static async Task<T> GetServiceData<T>(string url)
         {
             var uri = new Uri(BaseUrl + url);
@@ -22,7 +24,7 @@ namespace Dianet.Service
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<T>(content, dateTimeConverter);
+                return JsonConvert.DeserializeObject<T>(content, dateTimeConverter, boolConverter);
             }
             return default(T);
         }
@@ -35,9 +37,28 @@ namespace Dianet.Service
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();                
-                return JsonConvert.DeserializeObject<T>(content, dateTimeConverter);
+                return JsonConvert.DeserializeObject<T>(content, dateTimeConverter, boolConverter);
             }
             return default(T);
         }
+    }
+
+    public class BooleanJsonConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(bool);
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            return reader.Value.ToString() == "1";
+        }
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteValue(((bool)value) ? 1 : 0);
+        }
+
     }
 }

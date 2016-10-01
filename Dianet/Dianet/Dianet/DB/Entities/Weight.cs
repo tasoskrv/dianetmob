@@ -18,9 +18,11 @@ namespace Dianet.DB.Entities
 
         public int WValue { get; set; }
 
+        public int WeightType { get; set; }
+
         public DateTime InsertDate { get; set; }
 
-        public int WeightType { get; set; }
+        public DateTime UpdateDate { get; set; }
 
     }
 }

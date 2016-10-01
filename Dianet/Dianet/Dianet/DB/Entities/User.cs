@@ -41,11 +41,11 @@ namespace Dianet.DB.Entities
 
         public DateTime? RemindDate { get; set; }
 
+        public int AdjustDiet { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
-
-        public int AdjustDiet { get; set; }
 
         public User() {
             IdUser = -1;

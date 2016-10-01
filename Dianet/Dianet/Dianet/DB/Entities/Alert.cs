@@ -23,5 +23,9 @@ namespace Dianet.DB.Entities
         [MaxLength(500)]
         public string Description { get; set; }
 
+        public DateTime InsertDate { get; set; }
+
+        public DateTime UpdateDate { get; set; }
+
     }
 }

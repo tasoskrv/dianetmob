@@ -21,5 +21,7 @@ namespace Dianet.DB.Entities
         public DateTime TrainDate { get; set; }
 
         public DateTime InsertDate { get; set; }
+
+        public DateTime UpdateDate { get; set; }
     }
 }
