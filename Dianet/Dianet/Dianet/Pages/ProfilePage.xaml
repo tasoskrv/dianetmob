@@ -2,5 +2,101 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dianet.Pages.ProfilePage">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text=""  Clicked="OnEditClicked" Icon="edit.png"/>    
+  </ContentPage.ToolbarItems>
+  
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="FillAndExpand">               
+
+      <Label x:Name="fHelloLabel"             
+             VerticalOptions="Start"
+             HorizontalTextAlignment="Center"
+             FontSize="Large"
+             FontAttributes="Bold"/>        
+      
+      <StackLayout Orientation="Horizontal">                       
+        <Label x:Name="fFirstNameLabel" 
+               Text="First Name:"
+               FontSize="Large"
+               FontAttributes="Bold"/>  
+        <Entry x:Name="fFirstNameEntry" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>            
+       </StackLayout>
+      
+      <StackLayout Orientation="Horizontal">                       
+        <Label x:Name="fSurNameLabel"                            
+               Text="Last Name:"
+               FontSize="Large"
+               FontAttributes="Bold"/>
+        <Entry x:Name="fSurNameEntry" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>            
+      </StackLayout>
+      
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fEmailLabel"                                       
+               Text="Email:"
+               FontSize="Large"
+               FontAttributes="Bold"/>   
+        <Entry x:Name="fEmailEntry" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>            
+      </StackLayout>
+      
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fBirthDateLabel"                            
+               Text="Birth Date:"
+               FontSize="Large"
+               FontAttributes="Bold"/>  
+        <DatePicker x:Name="fbirthDatePicker" Format="dd-MM-yyyy" IsEnabled="False" />
+      </StackLayout>
+      
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fSexLabel"                            
+               Text="Sex:"
+               FontSize="Large"
+               FontAttributes="Bold"/>  
+        <Picker x:Name="fSexPicker" Title="Sex" HorizontalOptions="FillAndExpand" IsEnabled="False">
+          <Picker.Items>
+            <x:String>Male</x:String>
+            <x:String>Female</x:String>
+          </Picker.Items>
+        </Picker>
+      </StackLayout>
+      
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fHeightLabel"                            
+               Text="Height:"
+               FontSize="Large"
+               FontAttributes="Bold"/>  
+        <Picker x:Name="fHeightPicker" Title="Height" HorizontalOptions="FillAndExpand" IsEnabled="False">
+          <Picker.Items>
+            <x:String>Cm</x:String>
+            <x:String>In</x:String>
+          </Picker.Items>
+        </Picker>
+      <Entry x:Name="fHeightEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>
+      </StackLayout>      
+      
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fWristLabel"                            
+               Text="Wrist:"
+               FontSize="Large"
+               FontAttributes="Bold"/>  
+        <Picker x:Name="fWristPicker" Title="Wrist" HorizontalOptions="FillAndExpand" IsEnabled="False">
+          <Picker.Items>
+            <x:String>Small</x:String>
+            <x:String>Medium</x:String>
+            <x:String>Medium</x:String>
+          </Picker.Items>
+        </Picker>
+      <Entry x:Name="fWristEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>
+      </StackLayout>
+        
+      <Button Text="SAVE"
+              VerticalOptions="EndAndExpand"
+              HorizontalOptions="Center"
+              FontSize="Large"
+              FontAttributes="Bold"
+              Clicked="OnSaveSettingsClicked"/>   
+    
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>
