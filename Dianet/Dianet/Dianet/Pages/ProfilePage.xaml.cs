@@ -88,7 +88,7 @@ namespace Dianet.Pages
                     user.UpdateDate = DateTime.Now;
                     user.AccessToken = StorageManager.GetConnectionInfo().LoginUser.AccessToken;
                     user.HeightType = fHeightPicker.SelectedIndex + 1;
-                    user.IdUser = StorageManager.GetConnectionInfo().LoginUser.IdUser;
+                    user.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
                     user.InsertDate = StorageManager.GetConnectionInfo().LoginUser.InsertDate;
                     user.Password = StorageManager.GetConnectionInfo().LoginUser.Password;                                                            
                     StorageManager.UpdateData(user);
