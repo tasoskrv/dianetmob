@@ -71,8 +71,8 @@ namespace Dianet.Pages
 
         private void PerformLogin(User user)
         {
-
             StorageManager.GetConnectionInfo().LoginUser = user;
+            StorageManager.GetConnectionInfo().LoginUser.Password = passwordEntry.Text;
             StorageManager.GetConnectionInfo().Settings.LastLoggedIn = user.IDUser;
             StorageManager.UpdateData<Settings>(StorageManager.GetConnectionInfo().Settings);
             App.Current.MainPage = new MainPage();
