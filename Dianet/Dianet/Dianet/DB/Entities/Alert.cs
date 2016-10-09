@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace Dianet.DB.Entities
 {
     public class Alert
-    {
-        [PrimaryKey]
+    { 
+        [Indexed(Name = "IDAlert_PK", Order = 1)]
         public int IDAlert { get; set; }
 
-        [ForeignKey(typeof(User))]
+        [Indexed(Name = "IDAlert_IDUser_PK", Order = 2), ForeignKey(typeof(User))]
         public int IDUser { get; set; }
 
         public DateTime AlertTime { get; set; }

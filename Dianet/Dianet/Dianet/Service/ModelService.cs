@@ -28,9 +28,39 @@ namespace Dianet.Service
             StorageManager.InsertData<T>(AObj);
         }
 
+        
+
         public void UpdateData(T Aobj)
         {
             StorageManager.UpdateData<T>(Aobj);
+        }
+
+        public void SaveAllToDB()
+        {
+            for (var i = 0; i < totalRows; i++)
+            {
+                try
+                {
+                    StorageManager.InsertData<T>(data[i]);
+                }
+                catch
+                {
+                    StorageManager.UpdateData<T>(data[i]);
+                }
+            }
+
+        }
+
+        public void SaveRecordToDB(T AObj)
+        {
+            try
+            {
+                StorageManager.InsertData<T>(AObj);
+            }
+            catch
+            {
+                StorageManager.UpdateData<T>(AObj);
+            }
         }
     }    
 }

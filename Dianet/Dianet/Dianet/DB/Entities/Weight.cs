@@ -10,15 +10,13 @@ namespace Dianet.DB.Entities
 {
     public class Weight
     {
-        [PrimaryKey]
+        [Indexed(Name = "IDWeight_PK", Order = 1)]
         public int IDWeight { get; set; }
 
-        [ForeignKey(typeof(User))]
+        [Indexed(Name = "IDWeight_IDUser_PK", Order = 2), ForeignKey(typeof(User))]
         public int IDUser { get; set; }
 
         public int WValue { get; set; }
-
-        public int WeightType { get; set; }
 
         public DateTime InsertDate { get; set; }
 

@@ -47,7 +47,7 @@ namespace Dianet.DB
                 InsertData(condb);
                 return true;
             }
-            catch {
+            catch (Exception ex){
                 return false;
             }
         }
@@ -57,16 +57,6 @@ namespace Dianet.DB
             set.IDSettings = 1;
             condb.Insert(set);
         }
-
-        //public static void InsertMealData(SQLiteConnection condb, Meal newMeal)
-        //{
-        //    Meal meal = new Meal();
-        //    meal.Name = newMeal.Name;
-        //    meal.Description = newMeal.Description;
-        //    meal.IDLang = newMeal.IDLang;
-        //    meal.Fertility = newMeal.Fertility;
-        //    condb.Insert(meal);
-        //}
 
         public static void InsertData<T>(T model)
         {
