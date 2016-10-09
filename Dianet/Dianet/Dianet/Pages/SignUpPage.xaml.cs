@@ -85,7 +85,8 @@ namespace Dianet.Pages
 
         private bool AllFieldsAreFilled()
         {
-            if (emailEntry.Text == null || nameEntry.Text == null || surnameEntry.Text == null || passwdEntry.Text == null)
+            if (emailEntry.Text == null || nameEntry.Text == null || surnameEntry.Text == null || passwdEntry.Text == null ||
+                emailEntry.Text == ""   || nameEntry.Text == ""   || surnameEntry.Text == ""   || passwdEntry.Text == ""   )
             {
                 DisplayAlert("Please", "fill in all fields", "OK");
                 return false;

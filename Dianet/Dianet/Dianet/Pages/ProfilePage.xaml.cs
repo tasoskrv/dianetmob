@@ -1,6 +1,8 @@
 ﻿using Xamarin.Forms;
 using Dianet.DB;
 using System;
+using System.Text.RegularExpressions;
+using Dianet.DB.Entities;
 
 namespace Dianet.Pages
 {
@@ -55,6 +57,7 @@ namespace Dianet.Pages
 
         private void OnEditClicked(object sender, EventArgs e)
         {
+            DisplayAlert("Remember", "if you change your email, next time you have to login again", "OK");
             fFirstNameEntry.IsEnabled = true;
             fSurNameEntry.IsEnabled = true;
             fEmailEntry.IsEnabled = true;
@@ -67,7 +70,89 @@ namespace Dianet.Pages
 
         private void OnSaveSettingsClicked(object sender, EventArgs e)
         {
+            if (fFirstNameEntry.IsEnabled || fSurNameEntry.IsEnabled || fEmailEntry.IsEnabled || fbirthDatePicker.IsEnabled ||
+                fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled || fWristPicker.IsEnabled)
+            {
+                if (AllFieldsAreFilled() && CheckValidMail())
+                {
+                    User user = new User();
+                    user.FirstName = fFirstNameEntry.Text;
+                    user.LastName = fSurNameEntry.Text;
+                    user.Email = fEmailEntry.Text;
+                    user.Birthdate = fbirthDatePicker.Date;
+                    //  user.InsertDate = DateTime.Now;
+                    //  user.UpdateDate = user.InsertDate;
+                    user.Gender = fSexPicker.SelectedIndex + 1;
+                    user.Height = Convert.ToDouble(fHeightEntry.Text);
+                    user.Skeleton = fWristPicker.SelectedIndex + 1;
+                    user.UpdateDate = DateTime.Now;
+                    user.AccessToken = StorageManager.GetConnectionInfo().LoginUser.AccessToken;
+                    user.HeightType = fHeightPicker.SelectedIndex + 1;
+                    user.IdUser = StorageManager.GetConnectionInfo().LoginUser.IdUser;
+                    user.InsertDate = StorageManager.GetConnectionInfo().LoginUser.InsertDate;
+                    user.Password = StorageManager.GetConnectionInfo().LoginUser.Password;                                                            
+                    StorageManager.UpdateData(user);
+                    NeedToLoginNextTime(user);
+                    StorageManager.GetConnectionInfo().LoginUser = user;                    
+                    RefreshPage();
+                }
+            }
+        }
 
+        private void RefreshPage()
+        {
+            FillInSettingsLoggedIn();
+            fFirstNameEntry.IsEnabled = false;
+            fSurNameEntry.IsEnabled = false;
+            fEmailEntry.IsEnabled = false;
+            fbirthDatePicker.IsEnabled = false;
+            fSexPicker.IsEnabled = false;
+            fHeightPicker.IsEnabled = false;
+            fHeightEntry.IsEnabled = false;
+            fWristPicker.IsEnabled = false;
+        }
+
+        private void NeedToLoginNextTime(User usr)
+        {            
+            if (!StorageManager.GetConnectionInfo().LoginUser.Email.Equals(usr.Email, StringComparison.Ordinal))
+            {                
+                StorageManager.GetConnectionInfo().Settings.LastLoggedIn = 0;
+                StorageManager.GetConnectionInfo().Settings.UpdateDate = usr.UpdateDate;                                
+                StorageManager.UpdateData(StorageManager.GetConnectionInfo().Settings);
+            }            
+        }
+
+        void OnValidateEmail(object sender, EventArgs e)
+        {               
+            CheckValidMail();
+        }       
+
+        private bool CheckValidMail()
+        {
+            string pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
+            if (!Regex.IsMatch(fEmailEntry.Text, pattern))
+            {
+                DisplayAlert("Please", "enter a valid email", "OK");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool AllFieldsAreFilled()
+        {
+            if (fEmailEntry.Text == null || fFirstNameEntry.Text == null || fSurNameEntry.Text == null || fHeightEntry.Text == null ||
+                fEmailEntry.Text == ""   || fFirstNameEntry.Text == ""   || fSurNameEntry.Text == ""   || fHeightEntry.Text == "" )
+            {
+                DisplayAlert("Please", "fill in all fields", "OK");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
     }

@@ -37,7 +37,7 @@
                Text="Email:"
                FontSize="Large"
                FontAttributes="Bold"/>   
-        <Entry x:Name="fEmailEntry" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>            
+        <Entry x:Name="fEmailEntry" Keyboard="Email" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False" Completed="OnValidateEmail" />            
       </StackLayout>
       
       <StackLayout Orientation="Horizontal">
@@ -45,7 +45,7 @@
                Text="Birth Date:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <DatePicker x:Name="fbirthDatePicker" Format="dd-MM-yyyy" IsEnabled="False" />
+        <DatePicker x:Name="fbirthDatePicker" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" />
       </StackLayout>
       
       <StackLayout Orientation="Horizontal">
