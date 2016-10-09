@@ -27,6 +27,20 @@ namespace Dianet.DB.Entities
 
         public double Fat { get; set; }
 
+        public double SatFat { get; set; }
+
+        public double UnSatFat { get; set; }
+
+        public double Cholesterol { get; set; }
+
+        public double Sugar { get; set; }
+
+        public double Natrium { get; set; }
+
+        public double Potassium { get; set; }
+
+        public double Fiber { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }

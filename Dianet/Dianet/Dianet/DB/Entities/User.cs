@@ -10,7 +10,7 @@ namespace Dianet.DB.Entities
     public class User
     {
         [PrimaryKey]
-        public int IdUser { get; set; }
+        public int IDUser { get; set; }
 
         [MaxLength(45)]
         public string AccessToken { get; set; }
@@ -48,7 +48,7 @@ namespace Dianet.DB.Entities
         public DateTime UpdateDate { get; set; }
 
         public User() {
-            IdUser = -1;
+            IDUser = -1;
             AccessToken = "";
             FacebookID = -1;
             FirstName = "";
@@ -68,8 +68,8 @@ namespace Dianet.DB.Entities
 
         public override string ToString() {
             string str = "";
-            if (IdUser != -1)
-                str += "&iduser=" + IdUser.ToString();
+            if (IDUser != -1)
+                str += "&iduser=" + IDUser.ToString();
             if (!AccessToken.Equals(""))
                 str += "&accesstoken=" + Uri.EscapeDataString(AccessToken);
             if (FacebookID != -1)
@@ -91,13 +91,13 @@ namespace Dianet.DB.Entities
             if (Skeleton != -1)
                 str += "&skeleton=" + Skeleton.ToString();
             if (Birthdate != null)
-                str += "&birthdate=" + Birthdate.Value.ToString("yyyyMMdd");
+                str += "&birthdate=" + Birthdate.Value.ToString("yyyy-MM-dd HH:mm:ss");
             if (RemindDate != null)
-                str += "&reminddate=" + RemindDate.Value.ToString("yyyyMMdd");
+                str += "&reminddate=" + RemindDate.Value.ToString("yyyy-MM-dd HH:mm:ss");
             if (InsertDate != DateTime.MinValue)
-                str += "&insertdate=" + InsertDate.ToString("yyyyMMdd");
+                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
             if (UpdateDate != DateTime.MinValue)
-                str += "&updatedate=" + UpdateDate.ToString("yyyyMMdd");
+                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
             if (AdjustDiet != -1)
                 str += "&adjustdiet=" + AdjustDiet.ToString();
             return str.Substring(1);

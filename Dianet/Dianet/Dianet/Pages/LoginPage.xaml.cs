@@ -73,7 +73,7 @@ namespace Dianet.Pages
         {
 
             StorageManager.GetConnectionInfo().LoginUser = user;
-            StorageManager.GetConnectionInfo().Settings.LastLoggedIn = user.IdUser;
+            StorageManager.GetConnectionInfo().Settings.LastLoggedIn = user.IDUser;
             StorageManager.UpdateData<Settings>(StorageManager.GetConnectionInfo().Settings);
             App.Current.MainPage = new MainPage();
         }

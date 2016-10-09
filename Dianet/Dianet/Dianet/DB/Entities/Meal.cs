@@ -23,6 +23,8 @@ namespace Dianet.DB.Entities
         [MaxLength(10)]
         public string Fertility { get; set; } 
 
+        public int Identifier { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }

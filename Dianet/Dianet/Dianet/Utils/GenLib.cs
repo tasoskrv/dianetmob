@@ -18,42 +18,42 @@ namespace Dianet.Utils
                 User loginUser = StorageManager.GetConnectionInfo().LoginUser;
                 Settings settings = StorageManager.GetConnectionInfo().Settings;
                 string gencall = "/accesstoken=" + loginUser.AccessToken + "/upddate=" + settings.LastSyncDate.ToString("yyyyMMdd");
-                string usercall = gencall + "/iduser=" + loginUser.IdUser.ToString();
+                string usercall = gencall + "/iduser=" + loginUser.IDUser.ToString();
 
                 //general calls
                 ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall" + gencall);
-                servMeal.InsertAllToDB();
+                servMeal.SaveAllToDB();
 
                 ModelService<MealUnit> servMealUnit = await ServiceConnector.GetServiceData<ModelService<MealUnit>>("/mealunit/getall" + gencall);
-                servMealUnit.InsertAllToDB();
+                servMealUnit.SaveAllToDB();
 
                 ModelService<Package> servPackage = await ServiceConnector.GetServiceData<ModelService<Package>>("/package/getall" + gencall);
-                servPackage.InsertAllToDB();
+                servPackage.SaveAllToDB();
 
                 ModelService<Settings> servSettings = await ServiceConnector.GetServiceData<ModelService<Settings>>("/settings/getall" + gencall);
-                servSettings.InsertAllToDB();
+                servSettings.SaveAllToDB();
 
                 //User calls
                 ModelService<Alert> servAlert = await ServiceConnector.GetServiceData<ModelService<Alert>>("/alert/getall" + usercall);
-                servAlert.InsertAllToDB();
+                servAlert.SaveAllToDB();
 
                 ModelService<Exercise> servExercise = await ServiceConnector.GetServiceData<ModelService<Exercise>>("/exercise/getall" + usercall);
-                servExercise.InsertAllToDB();
+                servExercise.SaveAllToDB();
 
                 ModelService<Plan> servPlan = await ServiceConnector.GetServiceData<ModelService<Plan>>("/plan/getall" + usercall);
-                servPlan.InsertAllToDB();
+                servPlan.SaveAllToDB();
 
                 ModelService<Subscription> servSubscription = await ServiceConnector.GetServiceData<ModelService<Subscription>>("/subscription/getall" + usercall);
-                servSubscription.InsertAllToDB();
+                servSubscription.SaveAllToDB();
 
                 ModelService<UserFood> servUserFood = await ServiceConnector.GetServiceData<ModelService<UserFood>>("/userfood/getall" + usercall);
-                servUserFood.InsertAllToDB();
+                servUserFood.SaveAllToDB();
 
                 ModelService<UserMeal> servUserMeal = await ServiceConnector.GetServiceData<ModelService<UserMeal>>("/usermeal/getall" + usercall);
-                servUserMeal.InsertAllToDB();
+                servUserMeal.SaveAllToDB();
 
                 ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
-                servWeight.InsertAllToDB();
+                servWeight.SaveAllToDB();
 
                 StorageManager.GetConnectionInfo().Settings.LastSyncDate = DateTime.UtcNow;
                 StorageManager.UpdateData<Settings>(StorageManager.GetConnectionInfo().Settings);

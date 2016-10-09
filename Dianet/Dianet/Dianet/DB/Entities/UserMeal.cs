@@ -10,10 +10,10 @@ namespace Dianet.DB.Entities
 {
     public class UserMeal
     {
-        [PrimaryKey]
+        [Indexed(Name = "IDUserMeal_PK", Order = 1)]
         public int IDUserMeal { get; set; }
 
-        [ForeignKey(typeof(User))]
+        [Indexed(Name = "IDUserMeal_IDUser_PK", Order = 2), ForeignKey(typeof(User))]
         public int IDUser { get; set; }
 
         [ForeignKey(typeof(MealUnit))]
