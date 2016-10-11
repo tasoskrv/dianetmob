@@ -1,14 +1,17 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Dianet.DB.Entities
 {
-    public class User
+    public class User : INotifyPropertyChanged
     {
+        private string firstname;
+
         [PrimaryKey]
         public int IDUser { get; set; }
 
@@ -18,7 +21,21 @@ namespace Dianet.DB.Entities
         public double FacebookID { get; set; }
 
         [MaxLength(45)]
-        public string FirstName { get; set; }
+        public string FirstName
+        {
+            get
+            {
+                return firstname;
+            }
+            set
+            {
+                if (firstname != value)
+                {
+                    firstname = value;
+                    OnPropertyChanged("FirstName");
+                }
+            }
+        }
 
         [MaxLength(45)]
         public string LastName { get; set; }
@@ -65,7 +82,7 @@ namespace Dianet.DB.Entities
             UpdateDate = DateTime.MinValue;
             AdjustDiet = -1;
         }
-
+        
         public override string ToString() {
             string str = "";
             if (IDUser != -1)
@@ -102,6 +119,17 @@ namespace Dianet.DB.Entities
                 str += "&adjustdiet=" + AdjustDiet.ToString();
             return str.Substring(1);
 
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

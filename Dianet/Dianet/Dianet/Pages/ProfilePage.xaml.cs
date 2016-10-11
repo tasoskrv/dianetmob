@@ -12,12 +12,13 @@ namespace Dianet.Pages
         {
             InitializeComponent();
             FillInSettingsLoggedIn();
+            BindingContext = StorageManager.GetConnectionInfo().LoginUser;
         }
 
         private void FillInSettingsLoggedIn()
         {
             fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";                                    
-            fFirstNameEntry.Text = StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString();
+            //fFirstNameEntry.Text = StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString();
             fSurNameEntry.Text = StorageManager.GetConnectionInfo().LoginUser.LastName.ToString();
             fEmailEntry.Text = StorageManager.GetConnectionInfo().LoginUser.Email.ToString();
             fbirthDatePicker.Date = Convert.ToDateTime(StorageManager.GetConnectionInfo().LoginUser.Birthdate);

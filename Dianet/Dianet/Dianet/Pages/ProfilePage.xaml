@@ -21,7 +21,7 @@
                Text="First Name:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <Entry x:Name="fFirstNameEntry" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>            
+        <Entry x:Name="fFirstNameEntry" Text="{Binding FirstName, Mode=TwoWay}" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>            
        </StackLayout>
       
       <StackLayout Orientation="Horizontal">                       
