@@ -93,7 +93,7 @@ namespace Dianet.Pages
                 ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/email=" + user.Email + "/password=" + user.Password);
                 if (srvUser.totalRows > 0)
                 {
-                    srvUser.InsertAllToDB();
+                    srvUser.SaveAllToDB();
                     PerformLogin(srvUser.data[0]);
                     GenLib.FullServiceLoadAndStore();
                     return;

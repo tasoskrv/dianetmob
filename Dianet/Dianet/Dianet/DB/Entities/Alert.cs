@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dianet.DB.Entities
 {
-    public class Alert
+    public class Alert: Model
     { 
         [Indexed(Name = "IDAlert_PK", Order = 1)]
         public int IDAlert { get; set; }

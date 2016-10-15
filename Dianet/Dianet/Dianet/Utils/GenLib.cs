@@ -21,6 +21,9 @@ namespace Dianet.Utils
                 string usercall = gencall + "/iduser=" + loginUser.IDUser.ToString();
 
                 //general calls
+                ModelService<Unit> servUnit = await ServiceConnector.GetServiceData<ModelService<Unit>>("/unit/getall" + gencall);
+                servUnit.SaveAllToDB();
+
                 ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall" + gencall);
                 servMeal.SaveAllToDB();
 
@@ -54,6 +57,7 @@ namespace Dianet.Utils
 
                 ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
                 servWeight.SaveAllToDB();
+               
 
                 StorageManager.GetConnectionInfo().Settings.LastSyncDate = DateTime.UtcNow;
                 StorageManager.UpdateData<Settings>(StorageManager.GetConnectionInfo().Settings);

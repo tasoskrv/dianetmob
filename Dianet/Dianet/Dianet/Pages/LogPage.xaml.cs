@@ -33,5 +33,10 @@ namespace Dianet.Pages
         {
             datePick.Date = datePick.Date.AddDays(1);
         }
+
+       protected async override void OnAppearing()
+        {
+            var answer = await DisplayActionSheet("Load Data.. ?", "cancel", null, "ΝΑΙ", "ΟΧΙ");
+        }
     }
 }

@@ -17,8 +17,8 @@ namespace Dianet.DB
                 if (settings == null) {
                     this.settings = StorageManager.GetConnection().Find<Settings>(1);
                     if (this.settings.LastLoggedIn>0)
-                        this.LoginUser= StorageManager.GetConnection().Find<User>(this.settings.LastLoggedIn);
-                }
+                    this.LoginUser= StorageManager.GetConnection().Find<User>(this.settings.LastLoggedIn);
+               }
                 return this.settings;
             }
             set

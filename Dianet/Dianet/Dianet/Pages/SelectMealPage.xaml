@@ -1,37 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:userControls="clr-namespace:Dianet.Controls"
              x:Class="Dianet.Pages.SelectMealPage">
   <ContentPage.Content>
  
     <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" >
-      
+
+      <!--<userControls:BindablePicker x:Name="unitPicker" ItemsSource="{Binding units}" SelectedItem="{Binding SelectedUnit, Mode = TwoWay}" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit "/>-->
       <Picker x:Name="unitPicker" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit ">
-         <Picker.Items>
-          <x:String>-</x:String>
-          <x:String>Pounds</x:String>
-          <x:String>Ounces</x:String>
-          <x:String>Grams</x:String>
-          <x:String>Cups</x:String>
-          <x:String>Pints</x:String>
-          <x:String>Dry Cups</x:String>
-          <x:String>Cups</x:String>
-          <x:String>Pints</x:String>
-          <x:String>Liters</x:String>
-          <x:String>Tablespoons</x:String>
-          <x:String>Quarts</x:String>
-         </Picker.Items>
-      </Picker>      
-      
+       </Picker>
+
         <Picker x:Name="counter1Picker" Title="Counter" SelectedIndex="1" IsEnabled="False">
-        <Picker.Items>
-          <x:String>-</x:String>
-          <x:String>1</x:String>
-          <x:String>2</x:String>
-          <x:String>3</x:String>
-          <x:String>4</x:String>
-          <x:String>5</x:String>
-        </Picker.Items>
+       
         <Picker.SelectedIndex >1</Picker.SelectedIndex>
       </Picker>
       <Picker x:Name="counter2Picker" Title="Counter" IsEnabled="False">

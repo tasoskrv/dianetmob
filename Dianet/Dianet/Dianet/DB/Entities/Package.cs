@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dianet.DB.Entities
 {
-    public class Package
+    public class Package: Model
     {
         [PrimaryKey]
         public int IDPackage { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dianet.DB.Entities
 {
-    public class Unit
+    public class Unit: Model
     {
         [PrimaryKey]
         public int IDUnit { get; set; }
