@@ -11,13 +11,11 @@
       <Picker x:Name="unitPicker" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit ">
        </Picker>
 
-        <Picker x:Name="counter1Picker" Title="Counter" SelectedIndex="1" IsEnabled="False">
-       
-        <Picker.SelectedIndex >1</Picker.SelectedIndex>
-      </Picker>
-      <Picker x:Name="counter2Picker" Title="Counter" IsEnabled="False">
+        <Picker x:Name="counter1Picker" Title="Counter" IsEnabled="False" SelectedIndexChanged="OnChosen1">
+        </Picker>
+      <Picker x:Name="counter2Picker" Title="Counter" IsEnabled="False" SelectedIndexChanged="OnChosen2">
         <Picker.Items>
-          <x:String>-</x:String>
+          <x:String>0</x:String>
           <x:String>1/8</x:String>
           <x:String>1/4</x:String>
           <x:String>1/3</x:String>
@@ -25,7 +23,6 @@
           <x:String>2/3</x:String>
           <x:String>3/4</x:String>          
         </Picker.Items>
-        <Picker.SelectedIndex >1</Picker.SelectedIndex>
       </Picker>
      <Button Text="Choose" VerticalOptions="EndAndExpand" Clicked="OnChooseBtnClicked" />  
     </StackLayout>
