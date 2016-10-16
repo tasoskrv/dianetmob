@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dianet.DB.Entities
 {
-    public class MealUnit
+    public class MealUnit: Model
     {
         [PrimaryKey]
         public int IDMealUnit { get; set; }
@@ -18,6 +18,9 @@ namespace Dianet.DB.Entities
 
         [ForeignKey(typeof(Meal))]
         public int IDMeal { get; set; }
+
+        [Ignore]
+        public string Name { get; set; }
 
         public double Calories { get; set; }
 

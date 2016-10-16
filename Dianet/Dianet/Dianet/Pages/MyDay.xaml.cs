@@ -16,7 +16,7 @@ namespace Dianet.Pages
         }
         protected async override void OnAppearing()
         {
-            var answer = await DisplayActionSheet("Load Data.. ?", "cancel", null, "ΝΑΙ", "ΟΧΙ");
+            //var answer = await DisplayActionSheet("Load Data.. ?", "cancel", null, "ΝΑΙ", "ΟΧΙ");
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dianet.DB.Entities
 {
-    public class Plan
+    public class Plan: Model
     {
         [Indexed(Name = "IDPlan_PK", Order = 1)]
         public int IDPlan { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dianet.DB.Entities
 {
-    public class Meal
+    public class Meal: Model
     {
         [PrimaryKey]
         public int IDMeal { get; set; }

@@ -48,6 +48,7 @@ namespace Dianet.Pages
             //await  Navigation.PushModalAsync(pg);
             if (answer == "ΝΑΙ")
             {
+                
                 selectPage.IDMealSelected = myMeal.IDMeal;
                 selectPage.CalcUnits();
                 await Navigation.PushAsync(selectPage);

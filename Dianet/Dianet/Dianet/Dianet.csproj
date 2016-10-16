@@ -38,10 +38,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BindablePicker .cs" />
     <Compile Include="DB\ConnectionInfo.cs" />
     <Compile Include="DB\Entities\Alert.cs" />
     <Compile Include="DB\Entities\Meal.cs" />
     <Compile Include="DB\Entities\MealUnit.cs" />
+    <Compile Include="DB\Entities\Model.cs" />
     <Compile Include="DB\Entities\Package.cs" />
     <Compile Include="DB\Entities\Plan.cs" />
     <Compile Include="DB\Entities\Settings.cs" />
