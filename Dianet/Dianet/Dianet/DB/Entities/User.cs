@@ -11,6 +11,13 @@ namespace Dianet.DB.Entities
     public class User : Model
     {
         private string firstname;
+        private string lastname;
+        private string email;
+        private DateTime birthDt;
+        private double height;
+        private int heighttype;
+        private int gender;
+        private int skeleton;
 
         [PrimaryKey]
         public int IDUser { get; set; }
@@ -38,23 +45,121 @@ namespace Dianet.DB.Entities
         }
 
         [MaxLength(45)]
-        public string LastName { get; set; }
+        public string LastName
+        {
+            get
+            {
+                return lastname;
+            }
+            set
+            {   
+                if (lastname != value)
+                {
+                    lastname = value;
+                    OnPropertyChanged("LastName");
+                }
+            }
+        }
 
-        public int Gender { get; set; }
+        public int Gender
+        {
+            get
+            {
+                return gender;
+            }
+            set
+            {
+                if (gender != value)
+                {
+                    gender = value;
+                    OnPropertyChanged("Gender");
+                }
+            }
+        }
 
         [MaxLength(100)]
-        public string Email { get; set; }
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                if (email != value)
+                {
+                    email = value;
+                    OnPropertyChanged("Email");
+                }
+            }
+        }
 
         [MaxLength(45)]
         public string Password { get; set; }
 
-        public double Height { get; set; }
-
-        public int HeightType { get; set; }
+        public double Height
+        {
+            get
+            {
+                return height;
+            }
+            set
+            {
+                if (height != value)
+                {
+                    height = value;
+                    OnPropertyChanged("Height");
+                }
+            }
+        }
+        
+        public int HeightType
+        {
+            get
+            {
+                return heighttype;
+            }
+            set
+            {
+                if (height != value)
+                {
+                    heighttype = value;
+                    OnPropertyChanged("HeightType");
+                }
+            }
+        }
 
         public double Skeleton { get; set; }
+        /*{
+            get
+            {
+                return skeleton;
+            }
+            set
+            {
+                if (skeleton != value)
+                {
+                    skeleton = value;
+                    OnPropertyChanged("Skeleton");
+                }
+            }
+        }*/
 
-        public DateTime? Birthdate { get; set; }
+        public DateTime? Birthdate
+        {
+            get
+            {
+                return birthDt;
+            }
+            set
+            {
+                if (birthDt != value)
+                {
+                    birthDt = Convert.ToDateTime(value);
+                    OnPropertyChanged("Birthdate");
+                }
+            }
+        }
 
         public DateTime? RemindDate { get; set; }
 

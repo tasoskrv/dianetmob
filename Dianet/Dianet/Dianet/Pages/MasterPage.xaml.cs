@@ -27,9 +27,9 @@ namespace Dianet.Pages
 
             masterPageItems.Add(new MenuElement
             {
-                Title = "Προφιλ",
+                Title = "Προφίλ",
                 IconSource = "profile.png",
-                TargetType = typeof(ProfilePage)
+                TargetType = typeof(ProfilePage) 
             });
 
             masterPageItems.Add(new MenuElement
