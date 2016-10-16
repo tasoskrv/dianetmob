@@ -19,11 +19,11 @@ namespace Dianet.Pages
         {
             fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";                                    
             //fFirstNameEntry.Text = StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString();
-            fSurNameEntry.Text = StorageManager.GetConnectionInfo().LoginUser.LastName.ToString();
-            fEmailEntry.Text = StorageManager.GetConnectionInfo().LoginUser.Email.ToString();
-            fbirthDatePicker.Date = Convert.ToDateTime(StorageManager.GetConnectionInfo().LoginUser.Birthdate);
+            //fSurNameEntry.Text = StorageManager.GetConnectionInfo().LoginUser.LastName.ToString();
+            //fEmailEntry.Text = StorageManager.GetConnectionInfo().LoginUser.Email.ToString();
+            //fbirthDatePicker.Date = Convert.ToDateTime(StorageManager.GetConnectionInfo().LoginUser.Birthdate);
 
-            if (StorageManager.GetConnectionInfo().LoginUser.Gender == 1)
+            /*if (StorageManager.GetConnectionInfo().LoginUser.Gender == 1)
             {
                 fSexPicker.SelectedIndex = 0;
             }
@@ -39,7 +39,7 @@ namespace Dianet.Pages
             else
             {
                 fHeightPicker.SelectedIndex = 1;
-            }
+            }*/
             fHeightEntry.Text = StorageManager.GetConnectionInfo().LoginUser.Height.ToString();
 
             if (StorageManager.GetConnectionInfo().LoginUser.Skeleton == 1)
@@ -57,11 +57,10 @@ namespace Dianet.Pages
         }
 
         private void OnEditClicked(object sender, EventArgs e)
-        {
-            DisplayAlert("Remember", "if you change your email, next time you have to login again", "OK");
+        {            
             fFirstNameEntry.IsEnabled = true;
             fSurNameEntry.IsEnabled = true;
-            fEmailEntry.IsEnabled = true;
+            //fEmailEntry.IsEnabled = true;
             fbirthDatePicker.IsEnabled = true;
             fSexPicker.IsEnabled = true;
             fHeightPicker.IsEnabled = true;
@@ -71,10 +70,10 @@ namespace Dianet.Pages
 
         private void OnSaveSettingsClicked(object sender, EventArgs e)
         {
-            if (fFirstNameEntry.IsEnabled || fSurNameEntry.IsEnabled || fEmailEntry.IsEnabled || fbirthDatePicker.IsEnabled ||
+            if (fFirstNameEntry.IsEnabled || fSurNameEntry.IsEnabled || fbirthDatePicker.IsEnabled ||
                 fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled || fWristPicker.IsEnabled)
             {
-                if (AllFieldsAreFilled() && CheckValidMail())
+                if (AllFieldsAreFilled())
                 {
                     User user = new User();
                     user.FirstName = fFirstNameEntry.Text;
@@ -93,7 +92,7 @@ namespace Dianet.Pages
                     user.InsertDate = StorageManager.GetConnectionInfo().LoginUser.InsertDate;
                     user.Password = StorageManager.GetConnectionInfo().LoginUser.Password;                                                            
                     StorageManager.UpdateData(user);
-                    NeedToLoginNextTime(user);
+                    //NeedToLoginNextTime(user);
                     StorageManager.GetConnectionInfo().LoginUser = user;                    
                     RefreshPage();
                 }
@@ -113,7 +112,7 @@ namespace Dianet.Pages
             fWristPicker.IsEnabled = false;
         }
 
-        private void NeedToLoginNextTime(User usr)
+        /*private void NeedToLoginNextTime(User usr)
         {            
             if (!StorageManager.GetConnectionInfo().LoginUser.Email.Equals(usr.Email, StringComparison.Ordinal))
             {                
@@ -121,31 +120,12 @@ namespace Dianet.Pages
                 StorageManager.GetConnectionInfo().Settings.UpdateDate = usr.UpdateDate;                                
                 StorageManager.UpdateData(StorageManager.GetConnectionInfo().Settings);
             }            
-        }
-
-        void OnValidateEmail(object sender, EventArgs e)
-        {               
-            CheckValidMail();
-        }       
-
-        private bool CheckValidMail()
-        {
-            string pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
-            if (!Regex.IsMatch(fEmailEntry.Text, pattern))
-            {
-                DisplayAlert("Please", "enter a valid email", "OK");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
+        }*/
+        
         private bool AllFieldsAreFilled()
         {
-            if (fEmailEntry.Text == null || fFirstNameEntry.Text == null || fSurNameEntry.Text == null || fHeightEntry.Text == null ||
-                fEmailEntry.Text == ""   || fFirstNameEntry.Text == ""   || fSurNameEntry.Text == ""   || fHeightEntry.Text == "" )
+            if (fFirstNameEntry.Text == null || fSurNameEntry.Text == null || fHeightEntry.Text == null ||
+                fEmailEntry.Text == ""       || fFirstNameEntry.Text == "" || fSurNameEntry.Text == ""  || fHeightEntry.Text == "" )
             {
                 DisplayAlert("Please", "fill in all fields", "OK");
                 return false;

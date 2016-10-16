@@ -29,7 +29,7 @@
                Text="Last Name:"
                FontSize="Large"
                FontAttributes="Bold"/>
-        <Entry x:Name="fSurNameEntry" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>            
+        <Entry x:Name="fSurNameEntry" Text="{Binding LastName, Mode=TwoWay}" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>            
       </StackLayout>
       
       <StackLayout Orientation="Horizontal">
@@ -37,7 +37,7 @@
                Text="Email:"
                FontSize="Large"
                FontAttributes="Bold"/>   
-        <Entry x:Name="fEmailEntry" Keyboard="Email" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False" Completed="OnValidateEmail" />            
+        <Entry x:Name="fEmailEntry" Text="{Binding Email, Mode=TwoWay}" Keyboard="Email" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>            
       </StackLayout>
       
       <StackLayout Orientation="Horizontal">
@@ -45,7 +45,7 @@
                Text="Birth Date:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <DatePicker x:Name="fbirthDatePicker" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" />
+        <DatePicker x:Name="fbirthDatePicker" Date="{Binding BirthDate, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
       </StackLayout>
       
       <StackLayout Orientation="Horizontal">
@@ -53,7 +53,7 @@
                Text="Sex:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <Picker x:Name="fSexPicker" Title="Sex" HorizontalOptions="FillAndExpand" IsEnabled="False">
+        <Picker x:Name="fSexPicker" Title="Sex" HorizontalOptions="FillAndExpand" IsEnabled="False" SelectedIndex="{Binding Gender, Mode=TwoWay}" >
           <Picker.Items>
             <x:String>Male</x:String>
             <x:String>Female</x:String>
@@ -66,13 +66,13 @@
                Text="Height:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <Picker x:Name="fHeightPicker" Title="Height" HorizontalOptions="FillAndExpand" IsEnabled="False">
+        <Picker x:Name="fHeightPicker" Title="Height" HorizontalOptions="FillAndExpand" IsEnabled="False" SelectedIndex="{Binding HeightType, Mode=TwoWay}">
           <Picker.Items>
             <x:String>Cm</x:String>
             <x:String>In</x:String>
           </Picker.Items>
         </Picker>
-      <Entry x:Name="fHeightEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>
+      <Entry x:Name="fHeightEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False" />
       </StackLayout>      
       
       <StackLayout Orientation="Horizontal">
@@ -80,7 +80,7 @@
                Text="Wrist:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <Picker x:Name="fWristPicker" Title="Wrist" HorizontalOptions="FillAndExpand" IsEnabled="False">
+        <Picker x:Name="fWristPicker" Title="Wrist" HorizontalOptions="FillAndExpand" IsEnabled="False" >
           <Picker.Items>
             <x:String>Small</x:String>
             <x:String>Medium</x:String>
