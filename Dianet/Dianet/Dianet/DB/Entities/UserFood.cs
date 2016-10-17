@@ -13,7 +13,7 @@ namespace Dianet.DB.Entities
         [PrimaryKey, AutoIncrement]
         public int IDUserFood { get; set; }
 
-        [PrimaryKey, ForeignKey(typeof(User))]
+        [ForeignKey(typeof(User))]
         public int IDUser { get; set; }
 
         public int IDServer { get; set; }
