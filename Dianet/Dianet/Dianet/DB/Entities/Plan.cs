@@ -10,11 +10,13 @@ namespace Dianet.DB.Entities
 {
     public class Plan: Model
     {
-        [Indexed(Name = "IDPlan_PK", Order = 1)]
+        [PrimaryKey, AutoIncrement]
         public int IDPlan { get; set; }
 
-        [Indexed(Name = "IDPlan_IDUser_PK", Order = 2), ForeignKey(typeof(User))]
+        [PrimaryKey, ForeignKey(typeof(User))]
         public int IDUser { get; set; }
+
+        public int IDServer { get; set; }
 
         public double Goal { get; set; }
 

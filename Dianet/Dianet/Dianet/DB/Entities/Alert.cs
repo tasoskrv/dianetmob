@@ -10,11 +10,13 @@ namespace Dianet.DB.Entities
 {
     public class Alert: Model
     { 
-        [Indexed(Name = "IDAlert_PK", Order = 1)]
+        [PrimaryKey, AutoIncrement]
         public int IDAlert { get; set; }
 
-        [Indexed(Name = "IDAlert_IDUser_PK", Order = 2), ForeignKey(typeof(User))]
+        [PrimaryKey, ForeignKey(typeof(User))]
         public int IDUser { get; set; }
+
+        public int IDServer { get; set; }
 
         public DateTime AlertTime { get; set; }
 

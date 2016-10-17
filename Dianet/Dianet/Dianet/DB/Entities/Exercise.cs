@@ -10,11 +10,13 @@ namespace Dianet.DB.Entities
 {
     public class Exercise: Model
     {
-        [Indexed(Name = "IDExercise_PK", Order = 1)]
+        [PrimaryKey, AutoIncrement]
         public int IDExercise { get; set; }
         
-        [Indexed(Name = "IDExercise_IDUser_PK", Order = 2), ForeignKey(typeof(User))]
+        [PrimaryKey, ForeignKey(typeof(User))]
         public int IDUser { get; set; }
+
+        public int IDServer { get; set; }
 
         public int Minutes { get; set; }
 

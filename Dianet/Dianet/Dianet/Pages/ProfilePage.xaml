@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
              x:Class="Dianet.Pages.ProfilePage">
   
   <ContentPage.ToolbarItems>
@@ -45,7 +45,7 @@
                Text="Birth Date:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <DatePicker x:Name="fbirthDatePicker" Date="{Binding BirthDate, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
+        <DatePicker x:Name="fbirthDatePicker" Date="{Binding BirthDate, Converter={DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
       </StackLayout>
       
       <StackLayout Orientation="Horizontal">
@@ -72,7 +72,7 @@
             <x:String>In</x:String>
           </Picker.Items>
         </Picker>
-      <Entry x:Name="fHeightEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False" />
+      <Entry x:Name="fHeightEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False" Text="{Binding Height, StringFormat='{0:0.00}', Mode=TwoWay}" />
       </StackLayout>      
       
       <StackLayout Orientation="Horizontal">

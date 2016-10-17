@@ -10,14 +10,16 @@ namespace Dianet.DB.Entities
 {
     public class Subscription: Model
     {
-        [Indexed(Name = "IDSubscription_PK", Order = 1)]
+        [PrimaryKey, AutoIncrement]
         public int IDSubscription { get; set; }
 
-        [Indexed(Name = "IDSubscription_IDUser_PK", Order = 2), ForeignKey(typeof(User))]
-        public int IDUser { get; set; }
+        [PrimaryKey, ForeignKey(typeof(User))]
+        public int IDUser { get; set; }        
 
         [ForeignKey(typeof(Package))]
         public int IDPackage { get; set; }
+
+        public int IDServer { get; set; }
 
         public DateTime BeginDate { get; set; }
 

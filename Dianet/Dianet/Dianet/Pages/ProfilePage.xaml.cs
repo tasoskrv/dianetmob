@@ -40,7 +40,7 @@ namespace Dianet.Pages
             {
                 fHeightPicker.SelectedIndex = 1;
             }*/
-            fHeightEntry.Text = StorageManager.GetConnectionInfo().LoginUser.Height.ToString();
+            //fHeightEntry.Text = StorageManager.GetConnectionInfo().LoginUser.Height.ToString();
 
             if (StorageManager.GetConnectionInfo().LoginUser.Skeleton == 1)
             {
@@ -127,7 +127,7 @@ namespace Dianet.Pages
             if (fFirstNameEntry.Text == null || fSurNameEntry.Text == null || fHeightEntry.Text == null ||
                 fEmailEntry.Text == ""       || fFirstNameEntry.Text == "" || fSurNameEntry.Text == ""  || fHeightEntry.Text == "" )
             {
-                DisplayAlert("Please", "fill in all fields", "OK");
+                DisplayAlert("Please", "fill in all fields", "OK");                
                 return false;
             }
             else

@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using System.Globalization;
 
 namespace Dianet.DB.Entities
 {
@@ -13,7 +15,7 @@ namespace Dianet.DB.Entities
         private string firstname;
         private string lastname;
         private string email;
-        private DateTime birthDt;
+        private DateTime? birthDt;               
         private double height;
         private int heighttype;
         private int gender;
@@ -112,7 +114,7 @@ namespace Dianet.DB.Entities
                 }
             }
         }
-        
+
         public int HeightType
         {
             get
@@ -155,7 +157,7 @@ namespace Dianet.DB.Entities
             {
                 if (birthDt != value)
                 {
-                    birthDt = Convert.ToDateTime(value);
+                    birthDt = value;
                     OnPropertyChanged("Birthdate");
                 }
             }
@@ -187,8 +189,9 @@ namespace Dianet.DB.Entities
             UpdateDate = DateTime.MinValue;
             AdjustDiet = -1;
         }
-        
-        public override string ToString() {
+
+        public override string ToString()
+        {
             string str = "";
             if (IDUser != -1)
                 str += "&iduser=" + IDUser.ToString();
@@ -225,7 +228,44 @@ namespace Dianet.DB.Entities
             return str.Substring(1);
 
         }
+    }
 
-        
+    public class DateTimeToDateTimeOffsetConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            try
+            {
+                DateTime date = (DateTime)value;
+                return new DateTimeOffset(date);
+            }
+            catch (Exception ex)
+            {
+                return DateTimeOffset.MinValue;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            try
+            {
+                DateTimeOffset dto = (DateTimeOffset)value;
+                return dto.DateTime;
+            }
+            catch (Exception ex)
+            {
+                return DateTime.MinValue;
+            }
+        }
+
+        object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
