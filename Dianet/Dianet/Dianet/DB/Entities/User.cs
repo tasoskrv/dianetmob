@@ -230,42 +230,4 @@ namespace Dianet.DB.Entities
         }
     }
 
-    public class DateTimeToDateTimeOffsetConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            try
-            {
-                DateTime date = (DateTime)value;
-                return new DateTimeOffset(date);
-            }
-            catch (Exception ex)
-            {
-                return DateTimeOffset.MinValue;
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            try
-            {
-                DateTimeOffset dto = (DateTimeOffset)value;
-                return dto.DateTime;
-            }
-            catch (Exception ex)
-            {
-                return DateTime.MinValue;
-            }
-        }
-
-        object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-
-        object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }

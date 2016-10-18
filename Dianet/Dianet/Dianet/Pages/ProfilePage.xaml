@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Converter;assembly=Converter"
              x:Class="Dianet.Pages.ProfilePage">
   
   <ContentPage.ToolbarItems>
     <ToolbarItem Text=""  Clicked="OnEditClicked" Icon="edit.png"/>    
   </ContentPage.ToolbarItems>
-  
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <x:DateTimeToDateTimeOffsetConverter x:Key="DConverter"></x:DateTimeToDateTimeOffsetConverter>
+    </ResourceDictionary>
+  </ContentPage.Resources>
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">               
 
@@ -45,7 +50,7 @@
                Text="Birth Date:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <DatePicker x:Name="fbirthDatePicker" Date="{Binding BirthDate, Converter={DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
+        <DatePicker x:Name="fbirthDatePicker" Date="{Binding BirthDate, Converter={DConverter}, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
       </StackLayout>
       
       <StackLayout Orientation="Horizontal">
