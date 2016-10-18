@@ -24,5 +24,10 @@ namespace Dianet.DB.Entities
 
         public DateTime UpdateDate { get; set; }
 
+        public Weight()
+        {
+            IDServer = -1;
+        }
+
     }
 }

@@ -25,5 +25,10 @@ namespace Dianet.DB.Entities
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
+
+        public Exercise()
+        {
+            IDServer = -1;
+        } 
     }
 }

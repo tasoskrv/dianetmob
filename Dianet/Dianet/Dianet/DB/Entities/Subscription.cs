@@ -29,5 +29,9 @@ namespace Dianet.DB.Entities
 
         public DateTime UpdateDate { get; set; }
 
+        public Subscription() {
+            IDServer = -1;
+        }
+
     }
 }

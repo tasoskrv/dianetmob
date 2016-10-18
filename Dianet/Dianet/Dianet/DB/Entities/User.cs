@@ -19,7 +19,7 @@ namespace Dianet.DB.Entities
         private double height;
         private int heighttype;
         private int gender;
-        private int skeleton;
+        private double skeleton;
 
         [PrimaryKey]
         public int IDUser { get; set; }
@@ -131,8 +131,8 @@ namespace Dianet.DB.Entities
             }
         }
 
-        public double Skeleton { get; set; }
-        /*{
+        public double Skeleton 
+        {
             get
             {
                 return skeleton;
@@ -145,7 +145,7 @@ namespace Dianet.DB.Entities
                     OnPropertyChanged("Skeleton");
                 }
             }
-        }*/
+        }
 
         public DateTime? Birthdate
         {

@@ -31,5 +31,10 @@ namespace Dianet.DB.Entities
 
         public DateTime UpdateDate { get; set; }
 
+        public UserMeal()
+        {
+            IDServer = -1;
+        }
+
     }
 }
