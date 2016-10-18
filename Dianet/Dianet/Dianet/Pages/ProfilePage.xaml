@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Converter;assembly=Converter"
+             xmlns:conv="clr-namespace:Dianet.Converters;assembly=Dianet"
              x:Class="Dianet.Pages.ProfilePage">
-  
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:MinusOneConverter x:Key="minusOneConv" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
   <ContentPage.ToolbarItems>
     <ToolbarItem Text=""  Clicked="OnEditClicked" Icon="edit.png"/>    
   </ContentPage.ToolbarItems>
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <x:DateTimeToDateTimeOffsetConverter x:Key="DConverter"></x:DateTimeToDateTimeOffsetConverter>
-    </ResourceDictionary>
-  </ContentPage.Resources>
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">               
 
@@ -50,7 +49,7 @@
                Text="Birth Date:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <DatePicker x:Name="fbirthDatePicker" Date="{Binding BirthDate, Converter={DConverter}, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
+        <DatePicker x:Name="fbirthDatePicker" Date="{Binding Birthdate, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
       </StackLayout>
       
       <StackLayout Orientation="Horizontal">
@@ -58,7 +57,7 @@
                Text="Sex:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <Picker x:Name="fSexPicker" Title="Sex" HorizontalOptions="FillAndExpand" IsEnabled="False" SelectedIndex="{Binding Gender, Mode=TwoWay}" >
+        <Picker x:Name="fSexPicker" Title="Sex" HorizontalOptions="FillAndExpand" IsEnabled="False" SelectedIndex="{Binding Gender, Converter={StaticResource minusOneConv}, Mode=TwoWay}" >
           <Picker.Items>
             <x:String>Male</x:String>
             <x:String>Female</x:String>
@@ -77,7 +76,7 @@
             <x:String>In</x:String>
           </Picker.Items>
         </Picker>
-      <Entry x:Name="fHeightEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False" Text="{Binding Height, StringFormat='{0:0.00}', Mode=TwoWay}" />
+      <Entry x:Name="fHeightEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False" Text="{Binding Height, Mode=TwoWay}" />
       </StackLayout>      
       
       <StackLayout Orientation="Horizontal">

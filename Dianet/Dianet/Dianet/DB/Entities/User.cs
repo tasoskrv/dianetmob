@@ -15,7 +15,7 @@ namespace Dianet.DB.Entities
         private string firstname;
         private string lastname;
         private string email;
-        private DateTime? birthDt;               
+        private DateTime? birthday;               
         private double height;
         private int heighttype;
         private int gender;
@@ -123,7 +123,7 @@ namespace Dianet.DB.Entities
             }
             set
             {
-                if (height != value)
+                if (heighttype != value)
                 {
                     heighttype = value;
                     OnPropertyChanged("HeightType");
@@ -151,13 +151,13 @@ namespace Dianet.DB.Entities
         {
             get
             {
-                return birthDt;
+                return birthday;
             }
             set
             {
-                if (birthDt != value)
+                if (birthday != value)
                 {
-                    birthDt = value;
+                    birthday = value;
                     OnPropertyChanged("Birthdate");
                 }
             }

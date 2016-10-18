@@ -17,43 +17,7 @@ namespace Dianet.Pages
 
         private void FillInSettingsLoggedIn()
         {
-            fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";                                    
-            //fFirstNameEntry.Text = StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString();
-            //fSurNameEntry.Text = StorageManager.GetConnectionInfo().LoginUser.LastName.ToString();
-            //fEmailEntry.Text = StorageManager.GetConnectionInfo().LoginUser.Email.ToString();
-            //fbirthDatePicker.Date = Convert.ToDateTime(StorageManager.GetConnectionInfo().LoginUser.Birthdate);
-
-            /*if (StorageManager.GetConnectionInfo().LoginUser.Gender == 1)
-            {
-                fSexPicker.SelectedIndex = 0;
-            }
-            else
-            {
-                fSexPicker.SelectedIndex = 1;
-            }
-
-            if (StorageManager.GetConnectionInfo().LoginUser.HeightType == 1)
-            {
-                fHeightPicker.SelectedIndex = 0;
-            }
-            else
-            {
-                fHeightPicker.SelectedIndex = 1;
-            }*/
-            //fHeightEntry.Text = StorageManager.GetConnectionInfo().LoginUser.Height.ToString();
-
-            if (StorageManager.GetConnectionInfo().LoginUser.Skeleton == 1)
-            {
-                fWristPicker.SelectedIndex = 0;
-            }
-            else if (StorageManager.GetConnectionInfo().LoginUser.Skeleton == 2)
-            {
-                fWristPicker.SelectedIndex = 1;
-            }
-            else
-            {
-                fWristPicker.SelectedIndex = 2;
-            }            
+            fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";                                               
         }
 
         private void OnEditClicked(object sender, EventArgs e)
@@ -74,26 +38,8 @@ namespace Dianet.Pages
                 fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled || fWristPicker.IsEnabled)
             {
                 if (AllFieldsAreFilled())
-                {
-                    User user = new User();
-                    user.FirstName = fFirstNameEntry.Text;
-                    user.LastName = fSurNameEntry.Text;
-                    user.Email = fEmailEntry.Text;
-                    user.Birthdate = fbirthDatePicker.Date;
-                    //  user.InsertDate = DateTime.Now;
-                    //  user.UpdateDate = user.InsertDate;
-                    user.Gender = fSexPicker.SelectedIndex + 1;
-                    user.Height = Convert.ToDouble(fHeightEntry.Text);
-                    user.Skeleton = fWristPicker.SelectedIndex + 1;
-                    user.UpdateDate = DateTime.Now;
-                    user.AccessToken = StorageManager.GetConnectionInfo().LoginUser.AccessToken;
-                    user.HeightType = fHeightPicker.SelectedIndex + 1;
-                    user.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
-                    user.InsertDate = StorageManager.GetConnectionInfo().LoginUser.InsertDate;
-                    user.Password = StorageManager.GetConnectionInfo().LoginUser.Password;                                                            
-                    StorageManager.UpdateData(user);
-                    //NeedToLoginNextTime(user);
-                    StorageManager.GetConnectionInfo().LoginUser = user;                    
+                {                                          
+                    StorageManager.UpdateData(StorageManager.GetConnectionInfo().LoginUser);          
                     RefreshPage();
                 }
             }
@@ -137,4 +83,5 @@ namespace Dianet.Pages
         }
 
     }
+
 }
