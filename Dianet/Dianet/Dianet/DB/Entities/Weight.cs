@@ -10,6 +10,9 @@ namespace Dianet.DB.Entities
 {
     public class Weight: Model
     {
+        private int weight;
+        private DateTime insertDate;
+
         [PrimaryKey, AutoIncrement]
         public int IDWeight { get; set; }
 
@@ -18,9 +21,37 @@ namespace Dianet.DB.Entities
 
         public int IDServer { get; set; }
 
-        public int WValue { get; set; }
+        public int WValue
+        {
+            get
+            {
+                return weight;
+            }
+            set
+            {
+                if (weight != value)
+                {
+                    weight = value;
+                    OnPropertyChanged("WValue");
+                }
+            }
+        }
 
-        public DateTime InsertDate { get; set; }
+        public DateTime InsertDate
+        {
+            get
+            {
+                return insertDate;
+            }
+            set
+            {
+                if (insertDate != value)
+                {
+                    insertDate = value;
+                    OnPropertyChanged("InsertDate");
+                }
+            }
+        }
 
         public DateTime UpdateDate { get; set; }
 

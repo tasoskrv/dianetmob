@@ -69,8 +69,8 @@
     <Compile Include="Pages\DashboardPage.xaml.cs">
       <DependentUpon>DashboardPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\GoalPage.xaml.cs">
-      <DependentUpon>GoalPage.xaml</DependentUpon>
+    <Compile Include="Pages\PlanPage.xaml.cs">
+      <DependentUpon>PlanPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\LogPage.xaml.cs">
       <DependentUpon>LogPage.xaml</DependentUpon>
@@ -234,7 +234,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\GoalPage.xaml">
+    <EmbeddedResource Include="Pages\PlanPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

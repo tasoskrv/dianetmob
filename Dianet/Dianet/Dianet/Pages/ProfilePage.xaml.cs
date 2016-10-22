@@ -28,14 +28,14 @@ namespace Dianet.Pages
             fbirthDatePicker.IsEnabled = true;
             fSexPicker.IsEnabled = true;
             fHeightPicker.IsEnabled = true;
-            fHeightEntry.IsEnabled = true;            
-            fWristPicker.IsEnabled = true;
+            fHeightEntry.IsEnabled = true;   
+            fWristEntry.IsEnabled = true;
         }
 
         private void OnSaveSettingsClicked(object sender, EventArgs e)
         {
             if (fFirstNameEntry.IsEnabled || fSurNameEntry.IsEnabled || fbirthDatePicker.IsEnabled ||
-                fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled || fWristPicker.IsEnabled)
+                fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled)
             {
                 if (AllFieldsAreFilled())
                 {                                          
@@ -54,8 +54,8 @@ namespace Dianet.Pages
             fbirthDatePicker.IsEnabled = false;
             fSexPicker.IsEnabled = false;
             fHeightPicker.IsEnabled = false;
-            fHeightEntry.IsEnabled = false;
-            fWristPicker.IsEnabled = false;
+            fHeightEntry.IsEnabled = false;            
+            fWristEntry.IsEnabled = false;
         }
 
         /*private void NeedToLoginNextTime(User usr)

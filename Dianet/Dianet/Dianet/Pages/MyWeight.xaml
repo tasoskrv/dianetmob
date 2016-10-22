@@ -3,14 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dianet.Pages.MyWeight">
   <StackLayout VerticalOptions="StartAndExpand" >
-    <Label Text="Ημερομηνία" FontSize="22" FontAttributes="Bold"/>
-    <DatePicker Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
+    <Label Text="Track your weight..." HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
     <Label Text="" FontSize="10"/>
-    <Label Text="Βάρος" FontSize="22" FontAttributes="Bold"/>
     
-    <Entry  Keyboard="Numeric" VerticalOptions="StartAndExpand"  Placeholder="Εισάγετε το βάρος σας.." TextColor="Navy" FontSize="18"/> <!--θα μπει number picker -->
-    <Label Text="" FontSize="30"/>
+    <Label Text="Today" FontSize="Large" FontAttributes="Bold"/>
+    <DatePicker x:Name="fWeightDate" Date="{Binding InsertDate, Mode=TwoWay}" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" IsEnabled="false" />
+    <Label Text="" FontSize="10"/>
     
-    <Button Text="Αποθήκευση" VerticalOptions="End" HorizontalOptions="End" />
+    <Label Text="Weight" 
+           FontSize="Large" 
+           FontAttributes="Bold"/>    
+    <Entry x:Name="fMyWeightEntry"
+           Text="{Binding WValue, Mode=TwoWay}"
+           Keyboard="Numeric" 
+           VerticalOptions="StartAndExpand"  
+           Placeholder="Please insert your today's weight..."            
+           FontSize="20"
+           FontAttributes="Italic"/>     
+    <Label Text="" FontSize="30"/>    
+    
+    <Button Text="SAVE"
+            VerticalOptions="EndAndExpand"
+            HorizontalOptions="Center"
+            FontSize="Large" 
+            FontAttributes="Bold"
+            Clicked="OnSaveWeightClicked"/>
   </StackLayout >
 </ContentPage>

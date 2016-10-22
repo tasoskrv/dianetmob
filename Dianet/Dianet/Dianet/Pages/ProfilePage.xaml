@@ -70,7 +70,7 @@
                Text="Height:"
                FontSize="Large"
                FontAttributes="Bold"/>  
-        <Picker x:Name="fHeightPicker" Title="Height" HorizontalOptions="FillAndExpand" IsEnabled="False" SelectedIndex="{Binding HeightType, Mode=TwoWay}">
+        <Picker x:Name="fHeightPicker" Title="Height" HorizontalOptions="FillAndExpand" IsEnabled="False" SelectedIndex="{Binding HeightType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
           <Picker.Items>
             <x:String>Cm</x:String>
             <x:String>In</x:String>
@@ -83,14 +83,7 @@
         <Label x:Name="fWristLabel"                            
                Text="Wrist:"
                FontSize="Large"
-               FontAttributes="Bold"/>  
-        <Picker x:Name="fWristPicker" Title="Wrist" HorizontalOptions="FillAndExpand" IsEnabled="False" >
-          <Picker.Items>
-            <x:String>Small</x:String>
-            <x:String>Medium</x:String>
-            <x:String>Medium</x:String>
-          </Picker.Items>
-        </Picker>
+               FontAttributes="Bold"/>          
       <Entry x:Name="fWristEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>
       </StackLayout>
         

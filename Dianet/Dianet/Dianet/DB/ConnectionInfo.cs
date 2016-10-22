@@ -10,6 +10,8 @@ namespace Dianet.DB
     public class ConnectionInfo
     {
         public User LoginUser { get; set; }
+        public Plan LoginUserPlan { get; set; }
+        public Weight LoginUserWeight { get; set; }
 
         private Settings settings;
         public Settings Settings {

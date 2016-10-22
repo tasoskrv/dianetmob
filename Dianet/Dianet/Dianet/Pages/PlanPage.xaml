@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dianet.Pages.PlanPage">
+  <StackLayout VerticalOptions="StartAndExpand" >
+    <Label Text="Your goals..." HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
+    <Label Text="" FontSize="10"/>
+    
+    <Label Text="Insert desired weight:" FontSize="Large" FontAttributes="Bold"/>    
+    <Entry x:Name="fWeightEntry"
+           Text="{Binding Goal, Mode=TwoWay}"
+           Keyboard="Numeric"           
+           Placeholder="Weight"           
+           FontSize="18"
+           FontAttributes="Italic"/>       
+    
+    <Label Text="Insert achievement day:" FontSize="Large" FontAttributes="Bold"/>
+    <DatePicker x:Name="fGoalDate" Date="{Binding GoalDate, Mode=TwoWay}" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" DateSelected="OnGoalDateChanged"/>        
+    
+    <Label Text="" FontSize="30"/>
+    
+    <Button Text="SAVE"
+            VerticalOptions="EndAndExpand"
+            HorizontalOptions="Center"
+            FontSize="Large"
+            FontAttributes="Bold"
+            Clicked="OnSavePlanClicked"/>
+  </StackLayout >
+</ContentPage>

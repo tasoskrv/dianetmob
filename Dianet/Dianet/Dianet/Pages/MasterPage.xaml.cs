@@ -36,7 +36,7 @@ namespace Dianet.Pages
             {
                 Title = "Στόχοι",
                 IconSource = "goal.png",
-                TargetType = typeof(GoalPage)
+                TargetType = typeof(PlanPage)
             });
 
             masterPageItems.Add(new MenuElement
