@@ -20,7 +20,7 @@ namespace Dianet.Pages
             conn = StorageManager.GetConnection();
             ListViewPlans.ItemsSource = records;
             records.Clear();
-            IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, GoalDate FROM Plan");
+            IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, GoalDate FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Plan plan in plans)
             {
                 records.Add(new Plan { IDPlan = plan.IDPlan, Goal = plan.Goal, GoalDate = plan.GoalDate });

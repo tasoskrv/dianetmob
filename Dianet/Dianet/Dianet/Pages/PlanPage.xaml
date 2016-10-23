@@ -14,7 +14,7 @@
           <DetailText Text="{Binding GoalDate}" />
         </DataTemplate>
       </ListView.ItemTemplate>
-    </ListView>
-   
-  </StackLayout >
+    </ListView>   
+  </StackLayout>
+  
 </ContentPage>

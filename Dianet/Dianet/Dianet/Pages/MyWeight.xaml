@@ -2,31 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dianet.Pages.MyWeight">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text=""  Clicked="OnAddWeightClicked" Icon="plus.png"/>
+  </ContentPage.ToolbarItems>
+
   <StackLayout VerticalOptions="StartAndExpand" >
-    <Label Text="Track your weight..." HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-    <Label Text="" FontSize="10"/>
-    
-    <Label Text="Today" FontSize="Large" FontAttributes="Bold"/>
-    <DatePicker x:Name="fWeightDate" Date="{Binding InsertDate, Mode=TwoWay}" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" IsEnabled="false" />
-    <Label Text="" FontSize="10"/>
-    
-    <Label Text="Weight" 
-           FontSize="Large" 
-           FontAttributes="Bold"/>    
-    <Entry x:Name="fMyWeightEntry"
-           Text="{Binding WValue, Mode=TwoWay}"
-           Keyboard="Numeric" 
-           VerticalOptions="StartAndExpand"  
-           Placeholder="Please insert your today's weight..."            
-           FontSize="20"
-           FontAttributes="Italic"/>     
-    <Label Text="" FontSize="30"/>    
-    
-    <Button Text="SAVE"
-            VerticalOptions="EndAndExpand"
-            HorizontalOptions="Center"
-            FontSize="Large" 
-            FontAttributes="Bold"
-            Clicked="OnSaveWeightClicked"/>
-  </StackLayout >
+    <ListView x:Name="ListViewWeights" ItemTapped="OnItemTapped">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding WValue}" />
+          <DetailText Text="{Binding InsertDate}" />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+  
 </ContentPage>
