@@ -12,7 +12,6 @@ namespace Dianet.Pages
         public MyWeight()
         {
             InitializeComponent();
-            BindingContext = StorageManager.GetConnectionInfo().LoginUserWeight;
             conn = StorageManager.GetConnection();
         }
 
@@ -22,14 +21,14 @@ namespace Dianet.Pages
                 DisplayAlert("Please", "fill in today's weight", "OK");
             else
             {
-                StorageManager.InsertData(StorageManager.GetConnectionInfo().LoginUserWeight);
+                //StorageManager.InsertData(StorageManager.GetConnectionInfo().LoginUserWeight);
                 /*List<Weight> wght = conn.Query<Weight>("SELECT * FROM Weight");
                 if (wght.Count > 0)
                 {
                     //wght[0]                    
                     return;
                 }*/
-                StorageManager.GetConnectionInfo().LoginUserWeight.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                //StorageManager.GetConnectionInfo().LoginUserWeight.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
             }
         }
     }
