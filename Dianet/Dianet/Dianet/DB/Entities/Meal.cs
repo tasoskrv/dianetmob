@@ -20,10 +20,10 @@ namespace Dianet.DB.Entities
 
         public int IDLang { get; set; }
 
-        [MaxLength(10)]
+        [MaxLength(20)]
         public string Fertility { get; set; } 
 
-        public int Identifier { get; set; }
+        public string Identifier { get; set; }
 
         public DateTime InsertDate { get; set; }
 

@@ -31,10 +31,18 @@ namespace Dianet.Pages
             unitPicker.Items.Clear();
             //SELECT M.idMealUnit, M.IdUnit, M.Calories FROM MealUnit M, Unit U where M.idUnit= U.idUnit -- Κανονικο query
             // IEnumerable<MealUnit> UnitList = conn.Query<MealUnit>("SELECT M.idMealUnit, M.IdUnit, M.Calories, U.Name FROM MealUnit M, Unit U ");
-           //IEnumerable<Unit> UnitList1 = conn.Query<Unit>("SELECT idUnit, Name FROM Unit");
-           // IEnumerable<MealUnit> Mealunit = conn.Query<MealUnit>("SELECT idMealUnit, idUnit, idMeal, Calories, Protein, Carb, Fat  FROM MealUnit");
-           // IEnumerable<Meal> meal = conn.Query<Meal>("SELECT idMeal, Name, Description, idLang, Fertility FROM Meal");
-           IEnumerable<MealUnit> UnitList = conn.Query<MealUnit>("SELECT M.idMealUnit, M.IdUnit, M.Calories, M.Protein, M.Carb, M.Fat, U.Name as Name FROM MealUnit as M, Unit as U WHERE IDMeal="+this.IDMealSelected);
+            //IEnumerable<Unit> UnitList1 = conn.Query<Unit>("SELECT idUnit, Name FROM Unit");
+            // IEnumerable<MealUnit> Mealunit = conn.Query<MealUnit>("SELECT idMealUnit, idUnit, idMeal, Calories, Protein, Carb, Fat  FROM MealUnit");
+            // IEnumerable<Meal> meal = conn.Query<Meal>("SELECT idMeal, Name, Description, idLang, Fertility FROM Meal");
+           var UnitList = conn.Query<MealUnit>("SELECT M.idMealUnit, M.Calories, M.Protein, M.Carb, M.Fat, U.Name as Name FROM MealUnit as M  JOIN Unit as U ON M.idUnit = U.idUnit WHERE M.IDMeal=" +this.IDMealSelected);
+            //IEnumerable<MealUnit>mlUnit = conn.Query<MealUnit>("SELECT idUnit FROM MealUnit WHERE IDMeal=" + this.IDMealSelected);
+           
+            //IEnumerable<MealUnit> UnitList = conn.Query<MealUnit>("SELECT* FROM MealUnit as M WHERE M.IDMeal==" + this.IDMealSelected);
+            /* var result = conn.Query<MeasurementInstanceModel>("SELECT * " +
+     "FROM MeasurementInstanceModel AS it " +
+     "JOIN MeasurementSubjectModel AS sb " +
+     "ON it.MeasurementSubjectId == sb.Id " +
+     "WHERE sb.Name == ?", avariable); */
             foreach (MealUnit mealunit in UnitList)
             {
                 unitPicker.Items.Add(mealunit.Name);
