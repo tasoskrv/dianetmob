@@ -19,6 +19,11 @@ namespace Dianet.Pages
             InitializeComponent();
             conn = StorageManager.GetConnection();
             ListViewWeights.ItemsSource = records;
+            
+        }
+
+        protected override void OnAppearing()
+        {
             records.Clear();
             IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Weight wght in wghts)

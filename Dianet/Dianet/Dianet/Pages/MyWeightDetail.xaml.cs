@@ -26,23 +26,34 @@ namespace Dianet.Pages
         {
             if (IDWeight > 0)
             {
-                fSaveBtn.IsVisible = true;                
-                wght = conn.Query<Weight>("SELECT WValue, InsertDate FROM Weight WHERE IDWeight=" + IDWeight.ToString())[0];
+                //fSaveBtn.IsVisible = true;                
+                wght = conn.Get<Weight>(IDWeight);
             }
             else
             {
-                fSaveBtn.IsVisible = false;
+               // fSaveBtn.IsVisible = false;
                 wght = new Weight();
+                wght.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
             }
             BindingContext = wght;
         }
 
         private void OnSaveWeightClicked(object sender, EventArgs e)
         {
-            if (fMyWeightEntry.Text == null || fMyWeightEntry.Text == "")
+            wght.UpdateDate = DateTime.Now;
+            if (wght.WValue <= 0)
                 DisplayAlert("Please", "fill in today's weight", "OK");
+            else if (wght.IDWeight > 0)
+            {
+                StorageManager.UpdateData(wght);
+                Navigation.PopAsync();
+            }
             else
+            {
+                wght.InsertDate = wght.UpdateDate;
                 StorageManager.InsertData(wght);
+                Navigation.PopAsync();
+            }
         }
     }
 }

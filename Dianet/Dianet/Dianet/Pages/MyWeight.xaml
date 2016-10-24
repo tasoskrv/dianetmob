@@ -10,8 +10,15 @@
     <ListView x:Name="ListViewWeights" ItemTapped="OnItemTapped">
       <ListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding WValue}" />
-          <DetailText Text="{Binding InsertDate}" />
+          <ViewCell>
+              <StackLayout Orientation="Horizontal">      
+                <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}"
+                TextColor="#f35e20" />
+                <Label Text="{Binding WValue}"
+                HorizontalOptions="EndAndExpand"
+                TextColor="#503026" />
+              </StackLayout>
+          </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>

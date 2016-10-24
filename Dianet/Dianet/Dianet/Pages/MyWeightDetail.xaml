@@ -1,35 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Dianet.Pages.MyWeightDetail">
-  <StackLayout VerticalOptions="StartAndExpand" >
-    <Label Text="Track your weight..." HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-    <Label Text="" FontSize="10"/>
+             x:Class="Dianet.Pages.MyWeightDetail"
+             Title="My weight">
+    <StackLayout VerticalOptions="StartAndExpand" >
+      <Label Text="Track your weight..." HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
+      <Label Text="" FontSize="10"/>
 
-    <Label Text="Today" FontSize="Large" FontAttributes="Bold"/>
-    <DatePicker x:Name="fWeightDate" Date="{Binding InsertDate, Mode=TwoWay}" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" IsEnabled="false" />
-    <Label Text="" FontSize="10"/>
+      <Label Text="Today" FontSize="Large" FontAttributes="Bold"/>
+      
+      <Label Text="Weight"
+             FontSize="Large"
+             FontAttributes="Bold"/>
+      <Entry x:Name="fMyWeightEntry"
+             Text="{Binding WValue, Mode=TwoWay}"
+             Keyboard="Numeric"
+             VerticalOptions="StartAndExpand"
+             Placeholder="Today's weight..."
+             FontSize="20"
+             FontAttributes="Italic"/>
+      <Label Text="" FontSize="30"/>
 
-    <Label Text="Weight"
-           FontSize="Large"
-           FontAttributes="Bold"/>
-    <Entry x:Name="fMyWeightEntry"
-           Text="{Binding WValue, Mode=TwoWay}"
-           Keyboard="Numeric"
-           VerticalOptions="StartAndExpand"
-           Placeholder="Today's weight..."
-           FontSize="20"
-           FontAttributes="Italic"/>
-    <Label Text="" FontSize="30"/>
-
-    <Button x:Name="fSaveBtn"
-            Text="SAVE"
-            VerticalOptions="EndAndExpand"
-            HorizontalOptions="Center"
-            FontSize="Large"
-            FontAttributes="Bold"
-            Clicked="OnSaveWeightClicked"
-            IsVisible="false"/>
-  </StackLayout >
-
+      <Button x:Name="fSaveBtn"
+              Text="SAVE"
+              VerticalOptions="EndAndExpand"
+              HorizontalOptions="Center"
+              FontSize="Large"
+              FontAttributes="Bold"
+              Clicked="OnSaveWeightClicked"/>
+    </StackLayout >
 </ContentPage>
