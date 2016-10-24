@@ -57,13 +57,14 @@ namespace Dianet.Utils
 
                 ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
                 servWeight.SaveAllToDB();
-               
+             
 
                 StorageManager.GetConnectionInfo().Settings.LastSyncDate = DateTime.UtcNow;
                 StorageManager.UpdateData<Settings>(StorageManager.GetConnectionInfo().Settings);
             }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message); //ex.Message
 
             }
 
