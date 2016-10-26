@@ -18,17 +18,17 @@ namespace Dianet.Pages
         {
             InitializeComponent();                               
             conn = StorageManager.GetConnection();
-            ListViewPlans.ItemsSource = records;
+            ListViewPlans.ItemsSource = records;            
+        }       
+
+        protected override void OnAppearing()
+        {
             records.Clear();
             IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, GoalDate FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Plan plan in plans)
             {
                 records.Add(new Plan { IDPlan = plan.IDPlan, Goal = plan.Goal, GoalDate = plan.GoalDate });
             }
-        }       
-
-        protected override void OnAppearing()
-        {          
         }
 
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)

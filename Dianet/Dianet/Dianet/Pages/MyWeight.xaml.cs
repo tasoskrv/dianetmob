@@ -18,8 +18,7 @@ namespace Dianet.Pages
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
-            ListViewWeights.ItemsSource = records;
-            
+            ListViewWeights.ItemsSource = records;            
         }
 
         protected override void OnAppearing()

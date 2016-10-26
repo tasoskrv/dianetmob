@@ -24,14 +24,10 @@ namespace Dianet.Pages
 
         public void LoadData(int IDWeight = 0)
         {
-            if (IDWeight > 0)
-            {
-                //fSaveBtn.IsVisible = true;                
-                wght = conn.Get<Weight>(IDWeight);
-            }
+            if (IDWeight > 0)                                           
+                wght = conn.Get<Weight>(IDWeight);            
             else
-            {
-               // fSaveBtn.IsVisible = false;
+            {               
                 wght = new Weight();
                 wght.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
             }
@@ -50,7 +46,7 @@ namespace Dianet.Pages
             }
             else
             {
-                wght.InsertDate = wght.UpdateDate;
+                //wght.InsertDate = wght.UpdateDate;
                 StorageManager.InsertData(wght);
                 Navigation.PopAsync();
             }

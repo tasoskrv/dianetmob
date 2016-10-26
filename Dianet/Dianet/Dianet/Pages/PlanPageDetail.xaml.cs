@@ -19,25 +19,32 @@ namespace Dianet.Pages
 
         public void LoadData(int IDPlan = 0)
         {
-            if (IDPlan > 0)
-            {
-                fSaveBtn.IsVisible = true;
-                pln = conn.Query<Plan>("SELECT Goal,GoalDate FROM Plan where IDPlan=" + IDPlan.ToString())[0];
-            }
+            if (IDPlan > 0)                            
+                pln = conn.Get<Plan>(IDPlan);            
             else
-            {
-                fSaveBtn.IsVisible = false;
-                pln = new Plan();        
+            {                
+                pln = new Plan();
+                pln.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
             }
             BindingContext = pln;
         }
 
         private void OnSaveClicked(object sender, EventArgs e)
         {
-            if (fWeightEntry.Text == null || fWeightEntry.Text == "")
+            pln.UpdateDate = DateTime.Now;
+            if (pln.Goal <= 0)
                 DisplayAlert("Please", "fill in your desired weight", "OK");
-            else            
-                StorageManager.InsertData(pln);                        
+            else if (pln.IDPlan > 0)
+            {
+                StorageManager.UpdateData(pln);
+                Navigation.PopAsync();
+            }
+            else
+            {
+                //pln.InsertDate = pln.UpdateDate;
+                StorageManager.InsertData(pln);
+                Navigation.PopAsync();
+            }
         }
 
         private void OnGoalDateChanged(object sender, EventArgs e)

@@ -8,10 +8,9 @@
       <Label Text="" FontSize="10"/>
 
       <Label Text="Today" FontSize="Large" FontAttributes="Bold"/>
+      <DatePicker x:Name="fWeightDate" Date="{Binding InsertDate, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="false" />
       
-      <Label Text="Weight"
-             FontSize="Large"
-             FontAttributes="Bold"/>
+      <Label Text="Weight" FontSize="Large" FontAttributes="Bold"/>      
       <Entry x:Name="fMyWeightEntry"
              Text="{Binding WValue, Mode=TwoWay}"
              Keyboard="Numeric"
@@ -19,6 +18,7 @@
              Placeholder="Today's weight..."
              FontSize="20"
              FontAttributes="Italic"/>
+      
       <Label Text="" FontSize="30"/>
 
       <Button x:Name="fSaveBtn"

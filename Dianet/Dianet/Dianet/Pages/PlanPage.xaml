@@ -10,9 +10,16 @@
     <ListView x:Name="ListViewPlans" ItemTapped="OnItemTapped">      
       <ListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding Goal}" />
-          <DetailText Text="{Binding GoalDate}" />
-        </DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding GoalDate, StringFormat='{0:MMMM dd, yyyy}'}"
+                     TextColor="#f35e20" />
+              <Label Text="{Binding Goal}"
+                     HorizontalOptions="EndAndExpand"
+                     TextColor="#503026" />
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>        
       </ListView.ItemTemplate>
     </ListView>   
   </StackLayout>

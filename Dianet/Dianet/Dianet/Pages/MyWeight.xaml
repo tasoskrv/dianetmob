@@ -13,10 +13,10 @@
           <ViewCell>
               <StackLayout Orientation="Horizontal">      
                 <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}"
-                TextColor="#f35e20" />
+                       TextColor="#f35e20" />
                 <Label Text="{Binding WValue}"
-                HorizontalOptions="EndAndExpand"
-                TextColor="#503026" />
+                       HorizontalOptions="EndAndExpand"
+                       TextColor="#503026" />
               </StackLayout>
           </ViewCell>
         </DataTemplate>
