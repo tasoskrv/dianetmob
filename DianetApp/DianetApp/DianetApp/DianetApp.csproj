@@ -126,6 +126,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ModelService.cs" />
     <Compile Include="Service\ServiceConnector.cs" />
+    <Compile Include="TableMapping\MapLogData.cs" />
+    <Compile Include="TableMapping\MapMealUnit.cs" />
     <Compile Include="Utils\GenLib.cs" />
   </ItemGroup>
   <ItemGroup>

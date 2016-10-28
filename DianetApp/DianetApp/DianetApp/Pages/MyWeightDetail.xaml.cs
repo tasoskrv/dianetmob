@@ -36,7 +36,7 @@ namespace DianetApp.Pages
 
         private void OnSaveWeightClicked(object sender, EventArgs e)
         {
-            wght.UpdateDate = DateTime.Now;
+            wght.UpdateDate = DateTime.UtcNow;
             if (wght.WValue <= 0)
                 DisplayAlert("Please", "fill in today's weight", "OK");
             else if (wght.IDWeight > 0)

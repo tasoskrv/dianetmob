@@ -11,8 +11,11 @@ namespace DianetApp.Pages
     public partial class AddMealPage : ContentPage
     {
         private SearchMealPage searchPage = new SearchMealPage();
-        public AddMealPage()
+        private DateTime SelectedDate;
+        public AddMealPage( DateTime date)
         {
+            SelectedDate = date;
+            searchPage.SelectedDate = date;
             InitializeComponent();
         }
         async void OnAddBreakfastClicked(object sender, EventArgs e)
@@ -37,11 +40,11 @@ namespace DianetApp.Pages
         }
         async void OnAddExerciseClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddMealPage());
+            //await Navigation.PushAsync(new AddMealPage());
         }
         async void OnAddRecordWeightClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddMealPage());
+           // await Navigation.PushAsync(new AddMealPage());
         }
     }
 }

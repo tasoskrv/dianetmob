@@ -36,7 +36,7 @@ namespace DianetApp.Pages
 
         private void OnSaveClicked(object sender, EventArgs e)
         {
-            pln.UpdateDate = DateTime.Now;
+            pln.UpdateDate = DateTime.UtcNow;
             if (pln.Goal <= 0)
                 DisplayAlert("Please", "fill in your desired weight", "OK");
             else if (pln.IDPlan > 0)

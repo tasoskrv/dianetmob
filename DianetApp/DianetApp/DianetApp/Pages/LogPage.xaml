@@ -16,7 +16,18 @@
         <Button Text="Next" VerticalOptions="End"
        HorizontalOptions="FillAndExpand" Clicked="OnNextDayClicked"/>
       </StackLayout>
-
+      <ListView x:Name="LogList" 
+          IsGroupingEnabled="true"
+          GroupDisplayBinding="{ Binding Name }"
+          GroupShortNameBinding ="{ Binding ShortName }"
+          >
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{ Binding Title }" Detail="{ Binding Description }" />
+            <!-- Or use a ViewCell -->
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>

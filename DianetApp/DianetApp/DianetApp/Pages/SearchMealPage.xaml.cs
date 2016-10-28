@@ -18,6 +18,8 @@ namespace DianetApp.Pages
         private ObservableCollection<Meal> records = new ObservableCollection<Meal>();
         protected string url = "http://dianet.cloudocean.gr/api/v1/meal/getall";
         public int Mode { get; set; }
+        public DateTime SelectedDate { get; set; }
+
         SQLiteConnection conn = null;
         public SearchMealPage()
         {
@@ -44,6 +46,8 @@ namespace DianetApp.Pages
             {
 
                 selectPage.IDMealSelected = myMeal.IDMeal;
+                selectPage.IDCategorySelected = Mode;
+                selectPage.SelectedDate = SelectedDate;
                 selectPage.CalcUnits();
                 await Navigation.PushAsync(selectPage);
             }
