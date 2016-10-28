@@ -12,3 +12,15 @@ Dianet/Dianet/Dianet.Windows/bin/*
 Dianet/Dianet/Dianet.WinPhone/obj/*
 Dianet/Dianet/Dianet.WinPhone/bin/*
 Dianet/.vs/Dianet/v14
+DianetApp/DianetApp/DianetApp.Droid/obj/*
+DianetApp/DianetApp/DianetApp.Droid/bin/*
+DianetApp/DianetApp/DianetApp.iOS/obj/*
+DianetApp/DianetApp/DianetApp.iOS/bin/*
+DianetApp/DianetApp/DianetApp.UMP/obj/*
+DianetApp/DianetApp/DianetApp.UMP/bin/*
+DianetApp/DianetApp/obj/*
+DianetApp/DianetApp/bin/*
+DianetApp/DianetApp/DianetApp.Windows/obj/*
+DianetApp/DianetApp/DianetApp.Windows/bin/*
+DianetApp/DianetApp/DianetApp.WinPhone/obj/*
+DianetApp/DianetApp/DianetApp.WinPhone/bin/*

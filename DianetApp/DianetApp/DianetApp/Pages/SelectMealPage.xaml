@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DianetApp.Pages.SelectMealPage">
+  <ContentPage.Content>
+
+    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" >
+
+      <!--<userControls:BindablePicker x:Name="unitPicker" ItemsSource="{Binding units}" SelectedItem="{Binding SelectedUnit, Mode = TwoWay}" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit "/>-->
+      <Picker x:Name="unitPicker" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit ">
+      </Picker>
+
+      <Picker x:Name="counter1Picker" Title="Counter" IsEnabled="False" SelectedIndexChanged="OnChosen1">
+      </Picker>
+      <Picker x:Name="counter2Picker" Title="Counter" IsEnabled="False" SelectedIndexChanged="OnChosen2">
+        <Picker.Items>
+          <x:String>0</x:String>
+          <x:String>1/8</x:String>
+          <x:String>1/4</x:String>
+          <x:String>1/3</x:String>
+          <x:String>1/2</x:String>
+          <x:String>2/3</x:String>
+          <x:String>3/4</x:String>
+        </Picker.Items>
+      </Picker>
+      <Button Text="Choose" VerticalOptions="EndAndExpand" Clicked="OnChooseBtnClicked" />
+    </StackLayout>
+
+  </ContentPage.Content>
+</ContentPage>

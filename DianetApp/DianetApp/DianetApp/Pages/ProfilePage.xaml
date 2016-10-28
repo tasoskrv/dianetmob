@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:DianetApp.Converters;assembly=DianetApp"
+             x:Class="DianetApp.Pages.ProfilePage">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:MinusOneConverter x:Key="minusOneConv" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text=""  Clicked="OnEditClicked" Icon="edit.png"/>
+  </ContentPage.ToolbarItems>
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="FillAndExpand">
+
+      <Label x:Name="fHelloLabel"
+             VerticalOptions="Start"
+             HorizontalTextAlignment="Center"
+             FontSize="Large"
+             FontAttributes="Bold"/>
+
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fFirstNameLabel"
+               Text="First Name:"
+               FontSize="Large"
+               FontAttributes="Bold"/>
+        <Entry x:Name="fFirstNameEntry" Text="{Binding FirstName, Mode=TwoWay}" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fSurNameLabel"
+               Text="Last Name:"
+               FontSize="Large"
+               FontAttributes="Bold"/>
+        <Entry x:Name="fSurNameEntry" Text="{Binding LastName, Mode=TwoWay}" Keyboard="Text" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fEmailLabel"
+               Text="Email:"
+               FontSize="Large"
+               FontAttributes="Bold"/>
+        <Entry x:Name="fEmailEntry" Text="{Binding Email, Mode=TwoWay}" Keyboard="Email" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fBirthDateLabel"
+               Text="Birth Date:"
+               FontSize="Large"
+               FontAttributes="Bold"/>
+        <DatePicker x:Name="fbirthDatePicker" Date="{Binding Birthdate, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fSexLabel"
+               Text="Sex:"
+               FontSize="Large"
+               FontAttributes="Bold"/>
+        <Picker x:Name="fSexPicker" Title="Sex" HorizontalOptions="FillAndExpand" IsEnabled="False" SelectedIndex="{Binding Gender, Converter={StaticResource minusOneConv}, Mode=TwoWay}" >
+          <Picker.Items>
+            <x:String>Male</x:String>
+            <x:String>Female</x:String>
+          </Picker.Items>
+        </Picker>
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fHeightLabel"
+               Text="Height:"
+               FontSize="Large"
+               FontAttributes="Bold"/>
+        <Picker x:Name="fHeightPicker" Title="Height" HorizontalOptions="FillAndExpand" IsEnabled="False" SelectedIndex="{Binding HeightType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
+          <Picker.Items>
+            <x:String>Cm</x:String>
+            <x:String>In</x:String>
+          </Picker.Items>
+        </Picker>
+        <Entry x:Name="fHeightEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False" Text="{Binding Height, Mode=TwoWay}" />
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="fWristLabel"
+               Text="Wrist:"
+               FontSize="Large"
+               FontAttributes="Bold"/>
+        <Entry x:Name="fWristEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>
+      </StackLayout>
+
+      <Button Text="SAVE"
+              VerticalOptions="EndAndExpand"
+              HorizontalOptions="Center"
+              FontSize="Large"
+              FontAttributes="Bold"
+              Clicked="OnSaveSettingsClicked"/>
+
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
