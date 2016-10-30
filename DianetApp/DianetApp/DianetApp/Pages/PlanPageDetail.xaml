@@ -13,10 +13,11 @@
            Keyboard="Numeric"
            Placeholder="Weight"
            FontSize="18"
+           TextChanged="OnWeighChanged"
            FontAttributes="Italic"/>
 
     <Label Text="Achievement day:" FontSize="Large" FontAttributes="Bold"/>
-    <DatePicker x:Name="fGoalDate" Date="{Binding GoalDate, Mode=TwoWay}" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" DateSelected="OnGoalDateChanged"/>
+    <DatePicker x:Name="fGoalDate" Date="{Binding GoalDate, Mode=TwoWay}" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
 
     <Label Text="" FontSize="30"/>
 
@@ -26,7 +27,6 @@
             HorizontalOptions="Center"
             FontSize="Large"
             FontAttributes="Bold"
-            Clicked="OnSavePlanClicked"
-            IsVisible="false"/>
+            Clicked="OnSavePlanClicked"/>
   </StackLayout >
 </ContentPage>

@@ -14,6 +14,7 @@ namespace DianetApp.Pages
     public partial class PlanPageDetail : ContentPage
     {
         private Plan pln;
+        private Weight wgh=null;
         private SQLiteConnection conn = null;
 
         public PlanPageDetail()
@@ -32,9 +33,18 @@ namespace DianetApp.Pages
                 pln.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
             }
             BindingContext = pln;
+            List<Weight> wghs = conn.Query<Weight>("Select * from weight order by insertdate limit 1");
+            if (wghs.Count > 0)
+            {
+                wgh = wghs[0];
+            }
+            else {
+                DisplayAlert("Please", "fill in your current weight", "OK");
+                Navigation.PopAsync();
+            }
         }
 
-        private void OnSaveClicked(object sender, EventArgs e)
+        private void OnSavePlanClicked(object sender, EventArgs e)
         {
             pln.UpdateDate = DateTime.UtcNow;
             if (pln.Goal <= 0)
@@ -46,19 +56,16 @@ namespace DianetApp.Pages
             }
             else
             {
-                //pln.InsertDate = pln.UpdateDate;
+                pln.InsertDate = pln.UpdateDate;
                 StorageManager.InsertData(pln);
                 Navigation.PopAsync();
             }
         }
-
-        private void OnGoalDateChanged(object sender, EventArgs e)
+        private void OnWeighChanged(object sender, TextChangedEventArgs e)
         {
-            if (fGoalDate.Date < DateTime.Today)
-            {
-                DisplayAlert("Sorry", "you cannot insert date less than today", "OK");
-                fGoalDate.Date = DateTime.Today;
-            }
+            var oldText = e.OldTextValue;
+            var newText = e.NewTextValue;
         }
+
     }
 }
