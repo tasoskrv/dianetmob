@@ -2218,8 +2218,8 @@ namespace DianetApp.Droid
 			// aapt resource value: 0x7f0200a6
 			public const int myfood = 2130837670;
 			
-			// aapt resource value: 0x7f0200aa
-			public const int notification_template_icon_bg = 2130837674;
+			// aapt resource value: 0x7f0200ab
+			public const int notification_template_icon_bg = 2130837675;
 			
 			// aapt resource value: 0x7f0200a7
 			public const int plus = 2130837671;
@@ -2228,7 +2228,10 @@ namespace DianetApp.Droid
 			public const int profile = 2130837672;
 			
 			// aapt resource value: 0x7f0200a9
-			public const int weight = 2130837673;
+			public const int splash = 2130837673;
+			
+			// aapt resource value: 0x7f0200aa
+			public const int weight = 2130837674;
 			
 			static Drawable()
 			{
@@ -3897,6 +3900,9 @@ namespace DianetApp.Droid
 			
 			// aapt resource value: 0x7f0a0003
 			public const int Theme_MediaRouter_LightControlPanel = 2131361795;
+			
+			// aapt resource value: 0x7f0a0175
+			public const int Theme_Splash = 2131362165;
 			
 			// aapt resource value: 0x7f0a010e
 			public const int ThemeOverlay_AppCompat = 2131362062;

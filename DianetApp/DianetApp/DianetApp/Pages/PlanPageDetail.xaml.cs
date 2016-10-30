@@ -63,8 +63,7 @@ namespace DianetApp.Pages
         }
         private void OnWeighChanged(object sender, TextChangedEventArgs e)
         {
-            var oldText = e.OldTextValue;
-            var newText = e.NewTextValue;
+            //wgh.WValue
         }
 
     }
