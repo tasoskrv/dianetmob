@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DianetApp.Pages.AlertPageDetail">
+
+  <ContentPage.Content>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="100" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+      </Grid.RowDefinitions>
+      
+      
+      <Label Grid.Row="0" Grid.Column="0" Text="AlertTime" />
+      <DatePicker Grid.Row="0" Grid.Column="1" x:Name="alerttime" Format="dd/MM/yyyy"
+                  Date="{Binding AlertTime, Mode=TwoWay}" />
+      <!--Entry Grid.Row="0" Grid.Column="1" Placeholder="yyyy-mm-dd" 
+             Text="{Binding AlertTime, Mode=TwoWay}"/-->
+      
+      <Label Grid.Row="1" Grid.Column="0" Text="Recurrence"/>
+      <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Recurrence, Mode=TwoWay}"/>
+      
+      <Label Grid.Row="2" Grid.Column="0" Text="Description" />
+      <Editor Grid.Row="2" Grid.Column="1" Text="{Binding Description, Mode=TwoWay}"/>
+
+      <!--Label Grid.Row="3" Grid.Column="0" Text="InsertDate" />
+      <Entry Grid.Row="3" Grid.Column="1" Placeholder="yyyy-mm-dd" />
+      
+      <Label Grid.Row="4" Grid.Column="0" Text="UpdateDate" />
+      <Entry Grid.Row="4" Grid.Column="1" Placeholder="yyyy-mm-dd" /-->
+
+      <Button x:Name="fSaveBtn" Grid.Row="5" Grid.Column="1"
+              Text="SAVE"
+              VerticalOptions="EndAndExpand"
+              HorizontalOptions="Center"
+              FontSize="Large"
+              FontAttributes="Bold"
+              Clicked="OnSaveAlertClicked"/>
+    
+    </Grid>
+
+
+    
+  </ContentPage.Content>  
+  
+  
+</ContentPage>

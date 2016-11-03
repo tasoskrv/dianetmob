@@ -10,9 +10,18 @@ namespace DianetApp.Pages
 {
     public partial class AlertPage : ContentPage
     {
+        private AlertPageDetail alertPageDt = new AlertPageDetail();
+
         public AlertPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
+
+        async void OnAddAlertClicked(object sender, EventArgs e)
+        {
+            alertPageDt.LoadData(0);
+            await Navigation.PushAsync(alertPageDt);
+        }
+
     }
 }

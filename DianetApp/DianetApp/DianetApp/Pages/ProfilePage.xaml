@@ -13,7 +13,6 @@
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">
-
       <Label x:Name="fHelloLabel"
              VerticalOptions="Start"
              HorizontalTextAlignment="Center"

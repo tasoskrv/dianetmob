@@ -10,6 +10,10 @@ namespace DianetApp.DB.Entities
 {
     public class Alert : Model
     {
+        private DateTime alerttime;
+        private string recurrence;
+        private string description;
+
         [PrimaryKey, AutoIncrement]
         public int IDAlert { get; set; }
 
@@ -18,12 +22,54 @@ namespace DianetApp.DB.Entities
 
         public int IDServer { get; set; }
 
-        public DateTime AlertTime { get; set; }
+        public DateTime AlertTime
+        {
+            get
+            {
+                return alerttime;
+            }
+            set
+            {
+                if (alerttime != value)
+                {
+                    alerttime = value;
+                    OnPropertyChanged("AlertTime");
+                }
+            }
+        }
 
-        public int Reccurence { get; set; }
+        public string Recurrence
+        {
+            get
+            {
+                return recurrence;
+            }
+            set
+            {
+                if (recurrence != value)
+                {
+                    recurrence = value;
+                    OnPropertyChanged("Recurrence");
+                }
+            }
+        }
 
         [MaxLength(500)]
-        public string Description { get; set; }
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                if (description != value)
+                {
+                    description = value;
+                    OnPropertyChanged("Description");
+                }
+            }
+        }
 
         public DateTime InsertDate { get; set; }
 
@@ -32,6 +78,6 @@ namespace DianetApp.DB.Entities
         public Alert()
         {
             IDServer = -1;
-        }
+        }        
     }
 }

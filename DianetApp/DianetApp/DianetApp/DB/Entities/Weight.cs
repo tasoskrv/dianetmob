@@ -42,7 +42,7 @@ namespace DianetApp.DB.Entities
             get
             {
                 if (insertDate == null)
-                    insertDate = DateTime.Now;
+                    insertDate = DateTime.UtcNow;
                 return insertDate;
             }
             set
