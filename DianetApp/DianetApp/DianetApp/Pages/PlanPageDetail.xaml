@@ -2,7 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetApp.Pages.PlanPageDetail">
-  <StackLayout VerticalOptions="StartAndExpand" >
+  
+    
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="100" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+      </Grid.RowDefinitions>
+      
+
+      <Label Grid.Row="0" Grid.Column="0" Text="Goal"/>
+      <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Goal, Mode=TwoWay}" Keyboard="Numeric"/>      
+      
+      <Label Grid.Row="1" Grid.Column="0" Text="Goal Date" />
+      <DatePicker Grid.Row="1" Grid.Column="1" x:Name="goaldate" Format="dd/MM/yyyy"  MinimumDate="{Binding PropertyMinimumDate}"
+                  Date="{Binding GoalDate, Mode=TwoWay}" />
+    
+      <Button x:Name="fSaveBtn" Grid.Row="2" Grid.Column="1"
+              Text="SAVE"
+              VerticalOptions="EndAndExpand"
+              HorizontalOptions="Center"
+              FontSize="Large"
+              FontAttributes="Bold"
+              Clicked="OnSavePlanClicked"/>
+    
+    </Grid>    
+    
+   
+  <!--StackLayout VerticalOptions="StartAndExpand" >
 
     <Label Text="Your goals..." HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
     <Label Text="" FontSize="10"/>
@@ -28,5 +60,5 @@
             FontSize="Large"
             FontAttributes="Bold"
             Clicked="OnSavePlanClicked"/>
-  </StackLayout >
+  </StackLayout -->
 </ContentPage>

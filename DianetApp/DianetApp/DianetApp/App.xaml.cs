@@ -8,6 +8,8 @@ using System.Text;
 
 using Xamarin.Forms;
 
+
+using DianetApp.Model;
 namespace DianetApp
 {
     public partial class App : Application

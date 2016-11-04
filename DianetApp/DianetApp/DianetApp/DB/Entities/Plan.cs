@@ -12,6 +12,7 @@ namespace DianetApp.DB.Entities
     {
         private double goal;
         private DateTime goaldate;
+        private DateTime propertyMinimumDate;
 
         [PrimaryKey, AutoIncrement]
         public int IDPlan { get; set; }
@@ -50,6 +51,19 @@ namespace DianetApp.DB.Entities
                     goaldate = value;
                     OnPropertyChanged("GoalDate");
                 }
+            }
+        }
+
+        [Ignore]
+        public DateTime PropertyMinimumDate
+        {
+            get
+            {
+                return DateTime.Now;
+            }
+            set
+            {
+                propertyMinimumDate = value;
             }
         }
 

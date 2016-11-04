@@ -11,7 +11,8 @@ namespace DianetApp.DB.Entities
     public class Weight : Model
     {
         private int weight;
-        private DateTime? insertDate;
+        private DateTime weightDate;
+        private DateTime propertyMinimumDate;
 
         [PrimaryKey, AutoIncrement]
         public int IDWeight { get; set; }
@@ -37,23 +38,36 @@ namespace DianetApp.DB.Entities
             }
         }
 
-        public DateTime? InsertDate
+        public DateTime WeightDate
         {
             get
             {
-                if (insertDate == null)
-                    insertDate = DateTime.UtcNow;
-                return insertDate;
+                return weightDate;
             }
             set
             {
-                if (insertDate != value)
+                if (weightDate != value)
                 {
-                    insertDate = value;
-                    OnPropertyChanged("InsertDate");
+                    weightDate = value;
+                    OnPropertyChanged("WeightDate");
                 }
             }
         }
+
+        [Ignore]
+        public DateTime PropertyMinimumDate
+        {
+            get
+            {
+                return DateTime.Now;
+            }
+            set
+            {
+                propertyMinimumDate = value;
+            }
+        }
+
+        public DateTime InsertDate { get;set; }
 
         public DateTime UpdateDate { get; set; }
 

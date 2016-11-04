@@ -13,6 +13,7 @@ namespace DianetApp.DB.Entities
         private DateTime alerttime;
         private string recurrence;
         private string description;
+        private DateTime propertyMinimumDate;
 
         [PrimaryKey, AutoIncrement]
         public int IDAlert { get; set; }
@@ -68,6 +69,19 @@ namespace DianetApp.DB.Entities
                     description = value;
                     OnPropertyChanged("Description");
                 }
+            }
+        }
+
+        [Ignore]
+        public DateTime PropertyMinimumDate
+        {
+            get
+            {
+                return DateTime.Now;
+            }
+            set
+            {
+                propertyMinimumDate = value;
             }
         }
 

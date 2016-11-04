@@ -20,22 +20,14 @@
       
       
       <Label Grid.Row="0" Grid.Column="0" Text="AlertTime" />
-      <DatePicker Grid.Row="0" Grid.Column="1" x:Name="alerttime" Format="dd/MM/yyyy"
+      <DatePicker Grid.Row="0" Grid.Column="1" x:Name="alerttime" Format="dd/MM/yyyy" MinimumDate="{Binding PropertyMinimumDate}"
                   Date="{Binding AlertTime, Mode=TwoWay}" />
-      <!--Entry Grid.Row="0" Grid.Column="1" Placeholder="yyyy-mm-dd" 
-             Text="{Binding AlertTime, Mode=TwoWay}"/-->
       
       <Label Grid.Row="1" Grid.Column="0" Text="Recurrence"/>
       <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Recurrence, Mode=TwoWay}"/>
       
       <Label Grid.Row="2" Grid.Column="0" Text="Description" />
       <Editor Grid.Row="2" Grid.Column="1" Text="{Binding Description, Mode=TwoWay}"/>
-
-      <!--Label Grid.Row="3" Grid.Column="0" Text="InsertDate" />
-      <Entry Grid.Row="3" Grid.Column="1" Placeholder="yyyy-mm-dd" />
-      
-      <Label Grid.Row="4" Grid.Column="0" Text="UpdateDate" />
-      <Entry Grid.Row="4" Grid.Column="1" Placeholder="yyyy-mm-dd" /-->
 
       <Button x:Name="fSaveBtn" Grid.Row="5" Grid.Column="1"
               Text="SAVE"
@@ -45,10 +37,7 @@
               FontAttributes="Bold"
               Clicked="OnSaveAlertClicked"/>
     
-    </Grid>
-
-
-    
+    </Grid>   
   </ContentPage.Content>  
   
   
