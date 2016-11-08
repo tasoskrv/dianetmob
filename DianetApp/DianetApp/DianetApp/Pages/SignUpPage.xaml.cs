@@ -55,7 +55,6 @@ namespace DianetApp.Pages
                     {
                         await DisplayAlert("Warning", srvNewUser.message, "OK");
                     }
-
                     return;
                 }
             }

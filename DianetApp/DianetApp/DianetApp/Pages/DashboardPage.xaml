@@ -7,5 +7,23 @@
              
              Title="Dashboard">
 
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="StartAndExpand">
+      <!--Button Text="SYNC" Clicked="OnSyncButtonClicked" /-->
 
+
+      <Button x:Name="fSaveBtn" 
+              Text="SYNC"
+              VerticalOptions="EndAndExpand"
+              HorizontalOptions="Center"
+              FontSize="Large"
+              FontAttributes="Bold"
+              Clicked="OnSyncButtonClicked"/>    
+    
+    
+    </StackLayout>
+  </ContentPage.Content>
+  
+  
+  
 </ContentPage>

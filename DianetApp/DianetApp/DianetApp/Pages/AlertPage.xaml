@@ -20,7 +20,7 @@
             <StackLayout Orientation="Horizontal">
               <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}"
                      TextColor="#f35e20" />
-              <Label Text="{Binding AlertPageDetail}"
+              <Label Text="{Binding Description}"
                      HorizontalOptions="EndAndExpand"
                      TextColor="#503026" />
             </StackLayout>

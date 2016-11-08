@@ -20,13 +20,15 @@ namespace DianetApp.Pages
 
         public AlertPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            conn = StorageManager.GetConnection();
+            ListViewAlerts.ItemsSource = records;
         }
 
         protected override void OnAppearing()
         {
             records.Clear();
-            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT IDAlert, Description, InsertDate FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Alert alt in alts)
             {
                 records.Add(new Alert { IDAlert = alt.IDAlert, Description = alt.Description, InsertDate = alt.InsertDate });
