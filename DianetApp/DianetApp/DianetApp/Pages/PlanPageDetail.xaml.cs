@@ -64,6 +64,7 @@ namespace DianetApp.Pages
                 Navigation.PopAsync();
             }
         }
+
         private void OnWeighChanged(object sender, TextChangedEventArgs e)
         {
             //wgh.WValue

@@ -11,8 +11,24 @@
 <ContentPage.Content>
 
 
-    
-    
+
+  <StackLayout VerticalOptions="StartAndExpand" >
+    <ListView x:Name="ListViewAlerts" ItemTapped="OnItemTapped">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}"
+                     TextColor="#f35e20" />
+              <Label Text="{Binding AlertPageDetail}"
+                     HorizontalOptions="EndAndExpand"
+                     TextColor="#503026" />
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>    
   
   <!--StackLayout Orientation="Horizontal" >
     <Label FontSize = "40" Text="alerttime" />
