@@ -46,7 +46,7 @@ namespace DianetApp.Pages
             }
             else
             {
-                //wght.InsertDate = wght.UpdateDate;
+                wght.InsertDate = wght.UpdateDate;
                 StorageManager.InsertData(wght);
                 Navigation.PopAsync();
             }

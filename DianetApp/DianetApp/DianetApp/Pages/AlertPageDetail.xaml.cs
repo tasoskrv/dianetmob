@@ -23,8 +23,7 @@ namespace DianetApp.Pages
         }
 
         public void LoadData(int IDAlert = 0)
-        {
-            
+        {            
             if (IDAlert > 0)
                 alt = conn.Get<Alert>(IDAlert);
             else

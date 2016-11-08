@@ -59,7 +59,7 @@ namespace DianetApp.DB.Entities
         {
             get
             {
-                return DateTime.Now;
+                return DateTime.UtcNow;
             }
             set
             {

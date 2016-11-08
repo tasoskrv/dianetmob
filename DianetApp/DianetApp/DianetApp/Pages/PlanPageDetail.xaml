@@ -6,7 +6,7 @@
       
   <ContentPage.Resources>
     <ResourceDictionary>
-      <conv:MinusOneConverter x:Key="dateConverter" />
+      <conv:DateConverter x:Key="dateConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
       
@@ -19,14 +19,13 @@
         <RowDefinition Height="50" />
         <RowDefinition Height="50" />
         <RowDefinition Height="50" />
-      </Grid.RowDefinitions>
-      
+      </Grid.RowDefinitions>      
 
       <Label Grid.Row="0" Grid.Column="0" Text="Goal"/>
       <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Goal, Mode=TwoWay}" Keyboard="Numeric"/>      
       
       <Label Grid.Row="1" Grid.Column="0" Text="Goal Date" />
-      <DatePicker Grid.Row="1" Grid.Column="1" x:Name="goaldate" Format="dd/MM/yyyy"  MinimumDate="{Binding PropertyMinimumDate}"
+      <DatePicker Grid.Row="1" Grid.Column="1" x:Name="goaldate" Format="dd/MM/yyyy" MinimumDate="{Binding PropertyMinimumDate}"
                   Date="{Binding GoalDate, Mode=TwoWay, Converter={StaticResource dateConverter}}"  />
     
       <Button x:Name="fSaveBtn" Grid.Row="2" Grid.Column="1"

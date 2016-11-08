@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:DianetApp.Converters;assembly=DianetApp"
              x:Class="DianetApp.Pages.AlertPageDetail">
 
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:DateConverter x:Key="dateConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>  
+  
   <ContentPage.Content>
     <Grid>
       <Grid.ColumnDefinitions>
@@ -17,11 +24,10 @@
         <RowDefinition Height="50" />
         <RowDefinition Height="50" />
       </Grid.RowDefinitions>
-      
-      
+            
       <Label Grid.Row="0" Grid.Column="0" Text="AlertTime" />
       <DatePicker Grid.Row="0" Grid.Column="1" x:Name="alerttime" Format="dd/MM/yyyy" MinimumDate="{Binding PropertyMinimumDate}"
-                  Date="{Binding AlertTime, Mode=TwoWay}" />
+                  Date="{Binding AlertTime, Mode=TwoWay, Converter={StaticResource dateConverter}}" />
       
       <Label Grid.Row="1" Grid.Column="0" Text="Recurrence"/>
       <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Recurrence, Mode=TwoWay}"/>
