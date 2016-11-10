@@ -30,8 +30,9 @@ namespace DianetApp.Service
         }
 
         public static async Task<T> InsertServiceData<T>(string url, Object AObject)
-        {
+        {                                    
             var stringContent = new StringContent(AObject.ToString(), Encoding.UTF8, "application/x-www-form-urlencoded");
+
             var uri = new Uri(BaseUrl + url);
             var response = await client.PostAsync(uri, stringContent);
             if (response.IsSuccessStatusCode)
@@ -41,6 +42,33 @@ namespace DianetApp.Service
             }
             return default(T);
         }
+
+        public static async Task<T> InsertServiceBulkData<T>(string url, Object AObject)//NOT USED FOR THE MOMENT
+        {            
+            System.Collections.IEnumerable enumerable = AObject as System.Collections.IEnumerable;
+            string postData = "";
+            
+            if (enumerable != null)
+            {
+                foreach (object element in enumerable)
+                {
+                    postData = element.ToString();
+                }
+            }
+            
+            HttpContent stringContent = new StringContent(postData, Encoding.UTF8, "application/x-www-form-urlencoded");
+
+            var uri = new Uri(BaseUrl + url);
+            var response = await client.PostAsync(uri, stringContent);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<T>(content, dateTimeConverter, boolConverter);
+            }
+            return default(T);
+        }
+
+
     }
 
     public class BooleanJsonConverter : JsonConverter

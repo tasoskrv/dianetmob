@@ -15,7 +15,9 @@ namespace DianetApp.Pages
     public partial class DashboardPage : ContentPage
     {
         private SQLiteConnection conn = null;
-        private ObservableCollection<Weight> records = new ObservableCollection<Weight>();
+        private ObservableCollection<Alert> alertRecords = new ObservableCollection<Alert>();
+
+        //private ObservableCollection<Weight> records = new ObservableCollection<Weight>();
 
         public DashboardPage()
         {            
@@ -27,7 +29,7 @@ namespace DianetApp.Pages
         {
             try
             {
-                /*s
+                /*
                 records.Clear();
                 IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
                 foreach (Weight wght in wghts)
@@ -35,9 +37,28 @@ namespace DianetApp.Pages
                     records.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, InsertDate = wght.InsertDate });
                 }
                 */
+                /**alert**/
+                alertRecords.Clear();
+                IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+                Alert alert = new Alert();
+                ModelService<Alert> srvNewUser = null;
+                foreach (Alert alt in alts)
+                {
+                    //alertRecords.Add(new Alert
+                    //{
 
+                    alert.IDUser = alt.IDUser;
+                    alert.IDServer = alt.IDServer;
+                    alert.AlertTime = alt.AlertTime;
+                    alert.Recurrence = alt.Recurrence;
+                    alert.Description = alt.Description;
+                    alert.InsertDate = alt.InsertDate;
+                    alert.UpdateDate = alt.UpdateDate;
+                    srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alert);
+                    //});
+                }
 
-                /**alert**
+                /*
                 Alert alert = new Alert();
                 alert.IDUser = 39;
                 alert.IDServer = -1;
@@ -46,8 +67,41 @@ namespace DianetApp.Pages
                 alert.Description = "jufd";
                 alert.InsertDate = DateTime.UtcNow;
                 alert.UpdateDate = alert.InsertDate;
-                ModelService<Alert> srvAlert = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alert);
+
+                alertRecords.Add(new Alert
+                {
+                    IDUser = 39,
+                    IDServer = -1,
+                    AlertTime = DateTime.UtcNow,
+                    Recurrence = "11",
+                    Description = "11",
+                    InsertDate = DateTime.UtcNow,
+                    UpdateDate = alert.InsertDate
+                });
+
+                alertRecords.Add(new Alert
+                {
+                    IDUser = 39,
+                    IDServer = -1,
+                    AlertTime = DateTime.UtcNow,
+                    Recurrence = "22",
+                    Description = "22",
+                    InsertDate = DateTime.UtcNow,
+                    UpdateDate = alert.InsertDate
+                });
                 */
+                //ModelService<Alert> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alert);
+                //ModelService<Alert> srvNewUser = await ServiceConnector.InsertServiceBulkData<ModelService<Alert>>("/alert/save", alertRecords);
+                /**/
+
+
+
+
+
+
+
+
+
                 /**exercise*
                 Exercise exercise = new Exercise();
                 exercise.IDUser = 39;
@@ -90,7 +144,7 @@ namespace DianetApp.Pages
                 userfood.UpdateDate = userfood.InsertDate;
                 ModelService<UserFood> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<UserFood>>("/userfood/save", userfood);
                 */
-                /**usermeal**/
+                /**usermeal**
                 UserMeal usermeal = new UserMeal();
                 usermeal.IDUser = 39;
                 usermeal.IDServer = -1;
@@ -101,7 +155,7 @@ namespace DianetApp.Pages
                 usermeal.InsertDate = DateTime.UtcNow;
                 usermeal.UpdateDate = usermeal.InsertDate;
                 ModelService<UserMeal> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<UserMeal>>("/usermeal/save", usermeal);
-                
+                */
                 /**weight**
                 Weight weight = new Weight();
                 weight.IDUser = 39;// StorageManager.GetConnectionInfo().LoginUser.IDUser;
@@ -112,8 +166,6 @@ namespace DianetApp.Pages
                 weight.UpdateDate = weight.InsertDate;                
                 ModelService<Weight> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Weight>>("/weight/save", weight);
                 */
-
-
 
                 if ((srvNewUser.success == true) && (srvNewUser.ID > 0) && !(srvNewUser.ErrorCode > 0))
                 {
