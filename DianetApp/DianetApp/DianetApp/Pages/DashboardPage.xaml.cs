@@ -16,8 +16,10 @@ namespace DianetApp.Pages
     {
         private SQLiteConnection conn = null;
         private ObservableCollection<Alert> alertRecords = new ObservableCollection<Alert>();
-
-        //private ObservableCollection<Weight> records = new ObservableCollection<Weight>();
+        private ObservableCollection<Exercise> exerciseRecords = new ObservableCollection<Exercise>();
+        private ObservableCollection<Plan> planRecords = new ObservableCollection<Plan>();
+        private ObservableCollection<Subscription> subscriptionRecords = new ObservableCollection<Subscription>();
+        private ObservableCollection<UserFood> userfoodRecords = new ObservableCollection<UserFood>();
 
         public DashboardPage()
         {            
@@ -29,24 +31,14 @@ namespace DianetApp.Pages
         {
             try
             {
-                /*
-                records.Clear();
-                IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
-                foreach (Weight wght in wghts)
-                {
-                    records.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, InsertDate = wght.InsertDate });
-                }
-                */
+                string idUser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
                 /**alert**/
                 alertRecords.Clear();
-                IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+                IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + idUser);
                 Alert alert = new Alert();
-                ModelService<Alert> srvNewUser = null;
+                ModelService<Alert> srvAlert = null;
                 foreach (Alert alt in alts)
                 {
-                    //alertRecords.Add(new Alert
-                    //{
-
                     alert.IDUser = alt.IDUser;
                     alert.IDServer = alt.IDServer;
                     alert.AlertTime = alt.AlertTime;
@@ -54,96 +46,75 @@ namespace DianetApp.Pages
                     alert.Description = alt.Description;
                     alert.InsertDate = alt.InsertDate;
                     alert.UpdateDate = alt.UpdateDate;
-                    srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alert);
-                    //});
+                    srvAlert = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alert);
                 }
-
-                /*
-                Alert alert = new Alert();
-                alert.IDUser = 39;
-                alert.IDServer = -1;
-                alert.AlertTime = DateTime.UtcNow;
-                alert.Recurrence = "khfd";
-                alert.Description = "jufd";
-                alert.InsertDate = DateTime.UtcNow;
-                alert.UpdateDate = alert.InsertDate;
-
-                alertRecords.Add(new Alert
-                {
-                    IDUser = 39,
-                    IDServer = -1,
-                    AlertTime = DateTime.UtcNow,
-                    Recurrence = "11",
-                    Description = "11",
-                    InsertDate = DateTime.UtcNow,
-                    UpdateDate = alert.InsertDate
-                });
-
-                alertRecords.Add(new Alert
-                {
-                    IDUser = 39,
-                    IDServer = -1,
-                    AlertTime = DateTime.UtcNow,
-                    Recurrence = "22",
-                    Description = "22",
-                    InsertDate = DateTime.UtcNow,
-                    UpdateDate = alert.InsertDate
-                });
-                */
                 //ModelService<Alert> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alert);
                 //ModelService<Alert> srvNewUser = await ServiceConnector.InsertServiceBulkData<ModelService<Alert>>("/alert/save", alertRecords);
-                /**/
 
-
-
-
-
-
-
-
-
-                /**exercise*
+                /**exercise**
+                exerciseRecords.Clear();
+                IEnumerable<Exercise> exercs = conn.Query<Exercise>("SELECT * FROM Exercise WHERE IDUser=" + idUser);
                 Exercise exercise = new Exercise();
-                exercise.IDUser = 39;
-                exercise.IDServer = -1;
-                exercise.Minutes = 15;
-                exercise.TrainDate = DateTime.UtcNow;
-                exercise.InsertDate = DateTime.UtcNow;
-                exercise.UpdateDate = exercise.InsertDate;
-                ModelService<Exercise> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Exercise>>("/exercise/save", exercise);                
+                ModelService<Exercise> srvExercise = null;
+                foreach (Exercise exerc in exercs)
+                {
+                    exercise.IDUser = exerc.IDUser;
+                    exercise.IDServer = exerc.IDServer;
+                    exercise.Minutes = exerc.Minutes;
+                    exercise.TrainDate = exerc.TrainDate;
+                    exercise.InsertDate = exerc.InsertDate;
+                    exercise.UpdateDate = exerc.UpdateDate;
+                    srvExercise = await ServiceConnector.InsertServiceData<ModelService<Exercise>>("/exercise/save", exercise);
+                }
                 */
-                /**plan**
+                /**plan**/
+                planRecords.Clear();
+                IEnumerable<Plan> plns = conn.Query<Plan>("SELECT * FROM Plan WHERE IDUser=" + idUser);
                 Plan plan = new Plan();
-                plan.IDUser = 39;
-                plan.IDServer = -1;
-                plan.Goal = 10.54;
-                plan.GoalDate = DateTime.UtcNow;
-                plan.InsertDate = DateTime.UtcNow;
-                plan.UpdateDate = plan.InsertDate;
-                ModelService<Plan> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Plan>>("/plan/save", plan);
-                */
+                ModelService<Plan> srvPlan = null;
+                foreach (Plan pln in plns)
+                {
+                    plan.IDUser = pln.IDUser;
+                    plan.IDServer = pln.IDServer;
+                    plan.Goal = pln.Goal;
+                    plan.GoalDate = pln.GoalDate;
+                    plan.InsertDate = pln.InsertDate;
+                    plan.UpdateDate = pln.UpdateDate;
+                    srvPlan = await ServiceConnector.InsertServiceData<ModelService<Plan>>("/plan/save", plan);
+                }
                 /**subscription**
+                subscriptionRecords.Clear();
+                IEnumerable<Subscription> subs = conn.Query<Subscription>("SELECT * FROM Subscription WHERE IDUser=" + idUser);
                 Subscription subscription = new Subscription();
-                subscription.IDUser = 39;
-                subscription.IDServer = -1;
-                subscription.BeginDate = DateTime.UtcNow;
-                subscription.EndDate = DateTime.UtcNow;
-                subscription.Price = 10.55;
-                subscription.IsActive = 1;
-                subscription.InsertDate = DateTime.UtcNow;
-                subscription.UpdateDate = subscription.InsertDate;
-                ModelService<Subscription> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Subscription>>("/subscription/save", subscription);
+                ModelService<Subscription> srvSubscription = null;
+                foreach (Subscription sub in subs)
+                {
+                    subscription.IDUser = sub.IDUser;
+                    subscription.IDServer = sub.IDServer;
+                    subscription.BeginDate = sub.BeginDate;
+                    subscription.EndDate = sub.EndDate;
+                    subscription.Price = sub.Price;
+                    subscription.IsActive = sub.IsActive;
+                    subscription.InsertDate = sub.InsertDate;
+                    subscription.UpdateDate = sub.UpdateDate;
+                    srvSubscription = await ServiceConnector.InsertServiceData<ModelService<Subscription>>("/subscription/save", subscription);
+                }                               
                 */
-                /**userfood**
+                /**userfood**/
+                userfoodRecords.Clear();
+                IEnumerable<UserFood> foods = conn.Query<UserFood>("SELECT * FROM Userfood WHERE IDUser=" + idUser);
                 UserFood userfood = new UserFood();
-                userfood.IDUser = 39;
-                userfood.IDServer = -1;
-                userfood.Name = "dsfjk";
-                userfood.Description = "dhf";
-                userfood.InsertDate = DateTime.UtcNow;
-                userfood.UpdateDate = userfood.InsertDate;
-                ModelService<UserFood> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<UserFood>>("/userfood/save", userfood);
-                */
+                ModelService<UserFood> srvUserFood = null;
+                foreach (UserFood food in foods)
+                {
+                    userfood.IDUser = food.IDUser;
+                    userfood.IDServer = food .IDServer;
+                    userfood.Name = food.Name;
+                    userfood.Description = food.Description;
+                    userfood.InsertDate = food.InsertDate;
+                    userfood.UpdateDate = food.UpdateDate;
+                    srvUserFood = await ServiceConnector.InsertServiceData<ModelService<UserFood>>("/userfood/save", userfood);
+                }
                 /**usermeal**
                 UserMeal usermeal = new UserMeal();
                 usermeal.IDUser = 39;
@@ -158,7 +129,7 @@ namespace DianetApp.Pages
                 */
                 /**weight**
                 Weight weight = new Weight();
-                weight.IDUser = 39;// StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                weight.IDUser = 39;
                 weight.IDServer = -1;
                 weight.WValue = 100;
                 weight.WeightDate = DateTime.UtcNow;
@@ -167,18 +138,18 @@ namespace DianetApp.Pages
                 ModelService<Weight> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Weight>>("/weight/save", weight);
                 */
 
-                if ((srvNewUser.success == true) && (srvNewUser.ID > 0) && !(srvNewUser.ErrorCode > 0))
+                if ((srvPlan.success == true) && (srvPlan.ID > 0) && !(srvPlan.ErrorCode > 0))
                 {
                     await DisplayAlert("Complete", "Sync Completed!", "OK");
                     return;
                 }
-                else if (srvNewUser.ErrorCode == 2)
+                else if (srvPlan.ErrorCode == 2)
                 {
                     await DisplayAlert("Warning", "O Χρήστης υπάρχει ήδη!", "OK");
                 }
                 else
                 {
-                    await DisplayAlert("Warning", srvNewUser.message, "OK");
+                    await DisplayAlert("Warning", srvPlan.message, "OK");
                 }
                 return;
             }

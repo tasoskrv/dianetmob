@@ -11,6 +11,7 @@ namespace DianetApp.Pages
     public partial class AddMealPage : ContentPage
     {
         private SearchMealPage searchPage = new SearchMealPage();
+
         private DateTime SelectedDate;
         public AddMealPage( DateTime date)
         {
@@ -44,7 +45,7 @@ namespace DianetApp.Pages
         }
         async void OnAddRecordWeightClicked(object sender, EventArgs e)
         {
-           // await Navigation.PushAsync(new AddMealPage());
+           
         }
     }
 }
