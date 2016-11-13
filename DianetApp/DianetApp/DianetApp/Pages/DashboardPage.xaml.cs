@@ -12,6 +12,7 @@ using Xamarin.Forms;
 
 namespace DianetApp.Pages
 {
+
     public partial class DashboardPage : ContentPage
     {
         private SQLiteConnection conn = null;
@@ -22,7 +23,7 @@ namespace DianetApp.Pages
         private ObservableCollection<UserFood> userfoodRecords = new ObservableCollection<UserFood>();
 
         public DashboardPage()
-        {            
+        {
             InitializeComponent();
             conn = StorageManager.GetConnection();
         }

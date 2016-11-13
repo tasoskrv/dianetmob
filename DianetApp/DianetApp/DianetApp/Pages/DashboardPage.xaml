@@ -6,20 +6,16 @@
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"             
              
              Title="Dashboard">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text=""  Clicked="OnSyncButtonClicked" Icon="Synch2.png" />
+  </ContentPage.ToolbarItems>
 
   <ContentPage.Content>
     <StackLayout VerticalOptions="StartAndExpand">
       <!--Button Text="SYNC" Clicked="OnSyncButtonClicked" /-->
-
-
-      <Button x:Name="fSaveBtn" 
-              Text="SYNC"
-              VerticalOptions="EndAndExpand"
-              HorizontalOptions="Center"
-              FontSize="Large"
-              FontAttributes="Bold"
-              Clicked="OnSyncButtonClicked"/>    
-    
+      <WebView Source="file:///android_asset/local.html"
+          HeightRequest="600"
+          WidthRequest="600" />
     
     </StackLayout>
   </ContentPage.Content>
