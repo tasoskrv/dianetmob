@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:DianetApp.Converters;assembly=DianetApp"
+             x:Class="DianetApp.Pages.MyFoodPageDetail">
+
+  <!--ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:DateConverter x:Key="dateConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources-->
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="100" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="50" />
+      <RowDefinition Height="50" />
+      <RowDefinition Height="50" />
+    </Grid.RowDefinitions>
+
+
+    <Label Grid.Row="0" Grid.Column="0" Text="Name"/>
+    <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Name, Mode=TwoWay}" />
+
+    <Label Grid.Row="1" Grid.Column="0" Text="Description"/>
+    <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Description, Mode=TwoWay}" />
+
+    <Button x:Name="fSaveBtn" Grid.Row="2" Grid.Column="1"
+            Text="SAVE"
+            VerticalOptions="EndAndExpand"
+            HorizontalOptions="Center"
+            FontSize="Large"
+            FontAttributes="Bold"
+            Clicked="OnSaveFoodClicked"/>
+
+  </Grid>
+
+</ContentPage>
