@@ -5,10 +5,7 @@ using DianetApp.Utils;
 using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -49,17 +46,15 @@ namespace DianetApp.Pages
 
         private void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            //Παράδειγμα κλήσης service     
+            //call service example
             //MealService serv = await ServiceConnector.GetServiceData<MealService>("/meal/getall");
             //serv.InsertMeals();
-            //Κληση InsertMeal            
-
+            //call InsertMeal            
             if ((usernameEntry.Text == null) || (passwordEntry.Text == null) || (usernameEntry.Text == "") || (passwordEntry.Text == ""))
             {
                 DisplayAlert("Please", "enter your credentials", "OK");
                 return;
             }
-
             var user = new User
             {
                 Email = usernameEntry.Text,
@@ -90,7 +85,7 @@ namespace DianetApp.Pages
                 GenLib.FullServiceLoadAndStore();
                 return;
             }
-            //πχ χρήστης   /user/login/username=spiroskaravanis2@gmail.com/password=12345
+            /* e.g. /user/login/username=spiroskaravanis2@gmail.com/password=12345 */
             try
             {
                 ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/email=" + user.Email + "/password=" + user.Password);

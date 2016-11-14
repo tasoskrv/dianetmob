@@ -2,10 +2,6 @@
 using DianetApp.DB.Entities;
 using DianetApp.Service;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DianetApp.Utils
 {
