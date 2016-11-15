@@ -12,23 +12,20 @@
     <ToolbarItem Text=""  Clicked="OnEditClicked" Icon="edit.png"/>
   </ContentPage.ToolbarItems>
 
-
   <Label x:Name="fHelloLabel"
                VerticalOptions="Start"
                HorizontalTextAlignment="Center"
                FontSize="Large"
                FontAttributes="Bold"/>
 
-
-
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="100" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
-    <!--Grid.RowDefinitions>
+    <Grid.RowDefinitions>
       <RowDefinition Height="40" />
-    </Grid.RowDefinitions-->
+    </Grid.RowDefinitions>
 
     <!--row1-->
     <Label Grid.Row="0" Grid.Column="0" x:Name="fFirstNameLabel"
@@ -83,9 +80,16 @@
                FontSize="Large"
                FontAttributes="Bold"/>
     <Entry Grid.Row="6" Grid.Column="1" x:Name="fWristEntry" Keyboard="Numeric" HorizontalOptions="FillAndExpand" FontAttributes="Italic" FontSize="20" IsEnabled="False"/>
-    
-    
-    <Button x:Name="fSaveBtn" Grid.Row="7" Grid.Column="0"
+
+    <!--row8-->    
+    <Button Grid.Row="7" Grid.Column="0" Text="Take photo" Clicked="TakePhotoButtonOnClicked"/>
+    <Button Grid.Row="7" Grid.Column="1" Text="Pick Photo" Clicked="PickPhotoButtonOnClicked" />
+    <!--row9-->
+    <Label Grid.Row="8" Grid.Column="0" x:Name="PathLabel" />
+    <!--row10-->
+    <Image Grid.Row="9" Grid.Column="0" x:Name="MainImage"/>
+    <!--row11-->
+    <Button x:Name="fSaveBtn" Grid.Row="10" Grid.Column="0"
             Text="SAVE"
             VerticalOptions="EndAndExpand"
             HorizontalOptions="Center"
@@ -95,26 +99,7 @@
   </Grid>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
   <!--ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">
