@@ -23,8 +23,9 @@ namespace DianetApp.Pages
         {
             try
             {
+                string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
                 /**alert**/
-                IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+                IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
                 Alert alert = new Alert();
                 ModelService<Alert> srvNewUser = null;
                 foreach (Alert alt in alts)
@@ -40,9 +41,9 @@ namespace DianetApp.Pages
                 }
 
                 /**exercise**/
-                IEnumerable<Exercise> exes = conn.Query<Exercise>("SELECT * FROM Exercise WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+                IEnumerable<Exercise> exes = conn.Query<Exercise>("SELECT * FROM Exercise WHERE IDUser=" + iduser);
                 Exercise exercise = new Exercise();
-                ModelService<Exercise> srvExercise = null;// await ServiceConnector.InsertServiceData<ModelService<Exercise>>("/exercise/save", exercise);
+                ModelService<Exercise> srvExercise = null;
                 foreach (Exercise exe in exes)
                 {
                     exercise.IDUser = exe.IDUser;
@@ -54,63 +55,86 @@ namespace DianetApp.Pages
                     srvExercise = await ServiceConnector.InsertServiceData<ModelService<Exercise>>("/exercise/save", exercise);
                 }
 
+                /**plan**/
+                IEnumerable<Plan> plns = conn.Query<Plan>("SELECT * FROM Plan WHERE IDUser=" + iduser);
+                Plan plan = new Plan();
+                ModelService<Plan> srvPlan = null;
+                foreach (Plan pln in plns)
+                {
+                    plan.IDUser = pln.IDUser;
+                    plan.IDServer = pln.IDServer;
+                    plan.Goal = pln.Goal;
+                    plan.GoalDate = pln.GoalDate;
+                    plan.InsertDate = pln.InsertDate;
+                    plan.UpdateDate = pln.UpdateDate;
+                    srvPlan = await ServiceConnector.InsertServiceData<ModelService<Plan>>("/plan/save", plan);
+                }
 
-                    /**plan**
-                    Plan plan = new Plan();
-                    plan.IDUser = 39;
-                    plan.IDServer = -1;
-                    plan.Goal = 10.54;
-                    plan.GoalDate = DateTime.UtcNow;
-                    plan.InsertDate = DateTime.UtcNow;
-                    plan.UpdateDate = plan.InsertDate;
-                    ModelService<Plan> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Plan>>("/plan/save", plan);
-                    */
-                    /**subscription**
-                    Subscription subscription = new Subscription();
-                    subscription.IDUser = 39;
-                    subscription.IDServer = -1;
-                    subscription.BeginDate = DateTime.UtcNow;
-                    subscription.EndDate = DateTime.UtcNow;
-                    subscription.Price = 10.55;
-                    subscription.IsActive = 1;
-                    subscription.InsertDate = DateTime.UtcNow;
-                    subscription.UpdateDate = subscription.InsertDate;
-                    ModelService<Subscription> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Subscription>>("/subscription/save", subscription);
-                    */
-                    /**userfood**
-                    UserFood userfood = new UserFood();
-                    userfood.IDUser = 39;
-                    userfood.IDServer = -1;
-                    userfood.Name = "dsfjk";
-                    userfood.Description = "dhf";
-                    userfood.InsertDate = DateTime.UtcNow;
-                    userfood.UpdateDate = userfood.InsertDate;
-                    ModelService<UserFood> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<UserFood>>("/userfood/save", userfood);
-                    */
-                    /**usermeal**
-                    UserMeal usermeal = new UserMeal();
-                    usermeal.IDUser = 39;
-                    usermeal.IDServer = -1;
-                    usermeal.IDCategory = 1;
-                    usermeal.IDMealUnit = 7;
-                    usermeal.Qty = 1;
-                    usermeal.MealDate = DateTime.UtcNow;
-                    usermeal.InsertDate = DateTime.UtcNow;
-                    usermeal.UpdateDate = usermeal.InsertDate;
-                    ModelService<UserMeal> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<UserMeal>>("/usermeal/save", usermeal);
-                    */
-                    /**weight**
-                    Weight weight = new Weight();
-                    weight.IDUser = 39;// StorageManager.GetConnectionInfo().LoginUser.IDUser;
-                    weight.IDServer = -1;
-                    weight.WValue = 100;
-                    weight.WeightDate = DateTime.UtcNow;
-                    weight.InsertDate = DateTime.UtcNow;
-                    weight.UpdateDate = weight.InsertDate;                
-                    ModelService<Weight> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Weight>>("/weight/save", weight);
-                    */
+                /**subscription**/
+                IEnumerable<Subscription> subs = conn.Query<Subscription>("SELECT * FROM Subscription WHERE IDUser=" + iduser);
+                Subscription subscription = new Subscription();
+                ModelService<Subscription> srvSubscription = null;
+                foreach (Subscription sub in subs)
+                {
+                    subscription.IDUser = sub.IDUser;
+                    subscription.IDServer = sub.IDServer;
+                    subscription.BeginDate = sub.BeginDate;
+                    subscription.EndDate = sub.EndDate;
+                    subscription.Price = sub.Price;
+                    subscription.IsActive = sub.IsActive;
+                    subscription.InsertDate = sub.InsertDate;
+                    subscription.UpdateDate = sub.UpdateDate;
+                    srvSubscription = await ServiceConnector.InsertServiceData<ModelService<Subscription>>("/subscription/save", subscription);
+                }
 
-                    if ((srvNewUser.success == true) && (srvNewUser.ID > 0) && !(srvNewUser.ErrorCode > 0))
+                /**userfood**/
+                IEnumerable<UserFood> ufoods = conn.Query<UserFood>("SELECT * FROM Userfood WHERE IDUser=" + iduser);
+                UserFood userfood = new UserFood();
+                ModelService<UserFood> srvUserfood = null;
+                foreach (UserFood ufood in ufoods)
+                {
+                    userfood.IDUser = ufood.IDUser;
+                    userfood.IDServer = ufood.IDServer;
+                    userfood.Name = ufood.Name;
+                    userfood.Description = ufood.Description;
+                    userfood.InsertDate = ufood.InsertDate;
+                    userfood.UpdateDate = ufood.UpdateDate;
+                    srvUserfood = await ServiceConnector.InsertServiceData<ModelService<UserFood>>("/userfood/save", userfood);
+                }
+
+                /**usermeal**/
+                IEnumerable<UserMeal> umeals = conn.Query<UserMeal>("SELECT * FROM Usermeal WHERE IDUser=" + iduser);
+                UserMeal usermeal = new UserMeal();
+                ModelService<UserMeal> srvUserMeal = null;
+                foreach (UserMeal umeal in umeals)
+                {
+                    usermeal.IDUser = umeal.IDUser;
+                    usermeal.IDServer = umeal.IDServer;
+                    usermeal.IDCategory = umeal.IDCategory;
+                    usermeal.IDMealUnit = umeal.IDMealUnit;
+                    usermeal.Qty = umeal.Qty;
+                    usermeal.MealDate = umeal.MealDate;
+                    usermeal.InsertDate = umeal.InsertDate;
+                    usermeal.UpdateDate = umeal.UpdateDate;
+                    srvUserMeal = await ServiceConnector.InsertServiceData<ModelService<UserMeal>>("/usermeal/save", usermeal);
+                }
+
+                /**weight**/
+                IEnumerable<Weight> wgts = conn.Query<Weight>("SELECT * FROM Weight WHERE IDUser=" + iduser);
+                Weight weight = new Weight();
+                ModelService<Weight> srvWeight = null;
+                foreach (Weight wgt in wgts)
+                {
+                    weight.IDUser = wgt.IDUser;
+                    weight.IDServer = wgt.IDServer;
+                    weight.WValue = wgt.WValue;
+                    weight.WeightDate = wgt.WeightDate;
+                    weight.InsertDate = wgt.InsertDate;
+                    weight.UpdateDate = wgt.UpdateDate;
+                    srvWeight = await ServiceConnector.InsertServiceData<ModelService<Weight>>("/weight/save", weight);
+                }                
+
+                if ((srvNewUser.success == true) && (srvNewUser.ID > 0) && !(srvNewUser.ErrorCode > 0))
                 {
                     await DisplayAlert("Complete", "Sync Completed!", "OK");
                     return;

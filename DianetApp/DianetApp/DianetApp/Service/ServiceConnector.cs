@@ -66,8 +66,6 @@ namespace DianetApp.Service
             }
             return default(T);
         }
-
-
     }
 
     public class BooleanJsonConverter : JsonConverter
