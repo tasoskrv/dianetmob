@@ -17,7 +17,20 @@ namespace DianetApp.Pages
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
+            string PieContent;
+            PieContent = FillPieContent(5, 10, 15, 9);
+
+            var html = new HtmlWebViewSource
+            {
+                Html = PieContent
+            };
+
+
+            webview1.Source = html;
+           
         }
+
+       
 
         private async void OnSyncButtonClicked(object sender, EventArgs e)
         {
@@ -39,7 +52,7 @@ namespace DianetApp.Pages
                     alert.UpdateDate = alt.UpdateDate;
                     srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alert);
                 }
-
+                
                 /**exercise**/
                 IEnumerable<Exercise> exes = conn.Query<Exercise>("SELECT * FROM Exercise WHERE IDUser=" + iduser);
                 Exercise exercise = new Exercise();
@@ -153,6 +166,27 @@ namespace DianetApp.Pages
             {
 
             }
+        }
+
+
+
+        private string FillPieContent(int v1, int v2, int v3, int v4)
+        {
+            
+            return  "<!doctype html><html><head> <script src=\"file:///android_asset/Chart.bundle.js\"></script><script src=\"file:///android_asset/utils.js\"></script></head><body>" +
+               "<div id=\"canvas - holder\" style=\"width: 30 % \"><canvas id=\"chart - area\" /></div><script>" +
+               "var config = {" +
+               " type: 'pie', data: { datasets: [{ " +
+               "data: [5,4,7,9], backgroundColor: [window.chartColors.blue, window.chartColors.yellow, window.chartColors.orange, window.chartColors.green], " +
+               " label: " +
+               " 'Dataset 1'  }]," +
+               " labels: [\"Breakfast\", \"Lunch\",\"Dinner\", \"Snack\"] },  options: {responsive: true  }  }; " +
+               "window.onload = function() {" +
+               "var ctx = document.getElementById(\"chart - area\").getContext(\"2d\");" +
+               "window.myPie = new Chart(ctx, config); };" +
+               "</script></body></html>";
+
+            
         }
 
     }

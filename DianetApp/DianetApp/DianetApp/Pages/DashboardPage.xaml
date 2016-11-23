@@ -13,7 +13,7 @@
   <ContentPage.Content>
     <StackLayout VerticalOptions="StartAndExpand">
       <!--Button Text="SYNC" Clicked="OnSyncButtonClicked" /-->      
-      <WebView Source="file:///android_asset/local.html"
+      <WebView x:Name="webview1"
           HeightRequest="600"
           WidthRequest="600" />
     
