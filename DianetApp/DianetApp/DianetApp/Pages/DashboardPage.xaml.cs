@@ -174,16 +174,23 @@ namespace DianetApp.Pages
         {
             
             return  "<!doctype html><html><head> <script src=\"file:///android_asset/Chart.bundle.js\"></script><script src=\"file:///android_asset/utils.js\"></script></head><body>" +
-               "<div id=\"canvas - holder\" style=\"width: 30 % \"><canvas id=\"chart - area\" /></div><script>" +
+               "<div id=\"canvas - holder\" style=\"height: 20%\"><canvas id=\"chart - area\" /></div><div style=\"width: 100%; \"><canvas id=\"canvas\"></canvas></div><script>" +
                "var config = {" +
                " type: 'pie', data: { datasets: [{ " +
                "data: [5,4,7,9], backgroundColor: [window.chartColors.blue, window.chartColors.yellow, window.chartColors.orange, window.chartColors.green], " +
                " label: " +
                " 'Dataset 1'  }]," +
                " labels: [\"Breakfast\", \"Lunch\",\"Dinner\", \"Snack\"] },  options: {responsive: true  }  }; " +
-               "window.onload = function() {" +
-               "var ctx = document.getElementById(\"chart - area\").getContext(\"2d\");" +
-               "window.myPie = new Chart(ctx, config); };" +
+                "var color = Chart.helpers.color; "+
+                "var barChartData = { "+
+                "labels: [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"], "+
+                "datasets: [{ type: \"bar\", label: \"Week Points\", backgroundColor: color(window.chartColors.blue).alpha(0.4).rgbString(), " +
+                "borderColor: window.chartColors.blue, data: [ 10,20,6,8,14,17,11]}] }; " +
+                "window.onload = function() {" +
+                "var ctx1 = document.getElementById(\"chart - area\").getContext(\"2d\"); " +
+                "window.myPie = new Chart(ctx1, config); "+
+                "var ctx = document.getElementById(\"canvas\").getContext(\"2d\"); " +
+                "window.myBar = new Chart(ctx, { type: \"bar\", data: barChartData, options: { responsive: true} }); }; " +                                                        
                "</script></body></html>";
 
             
