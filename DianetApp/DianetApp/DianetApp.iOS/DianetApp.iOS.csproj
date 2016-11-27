@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DianetApp.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>DianetApp.iOS</AssemblyName>
+    <AssemblyName>DianetAppiOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
