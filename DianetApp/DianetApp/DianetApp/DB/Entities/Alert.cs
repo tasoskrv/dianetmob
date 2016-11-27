@@ -10,6 +10,11 @@ namespace DianetApp.DB.Entities
 {
     public class Alert : Model
     {
+        private DateTime alerttime;
+        private string recurrence;
+        private string description;
+        private DateTime propertyMinimumDate;
+
         [PrimaryKey, AutoIncrement]
         public int IDAlert { get; set; }
 
@@ -18,12 +23,67 @@ namespace DianetApp.DB.Entities
 
         public int IDServer { get; set; }
 
-        public DateTime AlertTime { get; set; }
+        public DateTime AlertTime
+        {
+            get
+            {
+                return alerttime;
+            }
+            set
+            {
+                if (alerttime != value)
+                {
+                    alerttime = value;
+                    OnPropertyChanged("AlertTime");
+                }
+            }
+        }
 
-        public int Reccurence { get; set; }
+        public string Recurrence
+        {
+            get
+            {
+                return recurrence;
+            }
+            set
+            {
+                if (recurrence != value)
+                {
+                    recurrence = value;
+                    OnPropertyChanged("Recurrence");
+                }
+            }
+        }
 
         [MaxLength(500)]
-        public string Description { get; set; }
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                if (description != value)
+                {
+                    description = value;
+                    OnPropertyChanged("Description");
+                }
+            }
+        }
+
+        [Ignore]
+        public DateTime PropertyMinimumDate
+        {
+            get
+            {
+                return DateTime.UtcNow;
+            }
+            set
+            {
+                propertyMinimumDate = value;
+            }
+        }
 
         public DateTime InsertDate { get; set; }
 
@@ -32,6 +92,31 @@ namespace DianetApp.DB.Entities
         public Alert()
         {
             IDServer = -1;
-        }
+        }        
+
+        public override string ToString()
+        {
+            string str = "";
+
+            str += "&idserver=" + IDServer.ToString();
+
+            if (IDUser != -1)
+                str += "&iduser=" + IDUser.ToString();
+            if(AlertTime != null)
+                str += "&alerttime=" + AlertTime.ToString("yyyy-MM-dd HH:mm:ss");
+            if (!Recurrence.Equals(""))
+                str += "&recurrence=" + Recurrence.ToString();
+            if (!Description.Equals(""))
+                str += "&description=" + Description.ToString();
+            if (InsertDate != null)
+                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+            if (UpdateDate != null)
+                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+            /*
+            if (!AccessToken.Equals(""))
+                str += "&accesstoken=" + Uri.EscapeDataString(AccessToken);
+            */
+            return str.Substring(1);            
+        }        
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -13,6 +11,7 @@ namespace DianetApp.Service
     public static class ServiceConnector
     {
         private static string BaseUrl = "http://dianet.cloudocean.gr/api/v1";
+        //private static string BaseUrl = "http://akv.softone.gr:8080/dianetweb/Dianet/api/v1";
         private static HttpClient client = new HttpClient();
         private static IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
         private static BooleanJsonConverter boolConverter = new BooleanJsonConverter();
@@ -30,8 +29,34 @@ namespace DianetApp.Service
         }
 
         public static async Task<T> InsertServiceData<T>(string url, Object AObject)
-        {
+        {                                    
             var stringContent = new StringContent(AObject.ToString(), Encoding.UTF8, "application/x-www-form-urlencoded");
+
+            var uri = new Uri(BaseUrl + url);
+            var response = await client.PostAsync(uri, stringContent);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<T>(content, dateTimeConverter, boolConverter);
+            }
+            return default(T);
+        }
+
+        public static async Task<T> InsertServiceBulkData<T>(string url, Object AObject)//NOT USED FOR THE MOMENT
+        {            
+            System.Collections.IEnumerable enumerable = AObject as System.Collections.IEnumerable;
+            string postData = "";
+            
+            if (enumerable != null)
+            {
+                foreach (object element in enumerable)
+                {
+                    postData = element.ToString();
+                }
+            }
+            
+            HttpContent stringContent = new StringContent(postData, Encoding.UTF8, "application/x-www-form-urlencoded");
+
             var uri = new Uri(BaseUrl + url);
             var response = await client.PostAsync(uri, stringContent);
             if (response.IsSuccessStatusCode)

@@ -33,6 +33,8 @@ namespace DianetApp.Pages
                 pln.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
             }
             BindingContext = pln;
+
+            /*
             List<Weight> wghs = conn.Query<Weight>("Select * from weight order by insertdate limit 1");
             if (wghs.Count > 0)
             {
@@ -42,6 +44,7 @@ namespace DianetApp.Pages
                 DisplayAlert("Please", "fill in your current weight", "OK");
                 Navigation.PopAsync();
             }
+            */
         }
 
         private void OnSavePlanClicked(object sender, EventArgs e)
@@ -61,10 +64,10 @@ namespace DianetApp.Pages
                 Navigation.PopAsync();
             }
         }
+
         private void OnWeighChanged(object sender, TextChangedEventArgs e)
         {
             //wgh.WValue
         }
-
     }
 }

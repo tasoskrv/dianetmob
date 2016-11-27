@@ -43,7 +43,7 @@ namespace DianetApp.Pages
         }
 
         async void OnAddPlanClicked(object sender, EventArgs e)
-        {
+        {            
             planPageDt.LoadData(0);
             await Navigation.PushAsync(planPageDt);
         }

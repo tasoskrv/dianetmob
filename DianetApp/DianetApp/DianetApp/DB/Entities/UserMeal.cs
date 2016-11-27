@@ -36,5 +36,33 @@ namespace DianetApp.DB.Entities
             IDServer = -1;
         }
 
+        public override string ToString()
+        {
+            string str = "";
+
+            str += "&idserver=" + IDServer.ToString();
+
+            if (IDUser != -1)
+                str += "&iduser=" + IDUser.ToString();
+            if (IDCategory != 0)
+                str += "&idcategory=" + IDCategory.ToString();
+            if (IDMealUnit != 0)
+                str += "&idmealunit=" + IDMealUnit.ToString();
+            if (Qty != 0)
+                str += "&qty=" + Qty.ToString();
+            if (MealDate != null)
+                str += "&mealdate=" + MealDate.ToString("yyyy-MM-dd HH:mm:ss");
+            if (InsertDate != null)
+                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+            if (UpdateDate != null)
+                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            /*
+            if (!AccessToken.Equals(""))
+                str += "&accesstoken=" + Uri.EscapeDataString(AccessToken);
+            */
+            return str.Substring(1);
+        }
+
     }
 }

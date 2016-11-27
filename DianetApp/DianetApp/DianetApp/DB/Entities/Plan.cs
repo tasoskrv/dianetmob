@@ -12,6 +12,7 @@ namespace DianetApp.DB.Entities
     {
         private double goal;
         private DateTime goaldate;
+        private DateTime propertyMinimumDate;
 
         [PrimaryKey, AutoIncrement]
         public int IDPlan { get; set; }
@@ -53,6 +54,19 @@ namespace DianetApp.DB.Entities
             }
         }
 
+        [Ignore]
+        public DateTime PropertyMinimumDate
+        {
+            get
+            {
+                return DateTime.UtcNow;
+            }
+            set
+            {
+                propertyMinimumDate = value;
+            }
+        }
+
         public int UserStep { get; set; }
 
         public int PlanType { get; set; }
@@ -65,5 +79,31 @@ namespace DianetApp.DB.Entities
         {
             IDServer = -1;
         }
+
+        public override string ToString()
+        {
+            string str = "";
+
+            str += "&idserver=" + IDServer.ToString();
+
+            if (IDUser != -1)
+                str += "&iduser=" + IDUser.ToString();
+            if (Goal != 0)
+                str += "&goal=" + Goal.ToString();
+            if (GoalDate != null)
+                str += "&goaldate=" + GoalDate.ToString("yyyy-MM-dd HH:mm:ss");
+            if (InsertDate != null)
+                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+            if (UpdateDate != null)
+                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            /*
+            if (!AccessToken.Equals(""))
+                str += "&accesstoken=" + Uri.EscapeDataString(AccessToken);
+            */
+            return str.Substring(1);
+        }
+
+
     }
 }

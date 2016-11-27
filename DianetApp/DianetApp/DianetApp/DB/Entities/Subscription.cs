@@ -25,6 +25,10 @@ namespace DianetApp.DB.Entities
 
         public DateTime EndDate { get; set; }
 
+        public double Price { get; set; }
+
+        public int IsActive { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
@@ -32,6 +36,34 @@ namespace DianetApp.DB.Entities
         public Subscription()
         {
             IDServer = -1;
+        }
+
+        public override string ToString()
+        {
+            string str = "";
+
+            str += "&idserver=" + IDServer.ToString();
+
+            if (IDUser != -1)
+                str += "&iduser=" + IDUser.ToString();
+            if (BeginDate != null)
+                str += "&begindate=" + BeginDate.ToString("yyyy-MM-dd HH:mm:ss");
+            if (EndDate != null)
+                str += "&enddate=" + EndDate.ToString("yyyy-MM-dd HH:mm:ss");
+            if (Price != 0)
+                str += "&price=" + Price.ToString();
+            if (IsActive != 0)
+                str += "&isactive=" + IsActive.ToString();
+            if (InsertDate != null)
+                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+            if (UpdateDate != null)
+                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            /*
+            if (!AccessToken.Equals(""))
+                str += "&accesstoken=" + Uri.EscapeDataString(AccessToken);
+            */
+            return str.Substring(1);
         }
 
     }

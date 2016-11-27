@@ -26,8 +26,8 @@ namespace DianetApp.Droid.DB
             var sqliteFilename = "Dianet.db3";
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
             var path = Path.Combine(documentsPath, sqliteFilename);
-            // για να σβήσουμε την βάση
-            // File.Delete(path);
+            //delete DB
+            //File.Delete(path);
             bool dbexist = File.Exists(path);
 
             var conn = new SQLite.SQLiteConnection(path);

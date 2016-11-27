@@ -1,4 +1,6 @@
 ﻿using DianetApp.DB;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +63,89 @@ namespace DianetApp.Pages
             fWristEntry.IsEnabled = false;
         }
 
+        private async void TakePhotoButtonOnClicked(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", "No camera available", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(
+                new StoreCameraMediaOptions
+                {
+                    SaveToAlbum = true
+                }
+            );
+
+            if (file == null)
+                return;
+
+            PathLabel.Text = file.AlbumPath;
+            MainImage.Source = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
+        }
+
+        private async void PickPhotoButtonOnClicked(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Oops", "Pick photo is not supported", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            if (file == null)
+            {
+                return;
+            }
+
+            PathLabel.Text = "Photo path " + file.Path;
+            MainImage.Source = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
+        }
+
+        /*
+        private async void TakeVideoButtonOnClicked(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakeVideoSupported)
+            {
+                await DisplayAlert("No Camera", "No camera available", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakeVideoAsync(new StoreVideoOptions
+            {
+                SaveToAlbum = true,
+                Quality = VideoQuality.Medium
+            });
+
+            if (file == null)
+            {
+                return;
+            }
+            PathLabel.Text = "Video path " + file.Path;
+            MainImage.Source = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
+        }
+        */
+            
         /*private void NeedToLoginNextTime(User usr)
         {            
             if (!StorageManager.GetConnectionInfo().LoginUser.Email.Equals(usr.Email, StringComparison.Ordinal))

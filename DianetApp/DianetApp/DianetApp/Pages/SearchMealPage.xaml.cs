@@ -44,7 +44,6 @@ namespace DianetApp.Pages
             //await  Navigation.PushModalAsync(pg);
             if (answer == "ΝΑΙ")
             {
-
                 selectPage.IDMealSelected = myMeal.IDMeal;
                 selectPage.IDCategorySelected = Mode;
                 selectPage.SelectedDate = SelectedDate;
