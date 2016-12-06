@@ -45,6 +45,7 @@ namespace DianetApp.DB
                 condb.CreateTable<UserFood>();
                 condb.CreateTable<UserMeal>();
                 condb.CreateTable<Weight>();
+                condb.CreateTable<UserSettings>();
                 InsertData(condb);
                 return true;
             }

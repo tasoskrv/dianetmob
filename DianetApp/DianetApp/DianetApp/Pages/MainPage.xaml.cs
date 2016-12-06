@@ -33,7 +33,6 @@ namespace DianetApp.Pages
                 {
                     Settings settings = StorageManager.GetConnectionInfo().Settings;
                     settings.LastLoggedIn = 0;
-                    settings.LastSyncDate = DateTime.MinValue;
                     StorageManager.UpdateData<Settings>(settings);
                     App.Current.MainPage = new StartPage();
                 }

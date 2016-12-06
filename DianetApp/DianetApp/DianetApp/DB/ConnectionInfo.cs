@@ -12,6 +12,31 @@ namespace DianetApp.DB
         public User LoginUser { get; set; }
 
         private Settings settings;
+        private UserSettings userSettings;
+
+        public UserSettings UserSettings
+        {
+            get
+            {
+                if (userSettings == null)
+                {
+                    this.userSettings = StorageManager.GetConnection().Find<UserSettings>(LoginUser.IDUser);
+                    if (userSettings == null)
+                    {
+                        userSettings = new UserSettings();
+                        userSettings.IDUser = LoginUser.IDUser;
+                        userSettings.LastSyncDate = DateTime.MinValue;
+                        StorageManager.InsertData(userSettings);
+                    }
+                }
+                return this.userSettings;
+            }
+            set
+            {
+                this.userSettings = value;
+            }
+        }
+
         public Settings Settings
         {
             get

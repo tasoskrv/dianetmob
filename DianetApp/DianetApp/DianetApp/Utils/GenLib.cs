@@ -12,9 +12,11 @@ namespace DianetApp.Utils
             try
             {
                 User loginUser = StorageManager.GetConnectionInfo().LoginUser;
-                Settings settings = StorageManager.GetConnectionInfo().Settings;
+                UserSettings settings = StorageManager.GetConnectionInfo().UserSettings;
                 string gencall = "/accesstoken=" + loginUser.AccessToken + "/upddate=" + settings.LastSyncDate.ToString("yyyyMMdd");
                 string usercall = gencall + "/iduser=" + loginUser.IDUser.ToString();
+
+                //TODO: service call check services
 
                 //general calls - add required services
                 ModelService<Unit> servUnit = await ServiceConnector.GetServiceData<ModelService<Unit>>("/unit/getall" + gencall);
@@ -33,17 +35,17 @@ namespace DianetApp.Utils
                 servSettings.SaveAllToDB();
 
                 //User calls
-                //ModelService<Alert> servAlert = await ServiceConnector.GetServiceData<ModelService<Alert>>("/alert/getall" + usercall);
-                //servAlert.SaveAllToDB();
+                ModelService<Alert> servAlert = await ServiceConnector.GetServiceData<ModelService<Alert>>("/alert/getall" + usercall);
+                servAlert.SaveAllToDB();
 
-                //ModelService<Exercise> servExercise = await ServiceConnector.GetServiceData<ModelService<Exercise>>("/exercise/getall" + usercall);
-                //servExercise.SaveAllToDB();
+                ModelService<Exercise> servExercise = await ServiceConnector.GetServiceData<ModelService<Exercise>>("/exercise/getall" + usercall);
+                servExercise.SaveAllToDB();
 
-               // ModelService<Plan> servPlan = await ServiceConnector.GetServiceData<ModelService<Plan>>("/plan/getall" + usercall);
-               // servPlan.SaveAllToDB();
+                ModelService<Plan> servPlan = await ServiceConnector.GetServiceData<ModelService<Plan>>("/plan/getall" + usercall);
+                servPlan.SaveAllToDB();
 
-               // ModelService<Subscription> servSubscription = await ServiceConnector.GetServiceData<ModelService<Subscription>>("/subscription/getall" + usercall);
-               // servSubscription.SaveAllToDB();
+                ModelService<Subscription> servSubscription = await ServiceConnector.GetServiceData<ModelService<Subscription>>("/subscription/getall" + usercall);
+                servSubscription.SaveAllToDB();
 
                 ModelService<UserFood> servUserFood = await ServiceConnector.GetServiceData<ModelService<UserFood>>("/userfood/getall" + usercall);
                 servUserFood.SaveAllToDB();
@@ -54,8 +56,8 @@ namespace DianetApp.Utils
                 ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
                 servWeight.SaveAllToDB();
 
-                StorageManager.GetConnectionInfo().Settings.LastSyncDate = DateTime.UtcNow;
-                StorageManager.UpdateData<Settings>(StorageManager.GetConnectionInfo().Settings);
+                StorageManager.GetConnectionInfo().UserSettings.LastSyncDate = DateTime.UtcNow;
+                StorageManager.UpdateData<UserSettings>(StorageManager.GetConnectionInfo().UserSettings);
             }
             catch (Exception ex)
             {

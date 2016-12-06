@@ -18,8 +18,6 @@ namespace DianetApp.DB.Entities
 
         public int LastLoggedIn { get; set; }
 
-        public DateTime LastSyncDate { get; set; }
-
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
