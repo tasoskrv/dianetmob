@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DianetMob.Pages.MyFoodPage">
+
+
+
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text=""  Clicked="OnAddFoodClicked" Icon="plus.png"/>
+  </ContentPage.ToolbarItems>
+
+  
+  <StackLayout VerticalOptions="StartAndExpand" >
+    <ListView x:Name="ListViewMyFoods" ItemTapped="OnItemTapped">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}"
+                     TextColor="#f35e20" />
+              <Label Text="{Binding Name}"
+                     HorizontalOptions="EndAndExpand"
+                     TextColor="#503026" />
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+  
+  
+  
+</ContentPage>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DianetMob.Pages.SignUpPage">
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="StartAndExpand">
+      <Entry x:Name="nameEntry" Placeholder="Name" Keyboard="Text" />
+      <Entry x:Name="surnameEntry" Placeholder="Surname" Keyboard="Text" />
+      <Entry x:Name="emailEntry" Placeholder="Email" Keyboard="Email" Completed="OnValidateEmail" />
+      <Entry x:Name="passwdEntry" Placeholder="Password" IsPassword="True" />
+      <Label x:Name="birthDateEntry" Text="Date of birth" />
+      <DatePicker x:Name="birthDate" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" />
+      <Button Text="SAVE" Clicked="OnSaveButtonClicked" />
+      <Label x:Name="messageLabel" />
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
