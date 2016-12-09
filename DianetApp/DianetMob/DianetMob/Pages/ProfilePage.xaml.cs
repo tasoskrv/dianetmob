@@ -22,7 +22,7 @@ namespace DianetMob.Pages
 
         private void FillInSettingsLoggedIn()
         {
-            fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";
+            //fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";
         }
 
         private void OnEditClicked(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace DianetMob.Pages
                 return;
             }
 
-            PathLabel.Text = "Photo path " + file.Path;
+            PathLabel.Text = file.Path;
             MainImage.Source = ImageSource.FromStream(() =>
             {
                 var stream = file.GetStream();

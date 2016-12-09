@@ -25,17 +25,9 @@
       <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Goal, Mode=TwoWay}" Keyboard="Numeric"/>      
       
       <Label Grid.Row="1" Grid.Column="0" Text="Goal Date" />
-      <DatePicker Grid.Row="1" Grid.Column="1" x:Name="goaldate" Format="dd/MM/yyyy" MinimumDate="{Binding PropertyMinimumDate}"
-                  Date="{Binding GoalDate, Mode=TwoWay, Converter={StaticResource dateConverter}}"  />
+      <DatePicker Grid.Row="1" Grid.Column="1" x:Name="goaldate" Format="dd/MM/yyyy" MinimumDate="{Binding PropertyMinimumDate}" Date="{Binding GoalDate, Mode=TwoWay, Converter={StaticResource dateConverter}}"  />
     
-      <Button x:Name="fSaveBtn" Grid.Row="2" Grid.Column="1"
-              Text="SAVE"
-              VerticalOptions="EndAndExpand"
-              HorizontalOptions="Center"
-              FontSize="Large"
-              FontAttributes="Bold"
-              Clicked="OnSavePlanClicked"/>
-    
+      <Button x:Name="fSaveBtn" Grid.Row="2" Grid.Column="1" Text="SAVE" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" Clicked="OnSavePlanClicked"/>    
     </Grid>    
     
    
