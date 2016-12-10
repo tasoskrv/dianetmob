@@ -1,4 +1,5 @@
 ﻿using DianetMob.DB;
+using DianetMob.DB.Entities;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -62,7 +63,20 @@ namespace DianetMob.Pages
             fHeightEntry.IsEnabled = false;
             fWristEntry.IsEnabled = false;
         }
-
+        
+        private void ViewPhotosBtnTap(object sender, EventArgs e)
+        {
+            bool isVisible = PhotoGrid.IsVisible;
+            if(isVisible)
+                PhotoGrid.IsVisible = false;
+            else
+                PhotoGrid.IsVisible = true;
+            /*
+            FProfilePhotosPage = new ProfilePhotosPage();            
+            App.Current.MainPage = FProfilePhotosPage;
+            */
+        }
+        
         private async void TakePhotoButtonOnClicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -83,12 +97,25 @@ namespace DianetMob.Pages
                 return;
 
             PathLabel.Text = file.AlbumPath;
-            MainImage.Source = ImageSource.FromStream(() =>
+            bool toggled = PhotoSelect.IsToggled;
+            if (toggled)
             {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });
+                AfterImage.Source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    file.Dispose();
+                    return stream;
+                });
+            }
+            else
+            {
+                BeforeImage.Source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    file.Dispose();
+                    return stream;
+                });
+            }
         }
 
         private async void PickPhotoButtonOnClicked(object sender, EventArgs e)
@@ -108,12 +135,25 @@ namespace DianetMob.Pages
             }
 
             PathLabel.Text = file.Path;
-            MainImage.Source = ImageSource.FromStream(() =>
+            bool toggled = PhotoSelect.IsToggled;
+            if (toggled)
             {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });
+                AfterImage.Source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    file.Dispose();
+                    return stream;
+                });
+            }
+            else
+            {
+                BeforeImage.Source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    file.Dispose();
+                    return stream;
+                });
+            }
         }
 
         /*
@@ -146,7 +186,7 @@ namespace DianetMob.Pages
         }
         */
             
-        /*private void NeedToLoginNextTime(User usr)
+        private void NeedToLoginNextTime(User usr)
         {            
             if (!StorageManager.GetConnectionInfo().LoginUser.Email.Equals(usr.Email, StringComparison.Ordinal))
             {                
@@ -154,7 +194,7 @@ namespace DianetMob.Pages
                 StorageManager.GetConnectionInfo().Settings.UpdateDate = usr.UpdateDate;                                
                 StorageManager.UpdateData(StorageManager.GetConnectionInfo().Settings);
             }            
-        }*/
+        }
 
         private bool AllFieldsAreFilled()
         {
