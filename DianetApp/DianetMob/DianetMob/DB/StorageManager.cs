@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using DianetMob.TableMapping;
 
 namespace DianetMob.DB
 {
@@ -69,6 +70,12 @@ namespace DianetMob.DB
         public static void UpdateData<T>(T model)
         {
             db.Update(model);
+        }
+
+        public static IEnumerable<MapLogData> LoadDataByDate(DateTime from, DateTime to)
+        {
+            string query = "Select um.IdUserMeal, um.idcategory,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ?";
+            return db.Query<MapLogData>(query, from, to);
         }
     }
 }

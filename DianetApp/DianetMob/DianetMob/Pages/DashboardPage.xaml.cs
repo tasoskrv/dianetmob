@@ -18,8 +18,12 @@ namespace DianetMob.Pages
         public DashboardPage()
         {
             InitializeComponent();
-            conn = StorageManager.GetConnection();           
-                        
+            conn = StorageManager.GetConnection();
+
+
+            //IEnumerable<MapLogData> logrecords = logrecords = StorageManager.LoadDataByDate(datePick.Date, datePick.Date);
+
+
             var html = new HtmlWebViewSource
             {
                 Html = FillPieContent(5, 10, 15, 9)
