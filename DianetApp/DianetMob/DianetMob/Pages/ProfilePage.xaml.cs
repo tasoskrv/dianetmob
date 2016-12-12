@@ -25,7 +25,7 @@ namespace DianetMob.Pages
         {
             //fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";
         }
-
+        
         private void OnEditClicked(object sender, EventArgs e)
         {
             fFirstNameEntry.IsEnabled = true;
@@ -71,10 +71,8 @@ namespace DianetMob.Pages
                 PhotoGrid.IsVisible = false;
             else
                 PhotoGrid.IsVisible = true;
-            /*
-            FProfilePhotosPage = new ProfilePhotosPage();            
-            App.Current.MainPage = FProfilePhotosPage;
-            */
+            
+            ProfileScrollView.ScrollToAsync(ProfileLayout, ScrollToPosition.End, true);            
         }
         
         private async void TakePhotoButtonOnClicked(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:conv="clr-namespace:DianetMob.Converters;assembly=DianetMob"
+             xmlns:conv="clr-namespace:DianetMob.Converters;assembly=DianetMob"             
              x:Class="DianetMob.Pages.ProfilePage">
   <ContentPage.Resources>
     <ResourceDictionary>
@@ -14,86 +14,103 @@
   </ContentPage.ToolbarItems>
 
   <ContentPage.Content>
-    <ScrollView>
-      <StackLayout Orientation="Vertical">
-        <Button Text="Photos" Clicked="ViewPhotosBtnTap"/>    
+    <ScrollView x:Name="ProfileScrollView">
+      <StackLayout x:Name="ProfileLayout" Orientation="Vertical">               
+        <Grid Margin="20,0,0,0" RowSpacing="0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+          
+            <RowDefinition Height="75"/>
+            
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+          </Grid.RowDefinitions>
+          <Label Grid.Row="0" Grid.Column="0" x:Name="fFirstNameLabel" Text="First Name:" FontSize="20" />
+          <Entry Grid.Row="1" Grid.Column="0" x:Name="fFirstNameEntry" Placeholder="First Name" Text="{Binding FirstName, Mode=TwoWay}" Keyboard="Text" FontSize="20" IsEnabled="False"/>
         
+          <Label Grid.Row="2" Grid.Column="0" x:Name="fSurNameLabel" Text="Last Name:" FontSize="20"/>
+          <Entry Grid.Row="3" Grid.Column="0" x:Name="fSurNameEntry" Text="{Binding LastName, Mode=TwoWay}" Keyboard="Text" FontSize="20" IsEnabled="False"/>            
+          
+          <Label Grid.Row="4" Grid.Column="0" x:Name="fEmailLabel" Text="Email:" FontSize="20"/>
+          <Entry Grid.Row="5" Grid.Column="0" x:Name="fEmailEntry" Text="{Binding Email, Mode=TwoWay}" Keyboard="Email" FontSize="20" IsEnabled="False"/>        
+          
+          <Label Grid.Row="6" Grid.Column="0" x:Name="fBirthDateLabel" Text="Birth Date:" FontSize="20"/>
+          <DatePicker Grid.Row="7" Grid.Column="0" x:Name="fbirthDatePicker" Date="{Binding Birthdate, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>        
+
+          <Label Grid.Row="8" Grid.Column="0" x:Name="fSexLabel" Text="Sex:" FontSize="20"/>
+          <Picker Grid.Row="9" Grid.Column="0" x:Name="fSexPicker" Title="Sex" IsEnabled="False" SelectedIndex="{Binding Gender, Converter={StaticResource minusOneConv}, Mode=TwoWay}" >
+            <Picker.Items>
+              <x:String>Male</x:String>
+              <x:String>Female</x:String>
+            </Picker.Items>
+          </Picker>        
+                          
+          <Grid Grid.Row="10" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="30"/>
+              <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+              <Label Grid.Row="0" Grid.Column="0" x:Name="fHeightLabel" Text="Height:" FontSize="20"/>
+              <Picker Grid.Row="1" Grid.Column="0" x:Name="fHeightPicker" Title="Height" IsEnabled="False" SelectedIndex="{Binding HeightType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
+                <Picker.Items>
+                  <x:String>Cm</x:String>
+                  <x:String>In</x:String>
+                </Picker.Items>
+              </Picker>
+              <Entry Grid.Row="1" Grid.Column="1" x:Name="fHeightEntry" Keyboard="Numeric" FontSize="20" IsEnabled="False" Text="{Binding Height, Mode=TwoWay}" />     
+          </Grid>             
+                                     
+          <Label Grid.Row="11" Grid.Column="0" x:Name="fWristLabel" Text="Wrist:" FontSize="20"/>
+          <Entry Grid.Row="12" Grid.Column="0" x:Name="fWristEntry" Keyboard="Numeric" FontSize="20" IsEnabled="False"/>          
+        
+          <Label Grid.Row="13" Grid.Column="0" x:Name="PathLabel" />                  
+        </Grid> 
+          
+        <Button Text="Photos" Clicked="ViewPhotosBtnTap"/>            
         <StackLayout Orientation="Vertical" x:Name="PhotoGrid" IsVisible="False">                       
           <Grid>
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
               <RowDefinition Height="200" />
               <RowDefinition Height="40" />
             </Grid.RowDefinitions>
-            <!--row1-->
-            <Image Grid.Row="0" Grid.Column="0" x:Name="BeforeImage"/>
+
+            <Image Grid.Row="0" Grid.Column="0" x:Name="BeforeImage" HeightRequest="50"/>
             <Image Grid.Row="0" Grid.Column="1" x:Name="AfterImage"/>                  
-            <!--row2-->
+
             <Button Grid.Row="1" Grid.Column="0" Text="Take photo" Clicked="TakePhotoButtonOnClicked"/>
             <Button Grid.Row="1" Grid.Column="1" Text="Pick Photo" Clicked="PickPhotoButtonOnClicked" />      
-          </Grid>     
-                          
+          </Grid>                               
           <StackLayout Orientation="Horizontal">    
             <Label Text="Before" FontSize="20"/>
             <Switch x:Name="PhotoSelect" />
             <Label Text="After" FontSize="20"/>
           </StackLayout>
-        </StackLayout>
-              
-        <Grid>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120" />
-            <ColumnDefinition Width="Auto" />
-          </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />      
-            <RowDefinition Height="50" />
-          </Grid.RowDefinitions>
-          <!--row1-->
-          <Label Grid.Row="0" Grid.Column="0" x:Name="fFirstNameLabel" Text="First Name:" FontSize="20" BackgroundColor="Yellow"/>
-          <Entry Grid.Row="0" Grid.Column="1" x:Name="fFirstNameEntry" Text="{Binding FirstName, Mode=TwoWay}" Keyboard="Text" FontSize="20" IsEnabled="False" BackgroundColor="Yellow"/>
-          <!--row2-->
-          <Label Grid.Row="1" Grid.Column="0" x:Name="fSurNameLabel" Text="Last Name:" FontSize="20"/>
-          <Entry Grid.Row="1" Grid.Column="1" x:Name="fSurNameEntry" Text="{Binding LastName, Mode=TwoWay}" Keyboard="Text" FontSize="20" IsEnabled="False"/>
-          <!--row3-->
-          <Label Grid.Row="2" Grid.Column="0" x:Name="fEmailLabel" Text="Email:" FontSize="20"/>
-          <Entry Grid.Row="2" Grid.Column="1" x:Name="fEmailEntry" Text="{Binding Email, Mode=TwoWay}" Keyboard="Email" FontSize="20" IsEnabled="False"/>
-          <!--row4-->
-          <Label Grid.Row="3" Grid.Column="0" x:Name="fBirthDateLabel" Text="Birth Date:" FontSize="20"/>
-          <DatePicker Grid.Row="3" Grid.Column="1" x:Name="fbirthDatePicker" Date="{Binding Birthdate, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>
-          <!--row5-->
-          <Label Grid.Row="4" Grid.Column="0" x:Name="fSexLabel" Text="Sex:" FontSize="20"/>
-          <Picker Grid.Row="4" Grid.Column="1" x:Name="fSexPicker" Title="Sex" IsEnabled="False" SelectedIndex="{Binding Gender, Converter={StaticResource minusOneConv}, Mode=TwoWay}" >
-            <Picker.Items>
-              <x:String>Male</x:String>
-              <x:String>Female</x:String>
-            </Picker.Items>
-          </Picker>
-          <!--row6-->
-          <Label Grid.Row="5" Grid.Column="0" x:Name="fHeightLabel" Text="Height:" FontSize="20"/>
-          <Picker Grid.Row="5" Grid.Column="1" x:Name="fHeightPicker" Title="Height" IsEnabled="False" SelectedIndex="{Binding HeightType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
-            <Picker.Items>
-              <x:String>Cm</x:String>
-              <x:String>In</x:String>
-            </Picker.Items>
-          </Picker>
-          <Entry Grid.Row="5" Grid.Column="2" x:Name="fHeightEntry" Keyboard="Numeric" FontSize="20" IsEnabled="False" Text="{Binding Height, Mode=TwoWay}" />
-          <!--row7-->
-          <Label Grid.Row="6" Grid.Column="0" x:Name="fWristLabel" Text="Wrist:" FontSize="20"/>
-          <Entry Grid.Row="6" Grid.Column="1" x:Name="fWristEntry" Keyboard="Numeric" FontSize="20" IsEnabled="False"/>
-          <!--row8-->
-          <Label Grid.Row="7" Grid.Column="0" x:Name="PathLabel" />
-        </Grid>  
+        </StackLayout>  
+
       </StackLayout>
     </ScrollView>
   </ContentPage.Content>
