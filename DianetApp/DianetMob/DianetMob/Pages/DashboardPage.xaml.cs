@@ -4,6 +4,8 @@ using DianetMob.Service;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using Xamarin.Forms;
 
 namespace DianetMob.Pages
@@ -16,22 +18,15 @@ namespace DianetMob.Pages
         public DashboardPage()
         {
             InitializeComponent();
-            conn = StorageManager.GetConnection();
-            string PieContent;
-            PieContent = FillPieContent(5, 10, 15, 9);
-
+            conn = StorageManager.GetConnection();           
+                        
             var html = new HtmlWebViewSource
             {
-                Html = PieContent
+                Html = FillPieContent(5, 10, 15, 9)
             };
-
-
             webview1.Source = html;
-           
         }
-
-       
-
+        
         private async void OnSyncButtonClicked(object sender, EventArgs e)
         {
             try
@@ -168,32 +163,43 @@ namespace DianetMob.Pages
             }
         }
 
-
-
         private string FillPieContent(int v1, int v2, int v3, int v4)
-        {
-            
-            return  "<!doctype html><html><head> <script src=\"file:///android_asset/Chart.bundle.js\"></script><script src=\"file:///android_asset/utils.js\"></script></head><body>" +
-               "<div id=\"canvas - holder\" style=\"height: 20%\"><canvas id=\"chart - area\" /></div><div style=\"width: 100%; \"><canvas id=\"canvas\"></canvas></div><script>" +
-               "var config = {" +
-               " type: 'pie', data: { datasets: [{ " +
-               "data: [5,4,7,9], backgroundColor: [window.chartColors.blue, window.chartColors.yellow, window.chartColors.orange, window.chartColors.green], " +
-               " label: " +
-               " 'Dataset 1'  }]," +
-               " labels: [\"Breakfast\", \"Lunch\",\"Dinner\", \"Snack\"] },  options: {responsive: true  }  }; " +
-                "var color = Chart.helpers.color; "+
-                "var barChartData = { "+
-                "labels: [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"], "+
-                "datasets: [{ type: \"bar\", label: \"Week Points\", backgroundColor: color(window.chartColors.blue).alpha(0.4).rgbString(), " +
-                "borderColor: window.chartColors.blue, data: [ 10,20,6,8,14,17,11]}] }; " +
-                "window.onload = function() {" +
-                "var ctx1 = document.getElementById(\"chart - area\").getContext(\"2d\"); " +
-                "window.myPie = new Chart(ctx1, config); "+
-                "var ctx = document.getElementById(\"canvas\").getContext(\"2d\"); " +
-                "window.myBar = new Chart(ctx, { type: \"bar\", data: barChartData, options: { responsive: true} }); }; " +                                                        
-               "</script></body></html>";
-
-            
+        {            
+            return 
+            "<!doctype html>" + 
+            "<html>" + 
+                "<head> "+
+                    "<script src=\"file:///android_asset/Chart.bundle.js\"></script>" + 
+                    "<script src=\"file:///android_asset/utils.js\"></script>" + 
+                "</head>" + 
+                "<body>" +
+                    "<div id=\"canvas - holder\" style=\"height: 20%\">" + 
+                        "<canvas id=\"chart - area\" />" + 
+                    "</div>" + 
+                    "<div style=\"width: 100%; \">" + 
+                        "<canvas id=\"canvas\"></canvas> " + 
+                    "</div>" + 
+                    "<script>" +
+                        "var data = [" + v1 + ", " + v2 + "," + v3 + "," +  v4 + "];" + 
+                        "var config = {" +
+                        " type: 'pie', data: { datasets: [{ " +
+                        " data: data, backgroundColor: [window.chartColors.blue, window.chartColors.yellow, window.chartColors.orange, window.chartColors.green], " +
+                        " label: " +
+                        " 'Dataset 1'  }]," +
+                        " labels: [\"Breakfast\", \"Lunch\",\"Dinner\", \"Snack\"] },  options: {responsive: true  }  }; " +
+                        "var color = Chart.helpers.color; "+
+                        "var barChartData = { "+
+                        "labels: [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"], "+
+                        "datasets: [{ type: \"bar\", label: \"Week Points\", backgroundColor: color(window.chartColors.blue).alpha(0.4).rgbString(), " +
+                        "borderColor: window.chartColors.blue, data: [ 10,20,6,8,14,17,11]}] }; " +
+                        "window.onload = function() {" +
+                        "var ctx1 = document.getElementById(\"chart - area\").getContext(\"2d\"); " +
+                        "window.myPie = new Chart(ctx1, config); "+
+                        "var ctx = document.getElementById(\"canvas\").getContext(\"2d\"); " +
+                        "window.myBar = new Chart(ctx, { type: \"bar\", data: barChartData, options: { responsive: true} }); }; " +                                                        
+                    "</script>" + 
+                "</body>" + 
+            "</html>";  
         }
 
     }

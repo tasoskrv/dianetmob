@@ -31,12 +31,12 @@ namespace DianetMob.Pages
                 TargetType = typeof(ProfilePage)
             });
 
-            masterPageItems.Add(new MenuElement
+           /* masterPageItems.Add(new MenuElement
             {
                 Title = "Στόχοι",
                 IconSource = "goal.png",
                 TargetType = typeof(PlanPage)
-            });
+            }); */
 
             masterPageItems.Add(new MenuElement
             {
