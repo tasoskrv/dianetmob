@@ -1,8 +1,0 @@
-syntax: glob
-DianetApp/DianetMob/DianetMob.Droid/bin/*
-DianetApp/DianetMob/DianetMob.Droid/obj/*
-DianetApp/DianetMob/DianetMob.iOS/bin/*
-DianetApp/DianetMob/DianetMob.iOS/obj/*
-DianetApp/DianetMob/DianetMob/bin/Debug/DianetApp.dll
-DianetApp/DianetMob/DianetMob/bin/*
-DianetApp/DianetMob/DianetMob/obj/*
