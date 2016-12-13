@@ -18,11 +18,24 @@ namespace DianetMob.Pages
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
-        }
 
-        private void OnSignUpButtonClicked(object sender, EventArgs e)
-        {
-            App.Current.MainPage = new SignUpPage();
+            Signup.GestureRecognizers.Add(
+                new TapGestureRecognizer()
+                {
+                    Command = new Command(() => {
+                        App.Current.MainPage = new SignUpPage();
+                    })
+                }
+            );
+
+            ForgotPassword.GestureRecognizers.Add(
+                new TapGestureRecognizer()
+                {
+                    Command = new Command(() => {
+                        //TODO forgot password
+                    })
+                }
+            );
         }
 
         void OnValidateEmail(object sender, EventArgs e)

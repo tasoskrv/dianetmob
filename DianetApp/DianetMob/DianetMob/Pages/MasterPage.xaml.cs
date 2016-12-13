@@ -70,7 +70,7 @@ namespace DianetMob.Pages
             {
                 Title = "Έξοδος",
                 IconSource = "logout.png",
-                TargetType = typeof(StartPage)
+                TargetType = typeof(LoginPage)
             });
 
             listView.ItemsSource = masterPageItems;

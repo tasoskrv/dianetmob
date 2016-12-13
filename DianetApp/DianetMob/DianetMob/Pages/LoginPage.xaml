@@ -2,19 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.LoginPage" Title="Login">
+      
   <ContentPage.Content>
-    <StackLayout VerticalOptions="StartAndExpand" Margin="20, 50, 20, 50">
+    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 50, 20, 50">
       <Entry x:Name="usernameEntry" Placeholder="Username - Enter a valid email" Keyboard="Email" Completed="OnValidateEmail"/>
       <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true"/>      
-      <Button Text="LOGIN" Clicked="OnLoginButtonClicked" />      
+      <Button Text="Log In" Clicked="OnLoginButtonClicked" />      
+    
+      <StackLayout Orientation="Horizontal" Margin="0, 20, 0, 0">
+          <Label x:Name="Signup" Text="Sign up" HorizontalOptions="CenterAndExpand"/>
+          <Label x:Name="ForgotPassword" Text="Forgot Password?" HorizontalOptions="CenterAndExpand"/> 
+      </StackLayout>
+      
+      <Label x:Name="MessageLabel" TextColor="Red" Margin="0, 50, 0, 0" HorizontalOptions="CenterAndExpand"/>          
+      
     </StackLayout>
-
-    
-    
-
-    <Button Text="SIGNUP" Clicked="OnSignUpButtonClicked" />
-    <Label x:Name="MessageLabel" />
-
-
   </ContentPage.Content>
 </ContentPage>

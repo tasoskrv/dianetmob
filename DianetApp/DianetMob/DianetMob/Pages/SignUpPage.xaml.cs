@@ -20,7 +20,12 @@ namespace DianetMob.Pages
             StorageManager.GetConnection();
         }
 
-        async void OnSaveButtonClicked(object sender, EventArgs e)
+        private void OnCancelButtonTap(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new LoginPage();
+        }
+
+        async void OnSubmitButtonTap(object sender, EventArgs e)
         {
             try
             {
@@ -49,7 +54,7 @@ namespace DianetMob.Pages
                     }
                     else if (srvNewUser.ErrorCode == 2)
                     {
-                        await DisplayAlert("Warning", "O Χρήστης υπάρχει ήδη!", "OK");
+                        MessageLabel.Text = "User already exists";                        
                     }
                     else
                     {
@@ -93,7 +98,7 @@ namespace DianetMob.Pages
             if (emailEntry.Text == null || nameEntry.Text == null || surnameEntry.Text == null || passwdEntry.Text == null ||
                 emailEntry.Text == "" || nameEntry.Text == "" || surnameEntry.Text == "" || passwdEntry.Text == "")
             {
-                DisplayAlert("Please", "fill in all fields", "OK");
+                MessageLabel.Text = "Please fill all fields";
                 return false;
             }
             else
