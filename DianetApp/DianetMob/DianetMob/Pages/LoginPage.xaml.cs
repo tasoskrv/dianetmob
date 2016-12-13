@@ -52,7 +52,7 @@ namespace DianetMob.Pages
             //call InsertMeal            
             if ((usernameEntry.Text == null) || (passwordEntry.Text == null) || (usernameEntry.Text == "") || (passwordEntry.Text == ""))
             {
-                DisplayAlert("Please", "enter your credentials", "OK");
+                MessageLabel.Text = "Please enter your credentials";
                 return;
             }
             var user = new User

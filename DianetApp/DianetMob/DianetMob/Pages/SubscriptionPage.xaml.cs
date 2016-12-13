@@ -13,15 +13,7 @@ namespace DianetMob.Pages
     {
         public SubscriptionPage()
         {
-            InitializeComponent();
-            Browser.Source = "http://www.studiostars.gr";
-
-
-            /*
-            var html = new HtmlWebViewSource();
-            html.Html = @"Hello World";
-            Browser.Source = html;            
-            */
+            InitializeComponent();            
         }
     }
 }

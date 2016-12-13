@@ -22,7 +22,7 @@ namespace DianetMob
             if (settings.LastLoggedIn != 0)
                 MainPage = new MainPage();
             else
-                MainPage = new StartPage();
+                MainPage = new LoginPage();//StartPage
         }
 
         protected override void OnStart()

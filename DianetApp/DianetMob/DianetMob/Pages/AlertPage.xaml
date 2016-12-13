@@ -9,9 +9,6 @@
 </ContentPage.ToolbarItems>    
     
 <ContentPage.Content>
-
-
-
   <StackLayout VerticalOptions="StartAndExpand" >
     <ListView x:Name="ListViewAlerts" ItemTapped="OnItemTapped">
       <ListView.ItemTemplate>
@@ -29,24 +26,6 @@
       </ListView.ItemTemplate>
     </ListView>
   </StackLayout>    
-  
-  <!--StackLayout Orientation="Horizontal" >
-    <Label FontSize = "40" Text="alerttime" />
-    <DatePicker x:Name="alerttime"  Format="dd/MM/yyyy" />
-  </StackLayout-->
-
-  <!--StackLayout Orientation="Horizontal">
-    <Label x:Name="fSurNameLabelZZ"
-            Text="Last Name:"
-            FontSize="Large"
-            FontAttributes="Bold"/>
-    
-  </StackLayout-->
-
 </ContentPage.Content>
-  
-
-  
-  
   
 </ContentPage>

@@ -3,12 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.LoginPage" Title="Login">
   <ContentPage.Content>
-    <StackLayout VerticalOptions="StartAndExpand">
+    <StackLayout VerticalOptions="StartAndExpand" Margin="20, 50, 20, 50">
       <Entry x:Name="usernameEntry" Placeholder="Username - Enter a valid email" Keyboard="Email" Completed="OnValidateEmail"/>
-      <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true"/>
-      <Button Text="LOGIN" Clicked="OnLoginButtonClicked" />
-      <Button Text="SIGNUP" Clicked="OnSignUpButtonClicked" />
-      <Label x:Name="messageLabel" />
+      <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true"/>      
+      <Button Text="LOGIN" Clicked="OnLoginButtonClicked" />      
     </StackLayout>
+
+    
+    
+
+    <Button Text="SIGNUP" Clicked="OnSignUpButtonClicked" />
+    <Label x:Name="MessageLabel" />
+
+
   </ContentPage.Content>
 </ContentPage>
