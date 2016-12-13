@@ -58,9 +58,6 @@
     <Compile Include="DB\Entities\Weight.cs" />
     <Compile Include="DB\ISQLite.cs" />
     <Compile Include="DB\StorageManager.cs" />
-    <Compile Include="Pages\AddMealPage.xaml.cs">
-      <DependentUpon>AddMealPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\AddWeightPage.xaml.cs">
       <DependentUpon>AddWeightPage.xaml</DependentUpon>
     </Compile>
@@ -72,6 +69,9 @@
     </Compile>
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddMealView.xaml.cs">
+      <DependentUpon>AddMealView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
@@ -250,12 +250,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\AddMealPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Pages\AddWeightPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -347,6 +341,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DashboardView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddMealView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

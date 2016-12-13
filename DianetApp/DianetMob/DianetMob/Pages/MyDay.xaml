@@ -16,7 +16,8 @@
       </StackLayout>
     <me:DashboardView x:Name="dashboardview" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
     <me:LogView  x:Name="logview" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-    <StackLayout   Orientation="Horizontal" VerticalOptions="EndAndExpand" BackgroundColor="#FFFFFF" >
+    <me:AddMealView  x:Name="addmealview" HeightRequest="400" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" />  
+    <StackLayout  x:Name="datepickpanel" Orientation="Horizontal" VerticalOptions="EndAndExpand" BackgroundColor="#FFFFFF" >
       <Button FontSize="Large" Text="&lt;" BackgroundColor="#FFFFFF" TextColor="#2196F3" VerticalOptions="Center"
         HorizontalOptions="EndAndExpand" Clicked="OnPrevDayClicked" />
         <DatePicker x:Name="datePick" Format="dddd &#13;&#10; dd MMM, yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" VerticalOptions="Center" HorizontalOptions="Center"/>

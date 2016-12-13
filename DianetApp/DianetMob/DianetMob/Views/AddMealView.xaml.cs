@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DianetMob.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,19 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace DianetMob.Pages
+namespace DianetMob.Views
 {
-    public partial class AddMealPage : ContentPage
+    public partial class AddMealView : ContentView
     {
         private SearchMealPage searchPage = new SearchMealPage();
         private DateTime SelectedDate;
-        public AddMealPage( DateTime date)
+        public AddMealView()
         {
-            SelectedDate = date;
-            searchPage.SelectedDate = date;
             InitializeComponent();
+        }
+        public void setDate(DateTime date) {
+             SelectedDate = date;
+             searchPage.SelectedDate = date;
         }
         async void OnAddBreakfastClicked(object sender, EventArgs e)
         {
@@ -44,7 +47,7 @@ namespace DianetMob.Pages
         }
         async void OnAddRecordWeightClicked(object sender, EventArgs e)
         {
-           // await Navigation.PushAsync(new AddMealPage());
+            // await Navigation.PushAsync(new AddMealPage());
         }
     }
 }

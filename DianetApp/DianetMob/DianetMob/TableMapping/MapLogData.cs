@@ -11,5 +11,6 @@ namespace DianetMob.TableMapping
         public int IDUserMeal { get; set; }
         public string MealName { get; set; }
         public int IDCategory { get; set; }
+        public double Calories { get; set; }
     }
 }

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DianetMob.Views.AddMealView">
+  <ContentView.Content>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Button Text="Breakfast" Grid.Row="0" Grid.Column="0" Clicked="OnAddBreakfastClicked" />
+      <Button Text="Lunch" Grid.Row="0" Grid.Column="1"  Clicked="OnAddLunchClicked"/>
+      <Button Text="Dinner" Grid.Row="0" Grid.Column="2" Clicked="OnAddDinnerClicked"/>
+      <Button Text="Snack" Grid.Row="1" Grid.Column="0" Clicked="OnAddSnackClicked"/>
+      <Button Text="Exercise" Grid.Row="1" Grid.Column="1" Clicked="OnAddExerciseClicked"/>
+      <Button Text="Record Weight" Grid.Row="1" Grid.Column="2" Clicked="OnAddRecordWeightClicked"/>
+    </Grid>
+  </ContentView.Content>
+</ContentView>
