@@ -1,6 +1,5 @@
 ﻿using DianetMob.DB;
 using DianetMob.TableMapping;
-using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,18 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using DianetMob.Pages;
 
-namespace DianetMob.Pages
+namespace DianetMob.Views
 {
-    public partial class LogPage : ContentPage
+    public partial class LogView : ContentView
     {
-        private SQLiteConnection conn = null;
-        private ObservableCollection<MapLogData> records = new ObservableCollection<MapLogData>();
-        ObservableCollection<Group> groupedItems = new ObservableCollection<Group>();
-        public LogPage()
+        private DateTime SelectedDate;
+        private ObservableCollection<Group> groupedItems = new ObservableCollection<Group>();
+        public LogView()
         {
             InitializeComponent();
-            conn = StorageManager.GetConnection();
             //LogListView.ItemsSource = groupedItems;
             LogList.ItemsSource = groupedItems;
             Group group = new Group("Breakfast", "1");
@@ -35,37 +33,20 @@ namespace DianetMob.Pages
 
         async void OnAddMealClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddMealPage(datePick.Date));
+            await Navigation.PushAsync(new AddMealPage(SelectedDate));
         }
 
         async void OnAddWeightClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddWeightPage());
         }
-        void OnPrevDayClicked(object sender, EventArgs e)
-        {
-            datePick.Date = datePick.Date.AddDays(-1);
-            RecreateData();
-        }
 
-        void OnNextDayClicked(object sender, EventArgs e)
+        public void RecreateData(IEnumerable<MapLogData> logrecords, DateTime date)
         {
-            datePick.Date = datePick.Date.AddDays(1);
-            RecreateData();
-        }
-
-        protected async override void OnAppearing()
-        {
-            RecreateData();
-        }
-
-        public void RecreateData()
-        {
+            SelectedDate = date;
             for (int i=0;i<groupedItems.Count;i++)
                 groupedItems[i].Clear();
-            string query = "Select um.IdUserMeal, um.idcategory,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ?";
-
-            IEnumerable<MapLogData> logrecords = conn.Query<MapLogData>(query, datePick.Date, datePick.Date);
+            
             foreach (MapLogData logrecord in logrecords)
             {
                 Item item = new Item(logrecord.MealName, logrecord.MealName);

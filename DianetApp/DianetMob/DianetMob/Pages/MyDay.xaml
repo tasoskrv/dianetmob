@@ -1,11 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:me="clr-namespace:DianetMob.Pages;assembly=DianetMob"
+             xmlns:me="clr-namespace:DianetMob.Views;assembly=DianetMob"
              x:Class="DianetMob.Pages.MyDay"
-             Title="My day">
-  <TabbedPage.Children>
-    <me:DashboardPage/>
-    <me:LogPage/>
-  </TabbedPage.Children>
-</TabbedPage>
+             Title="Log">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text=""  Clicked="OnAddMealClicked" Icon="plus.png"/>
+    <ToolbarItem Text=""  Clicked="OnAddWeightClicked" Icon="weight.png"/>
+  </ContentPage.ToolbarItems>
+  <ContentPage.Content>
+    <StackLayout>
+      <StackLayout BackgroundColor="#2196F3"  Orientation="Horizontal" VerticalOptions="EndAndExpand" >
+        <Button x:Name="btnDashboard" FontSize="Small" BackgroundColor="#2196F3" TextColor="#FFFFFF" Text="Dashboard" Clicked="OnDashboardClicked" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
+        <Button x:Name="btnLog" FontSize="Small" BackgroundColor="#2196F3" TextColor="#FFFFFF"  Text="Log"  Clicked="OnLogClicked" VerticalOptions="End" HorizontalOptions="CenterAndExpand"/>
+      </StackLayout>
+    <me:DashboardView x:Name="dashboardview" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+    <me:LogView  x:Name="logview" IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+   <StackLayout   Orientation="Horizontal" VerticalOptions="EndAndExpand" >
+      <Button Text="Prev" VerticalOptions="Start"
+             HorizontalOptions="FillAndExpand" Clicked="OnPrevDayClicked" />
+      <DatePicker x:Name="datePick" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" VerticalOptions="Center"/>
+      <Button Text="Next" VerticalOptions="End"
+     HorizontalOptions="FillAndExpand" Clicked="OnNextDayClicked" />
+   </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DianetMob.Views.DashboardView">
+  <ContentView.Content>
+    <StackLayout VerticalOptions="StartAndExpand">
+      <!--Button Text="SYNC" Clicked="OnSyncButtonClicked" /-->
+      <WebView x:Name="webview1"
+          HeightRequest="600"
+          WidthRequest="600" />
+
+    </StackLayout>
+  </ContentView.Content>
+</ContentView>
