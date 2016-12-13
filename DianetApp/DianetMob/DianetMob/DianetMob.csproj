@@ -58,9 +58,6 @@
     <Compile Include="DB\Entities\Weight.cs" />
     <Compile Include="DB\ISQLite.cs" />
     <Compile Include="DB\StorageManager.cs" />
-    <Compile Include="Pages\MyDayTab.xaml.cs">
-      <DependentUpon>MyDayTab.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\AddMealPage.xaml.cs">
       <DependentUpon>AddMealPage.xaml</DependentUpon>
     </Compile>
@@ -72,9 +69,6 @@
     </Compile>
     <Compile Include="Pages\AlertPageDetail.xaml.cs">
       <DependentUpon>AlertPageDetail.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\DashboardPage.xaml.cs">
-      <DependentUpon>DashboardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -94,9 +88,6 @@
     </Compile>
     <Compile Include="Pages\MyDay.xaml.cs">
       <DependentUpon>MyDay.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MyDayView.xaml.cs">
-      <DependentUpon>MyDayView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MyFoodPage.xaml.cs">
       <DependentUpon>MyFoodPage.xaml</DependentUpon>
@@ -277,12 +268,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\DashboardPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Pages\MyDay.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -356,18 +341,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\MyFoodPageDetail.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\MyDayTab.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\MyDayView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
