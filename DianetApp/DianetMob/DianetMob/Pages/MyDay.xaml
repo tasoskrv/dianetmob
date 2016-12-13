@@ -16,12 +16,12 @@
       </StackLayout>
     <me:DashboardView x:Name="dashboardview" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
     <me:LogView  x:Name="logview" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-    <StackLayout   Orientation="Horizontal" VerticalOptions="EndAndExpand" >
-      <Button Text="Prev" VerticalOptions="Start"
-             HorizontalOptions="FillAndExpand" Clicked="OnPrevDayClicked" />
-      <DatePicker x:Name="datePick" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" VerticalOptions="Center"/>
-      <Button Text="Next" VerticalOptions="End"
-     HorizontalOptions="FillAndExpand" Clicked="OnNextDayClicked" />
+    <StackLayout   Orientation="Horizontal" VerticalOptions="EndAndExpand" BackgroundColor="#FFFFFF" >
+      <Button FontSize="Large" Text="&lt;" BackgroundColor="#FFFFFF" TextColor="#2196F3" VerticalOptions="Center"
+        HorizontalOptions="EndAndExpand" Clicked="OnPrevDayClicked" />
+        <DatePicker x:Name="datePick" Format="dddd &#13;&#10; dd MMM, yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" VerticalOptions="Center" HorizontalOptions="Center"/>
+      <Button FontSize="Large" Text="&gt;" BackgroundColor="#FFFFFF" TextColor="#2196F3" VerticalOptions="Center"
+     HorizontalOptions="StartAndExpand" Clicked="OnNextDayClicked" />
     </StackLayout>
    </StackLayout>
   </ContentPage.Content>
