@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using DianetMob.Pages;
 
 namespace DianetMob.Views
 {
@@ -29,16 +28,6 @@ namespace DianetMob.Views
             groupedItems.Add(group);
             group = new Group("Snack", "4");
             groupedItems.Add(group);
-        }
-
-        async void OnAddMealClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddMealPage(SelectedDate));
-        }
-
-        async void OnAddWeightClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddWeightPage());
         }
 
         public void RecreateData(IEnumerable<MapLogData> logrecords, DateTime date)
