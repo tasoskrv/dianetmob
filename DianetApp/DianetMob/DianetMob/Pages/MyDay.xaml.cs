@@ -58,17 +58,23 @@ namespace DianetMob.Pages
             dashboardview.FillPieContent(logrecords);
         }
 
+
         public void OnAddMealClicked(object sender, EventArgs e)
         {
             addmealview.IsVisible = !addmealview.IsVisible;
             addmealview.setDate(datePick.Date);
             datepickpanel.IsVisible = !addmealview.IsVisible;
+            dashboardview.IsEnabled = datepickpanel.IsVisible;
+            logview.IsEnabled = dashboardview.IsEnabled;
+            if (addmealview.IsVisible)
+            {
+                dashboardview.Opacity = 0.5;
+            }
+            else {
+                dashboardview.Opacity = 1;
+            }
+            logview.Opacity = dashboardview.Opacity;
             //await Navigation.PushAsync(new AddMealPage(datePick.Date));
-        }
-
-        async void OnAddWeightClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddWeightPage());
         }
     }
 }

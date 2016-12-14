@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DianetMob.Views.AddMealView">
   <ContentView.Content>
-    <Grid>
+    <Grid BackgroundColor="#2196F3" >
       <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
         <RowDefinition Height="*" />
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
@@ -11,12 +12,14 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
-      <Button Text="Breakfast" Grid.Row="0" Grid.Column="0" Clicked="OnAddBreakfastClicked" />
-      <Button Text="Lunch" Grid.Row="0" Grid.Column="1"  Clicked="OnAddLunchClicked"/>
-      <Button Text="Dinner" Grid.Row="0" Grid.Column="2" Clicked="OnAddDinnerClicked"/>
-      <Button Text="Snack" Grid.Row="1" Grid.Column="0" Clicked="OnAddSnackClicked"/>
-      <Button Text="Exercise" Grid.Row="1" Grid.Column="1" Clicked="OnAddExerciseClicked"/>
-      <Button Text="Record Weight" Grid.Row="1" Grid.Column="2" Clicked="OnAddRecordWeightClicked"/>
+      
+      <Label TextColor="#FFFFFF" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" VerticalTextAlignment="End" FontSize = "20" Text="Add Entry To Log" />
+      <Button Text="Breakfast" Image="morning.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Grid.Row="1" Grid.Column="0"  Clicked="OnAddBreakfastClicked" />
+      <Button Text="Lunch" Image="sun.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddLunchClicked"/>
+      <Button Text="Dinner"  Image="night.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="1" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddDinnerClicked"/>
+      <Button Text="Snack" Image="snack.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddSnackClicked"/>
+      <Button Text="Exercise" Image="exercise.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddExerciseClicked"/>
+      <Button Text="Record Weight" Image="recweight.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddRecordWeightClicked"/>
     </Grid>
   </ContentView.Content>
 </ContentView>

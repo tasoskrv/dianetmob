@@ -3,20 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:me="clr-namespace:DianetMob.Views;assembly=DianetMob"
              x:Class="DianetMob.Pages.MyDay"
-             Title="Log">
+             Title="My Day">
   <ContentPage.ToolbarItems>
     <ToolbarItem Text=""  Clicked="OnAddMealClicked" Icon="plus.png"/>
-    <ToolbarItem Text=""  Clicked="OnAddWeightClicked" Icon="weight.png"/>
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
-    <StackLayout >
+    <StackLayout>
       <StackLayout BackgroundColor="#2196F3"  Orientation="Horizontal" VerticalOptions="StartAndExpand" >
         <Button x:Name="btnDashboard" FontSize="Small" BackgroundColor="#2196F3" TextColor="#FFFFFF" Text="Dashboard" Clicked="OnDashboardClicked" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
         <Button x:Name="btnLog" FontSize="Small" BackgroundColor="#2196F3" TextColor="#FFFFFF"  Text="Log"  Clicked="OnLogClicked" VerticalOptions="End" HorizontalOptions="CenterAndExpand"/>
       </StackLayout>
+      <StackLayout IsEnabled="false">
     <me:DashboardView x:Name="dashboardview" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
     <me:LogView  x:Name="logview" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-    <me:AddMealView  x:Name="addmealview" HeightRequest="400" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" />  
+        </StackLayout>
+    <me:AddMealView  x:Name="addmealview" HeightRequest="700" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" />  
     <StackLayout  x:Name="datepickpanel" Orientation="Horizontal" VerticalOptions="EndAndExpand" BackgroundColor="#FFFFFF" >
       <Button FontSize="Large" Text="&lt;" BackgroundColor="#FFFFFF" TextColor="#2196F3" VerticalOptions="Center"
         HorizontalOptions="EndAndExpand" Clicked="OnPrevDayClicked" />

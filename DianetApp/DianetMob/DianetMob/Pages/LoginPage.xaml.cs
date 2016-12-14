@@ -82,10 +82,11 @@ namespace DianetMob.Pages
 
         private void PerformLogin(User user)
         {
-            StorageManager.GetConnectionInfo().LoginUser = user;
-            StorageManager.GetConnectionInfo().LoginUser.Password = passwordEntry.Text;
-            StorageManager.GetConnectionInfo().Settings.LastLoggedIn = user.IDUser;
-            StorageManager.UpdateData<Settings>(StorageManager.GetConnectionInfo().Settings);
+            ConnectionInfo info = StorageManager.GetConnectionInfo();
+            info.LoginUser = user;
+            info.LoginUser.Password = passwordEntry.Text;
+            info.Settings.LastLoggedIn = user.IDUser;
+            StorageManager.UpdateData<Settings>(info.Settings);
             App.Current.MainPage = new MainPage();
         }
 
@@ -104,6 +105,7 @@ namespace DianetMob.Pages
                 ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/email=" + user.Email + "/password=" + user.Password);
                 if (srvUser.totalRows > 0)
                 {
+                    srvUser.data[0].Password= user.Password;
                     srvUser.SaveAllToDB();
                     PerformLogin(srvUser.data[0]);
                     GenLib.FullServiceLoadAndStore();

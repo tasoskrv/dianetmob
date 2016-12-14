@@ -17,8 +17,8 @@ namespace DianetMob
         public App()
         {
             InitializeComponent();
-
-            Settings settings = StorageManager.GetConnectionInfo().Settings;
+            ConnectionInfo info = StorageManager.GetConnectionInfo();
+            Settings settings = info.Settings;
             if (settings.LastLoggedIn != 0)
                 MainPage = new MainPage();
             else

@@ -17,7 +17,8 @@ namespace DianetMob.Views
     {
         private SQLiteConnection conn = null;
         private HtmlWebViewSource webview = null;
-        private Dictionary<int, double> DashboardDic = new Dictionary<int, double>(); 
+        private Dictionary<int, double> DashboardDic = new Dictionary<int, double>();
+
         public DashboardView()
         {
             InitializeComponent();
@@ -26,11 +27,11 @@ namespace DianetMob.Views
 
             //IEnumerable<MapLogData> logrecords = logrecords = StorageManager.LoadDataByDate(datePick.Date, datePick.Date);
 
-
+            
             webview = new HtmlWebViewSource();
+      
             webview1.Source = webview;
         }
-
         public string GetLabelCategory(int id) {
             switch (id) {
                 case 1:
@@ -74,7 +75,7 @@ namespace DianetMob.Views
                     "<script src=\"file:///android_asset/utils.js\"></script>" +
                 "</head>" +
                 "<body>" +
-                    "<div id=\"canvas - holder\" style=\"height: 20%\">" +
+                    "<div style=\"margin:0 auto;width: 70%\" id=\"canvas - holder\">" +
                         "<canvas id=\"chart - area\" />" +
                     "</div>" +
                     "<div style=\"width: 100%; \">" +
@@ -83,11 +84,11 @@ namespace DianetMob.Views
                     "<script>" +
                         "var data = [" + data + "];" +
                         "var config = {" +
-                        " type: 'pie', data: { datasets: [{ " +
-                        " data: data, backgroundColor: [window.chartColors.blue, window.chartColors.yellow, window.chartColors.orange, window.chartColors.green], " +
+                        " type: 'pie',  data: { datasets: [{ " +
+                        " data: data,  backgroundColor: [window.chartColors.blue, window.chartColors.yellow, window.chartColors.orange, window.chartColors.green], " +
                         " label: " +
                         " 'Calories'  }]," +
-                        " labels: ["+ label + "] },  options: {responsive: true  }  }; " +
+                        " labels: ["+ label + "] },  options: {legend: {position: 'bottom'} ,title: {display: true, text: 'Calories per meal' } }}; " +
                         "var color = Chart.helpers.color; " +
                         "var barChartData = { " +
                         "labels: [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"], " +
@@ -97,7 +98,7 @@ namespace DianetMob.Views
                         "var ctx1 = document.getElementById(\"chart - area\").getContext(\"2d\"); " +
                         "window.myPie = new Chart(ctx1, config); " +
                         "var ctx = document.getElementById(\"canvas\").getContext(\"2d\"); " +
-                        "window.myBar = new Chart(ctx, { type: \"bar\", data: barChartData, options: { responsive: true} }); }; " +
+                        "window.myBar = new Chart(ctx, { type: \"bar\", data: barChartData,  options: {legend: {position: 'bottom'} ,title: {display: true, text: 'Calories per day' } }}); }; " +
                     "</script>" +
                 "</body>" +
             "</html>";
