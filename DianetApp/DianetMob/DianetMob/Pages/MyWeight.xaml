@@ -6,10 +6,10 @@
     
   </ContentPage.ToolbarItems>
 
-  <StackLayout VerticalOptions="End" HorizontalOptions="Center" >
-    <Button Text="weight" Clicked="OnAddWeightClicked"/>
-    <Button Text="goal" Clicked="OnAddPlanClicked"/>
-    <WebView x:Name="webview2"
-             HeightRequest="600" WidthRequest="600" VerticalOptions="End"/>
+  <StackLayout>
+    <WebView x:Name="webview2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+    <Button Text="weight" Clicked="OnAddWeightClicked" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" />
+    <Button Text="goal" Clicked="OnAddPlanClicked" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand"/>
+
   </StackLayout>
 </ContentPage>

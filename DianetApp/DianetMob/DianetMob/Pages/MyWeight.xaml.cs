@@ -76,7 +76,7 @@ namespace DianetMob.Pages
 
             return "<!doctype html><html><head> <script src=\"file:///android_asset/Chart.bundle.js\"></script><script src=\"file:///android_asset/utils.js\"></script><style>" +
                     "canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; } </style>" +
-                    "</head><body><div style=\"width: 100% \"><canvas id=\"canvas\"></canvas></div><script> var color = Chart.helpers.color;" +
+                    "</head><body><div style=\"height: 800px; \"><canvas id=\"canvas\"></canvas></div><script> var color = Chart.helpers.color;" +
                     "var barChartData = { labels: [\"17/12/2016\", \"25/12/2016\", \"25/12/ 2016\", \"25/12/2016\", \"25/12/2016\", \"25/12/2016\"]," +
                     "datasets: [{ type: 'bar', label: 'Weight', backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(), borderColor: window.chartColors.blue," +
                     "data: [90,89,88,88,86,86]}, {type: 'line', label: 'Goal', backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),  " +
@@ -88,7 +88,7 @@ namespace DianetMob.Pages
                     "var dataString = dataset.data[index].toString(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; var padding = 5; var position = element.tooltipPosition();" +
                     "ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);  });} }); }}); " +
                     "window.onload = function() { var ctx = document.getElementById(\"canvas\").getContext(\"2d\");  window.myBar = new Chart(ctx, {" +
-                    "type: 'bar', data: barChartData, options: { responsive: true, title: { display: true },} });}; </script></body></html>  ";
+                    "type: 'bar', data: barChartData, options: { title: { display: true },} });}; </script></body></html>  ";
                 
 
 

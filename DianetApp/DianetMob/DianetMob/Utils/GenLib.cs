@@ -13,6 +13,7 @@ namespace DianetMob.Utils
         {
             try
             {
+                //TODO: SYncdate and save serverid
                 SQLiteConnection conn = StorageManager.GetConnection();
                 string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
 
@@ -30,6 +31,8 @@ namespace DianetMob.Utils
                     alert.InsertDate = alt.InsertDate;
                     alert.UpdateDate = alt.UpdateDate;
                     srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alert);
+                    alert.IDServer = srvNewUser.ID;
+                    StorageManager.UpdateData<Alert>(alert);
                 }
 
                 /**exercise**/
