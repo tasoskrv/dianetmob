@@ -25,6 +25,7 @@ namespace DianetMob.Pages
             conn = StorageManager.GetConnection();
             string WeightContent;
             WeightContent = FillContent(5, 10, 15, 9);
+           
 
             var html = new HtmlWebViewSource
             {
@@ -76,7 +77,7 @@ namespace DianetMob.Pages
 
             return "<!doctype html><html><head> <script src=\"file:///android_asset/Chart.bundle.js\"></script><script src=\"file:///android_asset/utils.js\"></script><style>" +
                     "canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; } </style>" +
-                    "</head><body><div style=\"height: 800px; \"><canvas id=\"canvas\"></canvas></div><script> var color = Chart.helpers.color;" +
+                    "</head><body><div><canvas id=\"canvas\" height= \"260% \"></canvas></div><script> var color = Chart.helpers.color;" +
                     "var barChartData = { labels: [\"17/12/2016\", \"25/12/2016\", \"25/12/ 2016\", \"25/12/2016\", \"25/12/2016\", \"25/12/2016\"]," +
                     "datasets: [{ type: 'bar', label: 'Weight', backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(), borderColor: window.chartColors.blue," +
                     "data: [90,89,88,88,86,86]}, {type: 'line', label: 'Goal', backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),  " +

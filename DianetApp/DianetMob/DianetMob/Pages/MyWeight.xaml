@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DianetMob.Pages.MyWeight">
+             x:Class="DianetMob.Pages.MyWeight"
+             Title="Βάρος">
   <ContentPage.ToolbarItems>
-    
+    <ToolbarItem Text=""  Clicked="OnAddWeightClicked" Icon="plus.png"/> 
   </ContentPage.ToolbarItems>
 
-  <StackLayout>
-    <WebView x:Name="webview2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
-    <Button Text="weight" Clicked="OnAddWeightClicked" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" />
-    <Button Text="goal" Clicked="OnAddPlanClicked" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand"/>
+  <StackLayout >
+    <WebView x:Name="webview2" HeightRequest="500"
+          WidthRequest="500" />
+    <Button  Clicked="OnAddWeightClicked"  Image="weight1.png" BackgroundColor="#2196F3"  HorizontalOptions="End"/>
+    <Button  Clicked="OnAddPlanClicked"  Image="goal1.png" BackgroundColor="#2196F3" HorizontalOptions="End"/>
 
-  </StackLayout>
+    </StackLayout> 
+
 </ContentPage>

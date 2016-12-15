@@ -2,32 +2,42 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:conv="clr-namespace:DianetMob.Converters;assembly=DianetMob"
-             x:Class="DianetMob.Pages.PlanPageDetail">
+             x:Class="DianetMob.Pages.PlanPageDetail"
+             Title="Εισαγωγή στόχου">
       
   <ContentPage.Resources>
     <ResourceDictionary>
       <conv:DateConverter x:Key="dateConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
-      
-    <Grid>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="100" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="50" />
-        <RowDefinition Height="50" />
-        <RowDefinition Height="50" />
-      </Grid.RowDefinitions>      
+
+  <Grid Margin="20,0,0,0" RowSpacing="0">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="45"/>
+
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="45"/>
+      <RowDefinition Height="50"/>
+      <RowDefinition Height="50"/>
+    </Grid.RowDefinitions>
 
       <Label Grid.Row="0" Grid.Column="0" Text="Goal"/>
-      <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Goal, Mode=TwoWay}" Keyboard="Numeric"/>      
+      <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Goal, Mode=TwoWay}" Keyboard="Numeric"/>      
       
-      <Label Grid.Row="1" Grid.Column="0" Text="Goal Date" />
-      <DatePicker Grid.Row="1" Grid.Column="1" x:Name="goaldate" Format="dd/MM/yyyy" MinimumDate="{Binding PropertyMinimumDate}" Date="{Binding GoalDate, Mode=TwoWay, Converter={StaticResource dateConverter}}"  />
-    
-      <Button x:Name="fSaveBtn" Grid.Row="2" Grid.Column="1" Text="SAVE" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" Clicked="OnSavePlanClicked"/>    
+      <Label Grid.Row="2" Grid.Column="0" Text="Goal Date" />
+      <Entry Grid.Row="3" Grid.Column="0" Text="" Keyboard="Numeric" Placeholder="Calculated Date" IsEnabled="false"/>
+
+    <Button x:Name="fSaveBtn" Grid.Row="5" Grid.Column="0" 
+            Text="SAVE" 
+            VerticalOptions="EndAndExpand"
+            FontSize="Large"
+            HorizontalOptions="Center" 
+            FontAttributes="Bold" 
+            Clicked="OnSavePlanClicked"/>    
     </Grid>    
     
    
