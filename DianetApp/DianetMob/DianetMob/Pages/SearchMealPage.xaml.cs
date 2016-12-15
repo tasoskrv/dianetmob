@@ -55,7 +55,7 @@ namespace DianetMob.Pages
         public void OnSearchBarTextChanged(object sender, EventArgs eventArgs)
         {
             records.Clear();
-            IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal FROM meal WHERE name LIKE ?", "%" + ASearchBar.Text + "%");
+            IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal FROM meal WHERE name LIKE ?", "%" + ASearchBar.Text + "% and active=1");
             foreach (Meal meal in meals)
             {
                 records.Add(new Meal { Name = meal.Name, IDMeal = meal.IDMeal });
