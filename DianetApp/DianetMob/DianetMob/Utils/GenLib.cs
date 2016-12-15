@@ -42,11 +42,11 @@ namespace DianetMob.Utils
 
             /**alert**/
             IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
-            ModelService<Alert> srvNewUser = null;
+            ModelService<Alert> srvNewAlert = null;
             foreach (Alert alt in alts)
             {
-                srvNewUser = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alt);
-                alt.IDServer = srvNewUser.ID;
+                srvNewAlert = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alt);
+                alt.IDServer = srvNewAlert.ID;
                 StorageManager.UpdateData<Alert>(alt);
             }
             /**exercise**/
@@ -55,7 +55,7 @@ namespace DianetMob.Utils
             foreach (Exercise exe in exes)
             {
                 srvExercise = await ServiceConnector.InsertServiceData<ModelService<Exercise>>("/exercise/save", exe);
-                exe.IDServer = srvNewUser.ID;
+                exe.IDServer = srvExercise.ID;
                 StorageManager.UpdateData<Exercise>(exe);
             }
 
@@ -65,7 +65,7 @@ namespace DianetMob.Utils
             foreach (Plan pln in plns)
             {
                 srvPlan = await ServiceConnector.InsertServiceData<ModelService<Plan>>("/plan/save", pln);
-                pln.IDServer = srvNewUser.ID;
+                pln.IDServer = srvPlan.ID;
                 StorageManager.UpdateData<Plan>(pln);
             }
 
@@ -75,7 +75,7 @@ namespace DianetMob.Utils
             foreach (Subscription sub in subs)
             {
                 srvSubscription = await ServiceConnector.InsertServiceData<ModelService<Subscription>>("/subscription/save", sub);
-                sub.IDServer = srvNewUser.ID;
+                sub.IDServer = srvSubscription.ID;
                 StorageManager.UpdateData<Subscription>(sub);
             }
 
@@ -85,7 +85,7 @@ namespace DianetMob.Utils
             foreach (UserFood ufood in ufoods)
             {
                 srvUserfood = await ServiceConnector.InsertServiceData<ModelService<UserFood>>("/userfood/save", ufood);
-                ufood.IDServer = srvNewUser.ID;
+                ufood.IDServer = srvUserfood.ID;
                 StorageManager.UpdateData<UserFood>(ufood);
             }
 
@@ -95,7 +95,7 @@ namespace DianetMob.Utils
             foreach (UserMeal umeal in umeals)
             {
                 srvUserMeal = await ServiceConnector.InsertServiceData<ModelService<UserMeal>>("/usermeal/save", umeal);
-                umeal.IDServer = srvNewUser.ID;
+                umeal.IDServer = srvUserMeal.ID;
                 StorageManager.UpdateData<UserMeal>(umeal);
             }
 
@@ -105,7 +105,7 @@ namespace DianetMob.Utils
             foreach (Weight wgt in wgts)
             {
                 srvWeight = await ServiceConnector.InsertServiceData<ModelService<Weight>>("/weight/save", wgt);
-                wgt.IDServer = srvNewUser.ID;
+                wgt.IDServer = srvWeight.ID;
                 StorageManager.UpdateData<Weight>(wgt);
             }
         }
