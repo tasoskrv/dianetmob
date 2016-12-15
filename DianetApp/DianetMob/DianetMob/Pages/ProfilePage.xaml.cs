@@ -1,5 +1,6 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
+using DianetMob.Utils;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -19,6 +20,11 @@ namespace DianetMob.Pages
             InitializeComponent();
             FillInSettingsLoggedIn();
             BindingContext = StorageManager.GetConnectionInfo().LoginUser;
+        }
+
+        private void OnSyncButtonClicked(object sender, EventArgs e)
+        {
+            GenLib.FullServiceSend(); 
         }
 
         private void FillInSettingsLoggedIn()

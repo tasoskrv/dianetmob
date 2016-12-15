@@ -9,13 +9,14 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
+    <ToolbarItem Text="SYNC" Clicked="OnSyncButtonClicked"/>
     <ToolbarItem Text=""  Clicked="OnEditClicked" Icon="edit.png"/>
     <ToolbarItem x:Name="fSaveBtn" Text="SAVE" Clicked="OnSaveSettingsClicked"/>    
   </ContentPage.ToolbarItems>
 
   <ContentPage.Content>
     <ScrollView x:Name="ProfileScrollView">
-      <StackLayout x:Name="ProfileLayout" Orientation="Vertical">               
+      <StackLayout x:Name="ProfileLayout" Orientation="Vertical">
         <Grid Margin="20,0,0,0" RowSpacing="0">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
