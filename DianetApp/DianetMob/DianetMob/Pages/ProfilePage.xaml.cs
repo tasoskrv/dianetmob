@@ -22,11 +22,6 @@ namespace DianetMob.Pages
             BindingContext = StorageManager.GetConnectionInfo().LoginUser;
         }
 
-        private void OnSyncButtonClicked(object sender, EventArgs e)
-        {
-            GenLib.FullServiceSend(); 
-        }
-
         private void FillInSettingsLoggedIn()
         {
             //fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";

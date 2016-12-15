@@ -9,7 +9,6 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="SYNC" Clicked="OnSyncButtonClicked"/>
     <ToolbarItem Text=""  Clicked="OnEditClicked" Icon="edit.png"/>
     <ToolbarItem x:Name="fSaveBtn" Text="SAVE" Clicked="OnSaveSettingsClicked"/>    
   </ContentPage.ToolbarItems>

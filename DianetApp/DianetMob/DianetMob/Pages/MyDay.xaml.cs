@@ -1,5 +1,6 @@
 ﻿using DianetMob.DB;
 using DianetMob.TableMapping;
+using DianetMob.Utils;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace DianetMob.Pages
             InitializeComponent();
 
             conn = StorageManager.GetConnection();
+        }
+        private void OnSyncButtonClicked(object sender, EventArgs e)
+        {
+            GenLib.FullSynch();
         }
         protected override void OnAppearing()
         {

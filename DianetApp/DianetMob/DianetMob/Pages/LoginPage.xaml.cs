@@ -82,11 +82,13 @@ namespace DianetMob.Pages
 
         private void PerformLogin(User user)
         {
+            GenLib.FullSynch();
             ConnectionInfo info = StorageManager.GetConnectionInfo();
             info.LoginUser = user;
             info.LoginUser.Password = passwordEntry.Text;
             info.Settings.LastLoggedIn = user.IDUser;
-            StorageManager.UpdateData<Settings>(info.Settings);
+            Settings settings = info.Settings;
+            StorageManager.UpdateData<Settings>(settings);
             App.Current.MainPage = new MainPage();
         }
 
@@ -96,7 +98,6 @@ namespace DianetMob.Pages
             if (usrs.Count > 0)
             {
                 PerformLogin(usrs[0]);
-                GenLib.FullServiceLoadAndStore();
                 return;
             }
             /* e.g. /user/login/username=spiroskaravanis2@gmail.com/password=12345 */
@@ -108,7 +109,6 @@ namespace DianetMob.Pages
                     srvUser.data[0].Password= user.Password;
                     srvUser.SaveAllToDB();
                     PerformLogin(srvUser.data[0]);
-                    GenLib.FullServiceLoadAndStore();
                     return;
                 }
             }
