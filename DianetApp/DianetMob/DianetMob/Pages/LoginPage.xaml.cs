@@ -82,7 +82,6 @@ namespace DianetMob.Pages
 
         private void PerformLogin(User user)
         {
-            GenLib.FullSynch();
             ConnectionInfo info = StorageManager.GetConnectionInfo();
             info.LoginUser = user;
             info.LoginUser.Password = passwordEntry.Text;
@@ -90,6 +89,7 @@ namespace DianetMob.Pages
             Settings settings = info.Settings;
             StorageManager.UpdateData<Settings>(settings);
             App.Current.MainPage = new MainPage();
+            GenLib.FullSynch();
         }
 
         public async void AreCredentialsCorrect(User user)

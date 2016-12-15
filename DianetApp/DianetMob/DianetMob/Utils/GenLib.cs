@@ -4,6 +4,9 @@ using DianetMob.Service;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DianetMob.Utils
 {
@@ -17,8 +20,8 @@ namespace DianetMob.Utils
                 User loginUser = StorageManager.GetConnectionInfo().LoginUser;
                 UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
 
-                FullServiceLoadAndStore(loginUser,usersettings);
-                FullServiceSend(loginUser, usersettings);
+                await FullServiceLoadAndStore(loginUser, usersettings);
+                await FullServiceSend(loginUser, usersettings);
 
                 StorageManager.GetConnectionInfo().UserSettings.LastSyncDate = DateTime.UtcNow;
                 StorageManager.UpdateData<UserSettings>(StorageManager.GetConnectionInfo().UserSettings);
@@ -29,12 +32,12 @@ namespace DianetMob.Utils
             }
         }
 
-        public async static void FullServiceSend(User user, UserSettings usersettings)
+        public async static Task FullServiceSend(User user, UserSettings usersettings)
         {
             //TODO: SYncdate and save serverid
             SQLiteConnection conn = StorageManager.GetConnection();
             string iduser = user.IDUser.ToString();
-            
+
             string lastUpdateDate = usersettings.LastSyncDate.ToString("yyyyMMdd");
 
             /**alert**/
@@ -107,11 +110,7 @@ namespace DianetMob.Utils
             }
         }
 
-
-
-
-
-        public async static void FullServiceLoadAndStore(User user, UserSettings usersettings)
+        public async static Task FullServiceLoadAndStore(User user, UserSettings usersettings)
         {
 
             string gencall = "/accesstoken=" + user.AccessToken + "/upddate=" + usersettings.LastSyncDate.ToString("yyyyMMdd");
@@ -156,7 +155,30 @@ namespace DianetMob.Utils
 
             ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
             servWeight.SaveAllToDB();
-         
+
+        }
+
+        public static string GreeklishToGreek(string text)
+        {
+            string[] greek = new string[] { "α", "ά", "Ά", "Α", "β", "Β", "γ", "Γ", "δ", "Δ", "ε", "έ", "Ε", "Έ", "ζ", "Ζ", "η", "ή", "Η", "θ", "Θ", "ι", "ί", "ϊ", "ΐ", "Ι", "Ί", "κ", "Κ", "λ", "Λ", "μ", "Μ", "ν", "Ν", "ξ", "Ξ", "ο", "ό", "Ο", "Ό", "π", "Π", "ρ", "Ρ", "σ", "ς", "Σ", "τ", "Τ", "υ", "ύ", "Υ", "Γ", "φ", "Φ", "χ", "Χ", "ψ", "Ψ", "ω", "ώ", "Ω", "Ώ", "", "", "", "", "", "", "", "" };
+            string[] english = new string[] { "a", "a", "A", "A", "b", "B", "g", "G", "d", "D", "e", "e", "E", "E", "z", "Z", "i", "i", "I", "th", "Th", "i", "i", "i", "i", "I", "I", "k", "K", "l", "L", "m", "M", "n", "N", "x", "X", "o", "o", "O", "O", "p", "P", "r", "R", "s", "s", "S", "t", "T", "u", "u", "Y", "Y", "f", "F", "ch", "Ch", "ps", "Ps", "o", "o", "O", "O", " ", "\"", ",", ".", "(", ")", "!", "*" };
+            for (int i = 0; i < greek.Length; i++)
+            {
+                text = text.Replace(english[i], greek[i]);
+            }
+            return text;
+
+        }
+        public static string NormalizeGreek(string text)
+        {
+            string[] greek = new string[] { "α", "ά", "Ά", "Α", "β", "Β", "γ", "Γ", "δ", "Δ", "ε", "έ", "Ε", "Έ", "ζ", "Ζ", "η", "ή", "Η", "θ", "Θ", "ι", "ί", "ϊ", "ΐ", "Ι", "Ί", "κ", "Κ", "λ", "Λ", "μ", "Μ", "ν", "Ν", "ξ", "Ξ", "ο", "ό", "Ο", "Ό", "π", "Π", "ρ", "Ρ", "σ", "ς", "Σ", "τ", "Τ", "υ", "ύ", "Υ", "Γ", "φ", "Φ", "χ", "Χ", "ψ", "Ψ", "ω", "ώ", "Ω", "Ώ", " ", "\"", ",", ".", "(", ")", "!", "*" };
+            string[] greekNorm = new string[] { "α", "α", "α", "α", "β", "β", "γ", "γ", "δ", "δ", "ε", "ε", "ε", "ε", "ζ", "ζ", "η", "η", "η", "θ", "θ", "ι", "ι", "ι", "ι", "ι", "ι", "κ", "κ", "λ", "λ", "μ", "μ", "ν", "ν", "ξ", "ξ", "ο", "ο", "ο", "ο", "π", "π", "ρ", "ρ", "σ", "ς", "σ", "τ", "τ", "υ", "υ", "γ", "γ", "φ", "φ", "χ", "χ", "ψ", "ψ", "ω", "ω", "ω", "ω", "", "", "", "", "", "", "", "" };
+            for (int i = 0; i < greek.Length; i++)
+            {
+                text = text.Replace(greek[i], greekNorm[i]);
+            }
+            return text;
+
         }
     }
 }

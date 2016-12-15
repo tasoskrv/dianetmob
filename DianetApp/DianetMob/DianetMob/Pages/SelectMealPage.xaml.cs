@@ -27,7 +27,7 @@ namespace DianetMob.Pages
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 counter1Picker.Items.Add(i.ToString());
             }

@@ -1,5 +1,6 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
+using DianetMob.Utils;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,10 @@ namespace DianetMob.Pages
         public void OnSearchBarTextChanged(object sender, EventArgs eventArgs)
         {
             records.Clear();
-            IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal FROM meal WHERE name LIKE ?", "%" + ASearchBar.Text + "% and active=1");
+            string str= GenLib.NormalizeGreek(GenLib.GreeklishToGreek(ASearchBar.Text));
+            if (ASearchBar.Text.Equals(""))
+                return;
+            IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName FROM meal WHERE NormalizedName LIKE '" + str + "%'" );
             foreach (Meal meal in meals)
             {
                 records.Add(new Meal { Name = meal.Name, IDMeal = meal.IDMeal });
