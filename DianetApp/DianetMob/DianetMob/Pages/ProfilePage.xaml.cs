@@ -18,7 +18,7 @@ namespace DianetMob.Pages
         public ProfilePage()
         {
             InitializeComponent();
-            FillInSettingsLoggedIn();
+            FillInSettingsLoggedIn();            
             BindingContext = StorageManager.GetConnectionInfo().LoginUser;
         }
 
@@ -27,27 +27,31 @@ namespace DianetMob.Pages
             //fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";
         }
         
-        private void OnEditClicked(object sender, EventArgs e)
+        private void OnProfileSubmitClicked(object sender, EventArgs e)
         {
-            fFirstNameEntry.IsEnabled = true;
-            fSurNameEntry.IsEnabled = true;
-            //fEmailEntry.IsEnabled = true;
-            fbirthDatePicker.IsEnabled = true;
-            fSexPicker.IsEnabled = true;
-            fHeightPicker.IsEnabled = true;
-            fHeightEntry.IsEnabled = true;
-            fWristEntry.IsEnabled = true;
-        }
-
-        private void OnSaveSettingsClicked(object sender, EventArgs e)
-        {
-            if (fFirstNameEntry.IsEnabled || fSurNameEntry.IsEnabled || fbirthDatePicker.IsEnabled ||
-                fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled)
+            if (ProfileBtn.Text.ToLower().Equals("edit"))
             {
-                if (AllFieldsAreFilled())
+                ProfileBtn.Text = "Save";
+                fFirstNameEntry.IsEnabled = true;
+                fSurNameEntry.IsEnabled = true;
+                //fEmailEntry.IsEnabled = true;
+                fbirthDatePicker.IsEnabled = true;
+                fSexPicker.IsEnabled = true;
+                fHeightPicker.IsEnabled = true;
+                fHeightEntry.IsEnabled = true;
+                fWristEntry.IsEnabled = true;
+            }
+            else
+            {
+                ProfileBtn.Text = "Edit";
+                if (fFirstNameEntry.IsEnabled || fSurNameEntry.IsEnabled || fbirthDatePicker.IsEnabled ||
+                    fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled)
                 {
-                    StorageManager.UpdateData(StorageManager.GetConnectionInfo().LoginUser);
-                    RefreshPage();
+                    if (AllFieldsAreFilled())
+                    {
+                        StorageManager.UpdateData(StorageManager.GetConnectionInfo().LoginUser);
+                        RefreshPage();
+                    }
                 }
             }
         }

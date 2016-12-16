@@ -10,16 +10,19 @@
     
 <ContentPage.Content>
   <StackLayout VerticalOptions="StartAndExpand" >
-    <ListView x:Name="ListViewAlerts" ItemTapped="OnItemTapped">
+    <ListView x:Name="ListViewAlerts" ItemTapped="OnItemTapped" RowHeight="70">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Orientation="Horizontal">
-              <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}"
-                     TextColor="#f35e20" />
-              <Label Text="{Binding Description}"
-                     HorizontalOptions="EndAndExpand"
-                     TextColor="#503026" />
+            <StackLayout Orientation="Horizontal" Padding="5">
+              <Image Source="alarm.png" />              
+              <StackLayout Orientation="Vertical">
+                <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#c3c3c3" />
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="{Binding Recurrence}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
+                  <Label Text="{Binding Description}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>                
+                </StackLayout>
+              </StackLayout>                               
             </StackLayout>
           </ViewCell>
         </DataTemplate>

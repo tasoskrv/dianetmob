@@ -9,8 +9,7 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text=""  Clicked="OnEditClicked" Icon="edit.png"/>
-    <ToolbarItem x:Name="fSaveBtn" Text="SAVE" Clicked="OnSaveSettingsClicked"/>    
+    <ToolbarItem x:Name="ProfileBtn" Text="Edit" Clicked="OnProfileSubmitClicked"/>
   </ContentPage.ToolbarItems>
 
   <ContentPage.Content>
@@ -41,7 +40,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="45"/>
           </Grid.RowDefinitions>
-          <Label Grid.Row="0" Grid.Column="0" x:Name="fFirstNameLabel" Text="First Name:" FontSize="20" />
+          <Label Grid.Row="0" Grid.Column="0" x:Name="fFirstNameLabel" Text="First Name:" FontSize="20"/>
           <Entry Grid.Row="1" Grid.Column="0" x:Name="fFirstNameEntry" Text="{Binding FirstName, Mode=TwoWay}" Keyboard="Text" FontSize="20" IsEnabled="False"/>
         
           <Label Grid.Row="2" Grid.Column="0" x:Name="fSurNameLabel" Text="Last Name:" FontSize="20"/>

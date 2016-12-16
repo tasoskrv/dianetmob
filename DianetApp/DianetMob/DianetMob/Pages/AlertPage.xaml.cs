@@ -31,7 +31,7 @@ namespace DianetMob.Pages
             IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Alert alt in alts)
             {
-                records.Add(new Alert { IDAlert = alt.IDAlert, Description = alt.Description, InsertDate = alt.InsertDate });
+                records.Add(new Alert { IDAlert = alt.IDAlert, Recurrence = alt.Recurrence, Description = alt.Description, InsertDate = alt.InsertDate });
             }
         }
 
