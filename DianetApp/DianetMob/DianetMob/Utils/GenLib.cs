@@ -159,7 +159,7 @@ namespace DianetMob.Utils
                 servUserFood.SaveAllToDB();
 
                 ModelService<UserMeal> servUserMeal = await ServiceConnector.GetServiceData<ModelService<UserMeal>>("/usermeal/getall" + usercall);
-                servUserMeal.SaveAllToDBWithServerID();
+                servUserMeal.SaveAllToDB();
 
                 ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
                 servWeight.SaveAllToDB();

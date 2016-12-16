@@ -56,7 +56,7 @@ namespace DianetMob.DB.Entities
                 }
             }
         }
-
+        /*
         [Ignore]
         public DateTime PropertyMinimumDate
         {
@@ -69,7 +69,7 @@ namespace DianetMob.DB.Entities
                 propertyMinimumDate = value;
             }
         }
-
+        */
         public DateTime InsertDate { get;set; }
 
         public DateTime UpdateDate { get; set; }
@@ -77,9 +77,9 @@ namespace DianetMob.DB.Entities
         public Weight()
         {
             IDServer = -1;
+            weightDate = DateTime.UtcNow;
         }
-
-
+        
         public override string ToString()
         {
             string str = "";

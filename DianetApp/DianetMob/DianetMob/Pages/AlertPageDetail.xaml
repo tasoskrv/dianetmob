@@ -32,8 +32,8 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Text="AlertTime" FontSize="20"/>
-        <DatePicker Grid.Row="1" Grid.Column="0" x:Name="alerttime" Format="dd/MM/yyyy" MinimumDate="{Binding PropertyMinimumDate}"
-                    Date="{Binding AlertTime, Mode=TwoWay, Converter={StaticResource dateConverter}}" />
+        <!--MinimumDate="{Binding AlertTime}"-->
+        <DatePicker Grid.Row="1" Grid.Column="0" x:Name="alerttime" Format="dd/MM/yyyy" Date="{Binding AlertTime, Mode=TwoWay, Converter={StaticResource dateConverter}}" />
 
         <Label Grid.Row="2" Grid.Column="0" Text="Recurrence" FontSize="20"/>
         <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Recurrence, Mode=TwoWay}"/>

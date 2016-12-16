@@ -14,7 +14,7 @@ namespace DianetMob.DB.Entities
         private string recurrence;
         private string description;
         private DateTime propertyMinimumDate;
-
+                
         [PrimaryKey, AutoIncrement]
         public int IDAlert { get; set; }
 
@@ -72,19 +72,6 @@ namespace DianetMob.DB.Entities
             }
         }
 
-        [Ignore]
-        public DateTime PropertyMinimumDate
-        {
-            get
-            {
-                return DateTime.UtcNow;
-            }
-            set
-            {
-                propertyMinimumDate = value;
-            }
-        }
-
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
@@ -92,6 +79,7 @@ namespace DianetMob.DB.Entities
         public Alert()
         {
             IDServer = -1;
+            alerttime = DateTime.UtcNow;
         }        
 
         public override string ToString()
