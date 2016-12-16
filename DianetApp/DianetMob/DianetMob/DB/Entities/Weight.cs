@@ -12,7 +12,6 @@ namespace DianetMob.DB.Entities
     {
         private int weight;
         private DateTime weightDate;
-        private DateTime propertyMinimumDate;
 
         [PrimaryKey, AutoIncrement]
         public int IDWeight { get; set; }

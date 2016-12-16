@@ -121,7 +121,7 @@ namespace DianetMob.Utils
         {
             try
             {
-                string gencall = "/accesstoken=" + user.AccessToken + "/upddate=" + usersettings.LastSyncDate.ToString("yyyyMMdd");
+                string gencall = "/accesstoken=" + user.AccessToken + "/updatedate=" + usersettings.LastSyncDate.ToString("yyyyMMdd");
                 string usercall = gencall + "/iduser=" + user.IDUser.ToString();
 
                 //TODO: service call check services
@@ -144,25 +144,25 @@ namespace DianetMob.Utils
 
                 //User calls
                 ModelService<Alert> servAlert = await ServiceConnector.GetServiceData<ModelService<Alert>>("/alert/getall" + usercall);
-                servAlert.SaveAllToDB();
+                servAlert.SaveAllToDBWithServerID("IDAlert");
 
                 ModelService<Exercise> servExercise = await ServiceConnector.GetServiceData<ModelService<Exercise>>("/exercise/getall" + usercall);
-                servExercise.SaveAllToDB();
+                servExercise.SaveAllToDBWithServerID("IDExercise");
 
                 ModelService<Plan> servPlan = await ServiceConnector.GetServiceData<ModelService<Plan>>("/plan/getall" + usercall);
-                servPlan.SaveAllToDB();
+                servPlan.SaveAllToDBWithServerID("IDPlan");
 
                 ModelService<Subscription> servSubscription = await ServiceConnector.GetServiceData<ModelService<Subscription>>("/subscription/getall" + usercall);
-                servSubscription.SaveAllToDB();
+                servSubscription.SaveAllToDBWithServerID("IDSubscription");
 
                 ModelService<UserFood> servUserFood = await ServiceConnector.GetServiceData<ModelService<UserFood>>("/userfood/getall" + usercall);
-                servUserFood.SaveAllToDB();
+                servUserFood.SaveAllToDBWithServerID("IDUserFood");
 
                 ModelService<UserMeal> servUserMeal = await ServiceConnector.GetServiceData<ModelService<UserMeal>>("/usermeal/getall" + usercall);
-                servUserMeal.SaveAllToDB();
+                servUserMeal.SaveAllToDBWithServerID("IDUserMeal");
 
                 ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
-                servWeight.SaveAllToDB();
+                servWeight.SaveAllToDBWithServerID("IDWeight");
             }
             catch (Exception ex)
             {

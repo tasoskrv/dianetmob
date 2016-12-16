@@ -70,6 +70,7 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TableMapping\MapID.cs" />
     <Compile Include="Views\AddMealView.xaml.cs">
       <DependentUpon>AddMealView.xaml</DependentUpon>
     </Compile>

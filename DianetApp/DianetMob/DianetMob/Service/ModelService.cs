@@ -1,4 +1,5 @@
 ﻿using DianetMob.DB;
+using DianetMob.TableMapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,25 +57,37 @@ namespace DianetMob.Service
             }
 
         }
-        public void SaveAllToDBWithServerID(Type k)
+        public void SaveAllToDBWithServerID(string field)
         {
             for (var i = 0; i < totalRows; i++)
             {
-                Type myType = typeof(T);
-                var value = (string)data[i].GetType().GetRuntimeProperty("IdServer").GetValue(this, null);
-                IEnumerable<object> alts = StorageManager.GetConnection().Query<object>("SELECT * FROM "+ data[i].GetType().Name + "  WHERE IDServer=" + value);
+                Type t = data[i].GetType();
+
+                PropertyInfo prop = GetProperty(t.GetTypeInfo(), "IDServer");
+                var value = prop.GetValue(data[i]).ToString();
+                List<MapID> alts = StorageManager.GetConnection().Query<MapID>("SELECT "+field+" as ID FROM " + data[i].GetType().Name + "  WHERE IDServer=" + value);
                 if (alts.Count() == 0) {
                     StorageManager.InsertData<T>(data[i]);
                 }
                 else
                 {
-                    data[i].GetType().GetRuntimeProperty("IdUserMeal").SetValue(this, null);
+                    prop = GetProperty(t.GetTypeInfo(), field);
+                    prop.SetValue(data[i], alts[i].ID);
                     StorageManager.UpdateData<T>(data[i]);
                 }
             }
 
         }
-        
+
+        private static PropertyInfo GetProperty(TypeInfo typeInfo, string propertyName)
+        {
+            var propertyInfo = typeInfo.GetDeclaredProperty(propertyName);
+            if (propertyInfo == null && typeInfo.BaseType != null)
+            {
+                propertyInfo = GetProperty(typeInfo.BaseType.GetTypeInfo(), propertyName);
+            }
+            return propertyInfo;
+        }
 
         public void SaveRecordToDB(T AObj)
         {

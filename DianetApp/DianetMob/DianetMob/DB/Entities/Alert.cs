@@ -13,7 +13,6 @@ namespace DianetMob.DB.Entities
         private DateTime alerttime;
         private string recurrence;
         private string description;
-        private DateTime propertyMinimumDate;
                 
         [PrimaryKey, AutoIncrement]
         public int IDAlert { get; set; }
