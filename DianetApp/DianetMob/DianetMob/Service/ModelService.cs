@@ -72,7 +72,7 @@ namespace DianetMob.Service
                 else
                 {
                     prop = GetProperty(t.GetTypeInfo(), field);
-                    prop.SetValue(data[i], alts[i].ID);
+                    prop.SetValue(data[i], alts[0].ID);
                     StorageManager.UpdateData<T>(data[i]);
                 }
             }
