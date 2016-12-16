@@ -5,7 +5,7 @@
              x:Class="DianetMob.Pages.MyWeightDetail">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Add"  Clicked="OnSaveWeightClicked"/>
+    <ToolbarItem Text="Save"  Clicked="OnSaveWeightClicked"/>
   </ContentPage.ToolbarItems>  
   
   <ContentPage.Resources>

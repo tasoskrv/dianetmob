@@ -4,15 +4,12 @@
              x:Class="DianetMob.Pages.MyWeight"
              Title="Βάρος">
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text=""  Clicked="OnAddWeightClicked" Icon="plus.png"/> 
+    <ToolbarItem Text="Add Weight" Clicked="OnAddWeightClicked"/> 
+    <ToolbarItem Text="Add Goal" Clicked="OnAddPlanClicked"/> 
   </ContentPage.ToolbarItems>
 
-  <StackLayout >
-    <WebView x:Name="webview2" HeightRequest="500"
-          WidthRequest="500" />
-    <Button  Clicked="OnAddWeightClicked"  Image="weight1.png" BackgroundColor="#2196F3"  HorizontalOptions="End"/>
-    <Button  Clicked="OnAddPlanClicked"  Image="goal1.png" BackgroundColor="#2196F3" HorizontalOptions="End"/>
-
-    </StackLayout> 
+  <StackLayout>
+    <WebView x:Name="webview2" HeightRequest="500" WidthRequest="500" />
+  </StackLayout> 
 
 </ContentPage>

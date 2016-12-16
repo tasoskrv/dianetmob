@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.PlanPage">
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text=""  Clicked="OnAddPlanClicked" Icon="plus.png"/>
+    <ToolbarItem Text="Add"  Clicked="OnAddPlanClicked"/>
   </ContentPage.ToolbarItems>
 
   <StackLayout VerticalOptions="StartAndExpand" >

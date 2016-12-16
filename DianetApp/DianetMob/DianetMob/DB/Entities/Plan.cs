@@ -12,7 +12,6 @@ namespace DianetMob.DB.Entities
     {
         private double goal;
         private DateTime goaldate;
-        private DateTime propertyMinimumDate;
 
         [PrimaryKey, AutoIncrement]
         public int IDPlan { get; set; }
@@ -53,20 +52,7 @@ namespace DianetMob.DB.Entities
                 }
             }
         }
-
-        [Ignore]
-        public DateTime PropertyMinimumDate
-        {
-            get
-            {
-                return DateTime.UtcNow;
-            }
-            set
-            {
-                propertyMinimumDate = value;
-            }
-        }
-
+       
         public int UserStep { get; set; }
 
         public int PlanType { get; set; }
@@ -78,6 +64,7 @@ namespace DianetMob.DB.Entities
         public Plan()
         {
             IDServer = -1;
+            goaldate = DateTime.UtcNow;
         }
 
         public override string ToString()

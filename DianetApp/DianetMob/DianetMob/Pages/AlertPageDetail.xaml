@@ -5,7 +5,7 @@
              x:Class="DianetMob.Pages.AlertPageDetail">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Add"  Clicked="OnSaveAlertClicked"/>
+    <ToolbarItem Text="Save"  Clicked="OnSaveAlertClicked"/>
   </ContentPage.ToolbarItems>
 
   <ContentPage.Resources>

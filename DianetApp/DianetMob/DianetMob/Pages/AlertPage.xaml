@@ -5,7 +5,7 @@
 
   
 <ContentPage.ToolbarItems>
-  <ToolbarItem Text=""  Clicked="OnAddAlertClicked" Icon="plus.png"/>
+  <ToolbarItem Text="Add"  Clicked="OnAddAlertClicked" />
 </ContentPage.ToolbarItems>    
     
 <ContentPage.Content>

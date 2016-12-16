@@ -4,7 +4,7 @@
              x:Class="DianetMob.Pages.MyFoodPage">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text=""  Clicked="OnAddFoodClicked" Icon="plus.png"/>
+    <ToolbarItem Text="Add" Clicked="OnAddFoodClicked" />
   </ContentPage.ToolbarItems>
   
   <StackLayout VerticalOptions="StartAndExpand" >

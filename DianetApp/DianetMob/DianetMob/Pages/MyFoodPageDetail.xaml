@@ -5,7 +5,7 @@
              x:Class="DianetMob.Pages.MyFoodPageDetail">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Add"  Clicked="OnSaveFoodClicked"/>
+    <ToolbarItem Text="Save"  Clicked="OnSaveFoodClicked"/>
   </ContentPage.ToolbarItems>
 
   <!--ContentPage.Resources>
