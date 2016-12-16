@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,6 +56,25 @@ namespace DianetMob.Service
             }
 
         }
+        public void SaveAllToDBWithServerID(Type k)
+        {
+            for (var i = 0; i < totalRows; i++)
+            {
+                Type myType = typeof(T);
+                var value = (string)data[i].GetType().GetRuntimeProperty("IdServer").GetValue(this, null);
+                IEnumerable<object> alts = StorageManager.GetConnection().Query<object>("SELECT * FROM "+ data[i].GetType().Name + "  WHERE IDServer=" + value);
+                if (alts.Count() == 0) {
+                    StorageManager.InsertData<T>(data[i]);
+                }
+                else
+                {
+                    data[i].GetType().GetRuntimeProperty("IdUserMeal").SetValue(this, null);
+                    StorageManager.UpdateData<T>(data[i]);
+                }
+            }
+
+        }
+        
 
         public void SaveRecordToDB(T AObj)
         {

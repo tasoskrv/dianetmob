@@ -19,6 +19,7 @@ namespace DianetMob.DB.Entities
         [ForeignKey(typeof(MealUnit))]
         public int IDMealUnit { get; set; }
 
+        [Indexed(Name = "IDServerUserMeal", Order = 1)]
         public int IDServer { get; set; }
 
         public int IDCategory { get; set; }

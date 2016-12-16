@@ -15,7 +15,11 @@ namespace DianetMob.Service
         private static HttpClient client = new HttpClient();
         private static IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
         private static BooleanJsonConverter boolConverter = new BooleanJsonConverter();
-
+        private static JsonSerializerSettings Jsonset = new JsonSerializerSettings()
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            MissingMemberHandling = MissingMemberHandling.Ignore
+        };
         public static async Task<T> GetServiceData<T>(string url)
         {
             var uri = new Uri(BaseUrl + url);
@@ -23,6 +27,7 @@ namespace DianetMob.Service
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
+                JsonConvert.DefaultSettings = () => Jsonset;
                 return JsonConvert.DeserializeObject<T>(content, dateTimeConverter, boolConverter);
             }
             return default(T);
