@@ -14,24 +14,29 @@
     </ResourceDictionary>
   </ContentPage.Resources-->
 
-  <Grid Margin="20,0,0,0" RowSpacing="0">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="30" />
-      <RowDefinition Height="45" />
 
-      <RowDefinition Height="30" />
-      <RowDefinition Height="45" />
-    </Grid.RowDefinitions>
+  <ContentPage.Content>
+    <ScrollView>
+      <Grid Margin="20,0,0,0" RowSpacing="0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="45" />
 
+        <RowDefinition Height="30" />
+        <RowDefinition Height="45" />
+      </Grid.RowDefinitions>
 
-    <Label Grid.Row="0" Grid.Column="0" Text="Name" FontSize="20"/>
-    <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" />
+        <Label Grid.Row="0" Grid.Column="0" Text="Name" FontSize="20"/>
+        <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" />
 
-    <Label Grid.Row="2" Grid.Column="0" Text="Description" FontSize="20"/>
-    <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Description, Mode=TwoWay}" />
-  </Grid>
-
+        <Label Grid.Row="2" Grid.Column="0" Text="Description" FontSize="20"/>
+        <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Description, Mode=TwoWay}" />
+      </Grid>        
+        
+    </ScrollView>
+  </ContentPage.Content>
+      
 </ContentPage>

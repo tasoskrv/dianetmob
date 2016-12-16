@@ -3,11 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.SubscriptionPage">
 
-
-  <ContentPage.Content>
-    <StackLayout>
-      
-    </StackLayout>
-  </ContentPage.Content>
+  <StackLayout VerticalOptions="StartAndExpand" >
+    <ListView x:Name="ListViewSubscription" RowHeight="70">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal" Padding="5">
+              <Image Source="myfood.png" />
+              <StackLayout Orientation="Vertical">
+               
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="{Binding Price}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
+                </StackLayout>
+              </StackLayout>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
 
 </ContentPage>
