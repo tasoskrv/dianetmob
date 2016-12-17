@@ -33,9 +33,9 @@ namespace DianetMob.Pages
         private void OnSaveFoodClicked(object sender, EventArgs e)
         {
             uFood.UpdateDate = DateTime.UtcNow;
-            if (uFood.Name.Equals(""))
+            if ((uFood.Name == null) || uFood.Name.Equals(""))
                 DisplayAlert("Please", "fill name", "OK");
-            else if (uFood.Description.Equals(""))
+            else if ((uFood.Description == null) || uFood.Description.Equals(""))
             {
                 DisplayAlert("Please", "fill description", "OK");
             }
