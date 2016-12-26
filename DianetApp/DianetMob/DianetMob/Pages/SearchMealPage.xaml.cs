@@ -49,6 +49,7 @@ namespace DianetMob.Pages
                 selectPage.IDCategorySelected = Mode;
                 selectPage.SelectedDate = SelectedDate;
                 selectPage.CalcUnits();
+                ASearchBar.Text = "";
                 await Navigation.PushAsync(selectPage);
             }
         }

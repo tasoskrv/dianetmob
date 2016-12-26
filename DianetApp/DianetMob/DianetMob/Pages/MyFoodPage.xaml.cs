@@ -32,7 +32,7 @@ namespace DianetMob.Pages
             IEnumerable<UserFood> foods = conn.Query<UserFood>("SELECT * FROM Userfood WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (UserFood food in foods)
             {
-                records.Add(new UserFood { IDUserFood = food.IDUserFood, Name = food.Name, InsertDate = food.InsertDate });
+                records.Add(new UserFood { IDUserFood = food.IDUserFood, Name = food.Name, Description= food.Description, InsertDate = food.InsertDate });
             }
         }
 
