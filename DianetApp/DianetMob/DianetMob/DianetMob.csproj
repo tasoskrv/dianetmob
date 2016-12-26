@@ -58,6 +58,9 @@
     <Compile Include="DB\Entities\Weight.cs" />
     <Compile Include="DB\ISQLite.cs" />
     <Compile Include="DB\StorageManager.cs" />
+    <Compile Include="Notification\ICrossLocalNotifications.cs" />
+    <Compile Include="Notification\ILocalNotifier.cs" />
+    <Compile Include="Notification\LocalNotification.cs" />
     <Compile Include="Pages\AddWeightPage.xaml.cs">
       <DependentUpon>AddWeightPage.xaml</DependentUpon>
     </Compile>

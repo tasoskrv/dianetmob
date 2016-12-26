@@ -5,11 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Xamarin.Forms;
 
 
 using DianetMob.Model;
+using Dianet.Notification;
+
 namespace DianetMob
 {
     public partial class App : Application
@@ -27,7 +28,15 @@ namespace DianetMob
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            
+            var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+            notifier.Notify(new LocalNotification()
+            {
+                Title = "Title",
+                Text = "Text",
+                Id = 1,
+                NotifyTime = DateTime.Now.AddSeconds(10),
+            });
         }
 
         protected override void OnSleep()
