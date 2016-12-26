@@ -1,4 +1,5 @@
-﻿using DianetMob.DB;
+﻿using Dianet.Notification;
+using DianetMob.DB;
 using DianetMob.DB.Entities;
 using DianetMob.Service;
 using SQLite;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace DianetMob.Utils
 {
@@ -17,6 +19,15 @@ namespace DianetMob.Utils
         {
             try
             {
+
+                var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+                notifier.Notify(new LocalNotification()
+                {
+                    Title = "Loading Data",
+                    Text = "Loading Database from online server",
+                    Id = 100,
+                    NotifyTime = DateTime.Now,
+                });
                 User loginUser = StorageManager.GetConnectionInfo().LoginUser;
                 UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
 
@@ -25,6 +36,13 @@ namespace DianetMob.Utils
 
                 StorageManager.GetConnectionInfo().UserSettings.LastSyncDate = DateTime.UtcNow;
                 StorageManager.UpdateData<UserSettings>(StorageManager.GetConnectionInfo().UserSettings);
+                notifier.Notify(new LocalNotification()
+                {
+                    Title = "Finish Loading Data",
+                    Text = "Your Database is synchronized",
+                    Id = 100,
+                    NotifyTime = DateTime.Now,
+                });
             }
             catch (Exception ex)
             {
