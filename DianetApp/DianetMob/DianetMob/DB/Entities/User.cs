@@ -24,7 +24,7 @@ namespace DianetMob.DB.Entities
         [MaxLength(45)]
         public string AccessToken { get; set; }
 
-        public double FacebookID { get; set; }
+        public Int64 FacebookID { get; set; }
 
         [MaxLength(45)]
         public string FirstName

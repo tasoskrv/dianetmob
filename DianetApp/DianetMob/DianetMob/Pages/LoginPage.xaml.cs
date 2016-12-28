@@ -1,7 +1,9 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
+using DianetMob.Model;
 using DianetMob.Service;
 using DianetMob.Utils;
+using Newtonsoft.Json;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace DianetMob.Pages
     public partial class LoginPage : ContentPage
     {
         SQLiteConnection conn = null;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -57,6 +60,9 @@ namespace DianetMob.Pages
             }
         }
 
+        private void OnFacebookLoginClicked(object sender, EventArgs e) {
+             App.Current.MainPage = new LoginPageFacebook();
+        }
         private void OnLoginButtonClicked(object sender, EventArgs e)
         {
             //call service example

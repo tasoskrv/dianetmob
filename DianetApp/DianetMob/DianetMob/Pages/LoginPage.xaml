@@ -7,8 +7,9 @@
     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 50, 20, 50">
       <Entry x:Name="usernameEntry" Placeholder="Username - Enter a valid email" Keyboard="Email" Completed="OnValidateEmail" Text="demo@gmail.com"/>
       <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true" Text="1"/>      
-      <Button Text="Log In" Clicked="OnLoginButtonClicked" />      
-    
+      <Button Text="Log In" Clicked="OnLoginButtonClicked" />
+      <Button Text="Log with Facebook" Clicked="OnFacebookLoginClicked" />
+
       <StackLayout Orientation="Horizontal" Margin="0, 20, 0, 0">
           <Label x:Name="Signup" Text="Sign up" HorizontalOptions="CenterAndExpand"/>
           <Label x:Name="ForgotPassword" Text="Forgot Password?" HorizontalOptions="CenterAndExpand"/> 
