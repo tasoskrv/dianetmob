@@ -50,7 +50,7 @@ namespace DianetMob.DB
                 InsertData(condb);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }

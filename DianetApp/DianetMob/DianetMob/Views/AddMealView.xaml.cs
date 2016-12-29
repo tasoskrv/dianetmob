@@ -41,11 +41,11 @@ namespace DianetMob.Views
             searchPage.Mode = 4;
             await Navigation.PushAsync(searchPage);
         }
-        async void OnAddExerciseClicked(object sender, EventArgs e)
+        void OnAddExerciseClicked(object sender, EventArgs e)
         {
             //await Navigation.PushAsync(new AddMealPage());
         }
-        async void OnAddRecordWeightClicked(object sender, EventArgs e)
+        void OnAddRecordWeightClicked(object sender, EventArgs e)
         {
             // await Navigation.PushAsync(new AddMealPage());
         }

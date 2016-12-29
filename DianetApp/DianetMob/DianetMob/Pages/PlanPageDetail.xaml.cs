@@ -14,7 +14,6 @@ namespace DianetMob.Pages
     public partial class PlanPageDetail : ContentPage
     {
         private Plan pln;
-        private Weight wgh=null;
         private SQLiteConnection conn = null;
 
         public PlanPageDetail()
