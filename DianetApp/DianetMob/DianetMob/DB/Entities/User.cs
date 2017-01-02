@@ -168,6 +168,8 @@ namespace DianetMob.DB.Entities
 
         public DateTime UpdateDate { get; set; }
 
+        public int Isactive { get; set; }
+
         public User()
         {
             IDUser = -1;
@@ -186,6 +188,7 @@ namespace DianetMob.DB.Entities
             InsertDate = DateTime.MinValue;
             UpdateDate = DateTime.MinValue;
             AdjustDiet = -1;
+            Isactive = 0;
         }
 
         public override string ToString()

@@ -94,18 +94,28 @@ namespace DianetMob.Pages
             info.Settings.LastLoggedIn = user.IDUser;
             Settings settings = info.Settings;
             StorageManager.UpdateData<Settings>(settings);
-            App.Current.MainPage = new MainPage();
-            GenLib.FullSynch();
+
+            if (user.Isactive == 0)
+            {
+                MessageLabel.Text = "User is not active";
+            }
+            else
+            {
+                App.Current.MainPage = new MainPage();
+                GenLib.FullSynch();
+            }
         }
 
         public async void AreCredentialsCorrect(User user)
         {
+            /* COMMENTED  - FIND USER LOCALLY 
             List<User> usrs = conn.Query<User>("SELECT IdUser,FirstName,LastName,Height,Birthdate,Email,Gender,HeightType,Password, AccessToken FROM User WHERE Email ='" + user.Email + "' AND Password ='" + user.Password + "'");
             if (usrs.Count > 0)
             {
                 PerformLogin(usrs[0]);
                 return;
             }
+            */
             /* e.g. /user/login/username=spiroskaravanis2@gmail.com/password=12345 */
             try
             {
