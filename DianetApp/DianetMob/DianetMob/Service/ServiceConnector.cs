@@ -12,6 +12,7 @@ namespace DianetMob.Service
     {
         private static string BaseUrl = "http://dianet.cloudocean.gr/api/v1";
         //private static string BaseUrl = "http://akv.softone.gr:8080/dianetweb/Dianet/api/v1";
+        //private static string BaseUrl = "http://localhost:80/dianetweb/Dianet/api/v1";
         private static HttpClient client = new HttpClient();
         private static IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
         private static BooleanJsonConverter boolConverter = new BooleanJsonConverter();
