@@ -61,7 +61,11 @@
     <Compile Include="DB\Entities\Weight.cs" />
     <Compile Include="DB\ISQLite.cs" />
     <Compile Include="DB\StorageManager.cs" />
+    <Compile Include="Service\IInAppService.cs" />
     <Compile Include="Model\FacebookObj.cs" />
+    <Compile Include="Model\InAppProduct.cs" />
+    <Compile Include="Model\InAppPurchase.cs" />
+    <Compile Include="Model\InAppPurchaseList.cs" />
     <Compile Include="Notification\ICrossLocalNotifications.cs" />
     <Compile Include="Notification\ILocalNotifier.cs" />
     <Compile Include="Notification\LocalNotification.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\InAppViewModel.cs" />
     <Compile Include="Views\LogView.xaml.cs">
       <DependentUpon>LogView.xaml</DependentUpon>
     </Compile>
@@ -148,6 +153,7 @@
     <Compile Include="TableMapping\MapLogData.cs" />
     <Compile Include="TableMapping\MapMealUnit.cs" />
     <Compile Include="Utils\GenLib.cs" />
+    <Compile Include="Views\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\MainPage.xaml">
@@ -237,7 +243,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
