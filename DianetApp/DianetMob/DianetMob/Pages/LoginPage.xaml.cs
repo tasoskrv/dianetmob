@@ -51,7 +51,7 @@ namespace DianetMob.Pages
             string pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
             if (usernameEntry.Text == null || !Regex.IsMatch(usernameEntry.Text, pattern))
             {
-                DisplayAlert("Please", "enter a valid email", "OK");
+                MessageLabel.Text = "Please enter a valid email";
                 return false;
             }
             else
@@ -130,9 +130,9 @@ namespace DianetMob.Pages
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                MessageLabel.Text = "Error " + ex.Message;
             }
-            await DisplayAlert("Sorry", "the credentials you have entered are wrong", "Forgot it?");
+            MessageLabel.Text = "Sorry the credentials you have entered are wrong";
         }
     }
 }

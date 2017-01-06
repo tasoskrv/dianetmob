@@ -56,13 +56,13 @@ namespace DianetMob.Pages
 
         public void RecreateData()
         {
+            return;
             string query = "Select um.IdUserMeal, um.idcategory, (mu.Calories*um.QTY) as Calories,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ?";
 
             IEnumerable<MapLogData> logrecords = conn.Query<MapLogData>(query, datePick.Date, datePick.Date);
             logview.RecreateData(logrecords, datePick.Date);
             dashboardview.FillPieContent(logrecords);
         }
-
 
         public void OnAddMealClicked(object sender, EventArgs e)
         {

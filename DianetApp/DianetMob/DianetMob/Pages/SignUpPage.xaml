@@ -50,15 +50,5 @@
       <Label x:Name="MessageLabel" TextColor="Red" HorizontalOptions="CenterAndExpand" Margin="0, 20, 0, 0"/>
     </StackLayout>      
       
-    <!--StackLayout VerticalOptions="StartAndExpand">         
-      <Entry x:Name="nameEntry" Placeholder="Name" Keyboard="Text" />
-      <Entry x:Name="surnameEntry" Placeholder="Surname" Keyboard="Text" />
-      <Entry x:Name="emailEntry" Placeholder="Email" Keyboard="Email" Completed="OnValidateEmail" />
-      <Entry x:Name="passwdEntry" Placeholder="Password" IsPassword="True" />
-      <Label x:Name="birthDateEntry" Text="Date of birth" />
-      <DatePicker x:Name="birthDate" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" />
-      <Button Text="SAVE" Clicked="OnSaveButtonClicked" />
-      <Label x:Name="messageLabel" />
-    </StackLayout-->
   </ContentPage.Content>
 </ContentPage>
