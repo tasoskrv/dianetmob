@@ -1,6 +1,7 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
 using DianetMob.Service;
+using DianetMob.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,9 @@ namespace DianetMob.Pages
         {
             try
             {
-                if (AllFieldsAreFilled() && CheckValidMail())
+                if (AllFieldsAreFilled() && CheckValidMail() && CheckPassword())
                 {
+                    submitBtn.IsEnabled = false;
                     int token = GetRegistrationToken(emailEntry.Text, passwdEntry.Text);
                     User user = new User();
                     user.FirstName = nameEntry.Text;
@@ -39,7 +41,7 @@ namespace DianetMob.Pages
                     user.Password = passwdEntry.Text;
                     user.InsertDate = DateTime.UtcNow;
                     user.UpdateDate = user.InsertDate;
-                    user.Birthdate = birthDate.Date;
+                    //user.Birthdate = birthDate.Date;
                     user.AccessToken = token.ToString();
                     ModelService<User> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/insert/", user);
                     if ((srvNewUser.success == true) && (srvNewUser.ID > 0) && !(srvNewUser.ErrorCode > 0))
@@ -49,23 +51,28 @@ namespace DianetMob.Pages
                         user.IDUser = srvNewUser.ID;
                         user.AccessToken = srvNewUser.AccessToken;
                         srvNewUser.InsertRecordToDB(user);
-                        App.Current.MainPage = new SignUpPage2();
+                        submitBtn.IsEnabled = true;
+                        App.Current.MainPage = new Registered();
                         return;
                     }
                     else if (srvNewUser.ErrorCode == 2)
                     {
-                        MessageLabel.Text = "User already exists";                        
+                        MessageLabel.Text = "User already exists";
                     }
                     else
                     {
-                        await DisplayAlert("Warning", srvNewUser.message, "OK");
+                        MessageLabel.Text = "Warning - " + srvNewUser.message;
                     }
                     return;
+                }
+                else
+                {
+                    MessageLabel.Text = "Something went wrong";
                 }
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                MessageLabel.Text = "Error" + ex.Message;
             }
         }
 
@@ -81,30 +88,33 @@ namespace DianetMob.Pages
 
         private bool CheckValidMail()
         {
-            string pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
-            if (!Regex.IsMatch(emailEntry.Text, pattern))
+            bool isValid = GenLib.CheckValidMail(emailEntry.Text);
+            if (!isValid)
             {
-                DisplayAlert("Please", "enter a valid email", "OK");
-                return false;
+                MessageLabel.Text = "Please enter a valid email";
             }
-            else
-            {
-                return true;
-            }
+            return isValid;
         }
 
         private bool AllFieldsAreFilled()
         {
-            if (emailEntry.Text == null || nameEntry.Text == null || surnameEntry.Text == null || passwdEntry.Text == null ||
-                emailEntry.Text == "" || nameEntry.Text == "" || surnameEntry.Text == "" || passwdEntry.Text == "")
+            if (emailEntry.Text == null || nameEntry.Text == null || surnameEntry.Text == null || passwdEntry.Text == null || passwdRetype.Text == null ||
+                emailEntry.Text == "" || nameEntry.Text == "" || surnameEntry.Text == "" || passwdEntry.Text == "" || passwdRetype.Text == "")
             {
                 MessageLabel.Text = "Please fill all fields";
                 return false;
             }
-            else
+            return true;            
+        }
+
+        private bool CheckPassword()
+        {
+            if (passwdEntry.Text != passwdRetype.Text)
             {
-                return true;
+                MessageLabel.Text = "Passwords do not match";
+                return false;
             }
+            return true;
         }
     }
 }

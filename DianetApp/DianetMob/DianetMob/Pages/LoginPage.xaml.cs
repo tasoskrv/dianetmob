@@ -35,7 +35,7 @@ namespace DianetMob.Pages
                 new TapGestureRecognizer()
                 {
                     Command = new Command(() => {
-                        //TODO forgot password
+                        App.Current.MainPage = new ForgotPasswordPage();
                     })
                 }
             );
@@ -132,7 +132,7 @@ namespace DianetMob.Pages
             {
                 MessageLabel.Text = "Error " + ex.Message;
             }
-            MessageLabel.Text = "Sorry the credentials you have entered are wrong";
+            MessageLabel.Text = "Wrong credentials";
         }
     }
 }

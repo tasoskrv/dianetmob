@@ -36,15 +36,12 @@ namespace DianetMob.Pages
             webview2.Source = html;
         }
 
-
-
         protected override void OnAppearing()
         {
             //records.Clear();
             IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, GoalDate FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             // prepei na kathorisoume poies times apo autes tou wghts k plans theloume na blepoume sto Chart
-
              
            /* foreach (Weight wght in wghts)
             {
@@ -73,7 +70,7 @@ namespace DianetMob.Pages
 
 
         private string FillContent(int v1, int v2, int v3, int v4)
-    {
+        {
 
             return "<!doctype html><html><head> <script src=\"file:///android_asset/Chart.bundle.js\"></script><script src=\"file:///android_asset/utils.js\"></script><style>" +
                     "canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; } </style>" +
@@ -89,12 +86,8 @@ namespace DianetMob.Pages
                     "var dataString = dataset.data[index].toString(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; var padding = 5; var position = element.tooltipPosition();" +
                     "ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);  });} }); }}); " +
                     "window.onload = function() { var ctx = document.getElementById(\"canvas\").getContext(\"2d\");  window.myBar = new Chart(ctx, {" +
-                    "type: 'bar', data: barChartData, options: { title: { display: true },} });}; </script></body></html>  ";
-                
-
-
-
+                    "type: 'bar', data: barChartData, options: { title: { display: true },} });}; </script></body></html>  ";                
         }
 
-} 
+    } 
 }

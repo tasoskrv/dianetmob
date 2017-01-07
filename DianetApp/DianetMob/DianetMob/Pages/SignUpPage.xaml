@@ -3,51 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.SignUpPage">
   <ContentPage.Content>
-
+    
     <StackLayout Orientation="Vertical">
+      <Image Source="logo1.png" Margin="20, 30, 20, 20" />
+
       <Grid Margin="20,0,0,0" RowSpacing="0">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-          <RowDefinition Height="30"/>
+          <RowDefinition Height="45"/>
           <RowDefinition Height="45"/>
 
-          <RowDefinition Height="30"/>
+          <RowDefinition Height="45"/>
           <RowDefinition Height="45"/>
 
-          <RowDefinition Height="30"/>
           <RowDefinition Height="45"/>
 
-          <RowDefinition Height="30"/>
-          <RowDefinition Height="45"/>
-
-          <RowDefinition Height="30"/>
-          <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
                
-        <Label Grid.Row="0" Grid.Column="0" Text="Name" FontSize="20"/>
-        <Entry Grid.Row="1" Grid.Column="0" x:Name="nameEntry" Keyboard="Text" />
-
-        <Label Grid.Row="2" Grid.Column="0" Text="Surname" FontSize="20"/>
-        <Entry Grid.Row="3" Grid.Column="0"  x:Name="surnameEntry" Keyboard="Text" /> 
-
-        <Label Grid.Row="4" Grid.Column="0" Text="Email" FontSize="20"/>
-        <Entry Grid.Row="5" Grid.Column="0" x:Name="emailEntry" Keyboard="Email" Completed="OnValidateEmail" />
-
-        <Label Grid.Row="6" Grid.Column="0" Text="Password" FontSize="20"/>
-        <Entry Grid.Row="7" Grid.Column="0" x:Name="passwdEntry" IsPassword="True" />
-
-        <Label Grid.Row="8" Grid.Column="0" x:Name="birthDateEntry" Text="Date of birth" FontSize="20"/>
-        <DatePicker Grid.Row="9" Grid.Column="0" x:Name="birthDate" Format="dd-MM-yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" />
+        <Entry Grid.Row="0" Grid.Column="0" x:Name="nameEntry" Keyboard="Text" Placeholder="Name"/>
+        <Entry Grid.Row="1" Grid.Column="0"  x:Name="surnameEntry" Keyboard="Text" Placeholder="Surname"/>
+        <Entry Grid.Row="2" Grid.Column="0" x:Name="emailEntry" Keyboard="Email" Completed="OnValidateEmail" Placeholder="Email"/>
+        <Entry Grid.Row="3" Grid.Column="0" x:Name="passwdEntry" IsPassword="True" Placeholder="Password"/>
+        <Entry Grid.Row="4" Grid.Column="0" x:Name="passwdRetype" IsPassword="True" Placeholder="Retype Password"/>
       </Grid>
       
       <StackLayout Orientation="Horizontal" HorizontalOptions="Center">        
-        <Button Text="Cancel" Clicked="OnCancelButtonTap" />
-        <Button Text="Submit" Clicked="OnSubmitButtonTap" />
+        <Button Text="Login" Clicked="OnCancelButtonTap" />
+        <Button Text="Register" Clicked="OnSubmitButtonTap" x:Name="submitBtn" />
       </StackLayout>
 
-      <Label x:Name="MessageLabel" TextColor="Red" HorizontalOptions="CenterAndExpand" Margin="0, 20, 0, 0"/>
+      <Label x:Name="MessageLabel" TextColor="Red" HorizontalOptions="CenterAndExpand" Margin="0, 20, 0, 0" FontSize="Medium"/>
     </StackLayout>      
       
   </ContentPage.Content>
