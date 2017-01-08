@@ -15,11 +15,15 @@ namespace DianetMob.Pages
 {
     public partial class ForgotPasswordPage : ContentPage
     {
-        SQLiteConnection conn = null;
 
         public ForgotPasswordPage()
         {
             InitializeComponent(); 
+        }
+
+        private string GetRecoverToken(string mail)
+        {
+            return (mail.Length * 9999888).ToString();
         }
 
         private async void OnMailSendButtonClicked(object sender, EventArgs e)
@@ -39,52 +43,23 @@ namespace DianetMob.Pages
             {                
                 mailSend.IsEnabled = false;
                 User user = new User();
-                user.Email = emailEntry.Text;                
-                ModelService<User> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/recover/", user);
-                if (srvNewUser.success == true)
+                user.Email = emailEntry.Text;
+                user.AccessToken = this.GetRecoverToken(user.Email.ToString());
+                
+                ModelService<User> srvRecoverUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/recover/", user);
+                if (srvRecoverUser.success == true)
                 {
-                    user.IDUser = srvNewUser.ID;
-                    user.AccessToken = srvNewUser.AccessToken;
-                    srvNewUser.InsertRecordToDB(user);
-                    mailSend.IsEnabled = true;
                     App.Current.MainPage = new LoginPage();
-                    return;
                 }
-                else if (srvNewUser.ErrorCode == 2)
+                else if (srvRecoverUser.ErrorCode == 2)
                 {
                     MessageLabel.Text = "User not found";
                 }
                 else
                 {
-                    MessageLabel.Text = "Warning - " + srvNewUser.message;
+                    MessageLabel.Text = "Something went wrong";
                 }
-                return;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                mailSend.IsEnabled = true;                
             }
         }        
     }
