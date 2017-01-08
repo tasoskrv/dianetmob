@@ -40,6 +40,8 @@ namespace DianetMob.DB.Entities
 
         public int IDLang { get; set; }
 
+        public int IDUser { get; set; }
+
         [MaxLength(20)]
         public string Fertility { get; set; }
 

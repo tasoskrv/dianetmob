@@ -173,9 +173,6 @@ namespace DianetMob.Utils
                 ModelService<Subscription> servSubscription = await ServiceConnector.GetServiceData<ModelService<Subscription>>("/subscription/getall" + usercall);
                 servSubscription.SaveAllToDBWithServerID("IDSubscription");
 
-                ModelService<UserFood> servUserFood = await ServiceConnector.GetServiceData<ModelService<UserFood>>("/userfood/getall" + usercall);
-                servUserFood.SaveAllToDBWithServerID("IDUserFood");
-
                 ModelService<UserMeal> servUserMeal = await ServiceConnector.GetServiceData<ModelService<UserMeal>>("/usermeal/getall" + usercall);
                 servUserMeal.SaveAllToDBWithServerID("IDUserMeal");
 

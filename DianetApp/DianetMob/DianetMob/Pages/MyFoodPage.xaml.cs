@@ -16,7 +16,7 @@ namespace DianetMob.Pages
     {
       
         private SQLiteConnection conn = null;
-        private ObservableCollection<UserFood> records = new ObservableCollection<UserFood>();
+        private ObservableCollection<Meal> records = new ObservableCollection<Meal>();
         private MyFoodPageDetail myFoodDt = new MyFoodPageDetail();
 
         public MyFoodPage()
@@ -29,17 +29,17 @@ namespace DianetMob.Pages
         protected override void OnAppearing()
         {
             records.Clear();
-            IEnumerable<UserFood> foods = conn.Query<UserFood>("SELECT * FROM Userfood WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
-            foreach (UserFood food in foods)
+            IEnumerable<Meal> foods = conn.Query<Meal>("SELECT * FROM Meal WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            foreach (Meal food in foods)
             {
-                records.Add(new UserFood { IDUserFood = food.IDUserFood, Name = food.Name, Description= food.Description, InsertDate = food.InsertDate });
+                records.Add(new Meal { IDUser = food.IDUser, Name = food.Name, Description= food.Description, InsertDate = food.InsertDate });
             }
         }
 
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            UserFood myFood = e.Item as UserFood;
-            myFoodDt.LoadData(myFood.IDUserFood);
+            Meal myFood = e.Item as Meal;
+            myFoodDt.LoadData(myFood.IDMeal);
             await Navigation.PushAsync(myFoodDt);
         }
 
