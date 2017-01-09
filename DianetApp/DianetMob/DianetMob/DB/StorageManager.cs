@@ -43,7 +43,6 @@ namespace DianetMob.DB
                 condb.CreateTable<Plan>();
                 condb.CreateTable<Settings>();
                 condb.CreateTable<Subscription>();
-                condb.CreateTable<UserFood>();
                 condb.CreateTable<UserMeal>();
                 condb.CreateTable<Weight>();
                 condb.CreateTable<UserSettings>();

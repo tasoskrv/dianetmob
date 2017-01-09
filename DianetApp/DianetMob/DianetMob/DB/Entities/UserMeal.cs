@@ -35,7 +35,8 @@ namespace DianetMob.DB.Entities
 
         public UserMeal()
         {
-            IDServer = -1;
+            IDServer = 0;
+            Deleted = 0;
         }
 
         public override string ToString()

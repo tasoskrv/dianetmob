@@ -55,7 +55,6 @@
     <Compile Include="DB\Entities\Subscription.cs" />
     <Compile Include="DB\Entities\Unit.cs" />
     <Compile Include="DB\Entities\User.cs" />
-    <Compile Include="DB\Entities\UserFood.cs" />
     <Compile Include="DB\Entities\UserMeal.cs" />
     <Compile Include="DB\Entities\UserSettings.cs" />
     <Compile Include="DB\Entities\Weight.cs" />
@@ -63,7 +62,7 @@
     <Compile Include="DB\StorageManager.cs" />
     <Compile Include="Pages\PurchasesPage.xaml.cs">
       <DependentUpon>PurchasesPage.xaml</DependentUpon>
-	 </Compile>
+    </Compile>
     <Compile Include="Pages\ForgotPasswordPage.xaml.cs">
       <DependentUpon>ForgotPasswordPage.xaml</DependentUpon>
     </Compile>
@@ -416,7 +415,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-   <ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Pages\ShopPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
