@@ -63,6 +63,7 @@
     <Compile Include="DB\StorageManager.cs" />
     <Compile Include="Pages\PurchasesPage.xaml.cs">
       <DependentUpon>PurchasesPage.xaml</DependentUpon>
+	 </Compile>
     <Compile Include="Pages\ForgotPasswordPage.xaml.cs">
       <DependentUpon>ForgotPasswordPage.xaml</DependentUpon>
     </Compile>
