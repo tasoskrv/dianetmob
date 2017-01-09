@@ -1,13 +1,8 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
-using DianetMob.Utils;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -40,12 +35,13 @@ namespace DianetMob.Pages
                 fHeightPicker.IsEnabled = true;
                 fHeightEntry.IsEnabled = true;
                 fWristEntry.IsEnabled = true;
+                fLocationEntry.IsEnabled = true;
             }
             else
             {
                 ProfileBtn.Text = "Edit";
                 if (fFirstNameEntry.IsEnabled || fSurNameEntry.IsEnabled || fbirthDatePicker.IsEnabled ||
-                    fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled)
+                    fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled || fLocationEntry.IsEnabled)
                 {
                     if (AllFieldsAreFilled())
                     {
@@ -67,6 +63,7 @@ namespace DianetMob.Pages
             fHeightPicker.IsEnabled = false;
             fHeightEntry.IsEnabled = false;
             fWristEntry.IsEnabled = false;
+            fLocationEntry.IsEnabled = false;
         }
         
         private void ViewPhotosBtnTap(object sender, EventArgs e)
@@ -201,16 +198,13 @@ namespace DianetMob.Pages
 
         private bool AllFieldsAreFilled()
         {
-            if (fFirstNameEntry.Text == null || fSurNameEntry.Text == null || fHeightEntry.Text == null ||
-                fEmailEntry.Text == "" || fFirstNameEntry.Text == "" || fSurNameEntry.Text == "" || fHeightEntry.Text == "")
+            if (fFirstNameEntry.Text == null || fSurNameEntry.Text == null || fHeightEntry.Text == null || fLocationEntry.Text == null ||
+                fEmailEntry.Text.Equals("") || fFirstNameEntry.Text.Equals("") || fSurNameEntry.Text.Equals("") || fHeightEntry.Text.Equals("") || fLocationEntry.Text.Equals(""))
             {
                 DisplayAlert("Please", "fill in all fields", "OK");
                 return false;
-            }
-            else
-            {
-                return true;
-            }
+            }            
+            return true;            
         }
 
     }

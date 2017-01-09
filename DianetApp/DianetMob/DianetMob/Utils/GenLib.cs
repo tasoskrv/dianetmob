@@ -20,7 +20,6 @@ namespace DianetMob.Utils
         {
             try
             {
-
                 var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
                 notifier.Notify(new LocalNotification()
                 {
@@ -100,7 +99,7 @@ namespace DianetMob.Utils
                     StorageManager.UpdateData<Subscription>(sub);
                 }
 
-                /**userfood**/
+                /**userfood**
                 IEnumerable<UserFood> ufoods = conn.Query<UserFood>("SELECT * FROM Userfood WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<UserFood> srvUserfood = null;
                 foreach (UserFood ufood in ufoods)
@@ -109,7 +108,7 @@ namespace DianetMob.Utils
                     ufood.IDServer = srvUserfood.ID;
                     StorageManager.UpdateData<UserFood>(ufood);
                 }
-
+                */
                 /**usermeal**/
                 IEnumerable<UserMeal> umeals = conn.Query<UserMeal>("SELECT * FROM Usermeal WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<UserMeal> srvUserMeal = null;

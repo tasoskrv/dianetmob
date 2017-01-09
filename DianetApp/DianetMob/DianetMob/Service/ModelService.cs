@@ -55,8 +55,8 @@ namespace DianetMob.Service
                     StorageManager.UpdateData<T>(data[i]);
                 }
             }
-
         }
+
         public void SaveAllToDBWithServerID(string field)
         {
             for (var i = 0; i < totalRows; i++)
@@ -65,7 +65,7 @@ namespace DianetMob.Service
 
                 PropertyInfo prop = GetProperty(t.GetTypeInfo(), "IDServer");
                 var value = prop.GetValue(data[i]).ToString();
-                List<MapID> alts = StorageManager.GetConnection().Query<MapID>("SELECT "+field+" as ID FROM " + data[i].GetType().Name + "  WHERE IDServer=" + value);
+                List<MapID> alts = StorageManager.GetConnection().Query<MapID>("SELECT " + field + " as ID FROM " + data[i].GetType().Name + "  WHERE IDServer=" + value);
                 if (alts.Count() == 0) {
                     StorageManager.InsertData<T>(data[i]);
                 }
@@ -76,7 +76,6 @@ namespace DianetMob.Service
                     StorageManager.UpdateData<T>(data[i]);
                 }
             }
-
         }
 
         private static PropertyInfo GetProperty(TypeInfo typeInfo, string propertyName)

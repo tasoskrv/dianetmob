@@ -39,6 +39,9 @@
             
             <RowDefinition Height="30"/>
             <RowDefinition Height="45"/>
+
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
           </Grid.RowDefinitions>
           <Label Grid.Row="0" Grid.Column="0" x:Name="fFirstNameLabel" Text="First Name:" FontSize="20"/>
           <Entry Grid.Row="1" Grid.Column="0" x:Name="fFirstNameEntry" Text="{Binding FirstName, Mode=TwoWay}" Keyboard="Text" FontSize="20" IsEnabled="False"/>
@@ -80,9 +83,12 @@
           </Grid>             
                                      
           <Label Grid.Row="11" Grid.Column="0" x:Name="fWristLabel" Text="Wrist:" FontSize="20"/>
-          <Entry Grid.Row="12" Grid.Column="0" x:Name="fWristEntry" Keyboard="Numeric" FontSize="20" IsEnabled="False"/>          
-        
-          <Label Grid.Row="13" Grid.Column="0" x:Name="PathLabel" />                  
+          <Entry Grid.Row="12" Grid.Column="0" x:Name="fWristEntry" Keyboard="Numeric" FontSize="20" IsEnabled="False"/>
+
+          <Label Grid.Row="13" Grid.Column="0" x:Name="fLocationLabel" Text="Location:" FontSize="20"/>
+          <Entry Grid.Row="14" Grid.Column="0" x:Name="fLocationEntry" Keyboard="Text" FontSize="20" IsEnabled="False"/>
+
+          <Label Grid.Row="15" Grid.Column="0" x:Name="PathLabel" />                  
         </Grid> 
           
         <Button Text="Photos" Clicked="ViewPhotosBtnTap"/>            

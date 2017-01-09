@@ -29,6 +29,8 @@ namespace DianetMob.DB.Entities
 
         public int IsActive { get; set; }
 
+        public string Trncode { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }

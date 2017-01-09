@@ -101,6 +101,9 @@ namespace DianetMob.Pages
             }
             else
             {
+                //List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + user.IDUser);
+                //TODO
+
                 App.Current.MainPage = new MainPage();
                 GenLib.FullSynch();
             }

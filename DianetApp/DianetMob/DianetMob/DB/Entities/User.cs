@@ -17,6 +17,7 @@ namespace DianetMob.DB.Entities
         private int heighttype;
         private int gender;
         private double skeleton;
+        private string location;
 
         [PrimaryKey]
         public int IDUser { get; set; }
@@ -112,6 +113,22 @@ namespace DianetMob.DB.Entities
             }
         }
 
+        public string Location
+        {
+            get
+            {
+                return location;
+            }
+            set
+            {
+                if (location != value)
+                {
+                    location = value;
+                    OnPropertyChanged("Location");
+                }
+            }
+        }
+
         public int HeightType
         {
             get
@@ -180,6 +197,7 @@ namespace DianetMob.DB.Entities
             Gender = -1;
             Email = "";
             Password = "";
+            Location = "";
             Height = -1;
             HeightType = -1;
             Skeleton = -1;
@@ -210,6 +228,8 @@ namespace DianetMob.DB.Entities
                 str += "&email=" + Uri.EscapeDataString(Email);
             if (!Password.Equals(""))
                 str += "&password=" + Password;
+            if (!Location.Equals(""))
+                str += "&location=" + Location;
             if (Height != -1)
                 str += "&height=" + Height.ToString();
             if (HeightType != -1)
