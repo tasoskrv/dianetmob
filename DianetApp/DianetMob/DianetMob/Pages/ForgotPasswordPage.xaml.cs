@@ -49,6 +49,7 @@ namespace DianetMob.Pages
                 ModelService<User> srvRecoverUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/recover/", user);
                 if (srvRecoverUser.success == true)
                 {
+                    await DisplayAlert("Message", "Check your email", "OK");
                     App.Current.MainPage = new LoginPage();
                 }
                 else if (srvRecoverUser.ErrorCode == 2)
@@ -61,6 +62,11 @@ namespace DianetMob.Pages
                 }
                 mailSend.IsEnabled = true;                
             }
-        }        
+        }
+
+        private void OnLoginButtonClicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new LoginPage();
+        }
     }
 }
