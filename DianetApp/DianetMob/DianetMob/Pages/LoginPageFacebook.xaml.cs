@@ -50,11 +50,15 @@ namespace DianetMob.Pages
 
                     if (srvUser.success)
                     {
-                        //srvUser.SaveAllToDB();
+                        User user = new User();
+                        user.IDUser = srvUser.ID;
+                        user.Email = facebookobj.email;
+                        user.FirstName = facebookobj.first_name;
+                        user.LastName = facebookobj.last_name;
+                        StorageManager.SaveData<User>(user);
 
                         ConnectionInfo info = StorageManager.GetConnectionInfo();
-                        //info.LoginUser = user;
-                        //info.LoginUser.Password = passwordEntry.Text;
+                        info.LoginUser = user;
                         info.Settings.LastLoggedIn = srvUser.ID;
                         Settings settings = info.Settings;
                         StorageManager.UpdateData<Settings>(settings);

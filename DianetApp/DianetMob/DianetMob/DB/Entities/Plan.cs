@@ -87,10 +87,6 @@ namespace DianetMob.DB.Entities
             if (UpdateDate != null)
                 str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-            /*
-            if (!AccessToken.Equals(""))
-                str += "&accesstoken=" + Uri.EscapeDataString(AccessToken);
-            */
             return str.Substring(1);
         }
 

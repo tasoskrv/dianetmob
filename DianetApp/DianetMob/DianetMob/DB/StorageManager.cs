@@ -71,6 +71,18 @@ namespace DianetMob.DB
             db.Update(model);
         }
 
+        public static void SaveData<T>(T model)
+        {
+            try
+            {
+                StorageManager.InsertData<T>(model);
+            }
+            catch
+            {
+                StorageManager.UpdateData<T>(model);
+            }
+        }
+
         public static IEnumerable<MapLogData> LoadDataByDate(DateTime from, DateTime to)
         {
             string query = "Select um.IdUserMeal, um.idcategory,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ?";
