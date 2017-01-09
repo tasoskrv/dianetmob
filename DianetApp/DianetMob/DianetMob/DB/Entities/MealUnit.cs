@@ -10,7 +10,7 @@ namespace DianetMob.DB.Entities
 {
     public class MealUnit : Model
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int IDMealUnit { get; set; }
 
         [ForeignKey(typeof(Unit))]
@@ -19,8 +19,7 @@ namespace DianetMob.DB.Entities
         [ForeignKey(typeof(Meal))]
         public int IDMeal { get; set; }
 
-        [Ignore]
-        public string Name { get; set; }
+        public int IDServer { get; set; }
 
         public double Calories { get; set; }
 
@@ -44,9 +43,19 @@ namespace DianetMob.DB.Entities
 
         public double Fiber { get; set; }
 
+        public int Deleted { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
+
+        public MealUnit()
+        {
+            IDServer = 0;
+            Deleted = 0;
+        }
+
+        
 
     }
 }

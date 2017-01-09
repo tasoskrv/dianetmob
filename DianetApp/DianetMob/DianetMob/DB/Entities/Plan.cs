@@ -57,13 +57,16 @@ namespace DianetMob.DB.Entities
 
         public int PlanType { get; set; }
 
+        public int Deleted { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
 
         public Plan()
         {
-            IDServer = -1;
+            IDServer = 0;
+            Deleted = 0;
             goaldate = DateTime.UtcNow;
         }
 

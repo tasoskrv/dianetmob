@@ -12,8 +12,10 @@ namespace DianetMob.DB.Entities
     {
         private string name;
 
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int IDMeal { get; set; }
+
+        public int IDServer { get; set; }
 
         [MaxLength(100)]
         public string Name {
@@ -49,9 +51,17 @@ namespace DianetMob.DB.Entities
 
         public int IsActive { get; set; }
 
+        public int Deleted { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
+
+        public Meal()
+        {
+            IDServer = 0;
+            Deleted = 0;
+        }
 
     }
 }

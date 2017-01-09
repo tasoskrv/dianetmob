@@ -27,6 +27,8 @@ namespace DianetMob.DB.Entities
 
         public DateTime MealDate { get; set; }
 
+        public int Deleted { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }

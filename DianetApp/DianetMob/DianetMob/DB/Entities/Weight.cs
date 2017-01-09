@@ -55,27 +55,17 @@ namespace DianetMob.DB.Entities
                 }
             }
         }
-        /*
-        [Ignore]
-        public DateTime PropertyMinimumDate
-        {
-            get
-            {
-                return DateTime.UtcNow;
-            }
-            set
-            {
-                propertyMinimumDate = value;
-            }
-        }
-        */
+
+        public int Deleted { get; set; }
+
         public DateTime InsertDate { get;set; }
 
         public DateTime UpdateDate { get; set; }
 
         public Weight()
         {
-            IDServer = -1;
+            IDServer = 0;
+            Deleted = 0;
             weightDate = DateTime.UtcNow;
         }
         
