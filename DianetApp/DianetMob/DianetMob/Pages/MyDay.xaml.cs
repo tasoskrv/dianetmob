@@ -25,6 +25,7 @@ namespace DianetMob.Pages
         private void OnSyncButtonClicked(object sender, EventArgs e)
         {
             GenLib.FullSynch();
+            syncBtn.Icon = "Sync2.png";
         }
         protected override void OnAppearing()
         {
