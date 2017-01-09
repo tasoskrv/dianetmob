@@ -49,6 +49,12 @@ namespace DianetMob.Views
                 {
                     TheInAppService.RestoreProducts();
                 });
+
+            RefundCommand = new Command<InAppProduct>(
+                execute: (product) =>
+                {
+                 TheInAppService.RefundProduct();
+                });
         }
 
         public IInAppService TheInAppService { get; private set; }
@@ -84,6 +90,8 @@ namespace DianetMob.Views
         public ICommand PurchaseCommand { private set; get; }
 
         public ICommand RestoreCommand { private set; get; }
+
+        public ICommand RefundCommand { private set; get; }
 
         public void SaveState(IDictionary<string, object> dictionary)
         {

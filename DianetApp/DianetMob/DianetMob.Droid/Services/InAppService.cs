@@ -166,16 +166,16 @@ namespace Dianet.Droid.Services
             var products = await this._serviceConnection.BillingHandler.QueryInventoryAsync(
                                 new List<string>()
                                     {
-                                        this.PracticeModeProductId
+                                        ReservedTestProductIDs.Purchased
                                     },
-                                    ItemType.Subscription);
+                                    ItemType.Product);
 
             // Update inventory
             foreach (var product in products)
             {
                 var newProduct = new InAppProduct();
                 newProduct.ProductId = product.ProductId;
-                newProduct.Type = ItemType.Subscription;
+                newProduct.Type = ItemType.Product;
                 newProduct.Price = product.Price;
                 newProduct.Title = product.Title;
                 newProduct.Description = product.Description;
@@ -183,7 +183,6 @@ namespace Dianet.Droid.Services
 
                 App.ViewModel.Products.Add(newProduct);
             }
-
             if (this.OnQueryInventory != null)
             {
                 this.OnQueryInventory();
@@ -193,12 +192,12 @@ namespace Dianet.Droid.Services
         public void PurchaseProduct(string productId)
         {
             // See Initialize() for where we hook up event handler for this
-            this._serviceConnection.BillingHandler.BuyProduct(productId, ItemType.Subscription, "payload");
+            this._serviceConnection.BillingHandler.BuyProduct(productId, ItemType.Product, "payload");
         }
 
         public void RestoreProducts()
         {
-            var purchases = this._serviceConnection.BillingHandler.GetPurchases(ItemType.Subscription);
+            var purchases = this._serviceConnection.BillingHandler.GetPurchases(ItemType.Product);
 
             // Record what we restored
             foreach (var purchase in purchases)
@@ -224,7 +223,7 @@ namespace Dianet.Droid.Services
 
         public void RefundProduct()
         {
-            var purchases = this._serviceConnection.BillingHandler.GetPurchases(ItemType.Subscription);
+            var purchases = this._serviceConnection.BillingHandler.GetPurchases(ItemType.Product);
 
             this._serviceConnection.BillingHandler.ConsumePurchase(purchases[0].PurchaseToken);
         }
