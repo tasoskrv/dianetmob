@@ -61,25 +61,25 @@ namespace DianetMob.DB
             condb.Insert(set);
         }
 
-        public static void InsertData<T>(T model)
+        public static int InsertData<T>(T model)
         {
-            db.Insert(model);
+            return db.Insert(model);
         }
 
-        public static void UpdateData<T>(T model)
+        public static int UpdateData<T>(T model)
         {
-            db.Update(model);
+            return db.Update(model);
         }
 
-        public static void SaveData<T>(T model)
+        public static int SaveData<T>(T model)
         {
             try
             {
-                StorageManager.InsertData<T>(model);
+                return InsertData<T>(model);
             }
             catch
             {
-                StorageManager.UpdateData<T>(model);
+                return UpdateData<T>(model);
             }
         }
 
