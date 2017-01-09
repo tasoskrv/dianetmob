@@ -17,7 +17,7 @@ namespace DianetMob.Utils
     {
 
         public async static void FullSynch()
-        {
+        {            
             try
             {
                 var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
@@ -60,45 +60,49 @@ namespace DianetMob.Utils
 
                 string lastUpdateDate = usersettings.LastSyncDate.ToString("yyyyMMdd");
 
-                /**alert**/
+                //alert
                 IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<Alert> srvNewAlert = null;
                 foreach (Alert alt in alts)
                 {
                     srvNewAlert = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alt);
-                    alt.IDServer = srvNewAlert.ID;
+                    if(srvNewAlert.ID!=0)
+                        alt.IDServer = srvNewAlert.ID;
                     StorageManager.UpdateData<Alert>(alt);
                 }
-                /**exercise**/
+                //exercise
                 IEnumerable<Exercise> exes = conn.Query<Exercise>("SELECT * FROM Exercise WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<Exercise> srvExercise = null;
                 foreach (Exercise exe in exes)
                 {
                     srvExercise = await ServiceConnector.InsertServiceData<ModelService<Exercise>>("/exercise/save", exe);
-                    exe.IDServer = srvExercise.ID;
+                    if (srvExercise.ID != 0)
+                        exe.IDServer = srvExercise.ID;
                     StorageManager.UpdateData<Exercise>(exe);
                 }
 
-                /**plan**/
+                //plan
                 IEnumerable<Plan> plns = conn.Query<Plan>("SELECT * FROM Plan WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<Plan> srvPlan = null;
                 foreach (Plan pln in plns)
                 {
                     srvPlan = await ServiceConnector.InsertServiceData<ModelService<Plan>>("/plan/save", pln);
-                    pln.IDServer = srvPlan.ID;
+                    if (srvPlan.ID != 0)
+                        pln.IDServer = srvPlan.ID;
                     StorageManager.UpdateData<Plan>(pln);
                 }
 
-                /**subscription**/
+                //subscription
                 IEnumerable<Subscription> subs = conn.Query<Subscription>("SELECT * FROM Subscription WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<Subscription> srvSubscription = null;
                 foreach (Subscription sub in subs)
                 {
                     srvSubscription = await ServiceConnector.InsertServiceData<ModelService<Subscription>>("/subscription/save", sub);
-                    sub.IDServer = srvSubscription.ID;
+                    if (srvSubscription.ID != 0)
+                        sub.IDServer = srvSubscription.ID;
                     StorageManager.UpdateData<Subscription>(sub);
                 }
-
+                
                 /**userfood**
                 IEnumerable<UserFood> ufoods = conn.Query<UserFood>("SELECT * FROM Userfood WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<UserFood> srvUserfood = null;
@@ -109,23 +113,24 @@ namespace DianetMob.Utils
                     StorageManager.UpdateData<UserFood>(ufood);
                 }
                 */
-                /**usermeal**/
+                //usermeal
                 IEnumerable<UserMeal> umeals = conn.Query<UserMeal>("SELECT * FROM Usermeal WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<UserMeal> srvUserMeal = null;
                 foreach (UserMeal umeal in umeals)
                 {
                     srvUserMeal = await ServiceConnector.InsertServiceData<ModelService<UserMeal>>("/usermeal/save", umeal);
-                    umeal.IDServer = srvUserMeal.ID;
+                    if (srvUserMeal.ID != 0)
+                        umeal.IDServer = srvUserMeal.ID;
                     StorageManager.UpdateData<UserMeal>(umeal);
                 }
-
-                /**weight**/
+                //weight
                 IEnumerable<Weight> wgts = conn.Query<Weight>("SELECT * FROM Weight WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<Weight> srvWeight = null;
                 foreach (Weight wgt in wgts)
                 {
                     srvWeight = await ServiceConnector.InsertServiceData<ModelService<Weight>>("/weight/save", wgt);
-                    wgt.IDServer = srvWeight.ID;
+                    if (srvWeight.ID != 0)
+                        wgt.IDServer = srvWeight.ID;
                     StorageManager.UpdateData<Weight>(wgt);
                 }
             }
@@ -141,7 +146,6 @@ namespace DianetMob.Utils
             {
                 string gencall = "/accesstoken=" + user.AccessToken + "/updatedate=" + usersettings.LastSyncDate.ToString("yyyyMMdd");
                 string usercall = gencall + "/iduser=" + user.IDUser.ToString();
-
                 //TODO: service call check services
 
                 //general calls - add required services
@@ -159,11 +163,11 @@ namespace DianetMob.Utils
 
                 ModelService<Settings> servSettings = await ServiceConnector.GetServiceData<ModelService<Settings>>("/settings/getall" + gencall);
                 servSettings.SaveAllToDB();
-
+                
                 //User calls
                 ModelService<Alert> servAlert = await ServiceConnector.GetServiceData<ModelService<Alert>>("/alert/getall" + usercall);
                 servAlert.SaveAllToDBWithServerID("IDAlert");
-
+                
                 ModelService<Exercise> servExercise = await ServiceConnector.GetServiceData<ModelService<Exercise>>("/exercise/getall" + usercall);
                 servExercise.SaveAllToDBWithServerID("IDExercise");
 
