@@ -61,6 +61,38 @@ namespace DianetMob.DB.Entities
         {
             IDServer = 0;
             Deleted = 0;
+            IDUser = 0;
+            IsActive = 1;
+        }
+
+        public override string ToString()
+        {
+            string str = "";
+
+            str += "&idserver=" + IDServer.ToString();
+
+            if (Name != null)
+                str += "&name=" + Name;
+            if (!Description.Equals(""))
+                str += "&description=" + Description;
+            if (IDLang != -1)
+                str += "&idlang=" + IDLang.ToString();
+            if (IDUser != 0)
+                str += "&iduser=" + IDUser.ToString();
+            if (!Fertility.Equals(""))
+                str += "&fertility=" + Fertility;
+            if (!Identifier.Equals(""))
+                str += "&identifier=" + Identifier;
+            if (IsActive != -1)
+                str += "&isActive=" + IsActive.ToString();
+            if (Deleted != 0)
+                str += "&deleted=" + Deleted.ToString();
+            if (InsertDate != null)
+                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+            if (UpdateDate != null)
+                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            return str.Substring(1);
         }
 
     }
