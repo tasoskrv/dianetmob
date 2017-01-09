@@ -10,6 +10,7 @@ namespace DianetMob.Pages
     public partial class MyFoodPageDetail : ContentPage
     {
         private Meal uFood;
+        private MealUnit ml;
         private SQLiteConnection conn = null;
 
        //Dictionary<string, MapMealUnit> DicUnit = new Dictionary<string, MapMealUnit>();
@@ -49,13 +50,30 @@ namespace DianetMob.Pages
         public void LoadData(int IDMeal=0)
         {
             if (IDMeal > 0)
+            {
                 uFood = conn.Get<Meal>(IDMeal);
+                IEnumerable<MealUnit> ml = conn.Query<MealUnit>("SELECT Fat, Carb, Cholesterol, Fiber, Natrium, Potassium, SatFat, Protein, Sugar, UnSatFat  WHERE IDMeal={0} AND IDUser= {1}" + IDMeal, +StorageManager.GetConnectionInfo().LoginUser.IDUser);
+            }
             else
             {
                 uFood = new Meal();
+                ml = new MealUnit();
                 uFood.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+
             }
-            BindingContext = uFood;
+            BindingContext = uFood.Name;
+            BindingContext = uFood.Description;
+            BindingContext = ml.Fat;
+            BindingContext = ml.Carb;
+            BindingContext = ml.Cholesterol;
+            BindingContext = ml.Fiber;
+            BindingContext = ml.Natrium;
+            BindingContext = ml.Potassium;
+            BindingContext = ml.SatFat;
+            BindingContext = ml.Protein;
+            BindingContext = ml.Sugar;
+            BindingContext = ml.UnSatFat;
+           
         }
 
         private void OnSaveFoodClicked(object sender, EventArgs e)
@@ -76,6 +94,9 @@ namespace DianetMob.Pages
             {
                 uFood.InsertDate = uFood.UpdateDate;
                 StorageManager.InsertData(uFood);
+                ml.IDMeal = uFood.IDMeal;
+                ml.InsertDate = ml.UpdateDate;
+                StorageManager.InsertData(ml);
                 Navigation.PopAsync();
             }
         }
