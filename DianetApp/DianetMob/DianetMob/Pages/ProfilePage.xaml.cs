@@ -15,7 +15,8 @@ namespace DianetMob.Pages
 {
     public partial class ProfilePage : ContentPage
     {
-        private MediaFile _mediaFile;
+        private MediaFile _mediaFileBefore;
+        private MediaFile _mediaFileAfter;
 
         public ProfilePage()
         {
@@ -93,49 +94,34 @@ namespace DianetMob.Pages
                 return;
             }
 
-            _mediaFile = await CrossMedia.Current.TakePhotoAsync(
+            var file = await CrossMedia.Current.TakePhotoAsync(
                 new StoreCameraMediaOptions
                 {
                     SaveToAlbum = true
                 }
             );
 
-            if (_mediaFile == null)
+            if (file == null)
                 return;
 
-            PathLabel.Text = _mediaFile.AlbumPath;
+            PathLabel.Text = file.AlbumPath;
             bool toggled = PhotoSelect.IsToggled;
             if (toggled)
             {
+                _mediaFileAfter = file;
                 AfterImage.Source = ImageSource.FromStream(() =>
                 {
-                    var stream = _mediaFile.GetStream();
+                    var stream = _mediaFileAfter.GetStream();
                     //_mediaFile.Dispose();
-
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     return stream;
                 });
             }
             else
             {
+                _mediaFileBefore = file;
                 BeforeImage.Source = ImageSource.FromStream(() =>
                 {
-                    var stream = _mediaFile.GetStream();
+                    var stream = _mediaFileBefore.GetStream();                    
                     //_mediaFile.Dispose();
                     return stream;
                 });
@@ -151,29 +137,28 @@ namespace DianetMob.Pages
                 await DisplayAlert("Oops", "Pick photo is not supported", "OK");
                 return;
             }
-
-            _mediaFile = await CrossMedia.Current.PickPhotoAsync();
-            if (_mediaFile == null)
-            {
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            if (file == null)            
                 return;
-            }
-
-            PathLabel.Text = _mediaFile.Path;
+            
+            PathLabel.Text = file.Path;
             bool toggled = PhotoSelect.IsToggled;
             if (toggled)
             {
+                _mediaFileAfter = file;
                 AfterImage.Source = ImageSource.FromStream(() =>
                 {
-                    var stream = _mediaFile.GetStream();
+                    var stream = _mediaFileAfter.GetStream();
                     //_mediaFile.Dispose();
                     return stream;
                 });
             }
             else
             {
+                _mediaFileBefore = file;
                 BeforeImage.Source = ImageSource.FromStream(() =>
                 {
-                    var stream = _mediaFile.GetStream();
+                    var stream = _mediaFileBefore.GetStream();
                     //_mediaFile.Dispose();
                     return stream;
                 });
@@ -181,29 +166,37 @@ namespace DianetMob.Pages
         }
 
         public async void OnUploadClicked(object sender, EventArgs e)
-        {
-            string imageName = "";
-            bool toggled = PhotoSelect.IsToggled;
-            if (toggled)
+        {            
+            if (_mediaFileBefore != null)
             {
-                imageName = "after";
+                uploadImage(_mediaFileBefore, "before");
             }
             else
             {
-                imageName = "before";
+                await DisplayAlert("Message", "No images to upload", "OK");
             }
+            if (_mediaFileAfter != null)
+            {
+                uploadImage(_mediaFileAfter, "after");
+            }
+            else
+            {
+                await DisplayAlert("Message", "No images to upload", "OK");
+            }
+        }
 
+        private async void uploadImage(MediaFile mediafile, string type)
+        {
             byte[] bitmapData;
             var stream = new MemoryStream();
-            _mediaFile.GetStream().CopyTo(stream);
+            mediafile.GetStream().CopyTo(stream);
             bitmapData = stream.ToArray();
             var fileContent = new ByteArrayContent(bitmapData);
-
-            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpg"/*"application/octet-stream"*/);
+            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpg");
             fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
             {
                 Name = "image",
-                FileName = imageName + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()
+                FileName = type + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()
             };
 
             string boundary = "---8393774hhy37373773";
@@ -224,10 +217,11 @@ namespace DianetMob.Pages
                 }
                 else
                 {
-                    await DisplayAlert("Message", "Error - " + res["error"].ToString() + " code:" + res["code"].ToString() , "OK");
+                    await DisplayAlert("Message", "Error - " + res["error"].ToString() + " code:" + res["code"].ToString(), "OK");
                 }
             }
         }
+
 
         /*
         private async void TakeVideoButtonOnClicked(object sender, EventArgs e)
