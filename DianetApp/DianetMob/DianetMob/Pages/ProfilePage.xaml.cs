@@ -1,15 +1,24 @@
-﻿using DianetMob.DB;
+﻿using Android.Content;
+using DianetMob.DB;
 using DianetMob.DB.Entities;
+using Newtonsoft.Json.Linq;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
-
+using System.Collections.Specialized;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using Xamarin.Forms;
 
 namespace DianetMob.Pages
 {
     public partial class ProfilePage : ContentPage
     {
+        private MediaFile _mediaFile;
+
         public ProfilePage()
         {
             InitializeComponent();
@@ -86,24 +95,24 @@ namespace DianetMob.Pages
                 return;
             }
 
-            var file = await CrossMedia.Current.TakePhotoAsync(
+            _mediaFile = await CrossMedia.Current.TakePhotoAsync(
                 new StoreCameraMediaOptions
                 {
                     SaveToAlbum = true
                 }
             );
 
-            if (file == null)
+            if (_mediaFile == null)
                 return;
 
-            PathLabel.Text = file.AlbumPath;
+            PathLabel.Text = _mediaFile.AlbumPath;
             bool toggled = PhotoSelect.IsToggled;
             if (toggled)
             {
                 AfterImage.Source = ImageSource.FromStream(() =>
                 {
-                    var stream = file.GetStream();
-                    file.Dispose();
+                    var stream = _mediaFile.GetStream();
+                    //_mediaFile.Dispose();
                     return stream;
                 });
             }
@@ -111,8 +120,8 @@ namespace DianetMob.Pages
             {
                 BeforeImage.Source = ImageSource.FromStream(() =>
                 {
-                    var stream = file.GetStream();
-                    file.Dispose();
+                    var stream = _mediaFile.GetStream();
+                    //_mediaFile.Dispose();
                     return stream;
                 });
             }
@@ -128,20 +137,20 @@ namespace DianetMob.Pages
                 return;
             }
 
-            var file = await CrossMedia.Current.PickPhotoAsync();
-            if (file == null)
+            _mediaFile = await CrossMedia.Current.PickPhotoAsync();
+            if (_mediaFile == null)
             {
                 return;
             }
 
-            PathLabel.Text = file.Path;
+            PathLabel.Text = _mediaFile.Path;
             bool toggled = PhotoSelect.IsToggled;
             if (toggled)
             {
                 AfterImage.Source = ImageSource.FromStream(() =>
                 {
-                    var stream = file.GetStream();
-                    file.Dispose();
+                    var stream = _mediaFile.GetStream();
+                    //_mediaFile.Dispose();
                     return stream;
                 });
             }
@@ -149,10 +158,59 @@ namespace DianetMob.Pages
             {
                 BeforeImage.Source = ImageSource.FromStream(() =>
                 {
-                    var stream = file.GetStream();
-                    file.Dispose();
+                    var stream = _mediaFile.GetStream();
+                    //_mediaFile.Dispose();
                     return stream;
                 });
+            }
+        }
+
+        public async void OnUploadClicked(object sender, EventArgs e)
+        {
+            string imageName = "";
+            bool toggled = PhotoSelect.IsToggled;
+            if (toggled)
+            {
+                imageName = "after";
+            }
+            else
+            {
+                imageName = "before";
+            }
+
+            byte[] bitmapData;
+            var stream = new MemoryStream();
+            _mediaFile.GetStream().CopyTo(stream);
+            bitmapData = stream.ToArray();
+            var fileContent = new ByteArrayContent(bitmapData);
+
+            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpg"/*"application/octet-stream"*/);
+            fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+            {
+                Name = "image",
+                FileName = imageName + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()
+            };
+
+            string boundary = "---8393774hhy37373773";
+            MultipartFormDataContent multipartContent = new MultipartFormDataContent(boundary);
+            multipartContent.Add(fileContent);
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response = await httpClient.PostAsync("http://dianet.cloudocean.gr/api/v1/user/upload", multipartContent);
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+
+                JObject res = JObject.Parse(content);
+                if (res["success"].ToString() == "True")
+                {
+                    await DisplayAlert("Message", "Image uploaded", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Message", "Error - " + res["error"].ToString() + " code:" + res["code"].ToString() , "OK");
+                }
             }
         }
 
@@ -185,7 +243,7 @@ namespace DianetMob.Pages
             });
         }
         */
-            
+
         private void NeedToLoginNextTime(User usr)
         {            
             if (!StorageManager.GetConnectionInfo().LoginUser.Email.Equals(usr.Email, StringComparison.Ordinal))
