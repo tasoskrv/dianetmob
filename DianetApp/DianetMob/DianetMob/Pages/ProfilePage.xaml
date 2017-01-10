@@ -10,6 +10,10 @@
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
     <ToolbarItem x:Name="ProfileBtn" Text="Edit" Clicked="OnProfileSubmitClicked"/>
+  
+    
+    <ToolbarItem x:Name="UploadBtn" Text="Upload" Clicked="OnUploadClicked"/>
+    
   </ContentPage.ToolbarItems>
 
   <ContentPage.Content>
