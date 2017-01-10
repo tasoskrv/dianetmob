@@ -4,11 +4,14 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using DianetMob.TableMapping;
+using System.Linq;
 
 namespace DianetMob.Pages
 {
     public partial class MyFoodPageDetail : ContentPage
     {
+        private MapCustomMeal mapMeal = null;
         private Meal uFood;
         private MealUnit ml;
         private SQLiteConnection conn = null;
@@ -19,18 +22,16 @@ namespace DianetMob.Pages
         public MyFoodPageDetail()
         {
             InitializeComponent();
-            conn = StorageManager.GetConnection();
+            conn = StorageManager.GetConnection();           
             IEnumerable<Unit> mUnit = conn.Query<Unit>("SELECT IDUnit, Name  FROM Unit");
             foreach (Unit myunit in mUnit)
             {
-                unitPicker.Items.Add(myunit.Name);
-              
+                unitPicker.Items.Add(myunit.Name);             
             }
             for (int i = 0; i < 1000; i++)
             {
                 counter1Picker.Items.Add(i.ToString());
             }
-
             counter2Picker.Items.Add("0");
             counter2Picker.Items.Add("1/8");
             counter2Picker.Items.Add("1/4");
@@ -38,47 +39,44 @@ namespace DianetMob.Pages
             counter2Picker.Items.Add("1/2");
             counter2Picker.Items.Add("2/3");
             counter2Picker.Items.Add("3/4");
-            //DicCount2.Add("0", 0);
-            //DicCount2.Add("1/8", 0.125);
-            //DicCount2.Add("1/4", 0.25);
-            //DicCount2.Add("1/3", 0.33);
-            //DicCount2.Add("1/2", 0.5);
-            //DicCount2.Add("2/3", 0.66);
-            //DicCount2.Add("3/4", 0.75);
         }
 
-        public void LoadData(int IDMeal=0)
+        public void LoadData(int IDMeal, int IDUser)
         {
+            
             if (IDMeal > 0)
             {
-                uFood = conn.Get<Meal>(IDMeal);
-                IEnumerable<MealUnit> ml = conn.Query<MealUnit>("SELECT Fat, Carb, Cholesterol, Fiber, Natrium, Potassium, SatFat, Protein, Sugar, UnSatFat  WHERE IDMeal={0} AND IDUser= {1}" + IDMeal, +StorageManager.GetConnectionInfo().LoginUser.IDUser);
+                IEnumerable<MapCustomMeal> cusMeal = conn.Query<MapCustomMeal>("SELECT N.Name, N.Description, N.IDUser, M.IdMealUnit, M.Fat, M.Carb, M.Cholesterol, M.Fiber, M.Natrium, M.Potassium, M.SatFat, M.Protein, M.Sugar, M.UnSatFat FROM MealUnit as M JOIN Meal as N ON M.IDMeal= N.IDMeal WHERE N.IDMeal="+IDMeal.ToString()+ " AND N.IDUser="+IDUser.ToString());
+                mapMeal = cusMeal.First();
             }
             else
             {
                 uFood = new Meal();
                 ml = new MealUnit();
+                mapMeal = new MapCustomMeal();
                 uFood.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
 
             }
-            BindingContext = uFood.Name;
-            BindingContext = uFood.Description;
-            BindingContext = ml.Fat;
-            BindingContext = ml.Carb;
-            BindingContext = ml.Cholesterol;
-            BindingContext = ml.Fiber;
-            BindingContext = ml.Natrium;
-            BindingContext = ml.Potassium;
-            BindingContext = ml.SatFat;
-            BindingContext = ml.Protein;
-            BindingContext = ml.Sugar;
-            BindingContext = ml.UnSatFat;
+            BindingContext = mapMeal;
            
         }
 
         private void OnSaveFoodClicked(object sender, EventArgs e)
         {
             uFood.UpdateDate = DateTime.UtcNow;
+            uFood.Name = mapMeal.Name;
+            uFood.Description = mapMeal.Description;
+            ml.Calories = mapMeal.Calories;
+            ml.Carb = mapMeal.Carb;
+            ml.Cholesterol = mapMeal.Cholesterol;
+            ml.Sugar = mapMeal.Sugar;
+            ml.Protein = mapMeal.Protein;
+            ml.SatFat = mapMeal.SatFat;
+            ml.UnSatFat = mapMeal.UnSatFat;
+            ml.Natrium = mapMeal.Natrium;
+            ml.Potassium = mapMeal.Potassium;
+            ml.IDUser = mapMeal.IDUser;
+
             if ((uFood.Name == null) || uFood.Name.Equals(""))
                 DisplayAlert("Please", "fill name", "OK");
             else if ((uFood.Description == null) || uFood.Description.Equals(""))
@@ -95,6 +93,7 @@ namespace DianetMob.Pages
                 uFood.InsertDate = uFood.UpdateDate;
                 StorageManager.InsertData(uFood);
                 ml.IDMeal = uFood.IDMeal;
+                mapMeal.IDMeal = uFood.IDMeal;
                 ml.InsertDate = ml.UpdateDate;
                 StorageManager.InsertData(ml);
                 Navigation.PopAsync();

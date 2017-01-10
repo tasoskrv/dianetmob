@@ -95,6 +95,7 @@
     <Compile Include="Pages\LoginPageFacebook.xaml.cs">
       <DependentUpon>LoginPageFacebook.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TableMapping\MapCustomMeal.cs" />
     <Compile Include="TableMapping\MapID.cs" />
     <Compile Include="Views\AddMealView.xaml.cs">
       <DependentUpon>AddMealView.xaml</DependentUpon>
