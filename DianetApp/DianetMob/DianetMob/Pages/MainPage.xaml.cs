@@ -29,12 +29,12 @@ namespace DianetMob.Pages
             var item = e.SelectedItem as MenuElement;
             if (item != null)
             {
-                if (item.TargetType == typeof(StartPage))
+                if (item.TargetType == typeof(LoginPage))
                 {
                     Settings settings = StorageManager.GetConnectionInfo().Settings;
                     settings.LastLoggedIn = 0;
                     StorageManager.UpdateData<Settings>(settings);
-                    App.Current.MainPage = new StartPage();
+                    App.Current.MainPage = new LoginPage();
                 }
                 else
                 {

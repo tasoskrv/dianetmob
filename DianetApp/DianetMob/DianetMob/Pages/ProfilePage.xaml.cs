@@ -1,16 +1,14 @@
 ﻿using Android.Content;
 using DianetMob.DB;
 using DianetMob.DB.Entities;
+using Java.IO;
 using Newtonsoft.Json.Linq;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
-using System.Collections.Specialized;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using Xamarin.Forms;
 
 namespace DianetMob.Pages
@@ -113,6 +111,23 @@ namespace DianetMob.Pages
                 {
                     var stream = _mediaFile.GetStream();
                     //_mediaFile.Dispose();
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     return stream;
                 });
             }
