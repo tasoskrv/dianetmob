@@ -40,9 +40,9 @@
           
         <Picker Grid.Row="5" Grid.Column="0" x:Name="unitPicker" Title="" SelectedIndexChanged="OnUnitChosen">
         </Picker>
-        <Picker Grid.Row="5" Grid.Column="1" x:Name="counter1Picker" Title="">
+        <Picker Grid.Row="5" Grid.Column="1" x:Name="counter1Picker" Title="" SelectedIndexChanged="OnCount1Chosen">
         </Picker>
-        <Picker Grid.Row="5" Grid.Column="2" x:Name="counter2Picker" Title="">
+        <Picker Grid.Row="5" Grid.Column="2" x:Name="counter2Picker" Title="" SelectedIndexChanged="OnCount2Chosen">
         </Picker>
 
         <Label Grid.Row="6" Grid.Column="0" Text="Calories" FontSize="20"/>
@@ -59,18 +59,27 @@
 
         <Label Grid.Row="14" Grid.Column="0" Text=" Saturated Fats" FontSize="20"/>
         <Entry Grid.Row="15" Grid.Column="0" Text="{Binding SatFat, Mode=TwoWay}" />
+        
+        <Label Grid.Row="16" Grid.Column="0" Text=" Unsaturated Fats" FontSize="20"/>
+        <Entry Grid.Row="17" Grid.Column="0" Text="{Binding UnSatFat, Mode=TwoWay}" />
 
-        <Label Grid.Row="16" Grid.Column="0" Text="Cholesterol" FontSize="20"/>
-        <Entry Grid.Row="17" Grid.Column="0" Text="{Binding Cholesterol, Mode=TwoWay}" />
+        <Label Grid.Row="18" Grid.Column="0" Text="Cholesterol" FontSize="20"/>
+        <Entry Grid.Row="19" Grid.Column="0" Text="{Binding Cholesterol, Mode=TwoWay}" />
 
-        <Label Grid.Row="18" Grid.Column="0" Text="Sodium" FontSize="20"/>
-        <Entry Grid.Row="19" Grid.Column="0" Text="{Binding Sodium, Mode=TwoWay}" />
+        <Label Grid.Row="20" Grid.Column="0" Text="Sodium" FontSize="20"/>
+        <Entry Grid.Row="21" Grid.Column="0" Text="{Binding Sodium, Mode=TwoWay}" />
+        
+        <Label Grid.Row="22" Grid.Column="0" Text="Natrium" FontSize="20"/>
+        <Entry Grid.Row="23" Grid.Column="0" Text="{Binding Natrium, Mode=TwoWay}" />
+        
+        <Label Grid.Row="24" Grid.Column="0" Text="Potassium" FontSize="20"/>
+        <Entry Grid.Row="25" Grid.Column="0" Text="{Binding Potassium, Mode=TwoWay}" />
 
-        <Label Grid.Row="20" Grid.Column="0" Text="Fiber" FontSize="20"/>
-        <Entry Grid.Row="21" Grid.Column="0" Text="{Binding Fiber, Mode=TwoWay}" />
+        <Label Grid.Row="26" Grid.Column="0" Text="Fiber" FontSize="20"/>
+        <Entry Grid.Row="27" Grid.Column="0" Text="{Binding Fiber, Mode=TwoWay}" />
 
-        <Label Grid.Row="22" Grid.Column="0" Text="Sugars" FontSize="20"/>
-        <Entry Grid.Row="23" Grid.Column="0" Text="{Binding Sugar, Mode=TwoWay}" />      
+        <Label Grid.Row="28" Grid.Column="0" Text="Sugars" FontSize="20"/>
+        <Entry Grid.Row="29" Grid.Column="0" Text="{Binding Sugar, Mode=TwoWay}" />      
       </Grid>
       
         
