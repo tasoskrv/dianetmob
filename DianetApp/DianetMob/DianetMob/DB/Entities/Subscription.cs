@@ -16,8 +16,8 @@ namespace DianetMob.DB.Entities
         [ForeignKey(typeof(User))]
         public int IDUser { get; set; }
 
-        [ForeignKey(typeof(Package))]
-        public int IDPackage { get; set; }
+       // [ForeignKey(typeof(Package))]
+       // public int IDPackage { get; set; }
 
         public int IDServer { get; set; }
 

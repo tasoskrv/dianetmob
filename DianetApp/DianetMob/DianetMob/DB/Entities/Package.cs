@@ -21,6 +21,12 @@ namespace DianetMob.DB.Entities
 
         public bool IsActive { get; set; }
 
+        public int IDLang { get; set; }
+
+        public string GooglePlay { get; set; }
+
+        public string AppleStore { get; set; }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }

@@ -10,6 +10,8 @@ namespace DianetMob.DB.Entities
 {
     public class MealUnit : Model
     {
+        private int idservermeal=0;
+
         [PrimaryKey, AutoIncrement]
         public int IDMealUnit { get; set; }
 
@@ -22,7 +24,21 @@ namespace DianetMob.DB.Entities
         public int IDUser { get; set; }
 
         [Ignore]
-        public int IDServerMeal { get; set; }
+        public int IDServerMeal
+        {
+            get
+            {
+                if (idservermeal==0)
+                    idservermeal= StorageManager.GetConnection().Query<Meal>("select idserver from meal where idmeal="+ IDMeal.ToString())[0].IDServer;
+                return idservermeal;
+            }
+            set
+            {
+                idservermeal = value;
+                if (IDMeal == 0)
+                    IDMeal = StorageManager.GetConnection().Query<Meal>("select idmeal from meal where idserver="+ idservermeal.ToString())[0].IDMeal;
+            }
+        }
 
         public int IDServer { get; set; }
 

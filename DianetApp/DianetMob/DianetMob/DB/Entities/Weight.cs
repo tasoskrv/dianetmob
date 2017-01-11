@@ -16,9 +16,6 @@ namespace DianetMob.DB.Entities
         [PrimaryKey, AutoIncrement]
         public int IDWeight { get; set; }
 
-        [MaxLength(45)]
-        public string AccessToken { get; set; }
-
         [ForeignKey(typeof(User))]
         public int IDUser { get; set; }
 

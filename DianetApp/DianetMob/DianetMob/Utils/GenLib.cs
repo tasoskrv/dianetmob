@@ -153,10 +153,10 @@ namespace DianetMob.Utils
                 servUnit.SaveAllToDB();
 
                 ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall" + gencall);
-                servMeal.SaveAllToDB();
+                servMeal.SaveAllToDBWithServerID("IDMeal");
 
                 ModelService<MealUnit> servMealUnit = await ServiceConnector.GetServiceData<ModelService<MealUnit>>("/mealunit/getall" + gencall);
-                servMealUnit.SaveAllToDB();
+                servMealUnit.SaveAllToDBWithServerID("IDMealUnit");
 
                 ModelService<Package> servPackage = await ServiceConnector.GetServiceData<ModelService<Package>>("/package/getall" + gencall);
                 servPackage.SaveAllToDB();

@@ -10,17 +10,36 @@ namespace DianetMob.DB.Entities
 {
     public class UserMeal : Model
     {
+        private int idservermealunit = 0;
+
         [PrimaryKey, AutoIncrement]
         public int IDUserMeal { get; set; }
 
-        [ForeignKey(typeof(User))]
-        public int IDUser { get; set; }
+        public int IDServer { get; set; }
 
         [ForeignKey(typeof(MealUnit))]
         public int IDMealUnit { get; set; }
-        
-        public int IDServer { get; set; }
 
+        [Ignore]
+        public int IDServerMealUnit
+        {
+            get
+            {
+                if (idservermealunit == 0)
+                    idservermealunit = StorageManager.GetConnection().Query<MealUnit>("select idserver from mealunit where idmealunit=" + IDMealUnit.ToString())[0].IDServer;
+                return idservermealunit;
+            }
+            set
+            {
+                idservermealunit = value;
+                if (IDMealUnit == 0)
+                    IDMealUnit = StorageManager.GetConnection().Query<MealUnit>("select idmealunit from mealunit where idserver=" + idservermealunit.ToString())[0].IDMealUnit;
+            }
+        }
+
+        [ForeignKey(typeof(User))]
+        public int IDUser { get; set; }
+                
         public int IDCategory { get; set; }
 
         public double Qty { get; set; }
