@@ -1,20 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DianetMob.Pages.AlertPage">
-
-  
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="DianetMob.Pages.AlertPage">  
+   
 <ContentPage.ToolbarItems>
+  <ToolbarItem Text="Remove"  Clicked="OnRemoveAlertClicked" />
   <ToolbarItem Text="Add"  Clicked="OnAddAlertClicked" />
 </ContentPage.ToolbarItems>    
     
 <ContentPage.Content>
   <StackLayout VerticalOptions="StartAndExpand" >
+
     <ListView x:Name="ListViewAlerts" ItemTapped="OnItemTapped" RowHeight="70">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
+
+            <ViewCell.ContextActions>
+              <MenuItem Text="DELETE" CommandParameter="{Binding .}" Clicked="OnDeleted" />
+            </ViewCell.ContextActions>
+            
             <StackLayout Orientation="Horizontal" Padding="5">
+              <Image Source="alarm.png" IsVisible="{Binding IsVisible}" />
               <Image Source="alarm.png" />              
               <StackLayout Orientation="Vertical">
                 <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#c3c3c3" />

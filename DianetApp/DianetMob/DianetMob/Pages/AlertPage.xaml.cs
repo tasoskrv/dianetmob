@@ -4,10 +4,6 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 
 namespace DianetMob.Pages
@@ -34,6 +30,25 @@ namespace DianetMob.Pages
                 records.Add(new Alert { IDAlert = alt.IDAlert, Recurrence = alt.Recurrence, Description = alt.Description, InsertDate = alt.InsertDate });
             }
         }
+
+        public void OnRemoveAlertClicked(object sender, EventArgs e)
+        {
+            /*
+            Alert myAlert = ListViewAlerts.SelectedItem as Alert;
+            if (myAlert != null)
+            {
+                ListViewAlerts.BeginRefresh();
+                myAlert.IsVisible = true;
+                ListViewAlerts.EndRefresh();
+            }
+            */
+        }
+
+        public void OnDeleted(object sender, EventArgs e)
+        {
+            DisplayAlert("A", "B", "C");
+        }
+
 
         async void OnAddAlertClicked(object sender, EventArgs e)
         {
