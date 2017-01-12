@@ -14,19 +14,20 @@ namespace DianetMob.Pages
         private MapCustomMeal mapMeal = null;
         private Meal uFood;
         private MealUnit ml;
+        private Unit un;
         private SQLiteConnection conn = null;
 
-       //Dictionary<string, MapMealUnit> DicUnit = new Dictionary<string, MapMealUnit>();
+        //Dictionary<string, MapMealUnit> DicUnit = new Dictionary<string, MapMealUnit>();
         //Dictionary<string, double> DicCount2 = new Dictionary<string, double>();
 
         public MyFoodPageDetail()
         {
             InitializeComponent();
-            conn = StorageManager.GetConnection();           
+            conn = StorageManager.GetConnection();
             IEnumerable<Unit> mUnit = conn.Query<Unit>("SELECT IDUnit, Name  FROM Unit");
             foreach (Unit myunit in mUnit)
             {
-                unitPicker.Items.Add(myunit.Name);             
+                unitPicker.Items.Add(myunit.Name);
             }
             for (int i = 0; i < 1000; i++)
             {
@@ -43,10 +44,10 @@ namespace DianetMob.Pages
 
         public void LoadData(int IDMeal, int IDUser)
         {
-            
+
             if (IDMeal > 0)
             {
-                IEnumerable<MapCustomMeal> cusMeal = conn.Query<MapCustomMeal>("SELECT N.Name, N.Description, N.IDUser, M.IdMealUnit, M.Fat, M.Carb, M.Cholesterol, M.Fiber, M.Natrium, M.Potassium, M.SatFat, M.Protein, M.Sugar, M.UnSatFat FROM MealUnit as M JOIN Meal as N ON M.IDMeal= N.IDMeal WHERE N.IDMeal="+IDMeal.ToString()+ " AND N.IDUser="+IDUser.ToString());
+                IEnumerable<MapCustomMeal> cusMeal = conn.Query<MapCustomMeal>("SELECT N.Name, N.Description, N.IDUser, M.IdMealUnit, M.Fat, M.Carb, M.Cholesterol, M.Fiber, M.Natrium, M.Potassium, M.SatFat, M.Protein, M.Sugar, M.UnSatFat FROM MealUnit as M JOIN Meal as N ON M.IDMeal= N.IDMeal WHERE N.IDMeal=" + IDMeal.ToString() + " AND N.IDUser=" + IDUser.ToString());
                 mapMeal = cusMeal.First();
             }
             else
@@ -58,7 +59,7 @@ namespace DianetMob.Pages
 
             }
             BindingContext = mapMeal;
-           
+
         }
 
         private void OnSaveFoodClicked(object sender, EventArgs e)
@@ -102,9 +103,9 @@ namespace DianetMob.Pages
 
         void OnUnitChosen(object sender, EventArgs e)
         {
-            //Picker unitPicker = (Picker)sender;
-            //if (unitPicker.SelectedIndex >= 0)
-            //{
+            Picker unitPicker = (Picker)sender;
+            if (unitPicker.SelectedIndex >= 0)
+            {
             //    string Name = unitPicker.Items[unitPicker.SelectedIndex];
             //    string dekadikaName = counter2Picker.Items[counter2Picker.SelectedIndex];
             //    MapMealUnit mealUnitmap = DicUnit[Name];
@@ -119,6 +120,7 @@ namespace DianetMob.Pages
             //    foreach (var ec in DicCount2)
             //    {
             //        var dif = Math.Abs(ec.Value - dekadika);
+
             //        if (bestMatch == null || dif < bestMatch.Item1)
             //            bestMatch = Tuple.Create(dif, ec);
             //    }
@@ -133,8 +135,29 @@ namespace DianetMob.Pages
             //    SelMapMealUnit = mealUnitmap;
 
             }
+
+
+        }
+
+        void OnCount1Chosen(object sender, EventArgs e)
+        {
+            Picker counter1Picker = (Picker)sender;
+            if (counter1Picker.SelectedIndex >= 0)
+            {
+                mapMeal.Counter1 = counter1Picker.SelectedIndex;
+            }
+        }
+
+        void OnCount2Chosen(object sender, EventArgs e)
+        {
+            Picker counter2Picker = (Picker)sender;
+            if (counter2Picker.SelectedIndex >= 0)
+            {
+                mapMeal.Counter2 = counter2Picker.SelectedIndex;
+            }
         }
 
 
     }
+}
 
