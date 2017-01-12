@@ -40,10 +40,6 @@
           
         <Picker Grid.Row="5" Grid.Column="0" x:Name="unitPicker" Title="" SelectedIndexChanged="OnUnitChosen">
         </Picker>
-        <Picker Grid.Row="5" Grid.Column="1" x:Name="counter1Picker" Title="" SelectedIndexChanged="OnCount1Chosen">
-        </Picker>
-        <Picker Grid.Row="5" Grid.Column="2" x:Name="counter2Picker" Title="" SelectedIndexChanged="OnCount2Chosen">
-        </Picker>
 
         <Label Grid.Row="6" Grid.Column="0" Text="Calories" FontSize="20"/>
         <Entry Grid.Row="7" Grid.Column="0" Text="{Binding Calories, Mode=TwoWay}" />

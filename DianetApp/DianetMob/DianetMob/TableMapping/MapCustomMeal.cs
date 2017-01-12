@@ -30,8 +30,5 @@ namespace DianetMob.TableMapping
         public double Protein { get; set; }
         public int IDServer { get; set; }
 
-        public int Counter1 { get; set; }
-        public int Counter2 { get; set; }
-
     }
 }
