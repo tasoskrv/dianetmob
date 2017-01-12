@@ -17,6 +17,8 @@ namespace DianetMob.Pages
     {
         private MediaFile _mediaFileBefore;
         private MediaFile _mediaFileAfter;
+        private int numMsg = 0;
+        private int total = 0;
 
         public ProfilePage()
         {
@@ -165,28 +167,28 @@ namespace DianetMob.Pages
             }
         }
 
-        public async void OnUploadClicked(object sender, EventArgs e)
-        {            
+        public void OnUploadClicked(object sender, EventArgs e)
+        {
+            if (_mediaFileBefore != null && _mediaFileAfter != null)
+            {
+                total = 2;
+            }
+            else if (_mediaFileBefore != null || _mediaFileAfter != null)
+            {
+                total = 1;
+            }                                           
             if (_mediaFileBefore != null)
             {
                 uploadImage(_mediaFileBefore, "before");
-            }
-            else
-            {
-                await DisplayAlert("Message", "No images to upload", "OK");
             }
             if (_mediaFileAfter != null)
             {
                 uploadImage(_mediaFileAfter, "after");
             }
-            else
-            {
-                await DisplayAlert("Message", "No images to upload", "OK");
-            }
         }
 
         private async void uploadImage(MediaFile mediafile, string type)
-        {
+        {            
             byte[] bitmapData;
             var stream = new MemoryStream();
             mediafile.GetStream().CopyTo(stream);
@@ -213,7 +215,13 @@ namespace DianetMob.Pages
                 JObject res = JObject.Parse(content);
                 if (res["success"].ToString() == "True")
                 {
-                    await DisplayAlert("Message", "Image uploaded", "OK");
+
+                    numMsg = numMsg + 1;
+                    UploadMsg.Text = "uploaded " + numMsg;
+
+                    //await DisplayAlert("Message", "Image uploaded", "OK");
+                    //numMsg = numMsg + 1;
+                    //UploadMsg.Text = "uploading image " + numMsg;
                 }
                 else
                 {
