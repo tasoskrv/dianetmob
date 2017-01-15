@@ -19,14 +19,11 @@ namespace DianetMob.Pages
         public MyDay()
         {
             InitializeComponent();
-
             conn = StorageManager.GetConnection();
+
+            GenLib.StartUp();
         }
-        private void OnSyncButtonClicked(object sender, EventArgs e)
-        {
-            GenLib.FullSynch();
-            syncBtn.Icon = "Sync2.png";
-        }
+
         protected override void OnAppearing()
         {
             RecreateData();

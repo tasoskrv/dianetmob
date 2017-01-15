@@ -46,6 +46,7 @@ namespace DianetMob.DB
                 condb.CreateTable<UserMeal>();
                 condb.CreateTable<Weight>();
                 condb.CreateTable<UserSettings>();
+                condb.CreateTable<Message>();
                 InsertData(condb);
                 return true;
             }

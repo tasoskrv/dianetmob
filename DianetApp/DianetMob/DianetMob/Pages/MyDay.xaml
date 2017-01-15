@@ -5,7 +5,6 @@
              x:Class="DianetMob.Pages.MyDay"
              Title="My Day">
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="" Clicked="OnSyncButtonClicked" Icon="Synch2.png" x:Name="syncBtn"/>
     <ToolbarItem Text=""  Clicked="OnAddMealClicked" Icon="plus.png"/>
   </ContentPage.ToolbarItems>
   <ContentPage.Content>

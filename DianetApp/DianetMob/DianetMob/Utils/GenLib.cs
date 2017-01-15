@@ -15,6 +15,8 @@ namespace DianetMob.Utils
 {
     public class GenLib
     {
+        private static RecurringTask ServiceTask;
+        private static RecurringTask NotifTask;
 
         public async static void FullSynch()
         {            
@@ -48,6 +50,25 @@ namespace DianetMob.Utils
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public static void StartUp()
+        {
+            FullSynch();
+            CheckMessages();
+            var minutes = TimeSpan.FromDays(1);
+            if (ServiceTask == null)
+            {
+                ServiceTask = new RecurringTask(new Action(GenLib.FullSynch), minutes);
+            }
+            ServiceTask.Start();
+
+            minutes = TimeSpan.FromHours(6);
+            if (ServiceTask == null)
+            {
+                ServiceTask = new RecurringTask(new Action(GenLib.CheckMessages), minutes);
+            }
+            ServiceTask.Start();
         }
 
         public async static Task FullServiceSend(User user, UserSettings usersettings)
@@ -103,16 +124,6 @@ namespace DianetMob.Utils
                     StorageManager.UpdateData<Subscription>(sub);
                 }
                 
-                /**userfood**
-                IEnumerable<UserFood> ufoods = conn.Query<UserFood>("SELECT * FROM Userfood WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
-                ModelService<UserFood> srvUserfood = null;
-                foreach (UserFood ufood in ufoods)
-                {
-                    srvUserfood = await ServiceConnector.InsertServiceData<ModelService<UserFood>>("/userfood/save", ufood);
-                    ufood.IDServer = srvUserfood.ID;
-                    StorageManager.UpdateData<UserFood>(ufood);
-                }
-                */
                 //usermeal
                 IEnumerable<UserMeal> umeals = conn.Query<UserMeal>("SELECT * FROM Usermeal WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
                 ModelService<UserMeal> srvUserMeal = null;
@@ -133,6 +144,7 @@ namespace DianetMob.Utils
                         wgt.IDServer = srvWeight.ID;
                     StorageManager.UpdateData<Weight>(wgt);
                 }
+
             }
             catch (Exception ex)
             {
@@ -146,8 +158,7 @@ namespace DianetMob.Utils
             {
                 string gencall = "/accesstoken=" + user.AccessToken + "/updatedate=" + usersettings.LastSyncDate.ToString("yyyyMMdd");
                 string usercall = gencall + "/iduser=" + user.IDUser.ToString();
-                //TODO: service call check services
-
+                
                 //general calls - add required services
                 ModelService<Unit> servUnit = await ServiceConnector.GetServiceData<ModelService<Unit>>("/unit/getall" + gencall);
                 servUnit.SaveAllToDB();
@@ -182,12 +193,43 @@ namespace DianetMob.Utils
 
                 ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
                 servWeight.SaveAllToDBWithServerID("IDWeight");
+
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
+
+        public async static void CheckMessages()
+        {
+            User loginUser = StorageManager.GetConnectionInfo().LoginUser;
+
+            string gencall = "/accesstoken=" + loginUser.AccessToken ;
+            string usercall = gencall + "/iduser=" + loginUser.IDUser.ToString();
+
+            ModelService<Message> servMsg = await ServiceConnector.GetServiceData<ModelService<Message>>("/message/getall" + usercall);
+            servMsg.SaveAllToDBWithServerID("IDMessage");
+
+            SQLiteConnection conn = StorageManager.GetConnection();
+            IEnumerable<Message> msgs = conn.Query<Message>("SELECT * FROM message WHERE IDUser=" + loginUser.IDUser + " AND seen=0 ");
+            var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+            foreach (Message msg in msgs)
+            {
+                notifier.Notify(new LocalNotification()
+                {
+                    Title = msg.Title,
+                    Text = msg.MessageText,
+                    Id = msg.IDMessage,
+                    NotifyTime = DateTime.Now,
+                });
+                msg.seen = 1;
+                conn.Update(msg);
+                await ServiceConnector.InsertServiceData<ModelService<Message>>("/message/save", msg);
+            }
+            
+        }
+
 
         public static string GreeklishToGreek(string text)
         {

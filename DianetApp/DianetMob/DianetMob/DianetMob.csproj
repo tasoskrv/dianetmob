@@ -48,6 +48,7 @@
     <Compile Include="DB\Entities\Exercise.cs" />
     <Compile Include="DB\Entities\Meal.cs" />
     <Compile Include="DB\Entities\MealUnit.cs" />
+    <Compile Include="DB\Entities\Message.cs" />
     <Compile Include="DB\Entities\Model.cs" />
     <Compile Include="DB\Entities\Package.cs" />
     <Compile Include="DB\Entities\Plan.cs" />
@@ -97,6 +98,7 @@
     </Compile>
     <Compile Include="TableMapping\MapCustomMeal.cs" />
     <Compile Include="TableMapping\MapID.cs" />
+    <Compile Include="Utils\RecurringTask.cs" />
     <Compile Include="Views\AddMealView.xaml.cs">
       <DependentUpon>AddMealView.xaml</DependentUpon>
     </Compile>

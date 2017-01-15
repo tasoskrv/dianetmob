@@ -105,7 +105,6 @@ namespace DianetMob.Pages
                 //TODO
 
                 App.Current.MainPage = new MainPage();
-                GenLib.FullSynch();
             }
         }
 
