@@ -21,9 +21,6 @@ namespace DianetMob.Pages
         private SQLiteConnection conn = null;
         Dictionary<string, Unit> DicUnit = new Dictionary<string, Unit>();
 
-        //Dictionary<string, MapMealUnit> DicUnit = new Dictionary<string, MapMealUnit>();
-        //Dictionary<string, double> DicCount2 = new Dictionary<string, double>();
-
         public MyFoodPageDetail()
         {
             InitializeComponent();
@@ -84,6 +81,7 @@ namespace DianetMob.Pages
             ml.Cholesterol = mapMeal.Cholesterol;
             ml.Sugar = mapMeal.Sugar;
             ml.Protein = mapMeal.Protein;
+            ml.Fat = mapMeal.Fat;
             ml.SatFat = mapMeal.SatFat;
             ml.UnSatFat = mapMeal.UnSatFat;
             ml.Natrium = mapMeal.Natrium;
@@ -107,9 +105,12 @@ namespace DianetMob.Pages
                     mapMeal.IDMeal = uFood.IDMeal;
                     ml.InsertDate = ml.UpdateDate;
                     StorageManager.InsertData(ml);
+                    mapMeal.IdMealUnit = ml.IDMealUnit;
                 }
                 else
                 {
+                    uFood.IDMeal = mapMeal.IDMeal;
+
                     StorageManager.UpdateData(uFood);
                     ml.IDMeal = uFood.IDMeal;
                     mapMeal.IDMeal = uFood.IDMeal;
