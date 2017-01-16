@@ -15,7 +15,7 @@ namespace DianetMob.DB.Entities
         [PrimaryKey, AutoIncrement]
         public int IDMealUnit { get; set; }
 
-        [ForeignKey(typeof(Unit))]
+        //[ForeignKey(typeof(Unit))]
         public int IDUnit { get; set; }
 
         [ForeignKey(typeof(Meal))]
