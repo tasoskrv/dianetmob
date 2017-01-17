@@ -15,7 +15,7 @@ namespace DianetMob.Pages
     {
         private Alert alt;
         private SQLiteConnection conn = null;
-
+        
         public AlertPageDetail()
         {
             InitializeComponent();
@@ -63,6 +63,7 @@ namespace DianetMob.Pages
             else if (alt.IDAlert > 0)
             {
                 StorageManager.UpdateData(alt);
+                new AlertPage();
                 Navigation.PopAsync();
             }
             else

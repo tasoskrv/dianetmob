@@ -16,9 +16,8 @@ namespace DianetMob.Pages
     {
       
         private SQLiteConnection conn = null;
-        public static ObservableCollection<Meal> recordsMeal = null;
+        public static ObservableCollection<Meal> recordsMeal = new ObservableCollection<Meal>();
         private MyFoodPageDetail myFoodDt = new MyFoodPageDetail();
-        private Meal meal;
 
         public MyFoodPage()
         {
@@ -30,7 +29,7 @@ namespace DianetMob.Pages
         public void setRecords()
         {
             ListViewMyFoods.ItemsSource = null;
-            recordsMeal = new ObservableCollection<Meal>();
+            recordsMeal.Clear();
             IEnumerable<Meal> foods = conn.Query<Meal>("SELECT * FROM Meal WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Meal food in foods)
             {
@@ -47,13 +46,12 @@ namespace DianetMob.Pages
             if (selectedMeal.IDServer == 0)
             {
                 recordsMeal.Remove(selectedMeal);
+                StorageManager.DeleteData(selectedMeal);
             }
             else
             {
-                meal = new Meal();
-                meal = conn.Get<Meal>(selectedMeal.IDMeal);
-                meal.Deleted = 1;
-                StorageManager.UpdateData(meal);
+                selectedMeal.Deleted = 1;
+                StorageManager.UpdateData(selectedMeal);
                 setRecords();
             }
         }

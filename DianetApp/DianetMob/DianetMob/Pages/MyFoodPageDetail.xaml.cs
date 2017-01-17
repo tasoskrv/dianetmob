@@ -111,12 +111,12 @@ namespace DianetMob.Pages
                 else
                 {
                     uFood.IDMeal = mapMeal.IDMeal;
-
                     StorageManager.UpdateData(uFood);
                     ml.IDMeal = uFood.IDMeal;
                     mapMeal.IDMeal = uFood.IDMeal;
                     ml.InsertDate = ml.UpdateDate;
                     StorageManager.UpdateData(ml);
+                    new MyFoodPage();
                 }
                 Navigation.PopAsync();
             }

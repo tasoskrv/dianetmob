@@ -11,9 +11,8 @@ namespace DianetMob.Pages
     public partial class AlertPage : ContentPage
     {
         private SQLiteConnection conn = null;
-        public static ObservableCollection<Alert> recordsAlt = null;
+        public static ObservableCollection<Alert> recordsAlt = new ObservableCollection<Alert>();
         private AlertPageDetail alertPageDt = new AlertPageDetail();
-        private Alert alt;
 
         public AlertPage()
         {
@@ -25,7 +24,7 @@ namespace DianetMob.Pages
         public void setRecords()
         {
             ListViewAlerts.ItemsSource = null;
-            recordsAlt = new ObservableCollection<Alert>();
+            recordsAlt.Clear();
             IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Alert alt in alts)
             {
@@ -42,13 +41,12 @@ namespace DianetMob.Pages
             if (selectedAlert.IDServer == 0)
             {
                 recordsAlt.Remove(selectedAlert);
+                StorageManager.DeleteData(selectedAlert);
             }
             else
             {
-                alt = new Alert();
-                alt = conn.Get<Alert>(selectedAlert.IDAlert);
-                alt.Deleted = 1;
-                StorageManager.UpdateData(alt);
+                selectedAlert.Deleted = 1;
+                StorageManager.UpdateData(selectedAlert);
                 setRecords();
             }
         }
