@@ -14,6 +14,8 @@ namespace DianetMob.Pages
         private ObservableCollection<Alert> records = new ObservableCollection<Alert>();
         private AlertPageDetail alertPageDt = new AlertPageDetail();
 
+        private Alert alt;
+
         public AlertPage()
         {
             InitializeComponent();
@@ -24,7 +26,7 @@ namespace DianetMob.Pages
         protected override void OnAppearing()
         {
             records.Clear();
-            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Alert alt in alts)
             {
                 records.Add(new Alert { IDAlert = alt.IDAlert, Recurrence = alt.Recurrence, Description = alt.Description, InsertDate = alt.InsertDate });
@@ -46,10 +48,15 @@ namespace DianetMob.Pages
 
         public void OnDeleted(object sender, EventArgs e)
         {
-            DisplayAlert("A", "B", "C");
+            var selectedItem = (MenuItem)sender;
+            var selectedAlert = selectedItem.CommandParameter as Alert;
+            
+            alt = new Alert();
+            alt = conn.Get<Alert>(selectedAlert.IDAlert);
+            alt.Deleted = 1;
+            StorageManager.UpdateData(alt);            
         }
-
-
+        
         async void OnAddAlertClicked(object sender, EventArgs e)
         {
             alertPageDt.LoadData(0);
