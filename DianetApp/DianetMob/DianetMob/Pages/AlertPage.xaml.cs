@@ -11,50 +11,46 @@ namespace DianetMob.Pages
     public partial class AlertPage : ContentPage
     {
         private SQLiteConnection conn = null;
-        private ObservableCollection<Alert> records = new ObservableCollection<Alert>();
+        public static ObservableCollection<Alert> recordsAlt = null;
         private AlertPageDetail alertPageDt = new AlertPageDetail();
-
         private Alert alt;
 
         public AlertPage()
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
-            ListViewAlerts.ItemsSource = records;
+            setRecords();
         }
 
-        protected override void OnAppearing()
+        public void setRecords()
         {
-            records.Clear();
+            ListViewAlerts.ItemsSource = null;
+            recordsAlt = new ObservableCollection<Alert>();
             IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Alert alt in alts)
             {
-                records.Add(new Alert { IDAlert = alt.IDAlert, Recurrence = alt.Recurrence, Description = alt.Description, InsertDate = alt.InsertDate });
+                recordsAlt.Add(new Alert { IDAlert = alt.IDAlert, Recurrence = alt.Recurrence, Description = alt.Description, InsertDate = alt.InsertDate });
             }
+            ListViewAlerts.ItemsSource = recordsAlt; 
         }
-
-        public void OnRemoveAlertClicked(object sender, EventArgs e)
-        {
-            /*
-            Alert myAlert = ListViewAlerts.SelectedItem as Alert;
-            if (myAlert != null)
-            {
-                ListViewAlerts.BeginRefresh();
-                myAlert.IsVisible = true;
-                ListViewAlerts.EndRefresh();
-            }
-            */
-        }
-
+        
         public void OnDeleted(object sender, EventArgs e)
         {
             var selectedItem = (MenuItem)sender;
             var selectedAlert = selectedItem.CommandParameter as Alert;
-            
-            alt = new Alert();
-            alt = conn.Get<Alert>(selectedAlert.IDAlert);
-            alt.Deleted = 1;
-            StorageManager.UpdateData(alt);            
+
+            if (selectedAlert.IDServer == 0)
+            {
+                recordsAlt.Remove(selectedAlert);
+            }
+            else
+            {
+                alt = new Alert();
+                alt = conn.Get<Alert>(selectedAlert.IDAlert);
+                alt.Deleted = 1;
+                StorageManager.UpdateData(alt);
+                setRecords();
+            }
         }
         
         async void OnAddAlertClicked(object sender, EventArgs e)

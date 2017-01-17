@@ -4,7 +4,6 @@
               x:Class="DianetMob.Pages.AlertPage">  
    
 <ContentPage.ToolbarItems>
-  <ToolbarItem Text="Remove"  Clicked="OnRemoveAlertClicked" />
   <ToolbarItem Text="Add"  Clicked="OnAddAlertClicked" />
 </ContentPage.ToolbarItems>    
     
@@ -15,11 +14,9 @@
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-
             <ViewCell.ContextActions>
               <MenuItem Text="DELETE" CommandParameter="{Binding .}" Clicked="OnDeleted" />              
-            </ViewCell.ContextActions>
-            
+            </ViewCell.ContextActions>            
             <StackLayout Orientation="Horizontal" Padding="5">
               <Image Source="alarm.png" />              
               <StackLayout Orientation="Vertical">

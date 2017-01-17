@@ -101,6 +101,7 @@ namespace DianetMob.Pages
                 if (mapMeal.IDMeal == 0)
                 {
                     StorageManager.InsertData(uFood);
+                    MyFoodPage.recordsMeal.Add(uFood);
                     ml.IDMeal = uFood.IDMeal;
                     mapMeal.IDMeal = uFood.IDMeal;
                     ml.InsertDate = ml.UpdateDate;

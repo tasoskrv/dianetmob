@@ -69,8 +69,9 @@ namespace DianetMob.Pages
             {
                 alt.InsertDate = alt.UpdateDate;
                 StorageManager.InsertData(alt);
+                AlertPage.recordsAlt.Add(alt);                
                 Navigation.PopAsync();
-            }            
+            }    
         }
     }
 }

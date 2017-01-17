@@ -16,23 +16,45 @@ namespace DianetMob.Pages
     {
       
         private SQLiteConnection conn = null;
-        private ObservableCollection<Meal> records = new ObservableCollection<Meal>();
+        public static ObservableCollection<Meal> recordsMeal = null;
         private MyFoodPageDetail myFoodDt = new MyFoodPageDetail();
+        private Meal meal;
 
         public MyFoodPage()
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
-            ListViewMyFoods.ItemsSource = records;
+            setRecords();
         }
 
-        protected override void OnAppearing()
+        public void setRecords()
         {
-            records.Clear();
-            IEnumerable<Meal> foods = conn.Query<Meal>("SELECT * FROM Meal WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            ListViewMyFoods.ItemsSource = null;
+            recordsMeal = new ObservableCollection<Meal>();
+            IEnumerable<Meal> foods = conn.Query<Meal>("SELECT * FROM Meal WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Meal food in foods)
             {
-                records.Add(new Meal { IDUser = food.IDUser, IDMeal= food.IDMeal, Name = food.Name, Description= food.Description, InsertDate = food.InsertDate });
+                recordsMeal.Add(new Meal { IDUser = food.IDUser, IDMeal = food.IDMeal, Name = food.Name, Description = food.Description, InsertDate = food.InsertDate });
+            }
+            ListViewMyFoods.ItemsSource = recordsMeal;            
+        }
+
+        public void OnDeleted(object sender, EventArgs e)
+        {
+            var selectedItem = (MenuItem)sender;
+            var selectedMeal = selectedItem.CommandParameter as Meal;
+
+            if (selectedMeal.IDServer == 0)
+            {
+                recordsMeal.Remove(selectedMeal);
+            }
+            else
+            {
+                meal = new Meal();
+                meal = conn.Get<Meal>(selectedMeal.IDMeal);
+                meal.Deleted = 1;
+                StorageManager.UpdateData(meal);
+                setRecords();
             }
         }
 
