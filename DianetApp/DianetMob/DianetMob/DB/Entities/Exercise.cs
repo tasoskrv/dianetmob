@@ -45,11 +45,11 @@ namespace DianetMob.DB.Entities
             if (Minutes != 0)
                 str += "&minutes=" + Minutes;
             if (TrainDate != null)
-                str += "&traindate=" + TrainDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&traindate='" + TrainDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (InsertDate != null)
-                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (UpdateDate != null)
-                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&updatedate='" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
 
             return str.Substring(1);
         }

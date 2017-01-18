@@ -52,17 +52,17 @@ namespace DianetMob.DB.Entities
             if (IDUser != -1)
                 str += "&iduser=" + IDUser.ToString();
             if (BeginDate != null)
-                str += "&begindate=" + BeginDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&begindate='" + BeginDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (EndDate != null)
-                str += "&enddate=" + EndDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&enddate='" + EndDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (Price != 0)
                 str += "&price=" + Price.ToString();
             if (IsActive != 0)
                 str += "&isactive=" + IsActive.ToString();
             if (InsertDate != null)
-                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (UpdateDate != null)
-                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&updatedate='" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
 
             return str.Substring(1);
         }

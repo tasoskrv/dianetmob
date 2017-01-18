@@ -69,15 +69,15 @@ namespace DianetMob.DB.Entities
             if (IDCategory != 0)
                 str += "&idcategory=" + IDCategory.ToString();
             if (IDMealUnit != 0)
-                str += "&idmealunit=" + IDMealUnit.ToString();
+                str += "&idmealunit=" + IDServerMealUnit.ToString();
             if (Qty != 0)
                 str += "&qty=" + Qty.ToString();
             if (MealDate != null)
-                str += "&mealdate=" + MealDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&mealdate='" + MealDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (InsertDate != null)
-                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (UpdateDate != null)
-                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&updatedate='" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
 
             return str.Substring(1);
         }

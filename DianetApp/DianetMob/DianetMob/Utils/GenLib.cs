@@ -36,8 +36,8 @@ namespace DianetMob.Utils
                 await FullServiceLoadAndStore(loginUser, usersettings);
                 await FullServiceSend(loginUser, usersettings);
 
-                StorageManager.GetConnectionInfo().UserSettings.LastSyncDate = DateTime.UtcNow;
-                StorageManager.UpdateData<UserSettings>(StorageManager.GetConnectionInfo().UserSettings);
+                usersettings.LastSyncDate = DateTime.UtcNow;
+                StorageManager.UpdateData<UserSettings>(usersettings);
                 notifier.Notify(new LocalNotification()
                 {
                     Title = "Finish Loading Data",
@@ -54,19 +54,20 @@ namespace DianetMob.Utils
 
         public static void StartUp()
         {
-            FullSynch();
-            CheckMessages();
             var minutes = TimeSpan.FromDays(1);
             if (ServiceTask == null)
             {
-                ServiceTask = new RecurringTask(new Action(GenLib.FullSynch), minutes);
+                FullSynch();
+                ServiceTask = new RecurringTask(new Action(FullSynch), minutes);
             }
             ServiceTask.Start();
 
             minutes = TimeSpan.FromHours(6);
             if (ServiceTask == null)
             {
-                ServiceTask = new RecurringTask(new Action(GenLib.CheckMessages), minutes);
+
+                CheckMessages();
+                ServiceTask = new RecurringTask(new Action(CheckMessages), minutes);
             }
             ServiceTask.Start();
         }
@@ -79,70 +80,109 @@ namespace DianetMob.Utils
                 SQLiteConnection conn = StorageManager.GetConnection();
                 string iduser = user.IDUser.ToString();
 
-                string lastUpdateDate = usersettings.LastSyncDate.ToString("yyyyMMdd");
+                long tick =0;
+                if (usersettings.LastSyncDate.Ticks > 0)
+                    tick = usersettings.LastSyncDate.AddDays(-1).Ticks;
+                //meal
+                IEnumerable<Meal> meals = conn.Query<Meal>("SELECT * FROM Meal WHERE IDUser=" + iduser + " AND UpdateDate>= ?" , tick);
+                ModelService<Meal> srvNewMeal = null;
+                foreach (Meal meal in meals)
+                {
+                    srvNewMeal = await ServiceConnector.InsertServiceData<ModelService<Meal>>("/meal/save", meal);
+                    if (srvNewMeal.ID != 0)
+                    {
+                        meal.IDServer = srvNewMeal.ID;
+                        StorageManager.UpdateData<Meal>(meal);
+                    }
+                }
+                
+                //mealunit
+                IEnumerable<MealUnit> mealunits = conn.Query<MealUnit>("SELECT * FROM MealUnit WHERE IDUser=" + iduser + " AND UpdateDate>= ?" , tick);
+                ModelService<MealUnit> srvNewMealunits = null;
+                foreach (MealUnit mealunit in mealunits)
+                {
+                    srvNewMealunits = await ServiceConnector.InsertServiceData<ModelService<MealUnit>>("/mealunit/save", mealunit);
+                    if (srvNewMeal.ID != 0)
+                    {
+                        mealunit.IDServer = srvNewMeal.ID;
+                        StorageManager.UpdateData<MealUnit>(mealunit);
+                    }
+                }
 
                 //alert
-                IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
+                IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser + " AND UpdateDate>= ?" , tick);
                 ModelService<Alert> srvNewAlert = null;
                 foreach (Alert alt in alts)
                 {
                     srvNewAlert = await ServiceConnector.InsertServiceData<ModelService<Alert>>("/alert/save", alt);
-                    if(srvNewAlert.ID!=0)
+                    if (srvNewAlert.ID != 0)
+                    {
                         alt.IDServer = srvNewAlert.ID;
-                    StorageManager.UpdateData<Alert>(alt);
+                        StorageManager.UpdateData<Alert>(alt);
+                    }
                 }
                 //exercise
-                IEnumerable<Exercise> exes = conn.Query<Exercise>("SELECT * FROM Exercise WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
+                IEnumerable<Exercise> exes = conn.Query<Exercise>("SELECT * FROM Exercise WHERE IDUser=" + iduser + " AND  UpdateDate>= ? " , tick);
                 ModelService<Exercise> srvExercise = null;
                 foreach (Exercise exe in exes)
                 {
                     srvExercise = await ServiceConnector.InsertServiceData<ModelService<Exercise>>("/exercise/save", exe);
                     if (srvExercise.ID != 0)
+                    {
                         exe.IDServer = srvExercise.ID;
-                    StorageManager.UpdateData<Exercise>(exe);
+                        StorageManager.UpdateData<Exercise>(exe);
+                    }
                 }
 
                 //plan
-                IEnumerable<Plan> plns = conn.Query<Plan>("SELECT * FROM Plan WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
+                IEnumerable<Plan> plns = conn.Query<Plan>("SELECT * FROM Plan WHERE IDUser=" + iduser + " AND  UpdateDate>= ? " , tick);
                 ModelService<Plan> srvPlan = null;
                 foreach (Plan pln in plns)
                 {
                     srvPlan = await ServiceConnector.InsertServiceData<ModelService<Plan>>("/plan/save", pln);
                     if (srvPlan.ID != 0)
+                    {
                         pln.IDServer = srvPlan.ID;
-                    StorageManager.UpdateData<Plan>(pln);
+                        StorageManager.UpdateData<Plan>(pln);
+                    }
                 }
 
                 //subscription
-                IEnumerable<Subscription> subs = conn.Query<Subscription>("SELECT * FROM Subscription WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
+                IEnumerable<Subscription> subs = conn.Query<Subscription>("SELECT * FROM Subscription WHERE IDUser=" + iduser + " AND UpdateDate>= ? " , tick);
                 ModelService<Subscription> srvSubscription = null;
                 foreach (Subscription sub in subs)
                 {
                     srvSubscription = await ServiceConnector.InsertServiceData<ModelService<Subscription>>("/subscription/save", sub);
                     if (srvSubscription.ID != 0)
+                    {
                         sub.IDServer = srvSubscription.ID;
-                    StorageManager.UpdateData<Subscription>(sub);
+                        StorageManager.UpdateData<Subscription>(sub);
+                    }
                 }
                 
                 //usermeal
-                IEnumerable<UserMeal> umeals = conn.Query<UserMeal>("SELECT * FROM Usermeal WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
+                IEnumerable<UserMeal> umeals = conn.Query<UserMeal>("SELECT * FROM Usermeal WHERE IDUser=" + iduser + " AND UpdateDate>= ? " , tick);
                 ModelService<UserMeal> srvUserMeal = null;
                 foreach (UserMeal umeal in umeals)
                 {
                     srvUserMeal = await ServiceConnector.InsertServiceData<ModelService<UserMeal>>("/usermeal/save", umeal);
                     if (srvUserMeal.ID != 0)
+                    {
                         umeal.IDServer = srvUserMeal.ID;
-                    StorageManager.UpdateData<UserMeal>(umeal);
+                        StorageManager.UpdateData<UserMeal>(umeal);
+                    }
                 }
                 //weight
-                IEnumerable<Weight> wgts = conn.Query<Weight>("SELECT * FROM Weight WHERE IDUser=" + iduser + " AND UpdateDate>= " + lastUpdateDate);
+                IEnumerable<Weight> wgts = conn.Query<Weight>("SELECT * FROM Weight WHERE IDUser=" + iduser + " AND UpdateDate>= ? " , tick);
                 ModelService<Weight> srvWeight = null;
                 foreach (Weight wgt in wgts)
                 {
                     srvWeight = await ServiceConnector.InsertServiceData<ModelService<Weight>>("/weight/save", wgt);
                     if (srvWeight.ID != 0)
+                    {
                         wgt.IDServer = srvWeight.ID;
-                    StorageManager.UpdateData<Weight>(wgt);
+                        StorageManager.UpdateData<Weight>(wgt);
+                    }
                 }
 
             }
