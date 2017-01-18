@@ -77,11 +77,11 @@ namespace DianetMob.DB.Entities
             if(WValue != 0)
                 str += "&weight=" + WValue.ToString();
             if(WeightDate != null)
-                str += "&weightdate=" + WeightDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&weightdate='" + WeightDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (InsertDate != null)
-                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (UpdateDate != null)
-                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&updatedate='" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
 
             return str.Substring(1);            
         }

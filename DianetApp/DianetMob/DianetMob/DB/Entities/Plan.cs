@@ -81,11 +81,11 @@ namespace DianetMob.DB.Entities
             if (Goal != 0)
                 str += "&goal=" + Goal.ToString();
             if (GoalDate != null)
-                str += "&goaldate=" + GoalDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&goaldate='" + GoalDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (InsertDate != null)
-                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (UpdateDate != null)
-                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&updatedate='" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss")+"'";
 
             return str.Substring(1);
         }
