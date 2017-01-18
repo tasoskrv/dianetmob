@@ -5,6 +5,7 @@ using Java.IO;
 using Newtonsoft.Json.Linq;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using SQLite;
 using System;
 using System.IO;
 using System.Net.Http;
@@ -19,10 +20,13 @@ namespace DianetMob.Pages
         private MediaFile _mediaFileAfter;
         private int numMsg = 0;
         private int total = 0;
+        private SQLiteConnection conn = null;
+        User user = null;
 
         public ProfilePage()
         {
             InitializeComponent();
+            conn = StorageManager.GetConnection();
             FillInSettingsLoggedIn();            
             BindingContext = StorageManager.GetConnectionInfo().LoginUser;
         }
@@ -55,7 +59,25 @@ namespace DianetMob.Pages
                 {
                     if (AllFieldsAreFilled())
                     {
-                        StorageManager.UpdateData(StorageManager.GetConnectionInfo().LoginUser);
+                        //var IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                        //TODO update user
+                        var user = StorageManager.GetConnectionInfo().LoginUser;
+
+                        //user = conn.Get<User>(IDUser);
+
+
+                        user.FirstName = fFirstNameEntry.Text;
+                        user.LastName = fSurNameEntry.Text;
+                        user.Birthdate = fbirthDatePicker.Date;
+
+                        user.Gender = fSexPicker.SelectedIndex;
+                        user.HeightType = fHeightPicker.SelectedIndex;
+                        user.Height = Convert.ToDouble(fHeightEntry.Text);
+                        user.Location = fLocationEntry.Text;
+
+
+                        
+                        StorageManager.UpdateData(user);
                         RefreshPage();
                     }
                 }

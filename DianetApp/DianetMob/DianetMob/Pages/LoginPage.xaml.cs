@@ -101,10 +101,16 @@ namespace DianetMob.Pages
             }
             else
             {
-                //List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + user.IDUser);
-                //TODO
-
-                App.Current.MainPage = new MainPage();
+                List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE IDUser=" + user.IDUser);
+                //TODO                
+                if (user.HeightType == -1 || user.Height == -1 || user.Gender == -1 || wghts.Count == 0)
+                {
+                    App.Current.MainPage = new LoginProcessPage();
+                }
+                else
+                {
+                    App.Current.MainPage = new MainPage();
+                }                
             }
         }
 

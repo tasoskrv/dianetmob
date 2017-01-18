@@ -6,7 +6,7 @@
   <ContentPage.Content>
     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 30, 20, 50">
       <Image Source="logo1.png"  />           
-      <Entry x:Name="usernameEntry" Placeholder="Username - Enter a valid email" Keyboard="Email" Completed="OnValidateEmail" Text="demo@gmail.com"/>
+      <Entry x:Name="usernameEntry" Placeholder="Username - Enter a valid email" Keyboard="Email" Completed="OnValidateEmail" Text="taskmetal@hotmail.com"/>
       <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true" Text="1"/>      
       <Button Text="Log In" Clicked="OnLoginButtonClicked" />
       <Button Text="Login with Facebook" Clicked="OnFacebookLoginClicked" BackgroundColor="#4267b2" TextColor="#fff"/>

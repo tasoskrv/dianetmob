@@ -23,10 +23,20 @@ namespace DianetMob
             ConnectionInfo info = StorageManager.GetConnectionInfo();
             Settings settings = info.Settings;
             if (settings.LastLoggedIn != 0)
-                MainPage = new MainPage();
+            {
+                if (info.LoginUser.HeightType == 0 && info.LoginUser.Height == -1 && info.LoginUser.Gender == -1)
+                {
+                    MainPage = new LoginProcessPage();
+                }
+                else
+                {
+                    MainPage = new MainPage();
+                }                
+            }
             else
+            {
                 MainPage = new LoginPage();//StartPage
-
+            }
         }
 
 

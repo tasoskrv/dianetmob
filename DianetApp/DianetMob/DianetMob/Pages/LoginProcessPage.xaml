@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DianetMob.Pages.LoginProcessPage">
+      
+  <ContentPage.Content>
+    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 30, 20, 50">
+
+      <Label Text="Heigth" FontSize="Medium"/>
+      <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" >       
+
+        <Picker x:Name="heighttype" HorizontalOptions="FillAndExpand">
+          <Picker.Items></Picker.Items>
+        </Picker>
+
+        <Entry x:Name="height" Keyboard="Numeric" HorizontalOptions="FillAndExpand"/>
+      </StackLayout>
+
+      <Label Text="Gender" FontSize="Medium"/>
+      <Picker x:Name="genderPicker"> 
+        <Picker.Items></Picker.Items>
+      </Picker>
+
+      <Entry x:Name="weight" Placeholder="Weight" Keyboard="Numeric" />
+      <Label Text="Weight Date" FontSize="Medium"/>
+      <DatePicker x:Name="WeightDatePicker" Format="dd/MM/yyyy" />
+
+      <Entry x:Name="goal" Placeholder="Goal" Keyboard="Numeric" />
+      <Label Text="Goal Date" FontSize="Medium"/>
+      <DatePicker x:Name="GoalDatePicker" Format="dd/MM/yyyy" />
+
+      <Button Text="Save" Clicked="OnSaveClicked"/>     
+      <Label x:Name="MessageLabel" TextColor="Red" Margin="0, 20, 0, 0" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>          
+      
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
