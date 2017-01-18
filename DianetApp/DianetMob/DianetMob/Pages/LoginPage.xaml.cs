@@ -102,8 +102,9 @@ namespace DianetMob.Pages
             else
             {
                 List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE IDUser=" + user.IDUser);
+                List<Plan> plans = conn.Query<Plan>("SELECT IDPlan FROM Plan WHERE IDUser=" + user.IDUser);
                 //TODO                
-                if (user.HeightType == -1 || user.Height == -1 || user.Gender == -1 || wghts.Count == 0)
+                if (user.HeightType == -1 || user.Height == -1 || user.Gender == -1 || wghts.Count == 0 || plans.Count == 0)
                 {
                     App.Current.MainPage = new LoginProcessPage();
                 }

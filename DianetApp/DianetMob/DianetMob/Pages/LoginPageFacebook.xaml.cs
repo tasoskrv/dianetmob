@@ -3,6 +3,7 @@ using DianetMob.DB.Entities;
 using DianetMob.Model;
 using DianetMob.Service;
 using Newtonsoft.Json;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,11 @@ namespace DianetMob.Pages
                         user.Email = facebookobj.email;
                         user.FirstName = facebookobj.first_name;
                         user.LastName = facebookobj.last_name;
-                        StorageManager.SaveData<User>(user);
+                        StorageManager.SaveData(user);
+
+                        SQLiteConnection conn = StorageManager.GetConnection(); ;
+                        List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE IDUser=" + user.IDUser);
+                        List<Plan> plans = conn.Query<Plan>("SELECT IDPlan FROM Plan WHERE IDUser=" + user.IDUser);
 
                         ConnectionInfo info = StorageManager.GetConnectionInfo();
                         info.LoginUser = user;
@@ -65,7 +70,14 @@ namespace DianetMob.Pages
 
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                            App.Current.MainPage = new MainPage();
+                            if (info.LoginUser.HeightType == -1 || info.LoginUser.Height == -1 || info.LoginUser.Gender == -1 || wghts.Count == 0 || plans.Count == 0)
+                            {
+                                App.Current.MainPage = new LoginProcessPage();
+                            }
+                            else
+                            {
+                                App.Current.MainPage = new MainPage();
+                            }
                         });
                         return;                        
                         //srvUser.data[0].Password= user.Password;

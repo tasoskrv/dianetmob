@@ -56,19 +56,28 @@ namespace DianetMob.Pages
                 int heightType = heights[heighttype.Items[heighttype.SelectedIndex]];
                 int genderType = genders[genderPicker.Items[genderPicker.SelectedIndex]];
 
-
-
+                //weight
                 Weight wght = new Weight();
                 wght.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
-                wght.WValue = 150;
-                wght.WeightDate = DateTime.UtcNow;
+                wght.WValue = Convert.ToInt16(weight.Text);
+                wght.WeightDate = WeightDatePicker.Date;
                 wght.Deleted = 0;
                 wght.UpdateDate = DateTime.UtcNow;
                 wght.InsertDate = wght.UpdateDate;
-                StorageManager.InsertData<Weight>(wght);
+                StorageManager.InsertData(wght);
+
+                //goal
+                Plan plan = new Plan();
+                plan.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                plan.Goal = Convert.ToInt16(goal.Text);
+                plan.GoalDate = GoalDatePicker.Date;
+                plan.Deleted = 0;
+                plan.UpdateDate = DateTime.UtcNow;
+                plan.InsertDate = plan.UpdateDate;
+                StorageManager.InsertData(plan);
 
                 //TODO update user data
-                StorageManager.UpdateData<User>(StorageManager.GetConnectionInfo().LoginUser);
+                StorageManager.UpdateData(StorageManager.GetConnectionInfo().LoginUser);
             }
         }        
     }
