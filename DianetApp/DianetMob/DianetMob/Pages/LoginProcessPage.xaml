@@ -30,8 +30,6 @@
       <DatePicker x:Name="WeightDatePicker" Format="dd/MM/yyyy" />
 
       <Entry x:Name="goal" Placeholder="Goal" Keyboard="Numeric" />
-      <Label Text="Goal Date" FontSize="Medium"/>
-      <DatePicker x:Name="GoalDatePicker" Format="dd/MM/yyyy" />
 
       <Button x:Name="saveBtn" Text="Save" Clicked="OnSaveClicked"/>     
       <Label x:Name="MessageLabel" TextColor="Red" Margin="0, 20, 0, 0" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>          

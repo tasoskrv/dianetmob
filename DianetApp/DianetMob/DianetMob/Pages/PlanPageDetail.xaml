@@ -28,8 +28,8 @@
       <RowDefinition Height="50"/>
     </Grid.RowDefinitions>
 
-      <Label Grid.Row="0" Grid.Column="0" Text="Goal Date" />
-      <DatePicker Grid.Row="1" Grid.Column="0" x:Name="fGoalDate" Format="dd/MM/yyyy" Date="{Binding GoalDate, Mode=TwoWay, Converter={StaticResource dateConverter}}" />
+      <Label Grid.Row="0" Grid.Column="0" Text="Status" />
+      <Entry Grid.Row="1" Grid.Column="0" x:Name="fStatus" Text="{Binding Status, Mode=TwoWay}" Keyboard="Numeric" />
 
       <Label Grid.Row="2" Grid.Column="0" Text="Goal"/>
       <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Goal, Mode=TwoWay}" Keyboard="Numeric"/>

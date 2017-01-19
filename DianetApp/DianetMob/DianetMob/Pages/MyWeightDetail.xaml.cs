@@ -46,8 +46,28 @@ namespace DianetMob.Pages
             }
             else
             {
-                wght.InsertDate = wght.UpdateDate;
-                StorageManager.InsertData(wght);
+                /*
+                long tick = 0;
+                if (weightdate.Ticks > 0)
+                    tick = usersettings.LastSyncDate.AddDays(-1).Ticks;
+                //meal
+                IEnumerable<Meal> meals = conn.Query<Meal>("SELECT * FROM Meal WHERE IDUser=" + iduser + " AND UpdateDate>= ?", tick);
+
+                weightdate.Date.Ticks
+                */
+
+                List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE WeightDate = ? ", weightdate.Date.Ticks);
+                if (wghts.Count > 0)
+                {
+                    wght.UpdateDate = DateTime.UtcNow;
+                    wght.IDWeight = wghts[0].IDWeight;
+                    StorageManager.UpdateData(wght);
+                }
+                else
+                {
+                    wght.InsertDate = wght.UpdateDate;
+                    StorageManager.InsertData(wght);
+                }                                
                 Navigation.PopAsync();
             }
         }

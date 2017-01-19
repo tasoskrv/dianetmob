@@ -1,13 +1,8 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
-using DianetMob.Model;
-using DianetMob.Service;
-using DianetMob.Utils;
-using Newtonsoft.Json;
 using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 using Xamarin.Forms;
 
@@ -47,7 +42,7 @@ namespace DianetMob.Pages
             saveBtn.IsEnabled = false;
             if (heighttype.SelectedIndex == -1 || genderPicker.SelectedIndex == -1 || height.Text.Equals("") || height.Text == null
                 || weight.Text.Equals("") || weight.Text == null || WeightDatePicker.Date.Equals("") || WeightDatePicker.Date == null
-                || goal.Text.Equals("") || goal.Text == null || GoalDatePicker.Date.Equals("") || GoalDatePicker.Date == null)
+                || goal.Text.Equals("") || goal.Text == null)
             {
                 MessageLabel.Text = "Fill all fields";
             }
@@ -70,7 +65,7 @@ namespace DianetMob.Pages
                 Plan plan = new Plan();
                 plan.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
                 plan.Goal = Convert.ToInt16(goal.Text);
-                plan.GoalDate = GoalDatePicker.Date;
+                plan.Status = 1;
                 plan.Deleted = 0;
                 plan.UpdateDate = DateTime.UtcNow;
                 plan.InsertDate = plan.UpdateDate;

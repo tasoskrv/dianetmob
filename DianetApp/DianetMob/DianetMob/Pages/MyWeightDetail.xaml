@@ -46,22 +46,9 @@
     <DatePicker x:Name="fWeightDate" Date="{Binding InsertDate, Mode=TwoWay}" Format="dd-MM-yyyy" IsEnabled="false" />
 
     <Label Text="Weight" FontSize="Large" FontAttributes="Bold"/>
-    <Entry x:Name="fMyWeightEntry"
-           Text="{Binding WValue, Mode=TwoWay}"
-           Keyboard="Numeric"
-           VerticalOptions="StartAndExpand"
-           Placeholder="Today's weight..."
-           FontSize="20"
-           FontAttributes="Italic"/>
-
+    <Entry x:Name="fMyWeightEntry" Text="{Binding WValue, Mode=TwoWay}" Keyboard="Numeric" />
     <Label Text="" FontSize="30"/>
 
-    <Button x:Name="fSaveBtn"
-            Text="SAVE"
-            VerticalOptions="EndAndExpand"
-            HorizontalOptions="Center"
-            FontSize="Large"
-            FontAttributes="Bold"
-            Clicked="OnSaveWeightClicked"/>
+    <Button x:Name="fSaveBtn" Text="SAVE" Clicked="OnSaveWeightClicked"/>
   </StackLayout -->
 </ContentPage>

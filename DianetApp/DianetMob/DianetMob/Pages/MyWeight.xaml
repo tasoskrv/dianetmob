@@ -10,6 +10,43 @@
 
   <StackLayout>
     <WebView x:Name="webview2" HeightRequest="500" WidthRequest="500" />
+    
+    
+    
+    
+    
+    
+    
+    <ListView x:Name="ListViewWeight" ItemTapped="OnItemTapped" RowHeight="70">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.ContextActions>
+              <MenuItem Text="DELETE" CommandParameter="{Binding .}" Clicked="OnDeleted" />              
+            </ViewCell.ContextActions>            
+            <StackLayout Orientation="Horizontal" Padding="5">
+              <Image Source="alarm.png" />              
+              <StackLayout Orientation="Vertical">
+                <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#c3c3c3" />
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="{Binding WeightDate}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
+                  <Label Text="{Binding WValue}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>                
+                </StackLayout>
+              </StackLayout>                               
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </StackLayout> 
 
 </ContentPage>
