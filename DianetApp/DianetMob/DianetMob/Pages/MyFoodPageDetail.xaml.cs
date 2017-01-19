@@ -67,6 +67,7 @@ namespace DianetMob.Pages
                 uFood.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
 
             }
+            uFood.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
             BindingContext = mapMeal;
 
         }
@@ -110,11 +111,10 @@ namespace DianetMob.Pages
                 else
                 {
                     uFood.IDMeal = mapMeal.IDMeal;
-
                     StorageManager.UpdateData(uFood);
                     ml.IDMeal = uFood.IDMeal;
                     mapMeal.IDMeal = uFood.IDMeal;
-                    ml.InsertDate = ml.UpdateDate;
+                    ml.UpdateDate = ml.UpdateDate;
                     StorageManager.UpdateData(ml);
                 }
                 Navigation.PopAsync();
