@@ -23,20 +23,19 @@ namespace DianetMob.Pages
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
-            string WeightContent;
-            WeightContent = FillContent(5, 10, 15, 9);
-           
+
+            string query = "SELECT * FROM Weight where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
+            List<Weight> weightRecords = conn.Query<Weight>(query);
+
+            string queryGoal = "SELECT * FROM Plan where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
+            List<Plan> planRecords = conn.Query<Plan>(queryGoal);
 
             var html = new HtmlWebViewSource
             {
-                Html = WeightContent
+                Html = FillContent(weightRecords, planRecords) 
             };
 
-
             webview2.Source = html;
-
-
-
             setRecords();
         }
 
@@ -90,24 +89,88 @@ namespace DianetMob.Pages
         }
 
 
-        private string FillContent(int v1, int v2, int v3, int v4)
+        private string FillContent(List<Weight> weightRecords, List<Plan> planRecords)
         {
 
-            return "<!doctype html><html><head> <script src=\"file:///android_asset/Chart.bundle.js\"></script><script src=\"file:///android_asset/utils.js\"></script><style>" +
-                    "canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; } </style>" +
-                    "</head><body><div><canvas id=\"canvas\" height= \"260% \"></canvas></div><script> var color = Chart.helpers.color;" +
-                    "var barChartData = { labels: [\"17/12/2016\", \"25/12/2016\", \"25/12/ 2016\", \"25/12/2016\", \"25/12/2016\", \"25/12/2016\"]," +
-                    "datasets: [{ type: 'bar', label: 'Weight', backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(), borderColor: window.chartColors.blue," +
-                    "data: [90,89,88,88,86,86]}, {type: 'line', label: 'Goal', backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),  " +
-                    "borderColor: window.chartColors.red, data: [ 90,  88, 86, 85, 84, 83] }]};   " +
-                    "Chart.plugins.register({ afterDatasetsDraw: function(chartInstance, easing) { var ctx = chartInstance.chart.ctx;" +
-                    "chartInstance.data.datasets.forEach(function (dataset, i) {var meta = chartInstance.getDatasetMeta(i);" +
-                    "if (!meta.hidden) {  meta.data.forEach(function(element, index) { ctx.fillStyle = 'rgb(0, 0, 0)'; " +
-                    "var fontSize = 10; var fontStyle = 'normal'; var fontFamily = 'Helvetica Neue'; ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily); " +
-                    "var dataString = dataset.data[index].toString(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; var padding = 5; var position = element.tooltipPosition();" +
-                    "ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);  });} }); }}); " +
-                    "window.onload = function() { var ctx = document.getElementById(\"canvas\").getContext(\"2d\");  window.myBar = new Chart(ctx, {" +
-                    "type: 'bar', data: barChartData, options: { title: { display: true },} });}; </script></body></html>  ";                
+            double goalValue = planRecords[0].Goal;
+
+            double [] data = new double [weightRecords.Count];
+            double[] goal = new double[weightRecords.Count];
+            string [] label = new string[weightRecords.Count];
+            int i = 0;
+            foreach (Weight wRecord in weightRecords)
+            {
+                data[i] = wRecord.WValue;
+                goal[i] = goalValue;
+                label[i] = '"' + wRecord.WeightDate.ToString("dd/MM/yyyy") + '"';
+                i++;
+            }
+
+            /*
+            string data = "";
+            string label = "";
+            foreach (KeyValuePair<int, Double> entry in DashboardDic)
+            {
+                data += entry.Value + ",";
+                label += GetLabelCategory(entry.Key) + ",";
+            }
+            data = data.Remove(data.Length - 1);
+            label = label.Remove(label.Length - 1);
+            */
+
+            return "<!doctype html>" + 
+                    "<html>" + 
+                    "   <head>" + 
+                    "       <script src=\"file:///android_asset/Chart.bundle.js\"></script>" + 
+                    "       <script src=\"file:///android_asset/utils.js\"></script>" + 
+                    "       <style>" +
+                    "           canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; } " + 
+                    "       </style>" +
+                    "   </head>" +
+                    "   <body>" + 
+                    "       <div>" + 
+                    "           <canvas id=\"canvas\" height= \"260% \"></canvas>" + 
+                    "       </div>" + 
+                    "       <script> " + 
+                    "           var color = Chart.helpers.color;" +
+                    "           var barChartData = { " +
+                    "               labels   :  [" + String.Join(",", label) + "]," +
+                    "               datasets :  [{ " +
+                    "                   type  : 'line', " + 
+                    "                   label : 'Weight', " + 
+                    "                   backgroundColor : color(window.chartColors.blue).alpha(0.2).rgbString(), " + 
+                    "                   borderColor : window.chartColors.blue," +
+                    "                   data : [" + String.Join(",", data) + "] " +
+                    "               },{ " + 
+                    "                   type  : 'line', " + 
+                    "                   label : 'Goal', " + 
+                    "                   backgroundColor : color(window.chartColors.red).alpha(0.2).rgbString(),  " +
+                    "                   borderColor : window.chartColors.red, " +
+                    "                   data : [" + String.Join(",", goal) + "] " + 
+                    "               }] " + 
+                    "           }; " +
+                    "           Chart.plugins.register({ afterDatasetsDraw: function(chartInstance, easing) { var ctx = chartInstance.chart.ctx;" +
+                    "           chartInstance.data.datasets.forEach(function (dataset, i) {var meta = chartInstance.getDatasetMeta(i);" +
+                    "           if (!meta.hidden) {  " + 
+                    "               meta.data.forEach(function(element, index) { " + 
+                    "                   ctx.fillStyle = 'rgb(0, 0, 0)'; " +
+                    "                   var fontSize = 10; " + 
+                    "                   var fontStyle = 'normal'; " +
+                    "                   var fontFamily = 'Helvetica Neue'; " +
+                    "                   ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily); " +
+                    "               var dataString = dataset.data[index].toString(); " + 
+                    "               ctx.textAlign = 'center'; " + 
+                    "               ctx.textBaseline = 'middle'; " + 
+                    "               var padding = 5; " + 
+                    "               var position = element.tooltipPosition();" +
+                    "               ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);  " +
+                    "           }); " +
+                    "           } }); }}); " +
+                    "           window.onload = function() { var ctx = document.getElementById(\"canvas\").getContext(\"2d\");  window.myBar = new Chart(ctx, {" +
+                    "           type: 'bar', data: barChartData, options: { title: { display: true },} });}; " + 
+                    "       </script>" + 
+                    "   </body>" + 
+                    "</html>  ";                
         }
 
     } 
