@@ -4,8 +4,12 @@
              x:Class="DianetMob.Pages.LoginProcessPage">
       
   <ContentPage.Content>
+
+    
     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 30, 20, 50">
 
+      <Label Text="Set up your profile" FontSize="Large" HorizontalTextAlignment="Center"/>
+      
       <Label Text="Heigth" FontSize="Medium"/>
       <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" >       
 
@@ -29,7 +33,7 @@
       <Label Text="Goal Date" FontSize="Medium"/>
       <DatePicker x:Name="GoalDatePicker" Format="dd/MM/yyyy" />
 
-      <Button Text="Save" Clicked="OnSaveClicked"/>     
+      <Button x:Name="saveBtn" Text="Save" Clicked="OnSaveClicked"/>     
       <Label x:Name="MessageLabel" TextColor="Red" Margin="0, 20, 0, 0" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>          
       
     </StackLayout>

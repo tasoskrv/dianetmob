@@ -3,7 +3,9 @@ using DianetMob.DB.Entities;
 using DianetMob.Pages;
 using DianetMob.Utils;
 using DianetMob.Views;
+using SQLite;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 
@@ -23,8 +25,13 @@ namespace DianetMob
             ConnectionInfo info = StorageManager.GetConnectionInfo();
             Settings settings = info.Settings;
             if (settings.LastLoggedIn != 0)
-            {
-                if (info.LoginUser.HeightType == 0 && info.LoginUser.Height == -1 && info.LoginUser.Gender == -1)
+            {//TODO weight, goal
+
+                SQLiteConnection conn = StorageManager.GetConnection(); ;
+                List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE IDUser=" + info.LoginUser.IDUser);
+                List<Plan> plans = conn.Query<Plan>("SELECT IDPlan FROM Plan WHERE IDUser=" + info.LoginUser.IDUser);
+
+                if (info.LoginUser.HeightType == -1 || info.LoginUser.Height == -1 || info.LoginUser.Gender == -1 || wghts.Count == 0 || plans.Count == 0)
                 {
                     MainPage = new LoginProcessPage();
                 }
@@ -38,7 +45,6 @@ namespace DianetMob
                 MainPage = new LoginPage();//StartPage
             }
         }
-
 
         protected override void OnStart()
         {

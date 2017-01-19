@@ -44,7 +44,7 @@ namespace DianetMob.Pages
 
         private void OnSaveClicked(object sender, EventArgs e)
         {
-
+            saveBtn.IsEnabled = false;
             if (heighttype.SelectedIndex == -1 || genderPicker.SelectedIndex == -1 || height.Text.Equals("") || height.Text == null
                 || weight.Text.Equals("") || weight.Text == null || WeightDatePicker.Date.Equals("") || WeightDatePicker.Date == null
                 || goal.Text.Equals("") || goal.Text == null || GoalDatePicker.Date.Equals("") || GoalDatePicker.Date == null)
@@ -77,7 +77,14 @@ namespace DianetMob.Pages
                 StorageManager.InsertData(plan);
 
                 //TODO update user data
-                StorageManager.UpdateData(StorageManager.GetConnectionInfo().LoginUser);
+                ConnectionInfo info = StorageManager.GetConnectionInfo();
+                info.LoginUser.Gender = genderType;
+                info.LoginUser.HeightType = heightType;
+                info.LoginUser.Height = Convert.ToDouble(height.Text);
+                
+                StorageManager.UpdateData(info.LoginUser);
+                saveBtn.IsEnabled = true;
+                App.Current.MainPage = new MainPage();                
             }
         }        
     }
