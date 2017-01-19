@@ -15,7 +15,7 @@ namespace DianetMob.Pages
     public partial class MyWeight : ContentPage
     {
         private SQLiteConnection conn = null;
-        private ObservableCollection<Weight> records = new ObservableCollection<Weight>();
+        public static ObservableCollection<Weight> recordsWgt = new ObservableCollection<Weight>();
         private MyWeightDetail myWeightDt = new MyWeightDetail();
         private PlanPageDetail planPageDt = new PlanPageDetail();
 
@@ -34,19 +34,40 @@ namespace DianetMob.Pages
 
 
             webview2.Source = html;
+
+
+
+            setRecords();
+        }
+
+        public void setRecords()
+        {
+            ListViewWeight.ItemsSource = null;
+            recordsWgt.Clear();
+            IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            foreach (Weight wght in wghts)
+            {
+                recordsWgt.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, InsertDate = wght.InsertDate });
+            }
+            ListViewWeight.ItemsSource = recordsWgt; 
         }
 
         protected override void OnAppearing()
         {
             //records.Clear();
-            IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
-            IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, GoalDate FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            //IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            //IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, Status FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             // prepei na kathorisoume poies times apo autes tou wghts k plans theloume na blepoume sto Chart
              
            /* foreach (Weight wght in wghts)
             {
                 records.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, InsertDate = wght.InsertDate });
             }*/
+        }
+
+        public void OnDeleted(object sender, EventArgs e)
+        {
+
         }
 
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)

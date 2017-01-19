@@ -11,7 +11,7 @@ namespace DianetMob.DB.Entities
     public class Plan : Model
     {
         private double goal;
-        private DateTime goaldate;
+        private int status;
 
         [PrimaryKey, AutoIncrement]
         public int IDPlan { get; set; }
@@ -36,23 +36,24 @@ namespace DianetMob.DB.Entities
                 }
             }
         }
-
-        public DateTime GoalDate
+        
+        public int Status
         {
             get
             {
-                return goaldate;
+                return status;
             }
             set
             {
-                if (goaldate != value)
+                if (status != value)
                 {
-                    goaldate = value;
-                    OnPropertyChanged("GoalDate");
+                    status = value;
+                    OnPropertyChanged("Status");
                 }
             }
         }
-       
+
+
         public int UserStep { get; set; }
 
         public int PlanType { get; set; }
@@ -67,7 +68,7 @@ namespace DianetMob.DB.Entities
         {
             IDServer = 0;
             Deleted = 0;
-            goaldate = DateTime.UtcNow;
+            status = 1;
         }
 
         public override string ToString()
@@ -80,8 +81,9 @@ namespace DianetMob.DB.Entities
                 str += "&iduser=" + IDUser.ToString();
             if (Goal != 0)
                 str += "&goal=" + Goal.ToString();
-            if (GoalDate != null)
-                str += "&goaldate='" + GoalDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+            
+            str += "&status='" + Status.ToString();
+
             if (InsertDate != null)
                 str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
             if (UpdateDate != null)

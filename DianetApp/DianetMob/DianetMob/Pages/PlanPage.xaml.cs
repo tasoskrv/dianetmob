@@ -4,9 +4,6 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -28,10 +25,10 @@ namespace DianetMob.Pages
         protected override void OnAppearing()
         {
             records.Clear();
-            IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, GoalDate FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, Status FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Plan plan in plans)
             {
-                records.Add(new Plan { IDPlan = plan.IDPlan, Goal = plan.Goal, GoalDate = plan.GoalDate });
+                records.Add(new Plan { IDPlan = plan.IDPlan, Goal = plan.Goal, Status = plan.Status });
             }
         }
 

@@ -1,13 +1,8 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
-using DianetMob.Model;
-using DianetMob.Service;
-using DianetMob.Utils;
-using Newtonsoft.Json;
 using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 using Xamarin.Forms;
 
@@ -69,7 +64,8 @@ namespace DianetMob.Pages
                 //goal
                 Plan plan = new Plan();
                 plan.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
-                plan.Goal = Convert.ToInt16(goal.Text);                
+                plan.Goal = Convert.ToInt16(goal.Text);
+                plan.Status = 1;
                 plan.Deleted = 0;
                 plan.UpdateDate = DateTime.UtcNow;
                 plan.InsertDate = plan.UpdateDate;
