@@ -47,7 +47,7 @@ namespace DianetMob.Pages
             saveBtn.IsEnabled = false;
             if (heighttype.SelectedIndex == -1 || genderPicker.SelectedIndex == -1 || height.Text.Equals("") || height.Text == null
                 || weight.Text.Equals("") || weight.Text == null || WeightDatePicker.Date.Equals("") || WeightDatePicker.Date == null
-                || goal.Text.Equals("") || goal.Text == null || GoalDatePicker.Date.Equals("") || GoalDatePicker.Date == null)
+                || goal.Text.Equals("") || goal.Text == null)
             {
                 MessageLabel.Text = "Fill all fields";
             }
@@ -69,8 +69,7 @@ namespace DianetMob.Pages
                 //goal
                 Plan plan = new Plan();
                 plan.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
-                plan.Goal = Convert.ToInt16(goal.Text);
-                plan.GoalDate = GoalDatePicker.Date;
+                plan.Goal = Convert.ToInt16(goal.Text);                
                 plan.Deleted = 0;
                 plan.UpdateDate = DateTime.UtcNow;
                 plan.InsertDate = plan.UpdateDate;
