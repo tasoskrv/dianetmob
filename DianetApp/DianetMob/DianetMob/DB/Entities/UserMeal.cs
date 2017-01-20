@@ -62,22 +62,22 @@ namespace DianetMob.DB.Entities
         {
             string str = "";
 
-            str += "&idserver=" + IDServer.ToString();
+            str += "&idserver=\"" + IDServer.ToString() + "\"";
 
             if (IDUser != -1)
-                str += "&iduser=" + IDUser.ToString();
+                str += "&iduser=\"" + IDUser.ToString() + "\"";
             if (IDCategory != 0)
-                str += "&idcategory=" + IDCategory.ToString();
+                str += "&idcategory=\"" + IDCategory.ToString() + "\"";
             if (IDMealUnit != 0)
-                str += "&idmealunit=" + IDServerMealUnit.ToString();
+                str += "&idmealunit=\"" + IDServerMealUnit.ToString() + "\"";
             if (Qty != 0)
-                str += "&qty=" + Qty.ToString();
+                str += "&qty=\"" + Qty.ToString() + "\"";
             if (MealDate != null)
-                str += "&mealdate='" + MealDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&mealdate=\"" + MealDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (InsertDate != null)
-                str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&insertdate=\"" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (UpdateDate != null)
-                str += "&updatedate='" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&updatedate=\"" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
 
             return str.Substring(1);
         }

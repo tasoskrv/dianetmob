@@ -133,7 +133,7 @@ namespace DianetMob.Utils
                         StorageManager.UpdateData<Exercise>(exe);
                     }
                 }
-
+                
                 //plan
                 IEnumerable<Plan> plns = conn.Query<Plan>("SELECT * FROM Plan WHERE IDUser=" + iduser + " AND  UpdateDate>= ? " , tick);
                 ModelService<Plan> srvPlan = null;
@@ -146,7 +146,7 @@ namespace DianetMob.Utils
                         StorageManager.UpdateData<Plan>(pln);
                     }
                 }
-
+                
                 //subscription
                 IEnumerable<Subscription> subs = conn.Query<Subscription>("SELECT * FROM Subscription WHERE IDUser=" + iduser + " AND UpdateDate>= ? " , tick);
                 ModelService<Subscription> srvSubscription = null;
@@ -184,7 +184,7 @@ namespace DianetMob.Utils
                         StorageManager.UpdateData<Weight>(wgt);
                     }
                 }
-
+                
             }
             catch (Exception ex)
             {
@@ -221,10 +221,10 @@ namespace DianetMob.Utils
                 
                 ModelService<Exercise> servExercise = await ServiceConnector.GetServiceData<ModelService<Exercise>>("/exercise/getall" + usercall);
                 servExercise.SaveAllToDBWithServerID("IDExercise");
-
+                
                 ModelService<Plan> servPlan = await ServiceConnector.GetServiceData<ModelService<Plan>>("/plan/getall" + usercall);
                 servPlan.SaveAllToDBWithServerID("IDPlan");
-
+                
                 ModelService<Subscription> servSubscription = await ServiceConnector.GetServiceData<ModelService<Subscription>>("/subscription/getall" + usercall);
                 servSubscription.SaveAllToDBWithServerID("IDSubscription");
 
@@ -233,7 +233,7 @@ namespace DianetMob.Utils
 
                 ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
                 servWeight.SaveAllToDBWithServerID("IDWeight");
-
+                
             }
             catch (Exception ex)
             {

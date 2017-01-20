@@ -16,7 +16,7 @@ namespace DianetMob.Droid.DB
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
             var path = Path.Combine(documentsPath, sqliteFilename);
             //delete DB
-            //File.Delete(path);
+            File.Delete(path);
             bool dbexist = File.Exists(path);
 
             var conn = new SQLite.SQLiteConnection(path);

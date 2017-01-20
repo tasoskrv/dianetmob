@@ -66,18 +66,18 @@ namespace DianetMob.DB.Entities
         {
             string str = "";
 
-            str += "&idserver=" + IDServer.ToString();
+            str += "&idserver=\"" + IDServer.ToString() + "\"";
 
             if (IDUser != -1)
-                str += "&iduser=" + IDUser.ToString();
+                str += "&iduser=\"" + IDUser.ToString() + "\"";
             if(WValue != 0)
-                str += "&weight=" + WValue.ToString();
+                str += "&weight=\"" + WValue.ToString() + "\"";
             if(WeightDate != null)
-                str += "&weightdate='" + WeightDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&weightdate=\"" + WeightDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (InsertDate != null)
-                str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&insertdate=\"" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (UpdateDate != null)
-                str += "&updatedate='" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&updatedate=\"" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
 
             return str.Substring(1);            
         }

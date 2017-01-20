@@ -37,19 +37,19 @@ namespace DianetMob.DB.Entities
         {
             string str = "";
 
-            str += "&idserver=" + IDServer.ToString();
+            str += "&idserver=\"" + IDServer.ToString() + "\"";
 
             if (IDUser != -1)
-                str += "&iduser=" + IDUser.ToString();
+                str += "&iduser=\"" + IDUser.ToString() + "\"";
             if (!Title.Equals(""))
-                str += "&title=" + Title;
+                str += "&title=\"" + Title + "\"";
             if (!MessageText.Equals(""))
-                str += "&messagetext=" + MessageText;
-            str += "&seen=" + seen.ToString();
+                str += "&messagetext=\"" + MessageText + "\"";
+            str += "&seen=" + seen.ToString() + "\"";
             if (InsertDate != null)
-                str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&insertdate=\"" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (UpdateDate != null)
-                str += "&updatedate='" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&updatedate=\"" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
 
             return str.Substring(1);
         }

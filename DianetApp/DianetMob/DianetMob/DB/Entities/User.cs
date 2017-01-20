@@ -213,39 +213,39 @@ namespace DianetMob.DB.Entities
         {
             string str = "";
             if (IDUser != -1)
-                str += "&iduser=" + IDUser.ToString();
+                str += "&iduser=\"" + IDUser.ToString() + "\"";
             if (!AccessToken.Equals(""))
-                str += "&accesstoken=" + Uri.EscapeDataString(AccessToken);
+                str += "&accesstoken=\"" + Uri.EscapeDataString(AccessToken) + "\"";
             if (FacebookID != -1)
-                str += "&iduser=" + FacebookID.ToString();
+                str += "&iduser=\"" + FacebookID.ToString() + "\"";
             if (!FirstName.Equals(""))
-                str += "&firstname=" + Uri.EscapeDataString(FirstName);
+                str += "&firstname=\"" + Uri.EscapeDataString(FirstName) + "\"";
             if (!LastName.Equals(""))
-                str += "&lastname=" + Uri.EscapeDataString(LastName);
+                str += "&lastname=\"" + Uri.EscapeDataString(LastName) + "\"";
             if (Gender != -1)
-                str += "&gender=" + Gender.ToString();
+                str += "&gender=\"" + Gender.ToString() + "\"";
             if (!Email.Equals(""))
-                str += "&email=" + Uri.EscapeDataString(Email);
+                str += "&email=\"" + Uri.EscapeDataString(Email) + "\"";
             if (!Password.Equals(""))
-                str += "&password=" + Password;
+                str += "&password=\"" + Password + "\"";
             if (!Location.Equals(""))
-                str += "&location=" + Location;
+                str += "&location=\"" + Location + "\"";
             if (Height != -1)
-                str += "&height=" + Height.ToString();
+                str += "&height=\"" + Height.ToString() + "\"";
             if (HeightType != -1)
-                str += "&heighttype=" + HeightType.ToString();
+                str += "&heighttype=\"" + HeightType.ToString() + "\"";
             if (Skeleton != -1)
-                str += "&skeleton=" + Skeleton.ToString();
+                str += "&skeleton=\"" + Skeleton.ToString() + "\"";
             if (Birthdate != null)
-                str += "&birthdate=" + Birthdate.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&birthdate=\"" + Birthdate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (RemindDate != null)
-                str += "&reminddate=" + RemindDate.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&reminddate=\"" + RemindDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (InsertDate != DateTime.MinValue)
-                str += "&insertdate=" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&insertdate=\"" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (UpdateDate != DateTime.MinValue)
-                str += "&updatedate=" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss");
+                str += "&updatedate=\"" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (AdjustDiet != -1)
-                str += "&adjustdiet=" + AdjustDiet.ToString();
+                str += "&adjustdiet=\"" + AdjustDiet.ToString() + "\"";
             return str.Substring(1);
 
         }

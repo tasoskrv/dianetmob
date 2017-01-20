@@ -38,18 +38,18 @@ namespace DianetMob.DB.Entities
         {
             string str = "";
 
-            str += "&idserver=" + IDServer.ToString();
+            str += "&idserver=\"" + IDServer.ToString() + "\"";
 
             if (IDUser != -1)
-                str += "&iduser=" + IDUser.ToString();
+                str += "&iduser=\"" + IDUser.ToString() + "\"";
             if (Minutes != 0)
-                str += "&minutes=" + Minutes;
+                str += "&minutes=\"" + Minutes + "\"";
             if (TrainDate != null)
-                str += "&traindate='" + TrainDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&traindate=\"" + TrainDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (InsertDate != null)
-                str += "&insertdate='" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&insertdate=\"" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (UpdateDate != null)
-                str += "&updatedate='" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                str += "&updatedate=\"" + UpdateDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
 
             return str.Substring(1);
         }
