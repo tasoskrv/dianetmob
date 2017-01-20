@@ -18,24 +18,21 @@ namespace DianetMob.Pages
         public static ObservableCollection<Weight> recordsWgt = new ObservableCollection<Weight>();
         private MyWeightDetail myWeightDt = new MyWeightDetail();
         private PlanPageDetail planPageDt = new PlanPageDetail();
+        private HtmlWebViewSource webview = null;
 
         public MyWeight()
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
-
-            string query = "SELECT * FROM Weight where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
-            List<Weight> weightRecords = conn.Query<Weight>(query);
-
-            string queryGoal = "SELECT * FROM Plan where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
-            List<Plan> planRecords = conn.Query<Plan>(queryGoal);
-
+            /*
             var html = new HtmlWebViewSource
             {
-                Html = FillContent(weightRecords, planRecords) 
+                Html = FillContent() 
             };
+            */
+            webview = new HtmlWebViewSource();
 
-            webview2.Source = html;
+            webview2.Source = webview;
             setRecords();
         }
 
@@ -43,25 +40,27 @@ namespace DianetMob.Pages
         {
             ListViewWeight.ItemsSource = null;
             recordsWgt.Clear();
-            IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, WeightDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             foreach (Weight wght in wghts)
             {
-                recordsWgt.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, InsertDate = wght.InsertDate });
+                recordsWgt.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, WeightDate = wght.WeightDate });
             }
             ListViewWeight.ItemsSource = recordsWgt; 
         }
 
         protected override void OnAppearing()
         {
+
+            FillContent();
             //records.Clear();
             //IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             //IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, Status FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
             // prepei na kathorisoume poies times apo autes tou wghts k plans theloume na blepoume sto Chart
-             
-           /* foreach (Weight wght in wghts)
-            {
-                records.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, InsertDate = wght.InsertDate });
-            }*/
+
+            /* foreach (Weight wght in wghts)
+             {
+                 records.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, InsertDate = wght.InsertDate });
+             }*/
         }
 
         public void OnDeleted(object sender, EventArgs e)
@@ -89,8 +88,14 @@ namespace DianetMob.Pages
         }
 
 
-        private string FillContent(List<Weight> weightRecords, List<Plan> planRecords)
+        private void FillContent()
         {
+
+            string query = "SELECT * FROM Weight where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
+            List<Weight> weightRecords = conn.Query<Weight>(query);
+
+            string queryGoal = "SELECT * FROM Plan where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
+            List<Plan> planRecords = conn.Query<Plan>(queryGoal);
 
             double goalValue = planRecords[0].Goal;
 
@@ -118,7 +123,7 @@ namespace DianetMob.Pages
             label = label.Remove(label.Length - 1);
             */
 
-            return "<!doctype html>" + 
+            webview.Html = "<!doctype html>" + 
                     "<html>" + 
                     "   <head>" + 
                     "       <script src=\"file:///android_asset/Chart.bundle.js\"></script>" + 

@@ -59,7 +59,7 @@ namespace DianetMob.DB.Entities
         {
             IDServer = 0;
             Deleted = 0;
-            weightDate = DateTime.UtcNow;
+            weightDate = DateTime.UtcNow.Date;
         }
         
         public override string ToString()

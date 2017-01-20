@@ -37,6 +37,7 @@ namespace DianetMob.Pages
         private void OnSaveWeightClicked(object sender, EventArgs e)
         {
             wght.UpdateDate = DateTime.UtcNow;
+            wght.WeightDate = wght.WeightDate.Date;//only date
             if (wght.WValue <= 0)
                 DisplayAlert("Please", "fill in today's weight", "OK");
             else if (wght.IDWeight > 0)
@@ -60,6 +61,7 @@ namespace DianetMob.Pages
                 if (wghts.Count > 0)
                 {
                     wght.UpdateDate = DateTime.UtcNow;
+                    wght.InsertDate = wght.UpdateDate;
                     wght.IDWeight = wghts[0].IDWeight;
                     StorageManager.UpdateData(wght);
                 }
@@ -67,6 +69,7 @@ namespace DianetMob.Pages
                 {
                     wght.InsertDate = wght.UpdateDate;
                     StorageManager.InsertData(wght);
+                    MyWeight.recordsWgt.Add(wght);
                 }                                
                 Navigation.PopAsync();
             }
