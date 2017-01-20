@@ -15,7 +15,7 @@ namespace DianetMob.TableMapping
 
         public int IDUnit { get; set; }
 
-        public int IdMealUnit { get; set; }
+        public int IDMealUnit { get; set; }
         public double Calories { get; set; }
         public double Carb { get; set; }
         public double Fiber { get; set; }

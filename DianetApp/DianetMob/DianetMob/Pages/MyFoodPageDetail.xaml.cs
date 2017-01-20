@@ -42,7 +42,7 @@ namespace DianetMob.Pages
 
             if (IDMeal > 0)
             {
-                IEnumerable<MapCustomMeal> cusMeal = conn.Query<MapCustomMeal>("SELECT N.Name, N.Description, N.IDUser, N.IDMeal, M.IdMealUnit, M.IDUnit, M.Fat, M.Carb, M.Calories, M.Cholesterol, M.Fiber, M.Natrium, M.Potassium, M.SatFat, M.Protein, M.Sugar, M.UnSatFat FROM MealUnit as M JOIN Meal as N ON M.IDMeal= N.IDMeal WHERE N.IDMeal=" + IDMeal.ToString() + " AND N.IDUser=" + IDUser.ToString());
+                IEnumerable<MapCustomMeal> cusMeal = conn.Query<MapCustomMeal>("SELECT N.Name, N.Description, N.IDUser, N.IDMeal, M.IDMealUnit, M.IDUnit, M.Fat, M.Carb, M.Calories, M.Cholesterol, M.Fiber, M.Natrium, M.Potassium, M.SatFat, M.Protein, M.Sugar, M.UnSatFat FROM MealUnit as M JOIN Meal as N ON M.IDMeal= N.IDMeal WHERE N.IDMeal=" + IDMeal.ToString() + " AND N.IDUser=" + IDUser.ToString());
                 mapMeal = cusMeal.First();
                 foreach (Unit u1 in mUnit)
                 {
@@ -87,7 +87,7 @@ namespace DianetMob.Pages
             ml.UnSatFat = mapMeal.UnSatFat;
             ml.Natrium = mapMeal.Natrium;
             ml.Potassium = mapMeal.Potassium;
-            ml.IDUser = mapMeal.IDUser;
+            ml.IDMealUnit = mapMeal.IDMealUnit;
             ml.IDUnit = mapMeal.IDUnit;
 
             if ((uFood.Name == null) || uFood.Name.Equals(""))
@@ -107,7 +107,7 @@ namespace DianetMob.Pages
                     mapMeal.IDMeal = uFood.IDMeal;
                     ml.InsertDate = ml.UpdateDate;
                     StorageManager.InsertData(ml);
-                    mapMeal.IdMealUnit = ml.IDMealUnit;
+                    mapMeal.IDMealUnit = ml.IDMealUnit;
                 }
                 else
                 {
