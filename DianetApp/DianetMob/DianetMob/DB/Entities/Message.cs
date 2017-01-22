@@ -45,7 +45,7 @@ namespace DianetMob.DB.Entities
                 str += "&title=\"" + Title + "\"";
             if (!MessageText.Equals(""))
                 str += "&messagetext=\"" + MessageText + "\"";
-            str += "&seen=" + seen.ToString() + "\"";
+            str += "&seen=\"" + seen.ToString() + "\"";
             if (InsertDate != null)
                 str += "&insertdate=\"" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (UpdateDate != null)

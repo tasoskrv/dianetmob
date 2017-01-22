@@ -63,13 +63,13 @@ namespace DianetMob.Utils
             ServiceTask.Start();
 
             minutes = TimeSpan.FromHours(6);
-            if (ServiceTask == null)
+            if (NotifTask == null)
             {
 
                 CheckMessages();
-                ServiceTask = new RecurringTask(new Action(CheckMessages), minutes);
+                NotifTask = new RecurringTask(new Action(CheckMessages), minutes);
             }
-            ServiceTask.Start();
+            NotifTask.Start();
         }
 
         public async static Task FullServiceSend(User user, UserSettings usersettings)
