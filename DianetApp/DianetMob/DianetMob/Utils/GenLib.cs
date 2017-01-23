@@ -2,6 +2,7 @@
 using DianetMob.DB;
 using DianetMob.DB.Entities;
 using DianetMob.Service;
+using Plugin.Connectivity;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -22,29 +23,33 @@ namespace DianetMob.Utils
         {            
             try
             {
-                var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
-                notifier.Notify(new LocalNotification()
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    Title = "Loading Data",
-                    Text = "Loading Database from online server",
-                    Id = 100,
-                    NotifyTime = DateTime.Now,
-                });
-                User loginUser = StorageManager.GetConnectionInfo().LoginUser;
-                UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
 
-                await FullServiceLoadAndStore(loginUser, usersettings);
-                await FullServiceSend(loginUser, usersettings);
+                    var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+                    notifier.Notify(new LocalNotification()
+                    {
+                        Title = "Loading Data",
+                        Text = "Loading Database from online server",
+                        Id = 100,
+                        NotifyTime = DateTime.Now,
+                    });
+                    User loginUser = StorageManager.GetConnectionInfo().LoginUser;
+                    UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
 
-                usersettings.LastSyncDate = DateTime.UtcNow;
-                StorageManager.UpdateData<UserSettings>(usersettings);
-                notifier.Notify(new LocalNotification()
-                {
-                    Title = "Finish Loading Data",
-                    Text = "Your Database is synchronized",
-                    Id = 100,
-                    NotifyTime = DateTime.Now,
-                });
+                    await FullServiceLoadAndStore(loginUser, usersettings);
+                    await FullServiceSend(loginUser, usersettings);
+
+                    usersettings.LastSyncDate = DateTime.UtcNow;
+                    StorageManager.UpdateData<UserSettings>(usersettings);
+                    notifier.Notify(new LocalNotification()
+                    {
+                        Title = "Finish Loading Data",
+                        Text = "Your Database is synchronized",
+                        Id = 100,
+                        NotifyTime = DateTime.Now,
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -243,29 +248,32 @@ namespace DianetMob.Utils
 
         public async static void CheckMessages()
         {
-            User loginUser = StorageManager.GetConnectionInfo().LoginUser;
-
-            string gencall = "/accesstoken=" + loginUser.AccessToken ;
-            string usercall = gencall + "/iduser=" + loginUser.IDUser.ToString();
-
-            ModelService<Message> servMsg = await ServiceConnector.GetServiceData<ModelService<Message>>("/message/getall" + usercall);
-            servMsg.SaveAllToDBWithServerID("IDMessage");
-
-            SQLiteConnection conn = StorageManager.GetConnection();
-            IEnumerable<Message> msgs = conn.Query<Message>("SELECT * FROM message WHERE IDUser=" + loginUser.IDUser + " AND seen=0 ");
-            var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
-            foreach (Message msg in msgs)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                notifier.Notify(new LocalNotification()
+                User loginUser = StorageManager.GetConnectionInfo().LoginUser;
+
+                string gencall = "/accesstoken=" + loginUser.AccessToken;
+                string usercall = gencall + "/iduser=" + loginUser.IDUser.ToString();
+
+                ModelService<Message> servMsg = await ServiceConnector.GetServiceData<ModelService<Message>>("/message/getall" + usercall);
+                servMsg.SaveAllToDBWithServerID("IDMessage");
+
+                SQLiteConnection conn = StorageManager.GetConnection();
+                IEnumerable<Message> msgs = conn.Query<Message>("SELECT * FROM message WHERE IDUser=" + loginUser.IDUser + " AND seen=0 ");
+                var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+                foreach (Message msg in msgs)
                 {
-                    Title = msg.Title,
-                    Text = msg.MessageText,
-                    Id = msg.IDMessage,
-                    NotifyTime = DateTime.Now,
-                });
-                msg.seen = 1;
-                conn.Update(msg);
-                await ServiceConnector.InsertServiceData<ModelService<Message>>("/message/save", msg);
+                    notifier.Notify(new LocalNotification()
+                    {
+                        Title = msg.Title,
+                        Text = msg.MessageText,
+                        Id = msg.IDMessage,
+                        NotifyTime = DateTime.Now,
+                    });
+                    msg.seen = 1;
+                    conn.Update(msg);
+                    await ServiceConnector.InsertServiceData<ModelService<Message>>("/message/save", msg);
+                }
             }
             
         }
