@@ -1,5 +1,9 @@
-﻿using DianetMob.Model;
+﻿using DianetMob.DB;
+using DianetMob.DB.Entities;
+using DianetMob.Model;
+using DianetMob.Pages;
 using DianetMob.Service;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -66,6 +70,7 @@ namespace DianetMob.Views
 
         void OnPurchaseProduct()
         {
+            App.Current.MainPage = new PurchasesPage();
            // throw new System.NotImplementedException();
         }
         void OnRestoreProducts()
@@ -136,25 +141,22 @@ namespace DianetMob.Views
         private void InitializeProducts()
         {
             _products = new ObservableCollection<InAppProduct>();
+            SQLiteConnection conn = StorageManager.GetConnection();
+            IEnumerable<Package> packs = conn.Query<Package>("SELECT * FROM package WHERE IsActive=1");
 
-            _products.Add(new InAppProduct
+            foreach (Package pack in packs)
             {
-                Title = "Small Monkey",
-                Description = "Keyboard companion",
-                IconSource = "monkey1.png"
-            });
-            _products.Add(new InAppProduct
-            {
-                Title = "Medium Monkey",
-                Description = "Plush and cuddly",
-                IconSource = "monkey2.png"
-            });
-            _products.Add(new InAppProduct
-            {
-                Title = "Large Monkey",
-                Description = "Monitor buddy",
-                IconSource = "monkey3.png"
-            });
+                _products.Add(new InAppProduct
+                {
+                    ProductId = pack.GooglePlay,
+                    Title = pack.Name,
+                    Description = pack.Description,
+                    Price = pack.Price.ToString(),
+                    PriceCurrencyCode = "EUR"
+
+                });
+            }
+
         }
     }
 }

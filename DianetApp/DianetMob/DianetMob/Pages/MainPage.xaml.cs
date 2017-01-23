@@ -2,6 +2,7 @@
 using DianetMob.DB.Entities;
 using DianetMob.Model;
 using DianetMob.Pages;
+using DianetMob.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;

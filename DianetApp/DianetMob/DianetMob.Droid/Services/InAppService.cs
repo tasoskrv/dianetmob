@@ -163,7 +163,7 @@ namespace Dianet.Droid.Services
 
         public async void QueryInventory()
         {
-            var products = await this._serviceConnection.BillingHandler.QueryInventoryAsync(
+           /* var products = await this._serviceConnection.BillingHandler.QueryInventoryAsync(
                                 new List<string>()
                                     {
                                         ReservedTestProductIDs.Purchased
@@ -186,7 +186,7 @@ namespace Dianet.Droid.Services
             if (this.OnQueryInventory != null)
             {
                 this.OnQueryInventory();
-            }
+            }*/
         }
 
         public void PurchaseProduct(string productId)
@@ -224,8 +224,10 @@ namespace Dianet.Droid.Services
         public void RefundProduct()
         {
             var purchases = this._serviceConnection.BillingHandler.GetPurchases(ItemType.Product);
-
-            this._serviceConnection.BillingHandler.ConsumePurchase(purchases[0].PurchaseToken);
+            foreach (var purchase in purchases)
+            {
+                this._serviceConnection.BillingHandler.ConsumePurchase(purchase.PurchaseToken);
+            }
         }
 
         public void OnDestroy()
