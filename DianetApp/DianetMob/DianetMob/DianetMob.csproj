@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="TableMapping\MapCustomMeal.cs" />
     <Compile Include="TableMapping\MapID.cs" />
+    <Compile Include="Utils\PointSystem.cs" />
     <Compile Include="Utils\RecurringTask.cs" />
     <Compile Include="Views\AddMealView.xaml.cs">
       <DependentUpon>AddMealView.xaml</DependentUpon>
