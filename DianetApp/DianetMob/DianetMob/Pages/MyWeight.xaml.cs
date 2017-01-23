@@ -23,15 +23,8 @@ namespace DianetMob.Pages
         public MyWeight()
         {
             InitializeComponent();
-            conn = StorageManager.GetConnection();
-            /*
-            var html = new HtmlWebViewSource
-            {
-                Html = FillContent() 
-            };
-            */
+            conn = StorageManager.GetConnection();            
             webview = new HtmlWebViewSource();
-
             webview2.Source = webview;
             setRecords();
         }
@@ -50,22 +43,26 @@ namespace DianetMob.Pages
 
         protected override void OnAppearing()
         {
-
             FillContent();
-            //records.Clear();
-            //IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, InsertDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
-            //IEnumerable<Plan> plans = conn.Query<Plan>("SELECT IDPlan, Goal, Status FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
-            // prepei na kathorisoume poies times apo autes tou wghts k plans theloume na blepoume sto Chart
-
-            /* foreach (Weight wght in wghts)
-             {
-                 records.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, InsertDate = wght.InsertDate });
-             }*/
         }
 
         public void OnDeleted(object sender, EventArgs e)
         {
+            var selectedItem = (MenuItem)sender;
+            var selectedWeight = selectedItem.CommandParameter as Weight;
 
+            if (selectedWeight.IDServer == 0)
+            {
+                recordsWgt.Remove(selectedWeight);
+                StorageManager.DeleteData(selectedWeight);
+            }
+            else
+            {
+                selectedWeight.Deleted = 1;
+                StorageManager.UpdateData(selectedWeight);
+                setRecords();
+            }
+            FillContent();
         }
 
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
@@ -86,7 +83,6 @@ namespace DianetMob.Pages
             planPageDt.LoadData(0);
             await Navigation.PushAsync(planPageDt);
         }
-
 
         private void FillContent()
         {
@@ -110,18 +106,6 @@ namespace DianetMob.Pages
                 label[i] = '"' + wRecord.WeightDate.ToString("dd/MM/yyyy") + '"';
                 i++;
             }
-
-            /*
-            string data = "";
-            string label = "";
-            foreach (KeyValuePair<int, Double> entry in DashboardDic)
-            {
-                data += entry.Value + ",";
-                label += GetLabelCategory(entry.Key) + ",";
-            }
-            data = data.Remove(data.Length - 1);
-            label = label.Remove(label.Length - 1);
-            */
 
             webview.Html = "<!doctype html>" + 
                     "<html>" + 
@@ -177,6 +161,5 @@ namespace DianetMob.Pages
                     "   </body>" + 
                     "</html>  ";                
         }
-
     } 
 }

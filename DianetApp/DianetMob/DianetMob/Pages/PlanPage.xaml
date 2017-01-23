@@ -5,18 +5,15 @@
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add"  Clicked="OnAddPlanClicked"/>
   </ContentPage.ToolbarItems>
-
+<!--page not used, CHECK-->
   <StackLayout VerticalOptions="StartAndExpand" >
     <ListView x:Name="ListViewPlans" ItemTapped="OnItemTapped">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <StackLayout Orientation="Horizontal">
-              <Label Text="{Binding GoalDate, StringFormat='{0:MMMM dd, yyyy}'}"
-                     TextColor="#f35e20" />
-              <Label Text="{Binding Goal}"
-                     HorizontalOptions="EndAndExpand"
-                     TextColor="#503026" />
+              <Label Text="{Binding GoalDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#f35e20" />
+              <Label Text="{Binding Goal}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
             </StackLayout>
           </ViewCell>
         </DataTemplate>
