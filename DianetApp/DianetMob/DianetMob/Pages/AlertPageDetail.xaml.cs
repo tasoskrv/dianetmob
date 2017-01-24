@@ -49,6 +49,18 @@ namespace DianetMob.Pages
 
         public void OnSaveAlertClicked(object sender, EventArgs e)
         {
+
+
+            Task.Run(async() =>
+            {
+                 Device.BeginInvokeOnMainThread(() =>
+                {
+                    DisplayAlert("Please", "Fill Alert Time", "OK");
+                });
+            });
+
+
+            /*
             alt.UpdateDate = DateTime.UtcNow;
             if (alt.AlertTime == null)
                 DisplayAlert("Please", "Fill Alert Time", "OK");
@@ -72,7 +84,8 @@ namespace DianetMob.Pages
                 StorageManager.InsertData(alt);
                 AlertPage.recordsAlt.Add(alt);                
                 Navigation.PopAsync();
-            }    
+            }  
+            */  
         }
     }
 }

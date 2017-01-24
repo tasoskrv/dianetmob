@@ -43,6 +43,7 @@ namespace DianetMob.Pages
             else if (wght.IDWeight > 0)
             {
                 StorageManager.UpdateData(wght);
+                new MyWeight();
                 Navigation.PopAsync();
             }
             else
@@ -53,7 +54,6 @@ namespace DianetMob.Pages
                     tick = usersettings.LastSyncDate.AddDays(-1).Ticks;
                 //meal
                 IEnumerable<Meal> meals = conn.Query<Meal>("SELECT * FROM Meal WHERE IDUser=" + iduser + " AND UpdateDate>= ?", tick);
-
                 weightdate.Date.Ticks
                 */
 

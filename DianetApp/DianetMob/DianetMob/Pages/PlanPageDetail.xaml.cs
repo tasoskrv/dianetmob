@@ -16,9 +16,19 @@ namespace DianetMob.Pages
         private Plan pln;
         private SQLiteConnection conn = null;
 
+        Dictionary<string, int> status = new Dictionary<string, int>
+        {
+            { "In Progress", 1 }, { "Completed", 2 }, { "Cancelled", 3 }
+        };
+
         public PlanPageDetail()
         {
             InitializeComponent();
+
+            foreach (string sts in status.Keys)
+            {
+                fStatus.Items.Add(sts);
+            }
             conn = StorageManager.GetConnection();
         }
 

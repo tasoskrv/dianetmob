@@ -24,15 +24,17 @@
 
       <RowDefinition Height="30"/>
       <RowDefinition Height="45"/>
-      <RowDefinition Height="50"/>
-      <RowDefinition Height="50"/>
     </Grid.RowDefinitions>
 
-      <Label Grid.Row="0" Grid.Column="0" Text="Status" />
-      <Entry Grid.Row="1" Grid.Column="0" x:Name="fStatus" Text="{Binding Status, Mode=TwoWay}" Keyboard="Numeric" />
+    <Label Grid.Row="0" Grid.Column="0" Text="Status" />
+    <!--Entry Grid.Row="1" Grid.Column="0" x:Name="fStatus" Text="{Binding Status, Mode=TwoWay}" Keyboard="Numeric" /-->
 
-      <Label Grid.Row="2" Grid.Column="0" Text="Goal"/>
-      <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Goal, Mode=TwoWay}" Keyboard="Numeric"/>
+    <Picker Grid.Row="1" Grid.Column="0" x:Name="fStatus" SelectedIndex="{Binding Status, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+      <Picker.Items></Picker.Items>
+    </Picker>
+        
+    <Label Grid.Row="2" Grid.Column="0" Text="Goal"/>
+    <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Goal, Mode=TwoWay}" Keyboard="Numeric"/>
   </Grid>    
        
 </ContentPage>
