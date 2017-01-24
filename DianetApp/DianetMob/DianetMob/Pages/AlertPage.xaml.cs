@@ -21,18 +21,40 @@ namespace DianetMob.Pages
             setRecords();
         }
 
-        public void setRecords()
+        private void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            ListViewAlerts.ItemsSource = null;
-            recordsAlt.Clear();
-            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
-            foreach (Alert alt in alts)
-            {
-                recordsAlt.Add(new Alert { IDAlert = alt.IDAlert, Recurrence = alt.Recurrence, Description = alt.Description, InsertDate = alt.InsertDate });
-            }
-            ListViewAlerts.ItemsSource = recordsAlt; 
+            DisplayAlert("jdf", "jhdf", "iudf");
         }
         
+        public void setRecords()
+        {
+            
+            ListViewAlerts.ItemsSource = null;
+            recordsAlt.Clear();
+            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+
+            recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = DateTime.Now, MealType = 1, Status = 0, InsertDate = DateTime.Now });
+            recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = DateTime.Now, MealType = 2, Status = 0, InsertDate = DateTime.Now });
+            recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = DateTime.Now, MealType = 3, Status = 0, InsertDate = DateTime.Now });
+            recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = DateTime.Now, MealType = 4, Status = 0, InsertDate = DateTime.Now });
+
+            /*
+            foreach (Alert alt in alts)
+            {
+                recordsAlt.Add(new Alert { IDAlert = alt.IDAlert, AlertTime = alt.AlertTime, MealType = alt.MealType, Status = alt.Status, InsertDate = alt.InsertDate });
+                
+            }
+            */
+            ListViewAlerts.ItemsSource = recordsAlt;             
+        }
+
+        /*
+        private void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            DisplayAlert("jdf", "jhdf", "iudf");
+        }
+
+
         public void OnDeleted(object sender, EventArgs e)
         {
             var selectedItem = (MenuItem)sender;
@@ -63,5 +85,6 @@ namespace DianetMob.Pages
             alertPageDt.LoadData(myAlert.IDAlert);
             await Navigation.PushAsync(alertPageDt);
         }
+        */
     }
 }

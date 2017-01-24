@@ -1,19 +1,15 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DianetMob.DB.Entities
 {
     public class Alert : Model
     {
         private DateTime alerttime;
-        private string recurrence;
-        private string description;
-                
+        private int mealtype;
+        private int status;
+               
         [PrimaryKey, AutoIncrement]
         public int IDAlert { get; set; }
 
@@ -38,40 +34,37 @@ namespace DianetMob.DB.Entities
             }
         }
 
-        public string Recurrence
+        public int MealType
         {
             get
             {
-                return recurrence;
+                return mealtype;
             }
             set
             {
-                if (recurrence != value)
+                if (mealtype != value)
                 {
-                    recurrence = value;
-                    OnPropertyChanged("Recurrence");
+                    mealtype = value;
+                    OnPropertyChanged("MealType");
                 }
             }
         }
 
-        [MaxLength(500)]
-        public string Description
+        public int Status
         {
             get
             {
-                return description;
+                return status;
             }
             set
             {
-                if (description != value)
+                if (status != value)
                 {
-                    description = value;
-                    OnPropertyChanged("Description");
+                    status = value;
+                    OnPropertyChanged("Status");
                 }
             }
         }
-
-        public int Deleted { get; set; }
 
         public DateTime InsertDate { get; set; }
 
@@ -80,8 +73,7 @@ namespace DianetMob.DB.Entities
         public Alert()
         {
             IDServer = 0;
-            Deleted = 0;
-            alerttime = DateTime.UtcNow;
+            alerttime = DateTime.Now;
         }        
 
         public override string ToString()
@@ -94,10 +86,10 @@ namespace DianetMob.DB.Entities
                 str += "&iduser=\"" + IDUser.ToString() + "\"";
             if(AlertTime != null)
                 str += "&alerttime=\"" + AlertTime.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
-            if (!Recurrence.Equals(""))
-                str += "&recurrence=\"" + Recurrence.ToString() + "\"";
-            if (!Description.Equals(""))
-                str += "&description=\"" + Description.ToString() + "\"";
+            if (Status != -1)
+                str += "&status=\"" + Status.ToString() + "\"";
+            if (MealType != -1)
+                str += "&mealtype=\"" + MealType.ToString() + "\"";
             if (InsertDate != null)
                 str += "&insertdate=\"" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (UpdateDate != null)
