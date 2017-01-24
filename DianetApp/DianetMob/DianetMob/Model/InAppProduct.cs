@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DianetMob.DB.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,5 +49,7 @@ namespace DianetMob.Model
         /// Description of the product.
         /// </summary>
         public string Description { get; set; }
+
+        public Package ProductPackage { get; set; }
     }
 }

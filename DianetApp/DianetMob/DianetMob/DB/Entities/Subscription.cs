@@ -47,10 +47,10 @@ namespace DianetMob.DB.Entities
         {
             string str = "";
 
-            str += "&idserver=\"" + IDServer.ToString();
+            str += "&idserver=\"" + IDServer.ToString() + "\"";
 
             if (IDUser != -1)
-                str += "&iduser=\"" + IDUser.ToString();
+                str += "&iduser=\"" + IDUser.ToString()+"\"";
             if (BeginDate != null)
                 str += "&begindate=\"" + BeginDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (EndDate != null)

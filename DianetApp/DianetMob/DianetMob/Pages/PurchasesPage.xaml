@@ -4,10 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DianetMob;assembly=DianetMob"
              x:Class="DianetMob.Pages.PurchasesPage"
-             Title="Purchases"
+             Title="Subscription"
              Icon="contacts.png"
-             BackgroundColor="White"
-             BindingContext="{x:Static local:App.ViewModel}">
+             BackgroundColor="White">
 
   <StackLayout Spacing="0"
                VerticalOptions="FillAndExpand">
@@ -19,31 +18,10 @@
 
     <BoxView Color="Gray"
              HeightRequest="1"/>
-
-    <ListView x:Name="ThePurchases"
-              VerticalOptions="FillAndExpand"
-              BackgroundColor="Transparent"
-              HasUnevenRows="True"
-              ItemsSource="{Binding Purchases}">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <StackLayout>
-              <StackLayout Padding ="10, 5, 10, 5"
-                           Orientation="Horizontal"
-                           HorizontalOptions="FillAndExpand">
-                <StackLayout HorizontalOptions="FillAndExpand">
-                  <Label Text="{Binding ProductId}"
-                         FontSize="Large"
-                         TextColor="Black"/>
-                </StackLayout>
-              </StackLayout>
-            </StackLayout>
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-
+    <Label Text="Valid until:"
+                 TextColor="Green" />
+    
+    <Label Text="{Binding EndDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="Green" />
   </StackLayout>
 
 </ContentPage>
