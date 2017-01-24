@@ -19,9 +19,10 @@ namespace DianetMob
         public App()
         {
             InitializeComponent();
-            //ViewModel = new InAppViewModel();
             // ViewModel.RestoreState(Current.Properties);
-            
+
+            App.ViewModel = new InAppViewModel();
+
             ConnectionInfo info = StorageManager.GetConnectionInfo();
             Settings settings = info.Settings;
             if (settings.LastLoggedIn != 0)

@@ -51,7 +51,7 @@ namespace DianetMob.Pages
             {
                 Title = "Συνδρομή",
                 IconSource = "myday.png",
-                TargetType = typeof(SubscriptionPage)
+                TargetType = typeof(ShopPage)
             });
 
             masterPageItems.Add(new MenuElement
