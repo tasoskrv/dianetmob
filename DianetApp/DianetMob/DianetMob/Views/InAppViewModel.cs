@@ -30,7 +30,6 @@ namespace DianetMob.Views
             TheInAppService.OnPurchaseProduct += OnPurchaseProduct;
             TheInAppService.OnRestoreProducts += OnRestoreProducts;
             TheInAppService.Initialize();
-
             _purchases = new ObservableCollection<InAppPurchase>();
             _purchaseList = new InAppPurchaseList();
 
@@ -70,7 +69,22 @@ namespace DianetMob.Views
 
         void OnPurchaseProduct()
         {
-            App.Current.MainPage = new PurchasesPage();
+            //List<Package> packs = StorageManager.GetConnection().Query<Package>("SELECT * FROM package WHERE GooglePlay=" + _purchases[0].ProductId + " or AppleStore=" + _purchases[0].ProductId );
+            //if (packs.Count > 0)
+            //{
+                Subscription sub = new Subscription();
+                sub.BeginDate = DateTime.UtcNow;
+                sub.EndDate = sub.BeginDate.AddDays(_products[0].ProductPackage.Duration);
+                sub.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                sub.InsertDate = sub.BeginDate;
+                sub.IsActive = 1;
+                sub.Price = _products[0].ProductPackage.Price;
+                sub.UpdateDate= sub.BeginDate;
+                sub.Trncode = _purchases[0].OrderId;
+                StorageManager.InsertData<Subscription>(sub);
+                StorageManager.GetConnectionInfo().ActiveSubscription = sub;
+                App.Current.MainPage = new MyDay();
+          //  }
            // throw new System.NotImplementedException();
         }
         void OnRestoreProducts()
@@ -152,8 +166,8 @@ namespace DianetMob.Views
                     Title = pack.Name,
                     Description = pack.Description,
                     Price = pack.Price.ToString(),
-                    PriceCurrencyCode = "EUR"
-
+                    PriceCurrencyCode = "EUR",
+                    ProductPackage = pack
                 });
             }
 

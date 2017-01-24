@@ -1,4 +1,5 @@
-﻿using DianetMob.Pages;
+﻿using DianetMob.DB;
+using DianetMob.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,35 +17,51 @@ namespace DianetMob.Views
         public AddMealView()
         {
             InitializeComponent();
+
         }
+        public async void GotoPage(int mode)
+        {
+            if (StorageManager.GetConnectionInfo().ActiveSubscription.EndDate < DateTime.UtcNow)
+            {
+                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
+            }
+            else
+            {
+                searchPage.Mode = mode;
+                await Navigation.PushAsync(searchPage);
+            }
+        }
+
         public void setDate(DateTime date) {
              SelectedDate = date;
              searchPage.SelectedDate = date;
         }
-        async void OnAddBreakfastClicked(object sender, EventArgs e)
+
+        public void OnAddBreakfastClicked(object sender, EventArgs e)
         {
-            searchPage.Mode = 1;
-            await Navigation.PushAsync(searchPage);
+            GotoPage(1);
         }
-        async void OnAddLunchClicked(object sender, EventArgs e)
+
+        public void OnAddLunchClicked(object sender, EventArgs e)
         {
-            searchPage.Mode = 2;
-            await Navigation.PushAsync(searchPage);
+            GotoPage(2);
         }
-        async void OnAddDinnerClicked(object sender, EventArgs e)
+
+        public void OnAddDinnerClicked(object sender, EventArgs e)
         {
-            searchPage.Mode = 3;
-            await Navigation.PushAsync(searchPage);
+            GotoPage(3);
         }
-        async void OnAddSnackClicked(object sender, EventArgs e)
+
+        public void OnAddSnackClicked(object sender, EventArgs e)
         {
-            searchPage.Mode = 4;
-            await Navigation.PushAsync(searchPage);
+            GotoPage(4);
         }
+
         void OnAddExerciseClicked(object sender, EventArgs e)
         {
             //await Navigation.PushAsync(new AddMealPage());
         }
+
         void OnAddRecordWeightClicked(object sender, EventArgs e)
         {
             // await Navigation.PushAsync(new AddMealPage());

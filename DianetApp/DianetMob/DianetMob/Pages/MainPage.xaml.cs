@@ -37,6 +37,20 @@ namespace DianetMob.Pages
                     StorageManager.UpdateData<Settings>(settings);
                     App.Current.MainPage = new LoginPage();
                 }
+                else if (item.TargetType == typeof(ShopPage))
+                {
+                    if (StorageManager.GetConnectionInfo().ActiveSubscription.EndDate < DateTime.UtcNow)
+                    {
+                        Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
+                    }
+                    else
+                    {
+                        Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(PurchasesPage)));
+                    }
+                    masterPage.ListView.SelectedItem = null;
+                    IsPresented = false;
+
+                }
                 else
                 {
                     Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
