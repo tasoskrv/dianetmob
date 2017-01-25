@@ -59,6 +59,10 @@ namespace DianetMob.DB.Entities
                 str += "&price=\"" + Price.ToString() + "\"";
             if (IsActive != 0)
                 str += "&isactive=\"" + IsActive.ToString() + "\"";
+            if (!Trncode.Equals(""))
+                str += "&trncode=\"" + Trncode + "\"";
+            if (Deleted != 0)
+                str += "&deleted=\"" + Deleted.ToString() + "\"";
             if (InsertDate != null)
                 str += "&insertdate=\"" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (UpdateDate != null)

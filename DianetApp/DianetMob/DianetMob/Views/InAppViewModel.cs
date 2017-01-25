@@ -167,7 +167,8 @@ namespace DianetMob.Views
                     Description = pack.Description,
                     Price = pack.Price.ToString(),
                     PriceCurrencyCode = "EUR",
-                    ProductPackage = pack
+                    ProductPackage = pack,
+                    IconSource="shop.png"
                 });
             }
 
