@@ -13,7 +13,7 @@ namespace DianetMob.Pages
 {
     public partial class AlertPageDetail : ContentPage
     {
-        private Alert alt;
+        private Alert myalt;
         private SQLiteConnection conn = null;
         
         public AlertPageDetail()
@@ -21,71 +21,60 @@ namespace DianetMob.Pages
             InitializeComponent();
             conn = StorageManager.GetConnection();
         }
-        /*
-        public void LoadData(int IDAlert = 0)
-        {            
-            if (IDAlert > 0)
-                alt = conn.Get<Alert>(IDAlert);
+
+        public void LoadData(Alert alt)
+        {
+            if (alt.IDAlert > 0)
+                alt = conn.Get<Alert>(alt.IDAlert);
             else
             {
-                alt = new Alert();
-                alt.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
-            }            
+                myalt = new Alert();
+                myalt.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                myalt.MealType = alt.MealType;
+                myalt.MealDisplay = alt.MealDisplay;
+                /*
+                myalt.AlertTime = alt.AlertTime;
+                myalt.MealType = alt.MealType;
+                myalt.Status = alt.Status;*/
+                //genders[genderPicker.Items[genderPicker.SelectedIndex]]
+                //remindTime.SelectedIndex = remindTime.Items[remindTime.SelectedIndex];
+            }
             BindingContext = alt;
-            
-            //List<Alert> alts = conn.Query<Alert>("Select * from alert order by insertdate limit 1");
-            
-            //if (alts.Count > 0)
-            //{
-            //    //wgh = wghs[0];
-            //}
-            //else
-            //{
-            //    DisplayAlert("Please", "fill in your current weight", "OK");
-            //    Navigation.PopAsync();
-            //}            
         }
-
+        
         public void OnSaveAlertClicked(object sender, EventArgs e)
         {
+            myalt.UpdateDate = DateTime.UtcNow;
+
+            myalt.AlertTime = remindTime.Items[remindTime.SelectedIndex];
+            myalt.Status = (remindSelect.IsToggled) ? 1 : 0 ;
+            //myalt.MealType = 
 
 
-            Task.Run(async() =>
-            {
-                 Device.BeginInvokeOnMainThread(() =>
-                {
-                    DisplayAlert("Please", "Fill Alert Time", "OK");
-                });
-            });
-
-
-            /*
-            alt.UpdateDate = DateTime.UtcNow;
-            if (alt.AlertTime == null)
+            if (myalt.AlertTime == null)
                 DisplayAlert("Please", "Fill Alert Time", "OK");
-            else if (alt.Recurrence == null)
+            else if (myalt.AlertTime.Equals("") || myalt.AlertTime == null)
             {
                 DisplayAlert("Please", "Fill Recurrence", "OK");
-            }
+            }/*
             else if (alt.Description == null)
             {
                 DisplayAlert("Please", "Fill Description", "OK");
-            }
-            else if (alt.IDAlert > 0)
+            }*/
+            else if (myalt.IDAlert > 0)
             {
-                StorageManager.UpdateData(alt);
+                StorageManager.UpdateData(myalt);
                 new AlertPage();
                 Navigation.PopAsync();
             }
             else
             {
-                alt.InsertDate = alt.UpdateDate;
-                StorageManager.InsertData(alt);
-                AlertPage.recordsAlt.Add(alt);                
+                myalt.InsertDate = myalt.UpdateDate;
+                StorageManager.InsertData(myalt);
+                //AlertPage.recordsAlt.Add(alt);                
                 Navigation.PopAsync();
             }  
-            */  
+                          
         }
-        */
     }
 }

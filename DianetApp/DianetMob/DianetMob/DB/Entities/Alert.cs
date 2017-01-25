@@ -6,10 +6,12 @@ namespace DianetMob.DB.Entities
 {
     public class Alert : Model
     {
-        private DateTime alerttime;
+        private string alerttime;
         private int mealtype;
         private int status;
-               
+        private string statusdisplay;
+        private string mealdisplay;
+
         [PrimaryKey, AutoIncrement]
         public int IDAlert { get; set; }
 
@@ -18,7 +20,7 @@ namespace DianetMob.DB.Entities
 
         public int IDServer { get; set; }
 
-        public DateTime AlertTime
+        public string AlertTime
         {
             get
             {
@@ -66,6 +68,40 @@ namespace DianetMob.DB.Entities
             }
         }
 
+        [Ignore]
+        public string StatusDisplay
+        {
+            get
+            {
+                return statusdisplay;
+            }
+            set
+            {
+                if (statusdisplay != value)
+                {
+                    statusdisplay = value;
+                    OnPropertyChanged("StatusDisplay");
+                }
+            }
+        }
+
+        [Ignore]
+        public string MealDisplay
+        {
+            get
+            {
+                return mealdisplay;
+            }
+            set
+            {
+                if(mealdisplay != value)
+                {
+                    mealdisplay = value;
+                    OnPropertyChanged("MealDisplay");
+                }
+            }
+        }
+
         public DateTime InsertDate { get; set; }
 
         public DateTime UpdateDate { get; set; }
@@ -73,7 +109,7 @@ namespace DianetMob.DB.Entities
         public Alert()
         {
             IDServer = 0;
-            alerttime = DateTime.Now;
+            //alerttime = DateTime.Now;
         }        
 
         public override string ToString()
@@ -85,7 +121,7 @@ namespace DianetMob.DB.Entities
             if (IDUser != -1)
                 str += "&iduser=\"" + IDUser.ToString() + "\"";
             if(AlertTime != null)
-                str += "&alerttime=\"" + AlertTime.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
+                str += "&alerttime=\"" + AlertTime/*.ToString("yyyy-MM-dd HH:mm:ss")*/ + "\"";
             if (Status != -1)
                 str += "&status=\"" + Status.ToString() + "\"";
             if (MealType != -1)

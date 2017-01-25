@@ -78,9 +78,9 @@ namespace DianetMob.Pages
                 info.LoginUser.Height = Convert.ToDouble(height.Text);
                 
                 StorageManager.UpdateData(info.LoginUser);
-                saveBtn.IsEnabled = true;
-                App.Current.MainPage = new MainPage();                
+                App.Current.MainPage = new MainPage();
             }
+            saveBtn.IsEnabled = true;
         }        
     }
 }

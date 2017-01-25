@@ -21,45 +21,79 @@ namespace DianetMob.Pages
             setRecords();
         }
 
-        private void OnItemTapped(object sender, ItemTappedEventArgs e)
+        public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            DisplayAlert("jdf", "jhdf", "iudf");
+            Alert myAlert = e.Item as Alert;
+            alertPageDt.LoadData(myAlert);
+            await Navigation.PushAsync(alertPageDt);
         }
         
         public void setRecords()
-        {
-            
+        {            
             ListViewAlerts.ItemsSource = null;
             recordsAlt.Clear();
             IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
 
-            recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = DateTime.Now, MealType = 1, Status = 0, InsertDate = DateTime.Now });
-            recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = DateTime.Now, MealType = 2, Status = 0, InsertDate = DateTime.Now });
-            recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = DateTime.Now, MealType = 3, Status = 0, InsertDate = DateTime.Now });
-            recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = DateTime.Now, MealType = 4, Status = 0, InsertDate = DateTime.Now });
+            string statusDisplay = "";
+            string mealDisplay = "";
+            bool breakfast = false;
+            bool lunch = false;
+            bool dinner = false;
+            bool snack = false;
 
-            /*
             foreach (Alert alt in alts)
             {
-                recordsAlt.Add(new Alert { IDAlert = alt.IDAlert, AlertTime = alt.AlertTime, MealType = alt.MealType, Status = alt.Status, InsertDate = alt.InsertDate });
-                
+                if (alt.Status == 1)
+                {
+                    statusDisplay = "On";
+                }
+                else
+                {
+                    statusDisplay = "Off";
+                }
+
+                if (alt.MealType == 1)
+                {
+                    mealDisplay = "Breakfast";
+                    breakfast = true;
+                }
+                else if (alt.MealType == 2)
+                {
+                    mealDisplay = "Lunch";
+                    lunch = true;
+                }
+                else if (alt.MealType == 3)
+                {
+                    mealDisplay = "Dinner";
+                    dinner = true;
+                }
+                else if (alt.MealType == 4)
+                {
+                    mealDisplay = "Snack";
+                    snack = true;
+                }
+
+                recordsAlt.Add(new Alert { IDAlert = alt.IDAlert, AlertTime = alt.AlertTime, MealType = alt.MealType, Status = alt.Status,
+                                           InsertDate = alt.InsertDate, MealDisplay = mealDisplay, StatusDisplay = statusDisplay });
             }
-            */
+
+            if(!breakfast)
+                recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = "", MealType = 1, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off", MealDisplay = "Breakfast" });
+            if(!lunch)
+                recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = "", MealType = 2, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off", MealDisplay = "Lunch" });
+            if(!dinner)
+                recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = "", MealType = 3, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off", MealDisplay = "Dinner" });
+            if(!snack)
+                recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = "", MealType = 4, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off", MealDisplay = "Snack" });
+            
             ListViewAlerts.ItemsSource = recordsAlt;             
         }
 
-        /*
-        private void OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            DisplayAlert("jdf", "jhdf", "iudf");
-        }
-
-
+        /*        
         public void OnDeleted(object sender, EventArgs e)
         {
             var selectedItem = (MenuItem)sender;
             var selectedAlert = selectedItem.CommandParameter as Alert;
-
             if (selectedAlert.IDServer == 0)
             {
                 recordsAlt.Remove(selectedAlert);
@@ -78,13 +112,7 @@ namespace DianetMob.Pages
             alertPageDt.LoadData(0);
             await Navigation.PushAsync(alertPageDt);
         }
-
-        public async void OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Alert myAlert = e.Item as Alert;
-            alertPageDt.LoadData(myAlert.IDAlert);
-            await Navigation.PushAsync(alertPageDt);
-        }
+        
         */
     }
 }

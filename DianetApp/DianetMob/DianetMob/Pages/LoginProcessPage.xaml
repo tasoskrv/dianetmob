@@ -17,7 +17,7 @@
           <Picker.Items></Picker.Items>
         </Picker>
 
-        <Entry x:Name="height" Keyboard="Numeric" HorizontalOptions="FillAndExpand"/>
+        <Entry x:Name="height" Keyboard="Numeric" HorizontalOptions="FillAndExpand" Text="175"/>
       </StackLayout>
 
       <Label Text="Gender" FontSize="Medium"/>
@@ -25,11 +25,11 @@
         <Picker.Items></Picker.Items>
       </Picker>
 
-      <Entry x:Name="weight" Placeholder="Weight" Keyboard="Numeric" />
+      <Entry x:Name="weight" Placeholder="Weight" Keyboard="Numeric" Text="100"/>
       <Label Text="Weight Date" FontSize="Medium"/>
       <DatePicker x:Name="WeightDatePicker" Format="dd/MM/yyyy" />
 
-      <Entry x:Name="goal" Placeholder="Goal" Keyboard="Numeric" />
+      <Entry x:Name="goal" Placeholder="Goal" Keyboard="Numeric" Text="80"/>
 
       <Button x:Name="saveBtn" Text="Save" Clicked="OnSaveClicked"/>     
       <Label x:Name="MessageLabel" TextColor="Red" Margin="0, 20, 0, 0" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>          
