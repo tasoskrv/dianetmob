@@ -164,6 +164,9 @@ namespace DianetMob.Utils
                         StorageManager.UpdateData<Subscription>(sub);
                     }
                 }
+                if (((List<Subscription>)subs).Count > 0) {
+                    StorageManager.GetConnectionInfo().LoadActiveSubscription();
+                }
                 
                 //usermeal
                 IEnumerable<UserMeal> umeals = conn.Query<UserMeal>("SELECT * FROM Usermeal WHERE IDUser=" + iduser + " AND UpdateDate>= ? " , tick);

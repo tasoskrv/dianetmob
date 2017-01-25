@@ -17,7 +17,7 @@ namespace DianetMob.DB
         public Subscription LoadActiveSubscription()
         {
             ActiveSubscription = null;
-            List<Subscription> subs = StorageManager.GetConnection().Query<Subscription>("SELECT * FROM subscription WHERE iduser=" + LoginUser.IDUser.ToString() + " order by enddate desc limit 1");
+            List<Subscription> subs = StorageManager.GetConnection().Query<Subscription>("SELECT * FROM subscription WHERE iduser=" + LoginUser.IDUser.ToString() + " and isactive=1 order by enddate desc limit 1");
             if (subs.Count > 0)
             {
                 ActiveSubscription = subs[0];
