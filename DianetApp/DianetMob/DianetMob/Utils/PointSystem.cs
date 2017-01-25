@@ -15,7 +15,7 @@ namespace DianetMob.Utils
         private double weight = 0;
         private int wrist = 0;
         private int age = 0;
-        private int genre = -1;
+        private int gender = -1;
         private double goal = 0;
         private int DT;
         private double BMR = 0;
@@ -79,9 +79,9 @@ namespace DianetMob.Utils
         {
             get
             {
-                if (genre == -1)
-                    genre = StorageManager.GetConnectionInfo().LoginUser.Gender;
-                return genre;
+                if (gender == -1)
+                    gender = StorageManager.GetConnectionInfo().LoginUser.Gender;
+                return gender;
             }
             
         }
