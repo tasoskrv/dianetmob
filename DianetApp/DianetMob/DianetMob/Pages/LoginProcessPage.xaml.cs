@@ -76,7 +76,7 @@ namespace DianetMob.Pages
                 info.LoginUser.Gender = genderType;
                 info.LoginUser.HeightType = heightType;
                 info.LoginUser.Height = Convert.ToDouble(height.Text);
-                
+                info.LoginUser.UpdateDate = DateTime.UtcNow;
                 StorageManager.UpdateData(info.LoginUser);
                 App.Current.MainPage = new MainPage();
             }

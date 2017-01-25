@@ -17,6 +17,7 @@ namespace DianetMob.Pages
         public ShopPage()
         {
             InitializeComponent();
+            App.ViewModel.InitializeProducts();
             App.ViewModel.RefundCommand.Execute(null);
         }
     }

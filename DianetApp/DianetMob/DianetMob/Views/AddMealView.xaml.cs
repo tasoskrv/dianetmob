@@ -14,14 +14,15 @@ namespace DianetMob.Views
     {
         private SearchMealPage searchPage = new SearchMealPage();
         private DateTime SelectedDate;
+        private ConnectionInfo info;
         public AddMealView()
         {
             InitializeComponent();
-
+            info = StorageManager.GetConnectionInfo();
         }
         public async void GotoPage(int mode)
         {
-            if (StorageManager.GetConnectionInfo().ActiveSubscription.EndDate < DateTime.UtcNow)
+            if ((info.isTrial) ^ ((info.ActiveSubscription == null) || (info.ActiveSubscription.EndDate < DateTime.UtcNow)))
             {
                 await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
             }

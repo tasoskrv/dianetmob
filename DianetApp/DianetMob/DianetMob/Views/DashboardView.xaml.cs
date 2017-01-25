@@ -2,6 +2,7 @@
 using DianetMob.DB.Entities;
 using DianetMob.Service;
 using DianetMob.TableMapping;
+using DianetMob.Utils;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace DianetMob.Views
     {
         private SQLiteConnection conn = null;
         private HtmlWebViewSource webview = null;
-        private Dictionary<int, double> DashboardDic = new Dictionary<int, double>();
+        
 
         public DashboardView()
         {
@@ -47,21 +48,13 @@ namespace DianetMob.Views
             } 
         }
 
-        public void FillPieContent(IEnumerable<MapLogData> logrecords)
+        public void FillPieContent(Dictionary<int, double> DashboardDic)
         {
-            DashboardDic.Clear();
-            DashboardDic.Add(1, 0);
-            DashboardDic.Add(2, 0);
-            DashboardDic.Add(3, 0);
-            DashboardDic.Add(4, 0);
-            foreach (MapLogData logrecord in logrecords)
-            {
-                DashboardDic[logrecord.IDCategory] += logrecord.Calories;
-            }
+            
             string data = "";
             string label = "";
             foreach (KeyValuePair<int, Double> entry in DashboardDic) {
-                data += entry.Value + ",";
+                data += PointSystem.PointCalculate(entry.Value) + ",";
                 label += GetLabelCategory(entry.Key) + ",";
             }
             data =data.Remove(data.Length - 1);

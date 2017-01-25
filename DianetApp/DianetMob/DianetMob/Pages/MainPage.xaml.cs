@@ -39,7 +39,7 @@ namespace DianetMob.Pages
                 }
                 else if (item.TargetType == typeof(ShopPage))
                 {
-                    if (StorageManager.GetConnectionInfo().ActiveSubscription.EndDate < DateTime.UtcNow)
+                    if ((StorageManager.GetConnectionInfo().ActiveSubscription==null) || (StorageManager.GetConnectionInfo().ActiveSubscription.EndDate < DateTime.UtcNow))
                     {
                         Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
                     }

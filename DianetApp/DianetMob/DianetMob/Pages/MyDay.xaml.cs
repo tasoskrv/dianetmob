@@ -1,5 +1,6 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
+using DianetMob.Model;
 using DianetMob.TableMapping;
 using DianetMob.Utils;
 using SQLite;
@@ -17,17 +18,28 @@ namespace DianetMob.Pages
     {
         private SQLiteConnection conn = null;
         private Subscription subscription = null;
+        private ConnectionInfo info;
+        private Dictionary<int, double> DashboardDic = new Dictionary<int, double>();
 
         public MyDay()
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
-            subscription=StorageManager.GetConnectionInfo().LoadActiveSubscription();
+            info = StorageManager.GetConnectionInfo();
+            subscription = info.LoadActiveSubscription();
+            
             GenLib.StartUp();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
+            if (subscription == null)
+            {
+                if (info.isTrial)
+                {
+                  await  DisplayAlert("Trial", (info.LoginUser.InsertDate.AddDays(info.Settings.TrialPeriod).Subtract(DateTime.UtcNow)).Days + " Days left! Please subscribe.", "OK");
+                }
+            }
             RecreateData();
         }
         void OnDashboardClicked(object sender, EventArgs e)
@@ -60,13 +72,28 @@ namespace DianetMob.Pages
             string query = "Select um.IdUserMeal, um.idcategory, (mu.Calories*um.QTY) as Calories,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ?";
 
             IEnumerable<MapLogData> logrecords = conn.Query<MapLogData>(query, datePick.Date, datePick.Date);
-            logview.RecreateData(logrecords, datePick.Date);
-            dashboardview.FillPieContent(logrecords);
+            DashboardDic.Clear();
+            DashboardDic.Add(1, 0);
+            DashboardDic.Add(2, 0);
+            DashboardDic.Add(3, 0);
+            DashboardDic.Add(4, 0);
+            foreach (MapLogData logrecord in logrecords)
+            {
+                DashboardDic[logrecord.IDCategory] += logrecord.Calories;
+            }
+            Points points = new Points();
+            points.Breakfast = DashboardDic[1];
+            points.Lunch = DashboardDic[2];
+            points.Dinner = DashboardDic[3];
+            points.Snack = DashboardDic[4];
+
+            logview.RecreateData(points, logrecords, datePick.Date);
+            dashboardview.FillPieContent(DashboardDic);
         }
 
         public void OnAddMealClicked(object sender, EventArgs e)
         {
-            if (subscription.EndDate < DateTime.UtcNow)
+            if ((info.isTrial) ^ ((subscription==null) || (subscription.EndDate < DateTime.UtcNow)))
             {
                 DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
             }

@@ -195,7 +195,7 @@ namespace DianetMob.DB.Entities
             {
                 if (weight == 0)
                 {
-                    List<Weight> whts= StorageManager.GetConnection().Query<Weight>("select WValue from Weight where IDUser=" + IDUser.ToString() + " order by WeightDate ASC LIMIT 1");
+                    List<Weight> whts= StorageManager.GetConnection().Query<Weight>("select WValue from Weight where IDUser=" + IDUser.ToString() + " order by WeightDate DESC LIMIT 1");
                     if (whts.Count>0)
                         weight= whts[0].WValue;
                 }
@@ -228,7 +228,9 @@ namespace DianetMob.DB.Entities
         {
             get
             {
-                return 0;
+                DateTime zeroTime = new DateTime(1, 1, 1);
+                TimeSpan span = DateTime.UtcNow - (DateTime)Birthdate;
+                return (zeroTime + span).Year - 1;
             }
         }
 

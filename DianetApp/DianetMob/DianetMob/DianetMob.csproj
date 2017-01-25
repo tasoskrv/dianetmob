@@ -61,6 +61,7 @@
     <Compile Include="DB\Entities\Weight.cs" />
     <Compile Include="DB\ISQLite.cs" />
     <Compile Include="DB\StorageManager.cs" />
+    <Compile Include="Model\Points.cs" />
     <Compile Include="Pages\LoginProcessPage.xaml.cs">
       <DependentUpon>LoginProcessPage.xaml</DependentUpon>
     </Compile>

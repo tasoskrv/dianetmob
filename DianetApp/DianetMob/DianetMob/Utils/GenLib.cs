@@ -25,30 +25,32 @@ namespace DianetMob.Utils
             {
                 if (CrossConnectivity.Current.IsConnected)
                 {
-
-                    var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
-                    notifier.Notify(new LocalNotification()
-                    {
-                        Title = "Loading Data",
-                        Text = "Loading Database from online server",
-                        Id = 100,
-                        NotifyTime = DateTime.Now,
-                    });
                     User loginUser = StorageManager.GetConnectionInfo().LoginUser;
                     UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
-
-                    await FullServiceLoadAndStore(loginUser, usersettings);
-                    await FullServiceSend(loginUser, usersettings);
-
-                    usersettings.LastSyncDate = DateTime.UtcNow;
-                    StorageManager.UpdateData<UserSettings>(usersettings);
-                    notifier.Notify(new LocalNotification()
+                    if (usersettings.LastSyncDate.Date<DateTime.UtcNow.Date)
                     {
-                        Title = "Finish Loading Data",
-                        Text = "Your Database is synchronized",
-                        Id = 100,
-                        NotifyTime = DateTime.Now,
-                    });
+                        var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+                        notifier.Notify(new LocalNotification()
+                        {
+                            Title = "Loading Data",
+                            Text = "Loading Database from online server",
+                            Id = 100,
+                            NotifyTime = DateTime.Now,
+                        });
+
+                        await FullServiceLoadAndStore(loginUser, usersettings);
+                        await FullServiceSend(loginUser, usersettings);
+
+                        usersettings.LastSyncDate = DateTime.UtcNow;
+                        StorageManager.UpdateData<UserSettings>(usersettings);
+                        notifier.Notify(new LocalNotification()
+                        {
+                            Title = "Finish Loading Data",
+                            Text = "Your Database is synchronized",
+                            Id = 100,
+                            NotifyTime = DateTime.Now,
+                        });
+                    }
                 }
             }
             catch (Exception ex)
@@ -88,6 +90,15 @@ namespace DianetMob.Utils
                 long tick =0;
                 if (usersettings.LastSyncDate.Ticks > 0)
                     tick = usersettings.LastSyncDate.AddDays(-1).Ticks;
+
+                //meal
+                IEnumerable<User> users = conn.Query<User>("SELECT * FROM User WHERE IDUser=" + iduser + " AND UpdateDate>= ?", tick);
+                ModelService<User> srvNewUser = null;
+                foreach (User us in users)
+                {
+                    srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/save", us);
+                }
+
                 //meal
                 IEnumerable<Meal> meals = conn.Query<Meal>("SELECT * FROM Meal WHERE IDUser=" + iduser + " AND UpdateDate>= ?" , tick);
                 ModelService<Meal> srvNewMeal = null;

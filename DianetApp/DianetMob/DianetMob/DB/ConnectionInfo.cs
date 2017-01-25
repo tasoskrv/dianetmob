@@ -12,7 +12,13 @@ namespace DianetMob.DB
         private Settings settings;
         private UserSettings userSettings;
 
-
+        public bool isTrial
+        {
+            get
+            {
+                return (LoginUser.InsertDate.AddDays(settings.TrialPeriod) > DateTime.UtcNow);
+            }
+        }
 
         public Subscription LoadActiveSubscription()
         {

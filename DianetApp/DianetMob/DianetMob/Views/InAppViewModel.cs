@@ -152,7 +152,7 @@ namespace DianetMob.Views
             return defaultValue;
         }
 
-        private void InitializeProducts()
+        public void InitializeProducts()
         {
             _products = new ObservableCollection<InAppProduct>();
             SQLiteConnection conn = StorageManager.GetConnection();

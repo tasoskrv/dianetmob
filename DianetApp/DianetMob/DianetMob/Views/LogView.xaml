@@ -20,40 +20,39 @@
         <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Text="Exercise" FontSize="10" />
         <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Text="Net" FontSize="10" />
         <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Text="Under" FontSize="10" />
-        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="0" Font="Bold,15" />
-        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Text="0" Font="Bold,15" />
-        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Text="0" Font="Bold,15" />
-        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Text="0" Font="Bold,15" />
-        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Text="0" Font="Bold,15" />
+        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="{Binding Budget}" Font="Bold,15" />
+        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Text="{Binding Food}" Font="Bold,15" />
+        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Text="{Binding Exercise}" Font="Bold,15" />
+        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Text="{Binding Net}" Font="Bold,15" />
+        <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Text="{Binding Under}" Font="Bold,15" />
         <BoxView Grid.Row="2" Grid.ColumnSpan="5" BackgroundColor="#000000" VerticalOptions="Start" HeightRequest="1" >
         </BoxView >
         </Grid>
-        <ListView x:Name="LogList" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
-        IsGroupingEnabled="True"
-        GroupDisplayBinding="{Binding Name}">
+        <ListView x:Name="LogList" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsGroupingEnabled="True" GroupDisplayBinding="{Binding Name}">
           <ListView.GroupHeaderTemplate>
             <DataTemplate>
               <ViewCell>
-
                 <StackLayout Orientation="Horizontal" BackgroundColor="#FFFFFF">
                     <StackLayout BackgroundColor="#000000" />
                     <Label   Text="{Binding Name}" VerticalTextAlignment="Center"  Font="Bold,15" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
-                    <Button   Image="addgrid.png" BackgroundColor="#FFFFFF" CommandParameter="{Binding CategoryID}" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Clicked="OnClickGridButton"/>
-                  
+                    <Button  Image="addgrid.png" BackgroundColor="#FFFFFF" CommandParameter="{Binding CategoryID}" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Clicked="OnClickGridButton"/>
                 </StackLayout>
-
               </ViewCell>
             </DataTemplate>
           </ListView.GroupHeaderTemplate>
           <ListView.ItemTemplate>
             <DataTemplate>
-              <TextCell Text="{Binding Title}" Detail="{Binding Description}"></TextCell>
+              <ViewCell>
+                <ContentView>
+                  <StackLayout Padding="15,5,35,5"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                    <Label Text="{Binding Title}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
+                    <Label Text="{Binding Description}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand"  FontAttributes="Bold"/>
+                  </StackLayout>
+                </ContentView>
+              </ViewCell>
             </DataTemplate>
           </ListView.ItemTemplate>
         </ListView>
-
-       
-  
     </StackLayout>
 
   </ContentView.Content>

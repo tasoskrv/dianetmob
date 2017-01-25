@@ -1,6 +1,8 @@
 ﻿using DianetMob.DB;
+using DianetMob.Model;
 using DianetMob.Pages;
 using DianetMob.TableMapping;
+using DianetMob.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,32 +19,40 @@ namespace DianetMob.Views
         private DateTime SelectedDate;
         private SearchMealPage searchPage = null;
         private ObservableCollection<Group> groupedItems = new ObservableCollection<Group>();
+        private ConnectionInfo info;
+        private Points points = new Points();
+
         public LogView()
         {
             InitializeComponent();
+            info = StorageManager.GetConnectionInfo();
             //LogListView.ItemsSource = groupedItems;
             LogList.ItemsSource = groupedItems;
-            Group group = new Group("Breakfast: 0", "1");
-            groupedItems.Add(group);
-            group = new Group("Lunch: 0", "2");
-            groupedItems.Add(group);
-            group = new Group("Dinner: 0", "3");
-            groupedItems.Add(group);
-            group = new Group("Snack: 0", "4");
-            groupedItems.Add(group);
         }
 
-        public void RecreateData(IEnumerable<MapLogData> logrecords, DateTime date)
+        public void RecreateData(Points points, IEnumerable<MapLogData> logrecords, DateTime date)
         {
+            BindingContext = points;
             SelectedDate = date;
             for (int i = 0; i < groupedItems.Count; i++)
                 groupedItems[i].Clear();
+            groupedItems.Clear();
+            Group group = new Group("Breakfast: "+ points.Breakfast, "1");
+            groupedItems.Add(group);
+            group = new Group("Lunch: "+ points.Lunch, "2");
+            groupedItems.Add(group);
+            group = new Group("Dinner: "+ points.Dinner, "3");
+            groupedItems.Add(group);
+            group = new Group("Snack: "+ points.Snack, "4");
+            groupedItems.Add(group);
 
             foreach (MapLogData logrecord in logrecords)
             {
-                Item item = new Item(logrecord.MealName, logrecord.Calories.ToString());
+                Item item = new Item(logrecord.MealName, PointSystem.PointCalculate(logrecord.Calories).ToString());
                 groupedItems[logrecord.IDCategory - 1].Add(item);
             }
+
+            
 
         }
 
@@ -50,7 +60,7 @@ namespace DianetMob.Views
 
         public async void OnClickGridButton(object sender, EventArgs e)
         {
-            if (StorageManager.GetConnectionInfo().ActiveSubscription.EndDate < DateTime.UtcNow)
+            if ((info.isTrial) ^ ((info.ActiveSubscription == null) || (info.ActiveSubscription.EndDate < DateTime.UtcNow)))
             {
                 await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
             }
@@ -69,8 +79,8 @@ namespace DianetMob.Views
     }
     public class Group : ObservableCollection<Item>
     {
-        public String Name { get; private set; }
-        public String CategoryID { get; private set; }
+        public String Name { get; set; }
+        public String CategoryID { get; set; }
 
         public Group(String Name, String CategoryID)
         {
