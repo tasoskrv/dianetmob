@@ -47,10 +47,10 @@ namespace DianetMob.DB.Entities
         {
             string str = "";
 
-            str += "&idserver=\"" + IDServer.ToString();
+            str += "&idserver=\"" + IDServer.ToString() + "\"";
 
             if (IDUser != -1)
-                str += "&iduser=\"" + IDUser.ToString();
+                str += "&iduser=\"" + IDUser.ToString()+"\"";
             if (BeginDate != null)
                 str += "&begindate=\"" + BeginDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (EndDate != null)
@@ -59,6 +59,10 @@ namespace DianetMob.DB.Entities
                 str += "&price=\"" + Price.ToString() + "\"";
             if (IsActive != 0)
                 str += "&isactive=\"" + IsActive.ToString() + "\"";
+            if (!Trncode.Equals(""))
+                str += "&trncode=\"" + Trncode + "\"";
+            if (Deleted != 0)
+                str += "&deleted=\"" + Deleted.ToString() + "\"";
             if (InsertDate != null)
                 str += "&insertdate=\"" + InsertDate.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (UpdateDate != null)

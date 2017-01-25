@@ -21,7 +21,7 @@ namespace DianetMob.Pages
             InitializeComponent();
             conn = StorageManager.GetConnection();
         }
-
+        /*
         public void LoadData(int IDAlert = 0)
         {            
             if (IDAlert > 0)
@@ -32,19 +32,18 @@ namespace DianetMob.Pages
                 alt.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
             }            
             BindingContext = alt;
-            /*
-            List<Alert> alts = conn.Query<Alert>("Select * from alert order by insertdate limit 1");
             
-            if (alts.Count > 0)
-            {
-                //wgh = wghs[0];
-            }
-            else
-            {
-                DisplayAlert("Please", "fill in your current weight", "OK");
-                Navigation.PopAsync();
-            }
-            */
+            //List<Alert> alts = conn.Query<Alert>("Select * from alert order by insertdate limit 1");
+            
+            //if (alts.Count > 0)
+            //{
+            //    //wgh = wghs[0];
+            //}
+            //else
+            //{
+            //    DisplayAlert("Please", "fill in your current weight", "OK");
+            //    Navigation.PopAsync();
+            //}            
         }
 
         public void OnSaveAlertClicked(object sender, EventArgs e)
@@ -87,5 +86,6 @@ namespace DianetMob.Pages
             }  
             */  
         }
+        */
     }
 }

@@ -50,14 +50,21 @@ namespace DianetMob.Views
 
         public async void OnClickGridButton(object sender, EventArgs e)
         {
-            var item = (Xamarin.Forms.Button)sender;
-            if (searchPage == null)
+            if (StorageManager.GetConnectionInfo().ActiveSubscription.EndDate < DateTime.UtcNow)
             {
-                searchPage = new SearchMealPage();
+                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
             }
-            searchPage.SelectedDate = SelectedDate;
-            searchPage.Mode = int.Parse(item.CommandParameter.ToString());
-            await Navigation.PushAsync(searchPage);
+            else
+            {
+                var item = (Xamarin.Forms.Button)sender;
+                if (searchPage == null)
+                {
+                    searchPage = new SearchMealPage();
+                }
+                searchPage.SelectedDate = SelectedDate;
+                searchPage.Mode = int.Parse(item.CommandParameter.ToString());
+                await Navigation.PushAsync(searchPage);
+            }
         }
     }
     public class Group : ObservableCollection<Item>

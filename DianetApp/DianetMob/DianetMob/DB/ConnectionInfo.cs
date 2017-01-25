@@ -1,14 +1,29 @@
 ﻿using DianetMob.DB.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace DianetMob.DB
 {
     public class ConnectionInfo
     {
         public User LoginUser { get; set; }
+        public Subscription ActiveSubscription { get; set; }
 
         private Settings settings;
         private UserSettings userSettings;
+
+
+
+        public Subscription LoadActiveSubscription()
+        {
+            ActiveSubscription = null;
+            List<Subscription> subs = StorageManager.GetConnection().Query<Subscription>("SELECT * FROM subscription WHERE iduser=" + LoginUser.IDUser.ToString() + " and isactive=1 order by enddate desc limit 1");
+            if (subs.Count > 0)
+            {
+                ActiveSubscription = subs[0];
+            }
+            return ActiveSubscription;
+        }
 
         public UserSettings UserSettings
         {

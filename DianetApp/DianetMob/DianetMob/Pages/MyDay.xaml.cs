@@ -1,4 +1,5 @@
 ﻿using DianetMob.DB;
+using DianetMob.DB.Entities;
 using DianetMob.TableMapping;
 using DianetMob.Utils;
 using SQLite;
@@ -15,12 +16,13 @@ namespace DianetMob.Pages
     public partial class MyDay : ContentPage
     {
         private SQLiteConnection conn = null;
+        private Subscription subscription = null;
 
         public MyDay()
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
-
+            subscription=StorageManager.GetConnectionInfo().LoadActiveSubscription();
             GenLib.StartUp();
         }
 
@@ -64,19 +66,27 @@ namespace DianetMob.Pages
 
         public void OnAddMealClicked(object sender, EventArgs e)
         {
-            addmealview.IsVisible = !addmealview.IsVisible;
-            addmealview.setDate(datePick.Date);
-            datepickpanel.IsVisible = !addmealview.IsVisible;
-            dashboardview.IsEnabled = datepickpanel.IsVisible;
-            logview.IsEnabled = dashboardview.IsEnabled;
-            if (addmealview.IsVisible)
+            if (subscription.EndDate < DateTime.UtcNow)
             {
-                dashboardview.Opacity = 0.5;
+                DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
             }
-            else {
-                dashboardview.Opacity = 1;
+            else
+            {
+                addmealview.IsVisible = !addmealview.IsVisible;
+                addmealview.setDate(datePick.Date);
+                datepickpanel.IsVisible = !addmealview.IsVisible;
+                dashboardview.IsEnabled = datepickpanel.IsVisible;
+                logview.IsEnabled = dashboardview.IsEnabled;
+                if (addmealview.IsVisible)
+                {
+                    dashboardview.Opacity = 0.5;
+                }
+                else
+                {
+                    dashboardview.Opacity = 1;
+                }
+                logview.Opacity = dashboardview.Opacity;
             }
-            logview.Opacity = dashboardview.Opacity;
             //await Navigation.PushAsync(new AddMealPage(datePick.Date));
         }
     }

@@ -41,6 +41,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\StatusConverter.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\MinusOneConverter.cs" />
     <Compile Include="DB\ConnectionInfo.cs" />

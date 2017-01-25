@@ -18,6 +18,8 @@ namespace DianetMob.DB.Entities
         private int gender;
         private double skeleton;
         private string location;
+        private double weight;
+        private double goal;
 
         [PrimaryKey]
         public int IDUser { get; set; }
@@ -187,6 +189,49 @@ namespace DianetMob.DB.Entities
 
         public int Isactive { get; set; }
 
+        [Ignore]
+        public double Weight {
+            get
+            {
+                if (weight == 0)
+                {
+                    List<Weight> whts= StorageManager.GetConnection().Query<Weight>("select WValue from Weight where IDUser=" + IDUser.ToString() + " order by WeightDate ASC LIMIT 1");
+                    if (whts.Count>0)
+                        weight= whts[0].WValue;
+                }
+                return weight;
+            }
+            set {
+                weight = value;
+            }
+        }
+        [Ignore]
+        public double Goal
+        {
+            get
+            {
+                if (goal == 0)
+                {
+                    List<Plan> plns = StorageManager.GetConnection().Query<Plan>("select Goal from Plan where IDUser=" + IDUser.ToString() + " order by UpdateDate DESC LIMIT 1");
+                    if (plns.Count > 0)
+                        goal = plns[0].Goal;
+                }
+                return goal;
+            }
+            set {
+                goal = value;
+            }
+        }
+
+        [Ignore]
+        public int Age
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
         public User()
         {
             IDUser = -1;
@@ -207,6 +252,7 @@ namespace DianetMob.DB.Entities
             UpdateDate = DateTime.MinValue;
             AdjustDiet = -1;
             Isactive = 0;
+            weight = 0;
         }
 
         public override string ToString()

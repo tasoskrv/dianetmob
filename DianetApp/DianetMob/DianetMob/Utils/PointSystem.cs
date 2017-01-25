@@ -14,7 +14,6 @@ namespace DianetMob.Utils
     {
         private double weight = 0;
         private int wrist = 0;
-        private int height = 0;
         private int age = 0;
         private int genre = -1;
         private double goal = 0;
@@ -28,6 +27,8 @@ namespace DianetMob.Utils
             get
             {   if(weight==0)
                     weight = StorageManager.GetConnection().Query<User>("select WValue from Weight where IDUser=" + StorageManager.GetConnectionInfo())[0].IDUser;
+                else 
+                    weight = StorageManager.GetConnectionInfo().LoginUser.Weight;
                 return weight;
             }
             set
@@ -50,17 +51,11 @@ namespace DianetMob.Utils
             }
         }
 
-        public int Height
+        public double Height
         {
             get
-            {
-                if (height == 0)
-                    height = StorageManager.GetConnection().Query<User>("select Height from User where IDUser=" + StorageManager.GetConnectionInfo())[0].IDUser;
-                return height;
-            }
-            set
-            {
-                height = value;
+            {   
+                return StorageManager.GetConnectionInfo().LoginUser.Height;
             }
         }
 
@@ -84,22 +79,21 @@ namespace DianetMob.Utils
         {
             get
             {
-                if (Genre == -1)
-                    weight = StorageManager.GetConnection().Query<User>("select Genre from Weight where IDUser=" + StorageManager.GetConnectionInfo())[0].IDUser;
+                if (genre == -1)
+                    genre = StorageManager.GetConnectionInfo().LoginUser.Gender;
                 return genre;
             }
-            set
-            {
-                genre = value;
-            }
+            
         }
 
         public double Goal
         {
             get
             {
-                if (weight == 0)
-                    weight = StorageManager.GetConnection().Query<Plan>("select Goal from Weight where IDUser=" + StorageManager.GetConnectionInfo())[0].IDUser;
+                if (goal == 0)
+                    goal = StorageManager.GetConnection().Query<Plan>("select Goal from Weight where IDUser=" + StorageManager.GetConnectionInfo())[0].IDUser;
+                else
+                    goal = StorageManager.GetConnectionInfo().LoginUser.Goal;
                 return goal;
             }
             set
@@ -169,7 +163,7 @@ namespace DianetMob.Utils
         //----Ypologismos Deikti mazas swmatos
         public double DMSCalculate()
         {
-            return Math.Round(Weight / (Height^2), 1);
+            return Math.Round(Weight / Math.Pow(Height,2), 1);
         }
 
     }

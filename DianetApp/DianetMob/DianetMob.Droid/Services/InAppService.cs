@@ -123,7 +123,7 @@ namespace Dianet.Droid.Services
                 this._connected = true;
 
                 // Load inventory or available products
-                this.QueryInventory();
+              //  this.QueryInventory();
             };
 
             /* Uncomment these if you want to be notified for these events
@@ -163,7 +163,7 @@ namespace Dianet.Droid.Services
 
         public async void QueryInventory()
         {
-           /* var products = await this._serviceConnection.BillingHandler.QueryInventoryAsync(
+            var products = await this._serviceConnection.BillingHandler.QueryInventoryAsync(
                                 new List<string>()
                                     {
                                         ReservedTestProductIDs.Purchased
@@ -186,7 +186,7 @@ namespace Dianet.Droid.Services
             if (this.OnQueryInventory != null)
             {
                 this.OnQueryInventory();
-            }*/
+            }
         }
 
         public void PurchaseProduct(string productId)
