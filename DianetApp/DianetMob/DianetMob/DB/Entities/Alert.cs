@@ -109,7 +109,7 @@ namespace DianetMob.DB.Entities
         public Alert()
         {
             IDServer = 0;
-            //alerttime = DateTime.Now;
+            alerttime = "00:00";// DateTime.Now;
         }        
 
         public override string ToString()

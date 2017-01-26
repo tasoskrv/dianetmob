@@ -8,14 +8,12 @@
     <ToolbarItem Text="Save"  Clicked="OnSaveAlertClicked"/>
   </ContentPage.ToolbarItems>
   
-<!--
   <ContentPage.Resources>
     <ResourceDictionary>
-      <conv:DateConverter x:Key="dateConverter" />
+      <conv:MealTypeConverter x:Key="mealConverter" />
     </ResourceDictionary>
-  </ContentPage.Resources>  
--->
-
+  </ContentPage.Resources>
+  
   <ContentPage.Content>
     <ScrollView>
       <Grid Margin="20,0,0,0" RowSpacing="0">
@@ -28,14 +26,13 @@
           <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Text="{Binding MealDisplay}" FontSize="20"/>
+        <Label Grid.Row="0" Grid.Column="0" Text="{Binding MealType, Mode=TwoWay, Converter={StaticResource mealConverter}}" FontSize="20"/>
         
-
         <Label Grid.Row="1" Grid.Column="0" Text="Remind Me" FontSize="20"/>
         <Switch Grid.Row="1" Grid.Column="1" x:Name="remindSelect" IsToggled="{Binding Status}"/>
 
         <Label Grid.Row="2" Grid.Column="0" Text="Remind Time" FontSize="20"/>
-
+        
         <Picker x:Name="remindTime" Grid.Row="2" Grid.Column="1" SelectedIndex="{Binding AlertTime}">
           <Picker.Items>
             <x:String>00:00</x:String>
@@ -63,20 +60,8 @@
             <x:String>22:00</x:String>
             <x:String>23:00</x:String>            
           </Picker.Items>
-        </Picker>
-                
-        <!--
-        <Label Grid.Row="0" Grid.Column="0" Text="AlertTime" FontSize="20"/>
-        MinimumDate="{Binding AlertTime}"
-        <DatePicker Grid.Row="1" Grid.Column="0" x:Name="alerttime" Format="dd/MM/yyyy" Date="{Binding AlertTime, Mode=TwoWay, Converter={StaticResource dateConverter}}" />
-
-        <Label Grid.Row="2" Grid.Column="0" Text="Recurrence" FontSize="20"/>
-        <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Recurrence, Mode=TwoWay}"/>
-
-        <Label Grid.Row="4" Grid.Column="0" Text="Description" FontSize="20"/>
-        <Editor Grid.Row="5" Grid.Column="0" Text="{Binding Description, Mode=TwoWay}"/>        
-        -->
-        
+        </Picker>               
+        <!---->
       </Grid>
     </ScrollView>
   </ContentPage.Content>  

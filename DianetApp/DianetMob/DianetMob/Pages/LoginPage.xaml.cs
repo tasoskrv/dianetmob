@@ -1,9 +1,6 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
-using DianetMob.Model;
 using DianetMob.Service;
-using DianetMob.Utils;
-using Newtonsoft.Json;
 using SQLite;
 using System;
 using System.Collections.Generic;
