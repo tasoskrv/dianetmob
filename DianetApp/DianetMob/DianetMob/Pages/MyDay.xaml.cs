@@ -88,7 +88,7 @@ namespace DianetMob.Pages
             points.Snack = DashboardDic[4];
 
             logview.RecreateData(points, logrecords, datePick.Date);
-            dashboardview.FillPieContent(DashboardDic);
+            dashboardview.FillPieContent(DashboardDic, points.Food);
         }
 
         public void OnAddMealClicked(object sender, EventArgs e)

@@ -27,8 +27,8 @@ namespace DianetMob.Utils
                 {
                     User loginUser = StorageManager.GetConnectionInfo().LoginUser;
                     UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
-                    if (usersettings.LastSyncDate.Date<DateTime.UtcNow.Date)
-                    {
+                   // if (usersettings.LastSyncDate.Date<DateTime.UtcNow.Date)
+                   // {
                         var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
                         notifier.Notify(new LocalNotification()
                         {
@@ -51,7 +51,7 @@ namespace DianetMob.Utils
                             NotifyTime = DateTime.Now,
                         });
                     }
-                }
+               // }
             }
             catch (Exception ex)
             {

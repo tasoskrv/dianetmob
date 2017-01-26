@@ -48,9 +48,8 @@ namespace DianetMob.Views
             } 
         }
 
-        public void FillPieContent(Dictionary<int, double> DashboardDic)
-        {
-            
+        public void FillPieContent(Dictionary<int, double> DashboardDic, double Total)
+        { 
             string data = "";
             string label = "";
             foreach (KeyValuePair<int, Double> entry in DashboardDic) {
@@ -58,10 +57,9 @@ namespace DianetMob.Views
                 label += GetLabelCategory(entry.Key) + ",";
             }
             data =data.Remove(data.Length - 1);
-            label = label.Remove(label.Length - 1);
+            label = label.Remove(label.Length - 1);         
 
-            webview.Html=
-            "<!doctype html>" +
+            string web1 = "<!doctype html>" +
             "<html>" +
                 "<head> " +
                     "<script src=\"file:///android_asset/Chart.bundle.js\"></script>" +
@@ -81,20 +79,26 @@ namespace DianetMob.Views
                         " data: data,  backgroundColor: [window.chartColors.blue, window.chartColors.yellow, window.chartColors.orange, window.chartColors.green], " +
                         " label: " +
                         " 'Calories'  }]," +
-                        " labels: ["+ label + "] },  options: {legend: {position: 'bottom'} ,title: {display: true, text: 'Calories per meal' } }}; " +
+                        " labels: [" + label + "] },  options: {legend: {position: 'bottom'} ,title: {display: true, text: 'Points per meal' } }}; " +
                         "var color = Chart.helpers.color; " +
                         "var barChartData = { " +
                         "labels: [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"], " +
-                        "datasets: [{ type: \"bar\", label: \"Week Points\", backgroundColor: color(window.chartColors.blue).alpha(0.4).rgbString(), " +
-                        "borderColor: window.chartColors.blue, data: [ 10,20,6,8,14,17,11]}] }; " +
+                        "datasets: [{ type: \"bar\", label: \"Week Points\", backgroundColor: color(window.chartColors.blue).alpha(0.4).rgbString(), ";
+                        
+                        
+                        
+                        
+                        string web2= "borderColor: window.chartColors.blue, data: [ 10,20,6,8,14,"+ Total + ",11]}] }; " +
                         "window.onload = function() {" +
                         "var ctx1 = document.getElementById(\"chart - area\").getContext(\"2d\"); " +
                         "window.myPie = new Chart(ctx1, config); " +
                         "var ctx = document.getElementById(\"canvas\").getContext(\"2d\"); " +
-                        "window.myBar = new Chart(ctx, { type: \"bar\", data: barChartData,  options: {legend: {position: 'bottom'} ,title: {display: true, text: 'Calories per day' } }}); }; " +
+                        "window.myBar = new Chart(ctx, { type: \"bar\", data: barChartData,  options: {legend: {position: 'bottom'} ,title: {display: true, text: 'Points per day' } }}); }; " +
                     "</script>" +
                 "</body>" +
             "</html>";
+
+            webview.Html = web1 + web2;
         }
 
     }
