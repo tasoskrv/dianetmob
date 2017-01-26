@@ -13,25 +13,26 @@ namespace DianetMob.Pages
 {
     public partial class AlertPageDetail : ContentPage
     {
-        private Alert myalt;
+        private Alert alt;
         private SQLiteConnection conn = null;
         
+
         public AlertPageDetail()
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
         }
 
-        public void LoadData(Alert alt)
+        public void LoadData(/*Alert alt*/int IDAlert)
         {
-            if (alt.IDAlert > 0)
-                alt = conn.Get<Alert>(alt.IDAlert);
+            if (/*alt.IDAlert*/ IDAlert > 0)
+                alt = conn.Get<Alert>(IDAlert/*alt.IDAlert*/);
             else
             {
-                myalt = new Alert();
-                myalt.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
-                myalt.MealType = alt.MealType;
-                myalt.MealDisplay = alt.MealDisplay;
+                alt = new Alert();
+                alt.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                alt.MealType = alt.MealType;
+                alt.MealDisplay = alt.MealDisplay;
                 /*
                 myalt.AlertTime = alt.AlertTime;
                 myalt.MealType = alt.MealType;
@@ -44,37 +45,32 @@ namespace DianetMob.Pages
         
         public void OnSaveAlertClicked(object sender, EventArgs e)
         {
-            myalt.UpdateDate = DateTime.UtcNow;
+            alt.UpdateDate = DateTime.UtcNow;
 
-            myalt.AlertTime = remindTime.Items[remindTime.SelectedIndex];
-            myalt.Status = (remindSelect.IsToggled) ? 1 : 0 ;
+            if (remindTime.SelectedIndex != -1)
+                alt.AlertTime = remindTime.Items[remindTime.SelectedIndex];
+            else
+                alt.AlertTime = "";
+
+            alt.Status = (remindSelect.IsToggled) ? 1 : 0 ;
             //myalt.MealType = 
-
-
-            if (myalt.AlertTime == null)
-                DisplayAlert("Please", "Fill Alert Time", "OK");
-            else if (myalt.AlertTime.Equals("") || myalt.AlertTime == null)
+            
+            if ((alt.AlertTime.Equals("") || alt.AlertTime == null) && alt.Status == 1)
             {
                 DisplayAlert("Please", "Fill Recurrence", "OK");
-            }/*
-            else if (alt.Description == null)
+            }
+            else if (alt.IDAlert > 0)
             {
-                DisplayAlert("Please", "Fill Description", "OK");
-            }*/
-            else if (myalt.IDAlert > 0)
-            {
-                StorageManager.UpdateData(myalt);
+                StorageManager.UpdateData(alt);
                 new AlertPage();
                 Navigation.PopAsync();
             }
             else
             {
-                myalt.InsertDate = myalt.UpdateDate;
-                StorageManager.InsertData(myalt);
-                //AlertPage.recordsAlt.Add(alt);                
+                alt.InsertDate = alt.UpdateDate;
+                StorageManager.InsertData(alt);         
                 Navigation.PopAsync();
-            }  
-                          
+            }                            
         }
     }
 }

@@ -91,14 +91,15 @@ namespace DianetMob.Utils
                 if (usersettings.LastSyncDate.Ticks > 0)
                     tick = usersettings.LastSyncDate.AddDays(-1).Ticks;
 
-                //meal
+                //user
+                /*
                 IEnumerable<User> users = conn.Query<User>("SELECT * FROM User WHERE IDUser=" + iduser + " AND UpdateDate>= ?", tick);
                 ModelService<User> srvNewUser = null;
                 foreach (User us in users)
                 {
                     srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/save", us);
                 }
-
+                */
                 //meal
                 IEnumerable<Meal> meals = conn.Query<Meal>("SELECT * FROM Meal WHERE IDUser=" + iduser + " AND UpdateDate>= ?" , tick);
                 ModelService<Meal> srvNewMeal = null;

@@ -24,7 +24,7 @@ namespace DianetMob.Pages
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             Alert myAlert = e.Item as Alert;
-            alertPageDt.LoadData(myAlert);
+            alertPageDt.LoadData(myAlert.IDAlert);
             await Navigation.PushAsync(alertPageDt);
         }
         
