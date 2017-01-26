@@ -24,7 +24,7 @@ namespace DianetMob.Pages
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             Alert myAlert = e.Item as Alert;
-            alertPageDt.LoadData(myAlert.IDAlert);
+            alertPageDt.LoadData(myAlert);
             await Navigation.PushAsync(alertPageDt);
         }
         
@@ -32,87 +32,44 @@ namespace DianetMob.Pages
         {            
             ListViewAlerts.ItemsSource = null;
             recordsAlt.Clear();
-            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
+            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
 
             string statusDisplay = "";
-            string mealDisplay = "";
-            bool breakfast = false;
-            bool lunch = false;
-            bool dinner = false;
-            bool snack = false;
+            bool breakfast = true;
+            bool lunch = true;
+            bool dinner = true;
+            bool snack = true;
 
             foreach (Alert alt in alts)
             {
                 if (alt.Status == 1)
-                {
                     statusDisplay = "On";
-                }
                 else
-                {
                     statusDisplay = "Off";
-                }
 
-                if (alt.MealType == 1)
-                {
-                    mealDisplay = "Breakfast";
-                    breakfast = true;
-                }
-                else if (alt.MealType == 2)
-                {
-                    mealDisplay = "Lunch";
-                    lunch = true;
-                }
-                else if (alt.MealType == 3)
-                {
-                    mealDisplay = "Dinner";
-                    dinner = true;
-                }
-                else if (alt.MealType == 4)
-                {
-                    mealDisplay = "Snack";
-                    snack = true;
-                }
+                if (alt.MealType == 1 && alt.IDAlert > 0)
+                    breakfast = false;
+                else if (alt.MealType == 2 && alt.IDAlert > 0)
+                    lunch = false;
+                else if (alt.MealType == 3 && alt.IDAlert > 0)
+                    dinner = false;
+                else if (alt.MealType == 4 && alt.IDAlert > 0)
+                    snack = false;
 
-                recordsAlt.Add(new Alert { IDAlert = alt.IDAlert, AlertTime = alt.AlertTime, MealType = alt.MealType, Status = alt.Status,
-                                           InsertDate = alt.InsertDate, MealDisplay = mealDisplay, StatusDisplay = statusDisplay });
+                recordsAlt.Add(new Alert { IDUser = alt.IDUser, IDAlert = alt.IDAlert, AlertTime = alt.AlertTime, MealType = alt.MealType, Status = alt.Status, InsertDate = alt.InsertDate, StatusDisplay = statusDisplay });
             }
 
-            if(!breakfast)
-                recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = "", MealType = 1, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off", MealDisplay = "Breakfast" });
-            if(!lunch)
-                recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = "", MealType = 2, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off", MealDisplay = "Lunch" });
-            if(!dinner)
-                recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = "", MealType = 3, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off", MealDisplay = "Dinner" });
-            if(!snack)
-                recordsAlt.Add(new Alert { IDAlert = 0, AlertTime = "", MealType = 4, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off", MealDisplay = "Snack" });
+            if(breakfast)
+                recordsAlt.Add(new Alert { IDUser = Convert.ToInt16(iduser), IDAlert = 0, AlertTime = "", MealType = 1, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off" });
+            if(lunch)
+                recordsAlt.Add(new Alert { IDUser = Convert.ToInt16(iduser), IDAlert = 0, AlertTime = "", MealType = 2, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off" });
+            if(dinner)
+                recordsAlt.Add(new Alert { IDUser = Convert.ToInt16(iduser), IDAlert = 0, AlertTime = "", MealType = 3, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off" });
+            if(snack)
+                recordsAlt.Add(new Alert { IDUser = Convert.ToInt16(iduser), IDAlert = 0, AlertTime = "", MealType = 4, Status = 0, InsertDate = DateTime.Now, StatusDisplay = "Off" });
             
             ListViewAlerts.ItemsSource = recordsAlt;             
-        }
-
-        /*        
-        public void OnDeleted(object sender, EventArgs e)
-        {
-            var selectedItem = (MenuItem)sender;
-            var selectedAlert = selectedItem.CommandParameter as Alert;
-            if (selectedAlert.IDServer == 0)
-            {
-                recordsAlt.Remove(selectedAlert);
-                StorageManager.DeleteData(selectedAlert);
-            }
-            else
-            {
-                selectedAlert.Deleted = 1;
-                StorageManager.UpdateData(selectedAlert);
-                setRecords();
-            }
-        }
-        
-        async void OnAddAlertClicked(object sender, EventArgs e)
-        {
-            alertPageDt.LoadData(0);
-            await Navigation.PushAsync(alertPageDt);
-        }
-        
-        */
+        }        
     }
 }

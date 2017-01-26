@@ -1,12 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              x:Class="DianetMob.Pages.AlertPage">  
+             xmlns:conv="clr-namespace:DianetMob.Converters;assembly=DianetMob"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DianetMob.Pages.AlertPage">  
    
 <!--ContentPage.ToolbarItems>
   <ToolbarItem Text="Add"  Clicked="OnAddAlertClicked" />
-</ContentPage.ToolbarItems-->    
-    
+</ContentPage.ToolbarItems-->
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:MealTypeConverter x:Key="mealConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>  
+  
 <ContentPage.Content>
   <StackLayout VerticalOptions="StartAndExpand" >
       
@@ -17,7 +24,7 @@
                 <StackLayout Orientation="Horizontal" Padding="5">
                   <Image Source="alarm.png" />    
                   <StackLayout Orientation="Vertical">
-                    <Label Text="{Binding MealDisplay}"></Label>
+                    <Label Text="{Binding MealType, Mode=TwoWay, Converter={StaticResource mealConverter}}"></Label>
                     <StackLayout Orientation="Horizontal">                      
                       <Label Text="{Binding StatusDisplay}"></Label><!--Converter={StaticResource statusConvert}, Mode=TwoWay-->
                       <Label Text="{Binding AlertTime}"></Label>
