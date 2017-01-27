@@ -12,5 +12,7 @@ namespace DianetMob.TableMapping
         public string MealName { get; set; }
         public int IDCategory { get; set; }
         public double Calories { get; set; }
+
+        public DateTime MealDate { get; set; }
     }
 }

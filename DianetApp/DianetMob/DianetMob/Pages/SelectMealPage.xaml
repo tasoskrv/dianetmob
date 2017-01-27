@@ -3,19 +3,80 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.SelectMealPage">
   <ContentPage.Content>
+   <ScrollView>
+     
+     <Grid Margin="15,0,0,0" RowSpacing="0">
+       <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="Auto" />
+         <ColumnDefinition Width="Auto" />
+         <ColumnDefinition Width="*" />
+         <ColumnDefinition Width="*" />
+       </Grid.ColumnDefinitions>
+       <Grid.RowDefinitions>
+         <RowDefinition Height="60" />
+         <RowDefinition Height="40" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+         <RowDefinition Height="25" />
+       </Grid.RowDefinitions>
 
-    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" >
 
-      <!--<userControls:BindablePicker x:Name="unitPicker" ItemsSource="{Binding units}" SelectedItem="{Binding SelectedUnit, Mode = TwoWay}" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit "/>-->
-      <Picker x:Name="unitPicker" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit ">
-      </Picker>
+       <!--StackLayout Orientation="Horizontal" Grid.Row="2"  >
+        <userControls:BindablePicker x:Name="unitPicker" ItemsSource="{Binding units}" SelectedItem="{Binding SelectedUnit, Mode = TwoWay}" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit "/>-->
+        <Picker x:Name="unitPicker" Grid.Row="1" Grid.Column="0" SelectedIndexChanged="OnUnitChosen" Title=" Meal Unit ">
+        </Picker>
 
-      <Picker x:Name="counter1Picker" Title="Counter">
-      </Picker>
-      <Picker x:Name="counter2Picker" Title="Counter">
-      </Picker>
-      <Button Text="Choose" VerticalOptions="EndAndExpand" Clicked="OnChooseBtnClicked" />
-    </StackLayout>
+        <Picker x:Name="counter1Picker" Grid.Row="1" Grid.Column="1" Title="Counter">
+        </Picker>
+        <Picker x:Name="counter2Picker" Grid.Row="1" Grid.Column="2" Title="Counter">
+        </Picker>
+        <Button Text="Choose" VerticalOptions="EndAndExpand" Clicked="OnChooseBtnClicked" Grid.Row="1" Grid.Column="3"/>
+    
+
+
+       
+       <Label Grid.Column="0" Grid.Row="4" Text="Calories" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="4" Text="{Binding Calories}" FontSize="17" />
+       
+       <Label Grid.Column="0" Grid.Row="5" Text="Fats" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="5" Text="{Binding Fats}" FontSize="17" />
+       
+       <Label Grid.Column="0" Grid.Row="6" Text="Saturated Fats" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="6" Text="{Binding SatFats}" FontSize="17" />
+       
+       <Label Grid.Column="0" Grid.Row="7" Text="Unsaturated Fats" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="7" Text="{Binding UnsatFats}" FontSize="17" />
+
+       <Label Grid.Column="0" Grid.Row="8" Text="Cholesterol" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="8" Text="{Binding Cholesterol}" FontSize="17" />
+
+       <Label Grid.Column="0" Grid.Row="9" Text="Natrium" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="9" Text="{Binding Natrium}" FontSize="17" />
+
+       <Label Grid.Column="0" Grid.Row="10" Text="Potassium" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="10" Text="{Binding Potassium}" FontSize="17" />
+
+       <Label Grid.Column="0" Grid.Row="11" Text="Fiber" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="11" Text="{Binding Fiber}" FontSize="17" />
+
+       <Label Grid.Column="0" Grid.Row="12" Text="Sugars" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="12" Text="{Binding Sugars}" FontSize="17" />
+
+       <Label Grid.Column="0" Grid.Row="13" Text="Protein" FontSize="17" />
+       <Label Grid.Column="1" Grid.Row="13" Text="{Binding Protein}" FontSize="17" />
+
+     </Grid>
+    </ScrollView>
 
   </ContentPage.Content>
 </ContentPage>

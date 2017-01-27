@@ -71,6 +71,8 @@ namespace DianetMob.Pages
             
             string query = "Select um.IdUserMeal, um.idcategory, (mu.Calories*um.QTY) as Calories,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ?";
 
+            string query2 = "Select um.IdUserMeal, um.idcategory, SUM(mu.Calories*um.QTY) as Calories,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ? GROUP BY um.mealdate";
+
             IEnumerable<MapLogData> logrecords = conn.Query<MapLogData>(query, datePick.Date, datePick.Date);
             DashboardDic.Clear();
             DashboardDic.Add(1, 0);
@@ -81,6 +83,12 @@ namespace DianetMob.Pages
             {
                 DashboardDic[logrecord.IDCategory] += logrecord.Calories;
             }
+
+            IEnumerable<MapLogData> Weekrecords = conn.Query<MapLogData>(query, datePick.Date.AddDays(-6.0), datePick.Date);
+            foreach (MapLogData week in Weekrecords)
+            {
+                //
+            } 
             Points points = new Points();
             points.Breakfast = DashboardDic[1];
             points.Lunch = DashboardDic[2];
