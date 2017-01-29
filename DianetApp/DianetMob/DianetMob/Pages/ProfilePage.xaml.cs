@@ -7,6 +7,7 @@ using Plugin.Media;
 using Plugin.Media.Abstractions;
 using SQLite;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -18,15 +19,35 @@ namespace DianetMob.Pages
     {
         private MediaFile _mediaFileBefore;
         private MediaFile _mediaFileAfter;
-        private int numMsg = 0;
-        private int total = 0;
+        private int numMsg = 0;        
         private SQLiteConnection conn = null;
+        private int total = 0;
         User user = null;
+
+        Dictionary<string, int> heights = new Dictionary<string, int>
+        {
+            { "Cm", 1 }, { "In", 2 }
+        };
+
+        Dictionary<string, int> genders = new Dictionary<string, int>
+        {
+            { "Male", 1 }, { "Female", 2 }
+        };
 
         public ProfilePage()
         {
             InitializeComponent();
             conn = StorageManager.GetConnection();
+
+            foreach (string height in heights.Keys)
+            {
+                fHeightPicker.Items.Add(height);
+            }
+            foreach (string gender in genders.Keys)
+            {
+                fSexPicker.Items.Add(gender);
+            }
+
             FillInSettingsLoggedIn();            
             BindingContext = StorageManager.GetConnectionInfo().LoginUser;
         }
@@ -48,7 +69,7 @@ namespace DianetMob.Pages
                 fSexPicker.IsEnabled = true;
                 fHeightPicker.IsEnabled = true;
                 fHeightEntry.IsEnabled = true;
-                fWristEntry.IsEnabled = true;
+                fSkeletonEntry.IsEnabled = true;
                 fLocationEntry.IsEnabled = true;
             }
             else
@@ -59,26 +80,23 @@ namespace DianetMob.Pages
                 {
                     if (AllFieldsAreFilled())
                     {
-                        //var IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
-                        //TODO update user
                         var user = StorageManager.GetConnectionInfo().LoginUser;
-
-                        //user = conn.Get<User>(IDUser);
-
-
+                        int heightType = heights[fHeightPicker.Items[fHeightPicker.SelectedIndex]];
+                        int genderType = genders[fSexPicker.Items[fSexPicker.SelectedIndex]];
                         user.FirstName = fFirstNameEntry.Text;
                         user.LastName = fSurNameEntry.Text;
                         user.Birthdate = fbirthDatePicker.Date;
-
-                        user.Gender = fSexPicker.SelectedIndex;
-                        user.HeightType = fHeightPicker.SelectedIndex;
+                        user.Gender = genderType;
+                        user.HeightType = heightType;
                         user.Height = Convert.ToDouble(fHeightEntry.Text);
-                        user.Location = fLocationEntry.Text;
-
-
-                        
+                        user.Skeleton = Convert.ToDouble(fSkeletonEntry.Text);
+                        user.Location = fLocationEntry.Text;                        
                         StorageManager.UpdateData(user);
                         RefreshPage();
+                    }
+                    else
+                    {
+                        ProfileBtn.Text = "Save";
                     }
                 }
             }
@@ -94,7 +112,7 @@ namespace DianetMob.Pages
             fSexPicker.IsEnabled = false;
             fHeightPicker.IsEnabled = false;
             fHeightEntry.IsEnabled = false;
-            fWristEntry.IsEnabled = false;
+            fSkeletonEntry.IsEnabled = false;
             fLocationEntry.IsEnabled = false;
         }
         
@@ -252,7 +270,6 @@ namespace DianetMob.Pages
             }
         }
 
-
         /*
         private async void TakeVideoButtonOnClicked(object sender, EventArgs e)
         {
@@ -295,14 +312,13 @@ namespace DianetMob.Pages
 
         private bool AllFieldsAreFilled()
         {
-            if (fFirstNameEntry.Text == null || fSurNameEntry.Text == null || fHeightEntry.Text == null || fLocationEntry.Text == null ||
-                fEmailEntry.Text.Equals("") || fFirstNameEntry.Text.Equals("") || fSurNameEntry.Text.Equals("") || fHeightEntry.Text.Equals("") || fLocationEntry.Text.Equals(""))
+            if (fEmailEntry.Text == null || fFirstNameEntry.Text == null || fSurNameEntry.Text == null || fHeightEntry.Text == null ||
+                fEmailEntry.Text.Equals("") || fFirstNameEntry.Text.Equals("") || fSurNameEntry.Text.Equals("") || fHeightEntry.Text.Equals(""))
             {
-                DisplayAlert("Please", "fill in all fields", "OK");
+                DisplayAlert("Please", "Fill all fields", "OK");
                 return false;
             }            
             return true;            
         }
-
     }
 }

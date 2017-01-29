@@ -62,10 +62,7 @@
 
           <Label Grid.Row="8" Grid.Column="0" x:Name="fSexLabel" Text="Sex:" FontSize="20"/>
           <Picker Grid.Row="9" Grid.Column="0" x:Name="fSexPicker" Title="Sex" IsEnabled="False" SelectedIndex="{Binding Gender, Converter={StaticResource minusOneConv}, Mode=TwoWay}" >
-            <Picker.Items>
-              <x:String>Male</x:String>
-              <x:String>Female</x:String>
-            </Picker.Items>
+            <Picker.Items></Picker.Items>
           </Picker>        
                           
           <Grid Grid.Row="10" Grid.Column="0">
@@ -79,19 +76,16 @@
             </Grid.RowDefinitions>
               <Label Grid.Row="0" Grid.Column="0" x:Name="fHeightLabel" Text="Height:" FontSize="20"/>
               <Picker Grid.Row="1" Grid.Column="0" x:Name="fHeightPicker" Title="Height" IsEnabled="False" SelectedIndex="{Binding HeightType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
-                <Picker.Items>
-                  <x:String>Cm</x:String>
-                  <x:String>In</x:String>
-                </Picker.Items>
+                <Picker.Items></Picker.Items>
               </Picker>
               <Entry Grid.Row="1" Grid.Column="1" x:Name="fHeightEntry" Keyboard="Numeric" FontSize="20" IsEnabled="False" Text="{Binding Height, Mode=TwoWay}" />     
           </Grid>             
                                      
-          <Label Grid.Row="11" Grid.Column="0" x:Name="fWristLabel" Text="Wrist:" FontSize="20"/>
-          <Entry Grid.Row="12" Grid.Column="0" x:Name="fWristEntry" Keyboard="Numeric" FontSize="20" IsEnabled="False"/>
+          <Label Grid.Row="11" Grid.Column="0" x:Name="fSkeletonLabel" Text="Skeleton:" FontSize="20"/>
+          <Entry Grid.Row="12" Grid.Column="0" x:Name="fSkeletonEntry" Keyboard="Numeric" Text="{Binding Skeleton}" FontSize="20" IsEnabled="False"/>
 
           <Label Grid.Row="13" Grid.Column="0" x:Name="fLocationLabel" Text="Location:" FontSize="20"/>
-          <Entry Grid.Row="14" Grid.Column="0" x:Name="fLocationEntry" Keyboard="Text" FontSize="20" IsEnabled="False"/>
+          <Entry Grid.Row="14" Grid.Column="0" x:Name="fLocationEntry" Text="{Binding Location}" Keyboard="Text" FontSize="20" IsEnabled="False"/>
 
           <Label Grid.Row="15" Grid.Column="0" x:Name="PathLabel" />                  
         </Grid> 

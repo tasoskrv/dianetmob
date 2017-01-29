@@ -247,7 +247,7 @@ namespace DianetMob.DB.Entities
             Location = "";
             Height = -1;
             HeightType = -1;
-            Skeleton = -1;
+            Skeleton = 0;
             Birthdate = null;
             RemindDate = null;
             InsertDate = DateTime.MinValue;
