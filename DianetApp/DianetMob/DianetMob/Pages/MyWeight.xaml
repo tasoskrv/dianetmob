@@ -7,11 +7,22 @@
     <ToolbarItem Text="Add Weight" Clicked="OnAddWeightClicked"/> 
     <ToolbarItem Text="Add Goal" Clicked="OnAddPlanClicked"/> 
   </ContentPage.ToolbarItems>
-
-  <StackLayout>
-    <WebView x:Name="webview2" HeightRequest="300" WidthRequest="500" />
-           
-    <ListView x:Name="ListViewWeight" ItemTapped="OnItemTapped" RowHeight="45">
+  <Grid Margin="0,0,0,0" RowSpacing="0" >
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="70*"/>
+      <RowDefinition Height="2"/>
+      <RowDefinition Height="20"/>
+      <RowDefinition Height="2"/>
+      <RowDefinition Height="30*"/>
+    </Grid.RowDefinitions>
+    <WebView x:Name="webview2" Grid.Row="0" Grid.Column="0" />
+    <Label Grid.Row="1"  Grid.Column="0" Text=""  BackgroundColor="#666" TextColor="#FFF"/>
+    <Label Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="Recorded weights" Font="Bold,12" TextColor="#666" BackgroundColor="#FFFFFF"/>
+    <Label Grid.Row="3"  Grid.Column="0" Text=""  BackgroundColor="#666" TextColor="#FFF"/>
+    <ListView x:Name="ListViewWeight" Grid.Row="4" Grid.Column="0" ItemTapped="OnItemTapped" RowHeight="60" BackgroundColor="#FFFFFF">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
@@ -20,15 +31,20 @@
             </ViewCell.ContextActions>                        
               <StackLayout Orientation="Vertical" Padding="5">
                 <StackLayout Orientation="Horizontal">
-                  <Label Text="{Binding WeightDate, StringFormat='{0:MMMM dd, yyyy}'}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
-                  <Label Text="{Binding WValue}" HorizontalOptions="Start" TextColor="#8B4513" FontSize="Medium"/>                
+                  <Image 
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Source="weight_list.png"/>
+                  <Label Text="{Binding WeightDate, StringFormat='Weight on {0:dddd, dd MMMM}'}" VerticalOptions="Center" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
+                  <Label Text="{Binding WValue}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="#8B4513" FontSize="Medium"/>
+                  <Label Text="kgs" HorizontalOptions="End" TextColor="#8B4513" VerticalOptions="Center" FontSize="Medium"/>
                 </StackLayout>
               </StackLayout>   
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
-    </ListView>    
-            
-  </StackLayout> 
+    </ListView>
+
+  </Grid>
 
 </ContentPage>

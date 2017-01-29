@@ -22,6 +22,11 @@ namespace DianetMob.Pages
             conn = StorageManager.GetConnection();
         }
 
+        protected override void OnAppearing()
+        {
+            WeightEntry.Focus();
+        }
+
         public void LoadData(int IDWeight = 0)
         {
             if (IDWeight > 0)

@@ -79,10 +79,6 @@ namespace DianetMob.DB.Entities
                 str += "&idlang=\"" + IDLang.ToString() + "\"";
             if (IDUser != 0)
                 str += "&iduser=\"" + IDUser.ToString() + "\"";
-            if (!Fertility.Equals(""))
-                str += "&fertility=\"" + Fertility + "\"";
-            if (!Identifier.Equals(""))
-                str += "&identifier=\"" + Identifier + "\"";
             if (IsActive != -1)
                 str += "&isActive=\"" + IsActive.ToString() + "\"";
             if (Deleted != 0)

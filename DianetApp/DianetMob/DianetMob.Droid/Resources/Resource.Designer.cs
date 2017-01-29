@@ -2242,8 +2242,8 @@ namespace DianetMob.Droid
 			// aapt resource value: 0x7f0200ad
 			public const int night = 2130837677;
 			
-			// aapt resource value: 0x7f0200b8
-			public const int notification_template_icon_bg = 2130837688;
+			// aapt resource value: 0x7f0200b9
+			public const int notification_template_icon_bg = 2130837689;
 			
 			// aapt resource value: 0x7f0200ae
 			public const int plus = 2130837678;
@@ -2274,6 +2274,9 @@ namespace DianetMob.Droid
 			
 			// aapt resource value: 0x7f0200b7
 			public const int weight1 = 2130837687;
+			
+			// aapt resource value: 0x7f0200b8
+			public const int weight_list = 2130837688;
 			
 			static Drawable()
 			{

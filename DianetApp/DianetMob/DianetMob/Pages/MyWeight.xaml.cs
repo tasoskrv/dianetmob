@@ -33,7 +33,7 @@ namespace DianetMob.Pages
         {
             ListViewWeight.ItemsSource = null;
             recordsWgt.Clear();
-            IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, WeightDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+            IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, WeightDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+ " order by WeightDate desc");
             foreach (Weight wght in wghts)
             {
                 recordsWgt.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, WeightDate = wght.WeightDate });
@@ -74,8 +74,9 @@ namespace DianetMob.Pages
 
         async void OnAddWeightClicked(object sender, EventArgs e)
         {
-            myWeightDt.LoadData(0);
-            await Navigation.PushAsync(myWeightDt);
+            
+            //myWeightDt.LoadData(0);
+            //await Navigation.PushAsync(myWeightDt);
         }
 
         async void OnAddPlanClicked(object sender, EventArgs e)
@@ -87,10 +88,10 @@ namespace DianetMob.Pages
         private void FillContent()
         {
 
-            string query = "SELECT * FROM Weight where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
+            string query = "SELECT * FROM Weight where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+ " order by WeightDate desc limit 10";
             List<Weight> weightRecords = conn.Query<Weight>(query);
 
-            string queryGoal = "SELECT * FROM Plan where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
+            string queryGoal = "SELECT * FROM Plan where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+" limit 1" ;
             List<Plan> planRecords = conn.Query<Plan>(queryGoal);
 
             double goalValue = planRecords[0].Goal;
@@ -103,23 +104,72 @@ namespace DianetMob.Pages
             {
                 data[i] = wRecord.WValue;
                 goal[i] = goalValue;
-                label[i] = '"' + wRecord.WeightDate.ToString("dd/MM/yyyy") + '"';
-                i++;
+                label[i] = '"' + wRecord.WeightDate.ToString("dd-MMM ") + '"';
+                i++; 
             }
-
+            
             webview.Html = "<!doctype html>" + 
                     "<html>" + 
                     "   <head>" + 
                     "       <script src=\"file:///android_asset/Chart.bundle.js\"></script>" + 
-                    "       <script src=\"file:///android_asset/utils.js\"></script>" + 
+                    "       <script src=\"file:///android_asset/utils.js\"></script>" +
+                    "       <script src=\"file:///android_asset/progressbar.js\" ></script>" +
                     "       <style>" +
-                    "           canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; } " + 
+                    "	    	 .progressbar__label{" +
+                    "	    		font-weight:bold;" +
+                    "	    		font-size:20px;" +
+                    "               font - family: \"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif\"; " +
+                    "	    	 }" +
+                    "	    	 #container{" +
+                    "	    		margin-left:30%;" +
+                    "	    		margin-right:30%;" +
+                    "	    		margin-top:1%;" +
+                    "	    		margin-bottom:2%;" +
+                    "	    	 }" +
+                    "	    	 #container-text{" +
+                    "	    		vertical-align:\"center\";" +
+                    "	    		color:#666;" +
+                    "	    		font-weight:bold;" +
+                    "	    		font-size:12px;" +
+                    "	    		font-family: \"'Helvetica Neue', 'Helvetica', 'Arial', sans - serif\";" +
+                    "	    	 }" +
                     "       </style>" +
                     "   </head>" +
-                    "   <body>" + 
-                    "       <div>" + 
-                    "           <canvas id=\"canvas\" height= \"260% \"></canvas>" + 
-                    "       </div>" + 
+                    "<body>" +
+                    "   <div id=\"container-text\" align=\"Center\" >Percentage to complete goal</div>" +
+                    "   <div id=\"container\"></div>" +
+                    "   <script>" +
+                    "      var circle = new ProgressBar.Circle('#container', {" +
+                    "      	color: '#36A2EB'," +
+                    "      	strokeWidth: 10," +
+                    "      	trailColor: '#D7D3E7'," +
+                    "      	trailWidth: 10," +
+                    "      	text: {" +
+                    "              value: '50%'," +
+                    "              className: 'progressbar__label'," +
+                    "              style: {" +
+                    "      			color: '#666'," +
+                    "                  position: 'absolute'," +
+                    "                  left: '50%'," +
+                    "                  top: '50%'," +
+                    "                  padding: 0," +
+                    "                  margin: 0," +
+                    "                  transform: {" +
+                    "                      prefix: true," +
+                    "                      value: 'translate(-50%, -50%)'" +
+                    "                  }" +
+                    "              }," +
+                    "           autoStyleContainer: true," +
+                    "      		alignToBottom: true" +
+                    "          }," +
+                    "      	   duration: 1200," +
+                    "          easing: 'easeOut'," +
+                    "      	   warnings: false" +
+                    "       }" +
+                    "      );" +
+                    "      circle.animate(0.5);  " +
+                    "   </script>" +
+                    "   <div><canvas id=\"canvas\"></canvas></div>" + 
                     "       <script> " + 
                     "           var color = Chart.helpers.color;" +
                     "           var barChartData = { " +
@@ -130,33 +180,10 @@ namespace DianetMob.Pages
                     "                   backgroundColor : color(window.chartColors.blue).alpha(0.2).rgbString(), " + 
                     "                   borderColor : window.chartColors.blue," +
                     "                   data : [" + String.Join(",", data) + "] " +
-                    "               },{ " + 
-                    "                   type  : 'line', " + 
-                    "                   label : 'Goal', " + 
-                    "                   backgroundColor : color(window.chartColors.red).alpha(0.2).rgbString(),  " +
-                    "                   borderColor : window.chartColors.red, " +
-                    "                   data : [" + String.Join(",", goal) + "] " + 
                     "               }] " + 
                     "           }; " +
-                    "           Chart.plugins.register({ afterDatasetsDraw: function(chartInstance, easing) { var ctx = chartInstance.chart.ctx;" +
-                    "           chartInstance.data.datasets.forEach(function (dataset, i) {var meta = chartInstance.getDatasetMeta(i);" +
-                    "           if (!meta.hidden) {  " + 
-                    "               meta.data.forEach(function(element, index) { " + 
-                    "                   ctx.fillStyle = 'rgb(0, 0, 0)'; " +
-                    "                   var fontSize = 10; " + 
-                    "                   var fontStyle = 'normal'; " +
-                    "                   var fontFamily = 'Helvetica Neue'; " +
-                    "                   ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily); " +
-                    "               var dataString = dataset.data[index].toString(); " + 
-                    "               ctx.textAlign = 'center'; " + 
-                    "               ctx.textBaseline = 'middle'; " + 
-                    "               var padding = 5; " + 
-                    "               var position = element.tooltipPosition();" +
-                    "               ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);  " +
-                    "           }); " +
-                    "           } }); }}); " +
                     "           window.onload = function() { var ctx = document.getElementById(\"canvas\").getContext(\"2d\");  window.myBar = new Chart(ctx, {" +
-                    "           type: 'bar', data: barChartData, options: { title: { display: true },} });}; " + 
+                    "           type: 'bar', data: barChartData, options: { title: { display: true, text: 'Weight per date' },legend: {position: 'bottom'},} });}; " + 
                     "       </script>" + 
                     "   </body>" + 
                     "</html>  ";                
