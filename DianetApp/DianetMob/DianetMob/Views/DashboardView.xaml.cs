@@ -64,7 +64,8 @@ namespace DianetMob.Views
                 "<head> " +
                     "<script src=\"file:///android_asset/Chart.bundle.js\"></script>" +
                     "<script src=\"file:///android_asset/utils.js\"></script>" +
-                "</head>" +
+                    
+            "</head>" +
                 "<body>" +
                     "<div style=\"margin:0 auto;width: 70%\" id=\"canvas - holder\">" +
                         "<canvas id=\"chart - area\" />" +
