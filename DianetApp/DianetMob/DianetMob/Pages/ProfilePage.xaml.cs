@@ -116,18 +116,8 @@ namespace DianetMob.Pages
             fLocationEntry.IsEnabled = false;
         }
         
-        private void ViewPhotosBtnTap(object sender, EventArgs e)
-        {
-            bool isVisible = PhotoGrid.IsVisible;
-            if(isVisible)
-                PhotoGrid.IsVisible = false;
-            else
-                PhotoGrid.IsVisible = true;
-            
-            ProfileScrollView.ScrollToAsync(ProfileLayout, ScrollToPosition.End, true);            
-        }
         
-        private async void TakePhotoButtonOnClicked(object sender, EventArgs e)
+        private async void TakePhotoButtonOnClickedB(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
@@ -146,31 +136,50 @@ namespace DianetMob.Pages
             if (file == null)
                 return;
 
-            PathLabel.Text = file.AlbumPath;
-            bool toggled = PhotoSelect.IsToggled;
-            if (toggled)
+            //PathLabel.Text = file.AlbumPath;
+
+            _mediaFileBefore = file;
+            BeforeImage.Source = ImageSource.FromStream(() =>
             {
-                _mediaFileAfter = file;
-                AfterImage.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = _mediaFileAfter.GetStream();
+                var stream = _mediaFileBefore.GetStream();
                     //_mediaFile.Dispose();
                     return stream;
-                });
-            }
-            else
-            {
-                _mediaFileBefore = file;
-                BeforeImage.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = _mediaFileBefore.GetStream();                    
-                    //_mediaFile.Dispose();
-                    return stream;
-                });
-            }
+            });
+
+
         }
 
-        private async void PickPhotoButtonOnClicked(object sender, EventArgs e)
+        private async void TakePhotoButtonOnClickedA(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", "No camera available", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(
+                new StoreCameraMediaOptions
+                {
+                    SaveToAlbum = true
+                }
+            );
+
+            if (file == null)
+                return;
+
+            //PathLabel.Text = file.AlbumPath;
+            _mediaFileAfter = file;
+            AfterImage.Source = ImageSource.FromStream(() =>
+            {
+                var stream = _mediaFileAfter.GetStream();
+                    //_mediaFile.Dispose();
+                    return stream;
+            });
+
+        }
+
+        private async void PickPhotoButtonOnClickedB(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
 
@@ -180,31 +189,44 @@ namespace DianetMob.Pages
                 return;
             }
             var file = await CrossMedia.Current.PickPhotoAsync();
-            if (file == null)            
+            if (file == null)
                 return;
-            
-            PathLabel.Text = file.Path;
-            bool toggled = PhotoSelect.IsToggled;
-            if (toggled)
+
+            //PathLabel.Text = file.Path;
+
+            _mediaFileBefore = file;
+            BeforeImage.Source = ImageSource.FromStream(() =>
             {
-                _mediaFileAfter = file;
-                AfterImage.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = _mediaFileAfter.GetStream();
+                var stream = _mediaFileBefore.GetStream();
                     //_mediaFile.Dispose();
                     return stream;
-                });
-            }
-            else
+            });
+
+        }
+
+        private async void PickPhotoButtonOnClickedA(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
             {
-                _mediaFileBefore = file;
-                BeforeImage.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = _mediaFileBefore.GetStream();
+                await DisplayAlert("Oops", "Pick photo is not supported", "OK");
+                return;
+            }
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            if (file == null)
+                return;
+
+            //PathLabel.Text = file.Path;
+
+            _mediaFileAfter = file;
+            AfterImage.Source = ImageSource.FromStream(() =>
+            {
+                var stream = _mediaFileAfter.GetStream();
                     //_mediaFile.Dispose();
                     return stream;
-                });
-            }
+            });
+
         }
 
         public void OnUploadClicked(object sender, EventArgs e)
