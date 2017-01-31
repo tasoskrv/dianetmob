@@ -19,6 +19,7 @@ namespace DianetMob.Pages
         Dictionary<string, MapMealUnit> DicUnit = new Dictionary<string, MapMealUnit>();
         Dictionary<string, double> DicCount2 = new Dictionary<string, double>();
         private MapMealUnit SelMapMealUnit = null;
+        private MealUnit SelMealUnit = null;
         public DateTime SelectedDate { get; set; }
 
         public int IDMealSelected { get; set; }
@@ -52,8 +53,9 @@ namespace DianetMob.Pages
             unitPicker.Items.Clear();
             DicUnit.Clear();
             IEnumerable<MapMealUnit> mlUnit = conn.Query<MapMealUnit>("SELECT M.IdMealUnit as IdMealUnit , U.Name as UName, M.calories as Calories FROM MealUnit as M  JOIN Unit as U ON M.idUnit = U.idUnit WHERE M.IDMeal=" + this.IDMealSelected);
+            IEnumerable<MealUnit> meallU = conn.Query<MealUnit>("SELECT M.calories, M.protein, M.Carb, M.fat, M.satfat, M.unsatfat, M.cholesterol, M.sugar, M.natrium, M.potassium, M.fiber FROM MealUnit as M WHERE M.IDMeal=" + this.IDMealSelected);
             SelMapMealUnit = mlUnit.First();
-            
+            SelMealUnit = meallU.First();
             foreach (MapMealUnit mealunit in mlUnit)
             {
                  unitPicker.Items.Add(mealunit.UName);
@@ -97,6 +99,17 @@ namespace DianetMob.Pages
                     }
                 }
                 SelMapMealUnit = mealUnitmap;
+                Calories.Text = SelMealUnit.Calories.ToString();
+                Fats.Text = SelMealUnit.Fat.ToString();
+                UnSatFats.Text = SelMealUnit.UnSatFat.ToString();
+                SatFats.Text= SelMealUnit.UnSatFat.ToString();
+                SatFats.Text = SelMealUnit.UnSatFat.ToString();
+                Protein.Text = SelMealUnit.Protein.ToString();
+                Fiber.Text = SelMealUnit.Fiber.ToString();
+                Natrium.Text = SelMealUnit.Natrium.ToString();
+                Potassium.Text = SelMealUnit.Potassium.ToString();
+                Carbs.Text = SelMealUnit.UnSatFat.ToString();
+                Cholesterol.Text = SelMealUnit.Cholesterol.ToString();
 
             }
         }
