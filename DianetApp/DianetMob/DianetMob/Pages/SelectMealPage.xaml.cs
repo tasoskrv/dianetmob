@@ -56,6 +56,8 @@ namespace DianetMob.Pages
             IEnumerable<MealUnit> meallU = conn.Query<MealUnit>("SELECT M.calories, M.protein, M.Carb, M.fat, M.satfat, M.unsatfat, M.cholesterol, M.sugar, M.natrium, M.potassium, M.fiber FROM MealUnit as M WHERE M.IDMeal=" + this.IDMealSelected);
             SelMapMealUnit = mlUnit.First();
             SelMealUnit = meallU.First();
+
+
             foreach (MapMealUnit mealunit in mlUnit)
             {
                  unitPicker.Items.Add(mealunit.UName);
@@ -110,6 +112,7 @@ namespace DianetMob.Pages
                 Potassium.Text = SelMealUnit.Potassium.ToString();
                 Carbs.Text = SelMealUnit.UnSatFat.ToString();
                 Cholesterol.Text = SelMealUnit.Cholesterol.ToString();
+                Sugars.Text = SelMealUnit.Sugar.ToString();
 
             }
         }
