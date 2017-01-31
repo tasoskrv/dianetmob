@@ -363,9 +363,6 @@
     <AndroidResource Include="Resources\drawable\weight1.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\goal1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\addgrid.png" />
   </ItemGroup>
   <ItemGroup>
