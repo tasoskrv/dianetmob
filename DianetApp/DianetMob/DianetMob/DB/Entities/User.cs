@@ -189,6 +189,10 @@ namespace DianetMob.DB.Entities
 
         public int Isactive { get; set; }
 
+        public Byte[] ImageBefore { get; set; }
+
+        public Byte[] ImageAfter { get; set; }
+
         [Ignore]
         public double Weight {
             get
@@ -234,6 +238,7 @@ namespace DianetMob.DB.Entities
             }
         }
 
+
         public User()
         {
             IDUser = -1;
@@ -255,6 +260,8 @@ namespace DianetMob.DB.Entities
             AdjustDiet = -1;
             Isactive = 0;
             weight = 0;
+            ImageBefore = null;
+            ImageAfter = null;
         }
 
         public override string ToString()

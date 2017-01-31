@@ -92,6 +92,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\LoginPageRenderer.cs" />
+    <Compile Include="Utils\ImageResizer_IOS.cs" />
     <None Include="app.config" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />

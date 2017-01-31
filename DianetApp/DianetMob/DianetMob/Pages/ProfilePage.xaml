@@ -33,11 +33,11 @@
             </Grid.RowDefinitions> 
             <RelativeLayout Grid.Row="0"  Grid.Column="0">
               <Image  x:Name="BeforeImage"  Source="image_holder.png" Aspect="AspectFill"/>
-              <Button Clicked="TakePhotoButtonOnClickedB" BackgroundColor="#00ffffff" Image="camera.png" RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=44}"  
+              <Button x:Name="btnTB" IsVisible="false" Clicked="TakePhotoButtonOnClickedB" BackgroundColor="#00ffffff" Image="camera.png" RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=44}"  
                                                                                                                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=35}" 
                                                                                                                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-40}" 
                                                                                                                  RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=10}"/>
-              <Button Clicked="PickPhotoButtonOnClickedB" BackgroundColor="#00ffffff" Image="pick.png"   RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=44}"  
+              <Button x:Name="btnPB" IsVisible="false" Clicked="PickPhotoButtonOnClickedB" BackgroundColor="#00ffffff" Image="pick.png"   RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=44}"  
                                                                                                                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=35}" 
                                                                                                                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-40}" 
                                                                                                                  RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=50}"/>
@@ -45,11 +45,11 @@
             <Label Grid.Row="0"  Grid.Column="1"  BackgroundColor="#666"/>
             <RelativeLayout Grid.Row="0"  Grid.Column="2">
               <Image  x:Name="AfterImage"  Source="image_holder.png"  Aspect="AspectFill"/>
-              <Button Clicked="TakePhotoButtonOnClickedA" BackgroundColor="#00ffffff" Image="camera.png" RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=44}"  
+              <Button x:Name="btnTA" IsVisible="false" Clicked="TakePhotoButtonOnClickedA" BackgroundColor="#00ffffff" Image="camera.png" RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=44}"  
                                                                                                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=35}" 
                                                                                                                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-40}" 
                                                                                                                 RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=10}"/>
-              <Button   Clicked="PickPhotoButtonOnClickedA"  BackgroundColor="#00ffffff" Image="pick.png"  RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=44}"  
+              <Button x:Name="btnPA" IsVisible="false" Clicked="PickPhotoButtonOnClickedA"  BackgroundColor="#00ffffff" Image="pick.png"  RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=44}"  
                                                                                                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=35}" 
                                                                                                                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-40}" 
                                                                                                                 RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=50}"/>
@@ -73,27 +73,25 @@
             <RowDefinition Height="45"/>
             <RowDefinition Height="45"/>
             <RowDefinition Height="45"/>
-          
-            <RowDefinition Height="75"/>
-            
-            <RowDefinition Height="30"/>
             <RowDefinition Height="45"/>
-
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
             <RowDefinition Height="45"/>
           </Grid.RowDefinitions>
           <Image Grid.Row="0" Grid.Column="0" Source="contact.png"  Aspect="AspectFit"/>
           <Entry Grid.Row="0" Grid.Column="1" x:Name="fFirstNameEntry" Text="{Binding FirstName, Mode=TwoWay}" Placeholder="First Name" Keyboard="Text" IsEnabled="False"/>
           <Entry Grid.Row="1" Grid.Column="1" x:Name="fSurNameEntry" Text="{Binding LastName, Mode=TwoWay}" Placeholder="Last Name" Keyboard="Text"  IsEnabled="False"/>            
+          <Image Grid.Row="2" Grid.Column="0" Source="email.png"  Aspect="AspectFit"/>
           <Entry Grid.Row="2" Grid.Column="1" x:Name="fEmailEntry" Text="{Binding Email, Mode=TwoWay}" Placeholder="Email" Keyboard="Email"  IsEnabled="False"/>
           
           <Image Grid.Row="3" Grid.Column="0" Source="birthday.png"  Aspect="AspectFit"/>
           <DatePicker Grid.Row="3" Grid.Column="1" x:Name="fbirthDatePicker" Date="{Binding Birthdate, Mode=TwoWay}"  Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>        
-
+          
+          <Image Grid.Row="4" Grid.Column="0" Source="gender.png"  />      
           <Picker Grid.Row="4" Grid.Column="1" x:Name="fSexPicker" Title="Sex" IsEnabled="False" SelectedIndex="{Binding Gender, Converter={StaticResource minusOneConv}, Mode=TwoWay}" >
             <Picker.Items></Picker.Items>
           </Picker>        
-                          
+          
+          <Image Grid.Row="5" Grid.Column="0" Source="height.png"  />                
           <Grid Grid.Row="5" Grid.Column="1">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="*" />

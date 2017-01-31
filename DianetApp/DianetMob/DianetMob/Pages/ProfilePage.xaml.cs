@@ -1,6 +1,6 @@
-﻿using Android.Content;
-using DianetMob.DB;
+﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
+using DianetMob.Utils;
 using Java.IO;
 using Newtonsoft.Json.Linq;
 using Plugin.Media;
@@ -17,11 +17,11 @@ namespace DianetMob.Pages
 {
     public partial class ProfilePage : ContentPage
     {
-        private MediaFile _mediaFileBefore;
-        private MediaFile _mediaFileAfter;
+       // private MediaFile _mediaFileBefore;
+      //  private MediaFile _mediaFileAfter;
         private int numMsg = 0;        
         private SQLiteConnection conn = null;
-        private int total = 0;
+       // private int total = 0;
         User user = null;
 
         Dictionary<string, int> heights = new Dictionary<string, int>
@@ -47,14 +47,17 @@ namespace DianetMob.Pages
             {
                 fSexPicker.Items.Add(gender);
             }
-
-            FillInSettingsLoggedIn();            
-            BindingContext = StorageManager.GetConnectionInfo().LoginUser;
-        }
-
-        private void FillInSettingsLoggedIn()
-        {
-            //fHelloLabel.Text = "Hello " + StorageManager.GetConnectionInfo().LoginUser.FirstName.ToString() + "!";
+            user = StorageManager.GetConnectionInfo().LoginUser;
+            BindingContext = user;
+            if (user.ImageBefore != null) {
+                Stream Astream = new MemoryStream(user.ImageBefore);
+                BeforeImage.Source = ImageSource.FromStream(() => { return Astream; });
+            }
+            if (user.ImageAfter != null)
+            {
+                Stream Astream = new MemoryStream(user.ImageAfter);
+                BeforeImage.Source = ImageSource.FromStream(() => { return Astream; });
+            }
         }
         
         private void OnProfileSubmitClicked(object sender, EventArgs e)
@@ -71,6 +74,10 @@ namespace DianetMob.Pages
                 fHeightEntry.IsEnabled = true;
                 fSkeletonEntry.IsEnabled = true;
                 fLocationEntry.IsEnabled = true;
+                btnTA.IsVisible = true;
+                btnPA.IsVisible = true;
+                btnTB.IsVisible = true;
+                btnPB.IsVisible = true;
             }
             else
             {
@@ -80,17 +87,18 @@ namespace DianetMob.Pages
                 {
                     if (AllFieldsAreFilled())
                     {
-                        var user = StorageManager.GetConnectionInfo().LoginUser;
-                        int heightType = heights[fHeightPicker.Items[fHeightPicker.SelectedIndex]];
-                        int genderType = genders[fSexPicker.Items[fSexPicker.SelectedIndex]];
-                        user.FirstName = fFirstNameEntry.Text;
-                        user.LastName = fSurNameEntry.Text;
-                        user.Birthdate = fbirthDatePicker.Date;
-                        user.Gender = genderType;
-                        user.HeightType = heightType;
-                        user.Height = Convert.ToDouble(fHeightEntry.Text);
-                        user.Skeleton = Convert.ToDouble(fSkeletonEntry.Text);
-                        user.Location = fLocationEntry.Text;                        
+                      //  var user = StorageManager.GetConnectionInfo().LoginUser;
+                        user.UpdateDate = DateTime.UtcNow;
+                      //  int heightType = heights[fHeightPicker.Items[fHeightPicker.SelectedIndex]];
+                      //  int genderType = genders[fSexPicker.Items[fSexPicker.SelectedIndex]];
+                      //  user.FirstName = fFirstNameEntry.Text;
+                      //  user.LastName = fSurNameEntry.Text;
+                      //  user.Birthdate = fbirthDatePicker.Date;
+                      //  user.Gender = genderType;
+                      //  user.HeightType = heightType;
+                      //    user.Height = Convert.ToDouble(fHeightEntry.Text);
+                      //  user.Skeleton = Convert.ToDouble(fSkeletonEntry.Text);
+                      //   user.Location = fLocationEntry.Text;                        
                         StorageManager.UpdateData(user);
                         RefreshPage();
                     }
@@ -104,7 +112,6 @@ namespace DianetMob.Pages
 
         private void RefreshPage()
         {
-            FillInSettingsLoggedIn();
             fFirstNameEntry.IsEnabled = false;
             fSurNameEntry.IsEnabled = false;
             fEmailEntry.IsEnabled = false;
@@ -114,10 +121,24 @@ namespace DianetMob.Pages
             fHeightEntry.IsEnabled = false;
             fSkeletonEntry.IsEnabled = false;
             fLocationEntry.IsEnabled = false;
+            btnTA.IsVisible = false;
+            btnPA.IsVisible = false;
+            btnTB.IsVisible = false;
+            btnPB.IsVisible = false;
         }
         
         
-        private async void TakePhotoButtonOnClickedB(object sender, EventArgs e)
+        private void TakePhotoButtonOnClickedB(object sender, EventArgs e)
+        {
+            TakeImage(1);
+        }
+
+        private void TakePhotoButtonOnClickedA(object sender, EventArgs e)
+        {
+            TakeImage(2);
+        }
+
+        private async void TakeImage(int mode)
         {
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
@@ -136,51 +157,31 @@ namespace DianetMob.Pages
             if (file == null)
                 return;
 
-            //PathLabel.Text = file.AlbumPath;
-
-            _mediaFileBefore = file;
-            BeforeImage.Source = ImageSource.FromStream(() =>
-            {
-                var stream = _mediaFileBefore.GetStream();
-                    //_mediaFile.Dispose();
-                    return stream;
-            });
-
-
+            ResizeAndSetImg(file,mode);
         }
 
-        private async void TakePhotoButtonOnClickedA(object sender, EventArgs e)
-        {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+
+        private void ResizeAndSetImg(MediaFile file,int mode) {
+            byte[] bitmapData;
+            var stream = new MemoryStream();
+            file.GetStream().CopyTo(stream);
+            bitmapData = stream.ToArray();
+            var resizer = DependencyService.Get<IImageResizer>();
+            var resizedBytes= resizer.ResizeImage(bitmapData, resizer.FdpToPixWidth(260), resizer.FdpToPixHeight(300));
+            Stream Astream = new MemoryStream(resizedBytes);
+            if (mode == 1)
             {
-                await DisplayAlert("No Camera", "No camera available", "OK");
-                return;
+                BeforeImage.Source = ImageSource.FromStream(() => { return Astream; });
+                user.ImageBefore = resizedBytes;
             }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(
-                new StoreCameraMediaOptions
-                {
-                    SaveToAlbum = true
-                }
-            );
-
-            if (file == null)
-                return;
-
-            //PathLabel.Text = file.AlbumPath;
-            _mediaFileAfter = file;
-            AfterImage.Source = ImageSource.FromStream(() =>
+            else
             {
-                var stream = _mediaFileAfter.GetStream();
-                    //_mediaFile.Dispose();
-                    return stream;
-            });
-
+                AfterImage.Source = ImageSource.FromStream(() => { return Astream; });
+                user.ImageAfter = resizedBytes;
+            }
         }
 
-        private async void PickPhotoButtonOnClickedB(object sender, EventArgs e)
-        {
+        private async void PickImage(int mode) {
             await CrossMedia.Current.Initialize();
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
@@ -192,69 +193,33 @@ namespace DianetMob.Pages
             if (file == null)
                 return;
 
-            //PathLabel.Text = file.Path;
-
-            _mediaFileBefore = file;
-            BeforeImage.Source = ImageSource.FromStream(() =>
-            {
-                var stream = _mediaFileBefore.GetStream();
-                    //_mediaFile.Dispose();
-                    return stream;
-            });
+            ResizeAndSetImg(file, mode);
 
         }
 
-        private async void PickPhotoButtonOnClickedA(object sender, EventArgs e)
+        private void PickPhotoButtonOnClickedB(object sender, EventArgs e)
         {
-            await CrossMedia.Current.Initialize();
+            PickImage(1);
+        }
 
-            if (!CrossMedia.Current.IsPickPhotoSupported)
-            {
-                await DisplayAlert("Oops", "Pick photo is not supported", "OK");
-                return;
-            }
-            var file = await CrossMedia.Current.PickPhotoAsync();
-            if (file == null)
-                return;
-
-            //PathLabel.Text = file.Path;
-
-            _mediaFileAfter = file;
-            AfterImage.Source = ImageSource.FromStream(() =>
-            {
-                var stream = _mediaFileAfter.GetStream();
-                    //_mediaFile.Dispose();
-                    return stream;
-            });
-
+        private void PickPhotoButtonOnClickedA(object sender, EventArgs e)
+        {
+            PickImage(2);
         }
 
         public void OnUploadClicked(object sender, EventArgs e)
         {
-            if (_mediaFileBefore != null && _mediaFileAfter != null)
-            {
-                total = 2;
+            if (user.ImageBefore != null) {
+                uploadImage(user.ImageBefore,"before");
             }
-            else if (_mediaFileBefore != null || _mediaFileAfter != null)
+            if (user.ImageAfter != null)
             {
-                total = 1;
-            }                                           
-            if (_mediaFileBefore != null)
-            {
-                uploadImage(_mediaFileBefore, "before");
-            }
-            if (_mediaFileAfter != null)
-            {
-                uploadImage(_mediaFileAfter, "after");
+                uploadImage(user.ImageAfter, "after");
             }
         }
 
-        private async void uploadImage(MediaFile mediafile, string type)
-        {            
-            byte[] bitmapData;
-            var stream = new MemoryStream();
-            mediafile.GetStream().CopyTo(stream);
-            bitmapData = stream.ToArray();
+        private async void uploadImage(byte[] bitmapData, string type)
+        {
             var fileContent = new ByteArrayContent(bitmapData);
             fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpg");
             fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
@@ -291,36 +256,6 @@ namespace DianetMob.Pages
                 }
             }
         }
-
-        /*
-        private async void TakeVideoButtonOnClicked(object sender, EventArgs e)
-        {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakeVideoSupported)
-            {
-                await DisplayAlert("No Camera", "No camera available", "OK");
-                return;
-            }
-
-            var file = await CrossMedia.Current.TakeVideoAsync(new StoreVideoOptions
-            {
-                SaveToAlbum = true,
-                Quality = VideoQuality.Medium
-            });
-
-            if (file == null)
-            {
-                return;
-            }
-            PathLabel.Text = "Video path " + file.Path;
-            MainImage.Source = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });
-        }
-        */
 
         private void NeedToLoginNextTime(User usr)
         {            

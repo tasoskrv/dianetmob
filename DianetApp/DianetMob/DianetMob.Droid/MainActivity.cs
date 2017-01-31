@@ -25,7 +25,6 @@ namespace DianetMob.Droid
             base.OnCreate(bundle);
 
             MainActivity.Instance = this;
-
             await CrossMedia.Current.Initialize();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
