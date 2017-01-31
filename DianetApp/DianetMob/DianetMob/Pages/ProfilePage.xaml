@@ -10,10 +10,6 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
-
-
-    <ToolbarItem x:Name="UploadMsg" Text="" />
-    
     <ToolbarItem x:Name="ProfileBtn" Text="Edit" Clicked="OnProfileSubmitClicked"/>
     <ToolbarItem x:Name="UploadBtn" Text="Upload" Clicked="OnUploadClicked"/>    
   </ContentPage.ToolbarItems>
@@ -76,6 +72,7 @@
             <RowDefinition Height="45"/>
             <RowDefinition Height="45"/>
             <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
           </Grid.RowDefinitions>
           <Image Grid.Row="0" Grid.Column="0" Source="contact.png"  Aspect="AspectFit"/>
           <Entry Grid.Row="0" Grid.Column="1" x:Name="fFirstNameEntry" Text="{Binding FirstName, Mode=TwoWay}" Placeholder="First Name" Keyboard="Text" IsEnabled="False"/>
@@ -111,6 +108,8 @@
           
           <Image Grid.Row="7" Grid.Column="0" Source="location.png"  />
           <Entry Grid.Row="7" Grid.Column="1" x:Name="fLocationEntry" Placeholder="Location" Text="{Binding Location}" Keyboard="Text"  IsEnabled="False"/>
+          <Button Grid.Row="8" Grid.Column="1" Clicked="ChangePassword" BackgroundColor="#00ffffff" Text="Change Password" Font="Bold,12" TextColor="#2196F3" />
+
         </Grid> 
           
         

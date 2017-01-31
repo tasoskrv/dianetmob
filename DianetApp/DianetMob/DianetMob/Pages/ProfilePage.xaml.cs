@@ -1,4 +1,5 @@
-﻿using DianetMob.DB;
+﻿using Dianet.Notification;
+using DianetMob.DB;
 using DianetMob.DB.Entities;
 using DianetMob.Utils;
 using Java.IO;
@@ -17,11 +18,9 @@ namespace DianetMob.Pages
 {
     public partial class ProfilePage : ContentPage
     {
-       // private MediaFile _mediaFileBefore;
-      //  private MediaFile _mediaFileAfter;
-        private int numMsg = 0;        
         private SQLiteConnection conn = null;
-       // private int total = 0;
+        private bool isUploading=false;
+        // private int total = 0;
         User user = null;
 
         Dictionary<string, int> heights = new Dictionary<string, int>
@@ -209,14 +208,28 @@ namespace DianetMob.Pages
 
         public void OnUploadClicked(object sender, EventArgs e)
         {
-            if (user.ImageBefore != null) {
-                uploadImage(user.ImageBefore,"before");
+            if (isUploading)
+            {
+                DisplayAlert("Uploading...", "Cannot perform this action. Upload process has not finished!" , "OK");
+                return;
+            }
+            isUploading = true;
+
+            if (user.ImageBefore != null)
+            {
+                uploadImage(user.ImageBefore, "before");
             }
             if (user.ImageAfter != null)
             {
                 uploadImage(user.ImageAfter, "after");
             }
+
         }
+        public void ChangePassword(object sender, EventArgs e)
+        {
+
+        }
+            
 
         private async void uploadImage(byte[] bitmapData, string type)
         {
@@ -242,16 +255,22 @@ namespace DianetMob.Pages
                 JObject res = JObject.Parse(content);
                 if (res["success"].ToString() == "True")
                 {
-
-                    numMsg = numMsg + 1;
-                    UploadMsg.Text = "uploaded " + numMsg;
-
+                    var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+                    notifier.Notify(new LocalNotification()
+                    {
+                        Title = "Profile images uploaded",
+                        Text = "Thanks for sharing your photos with us!",
+                        Id = 10001,
+                        NotifyTime = DateTime.Now,
+                    });
+                    isUploading = false;
                     //await DisplayAlert("Message", "Image uploaded", "OK");
                     //numMsg = numMsg + 1;
                     //UploadMsg.Text = "uploading image " + numMsg;
                 }
                 else
                 {
+                    isUploading = false;
                     await DisplayAlert("Message", "Error - " + res["error"].ToString() + " code:" + res["code"].ToString(), "OK");
                 }
             }

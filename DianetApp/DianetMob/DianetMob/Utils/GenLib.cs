@@ -34,7 +34,7 @@ namespace DianetMob.Utils
                         {
                             Title = "Loading Data",
                             Text = "Loading Database from online server",
-                            Id = 100,
+                            Id = 10000,
                             NotifyTime = DateTime.Now,
                         });
 
@@ -47,7 +47,7 @@ namespace DianetMob.Utils
                         {
                             Title = "Finish Loading Data",
                             Text = "Your Database is synchronized",
-                            Id = 100,
+                            Id = 10000,
                             NotifyTime = DateTime.Now,
                         });
                     }
