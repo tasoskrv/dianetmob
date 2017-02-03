@@ -12,7 +12,28 @@ namespace DianetMob.TableMapping
             public int IdMealUnit { get; set; }
             public double Calories { get; set; }
 
-            public MapMealUnit()
+            public double Protein { get; set; }
+
+            public double Carb { get; set; }
+
+            public double Fat { get; set; }
+
+            public double SatFat { get; set; }
+
+            public double UnSatFat { get; set; }
+
+            public double Cholesterol { get; set; }
+
+            public double Sugar { get; set; }
+
+            public double Natrium { get; set; }
+
+            public double Potassium { get; set; }
+
+            public double Fiber { get; set; }
+
+
+        public MapMealUnit()
             {
                 UName = "";
                 IdMealUnit = 0;
