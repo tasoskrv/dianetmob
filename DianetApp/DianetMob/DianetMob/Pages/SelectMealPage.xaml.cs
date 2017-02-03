@@ -88,6 +88,7 @@ namespace DianetMob.Pages
                 counter = counter - counter1;
                 counter1 = pick1.SelectedIndex;
                 counter = counter + counter1;
+                OnUnitChosen(this.unitPicker, null);
                 ClearDetail();
                 MealDetails();
             }
@@ -102,6 +103,7 @@ namespace DianetMob.Pages
                 counter2 = pick2.SelectedIndex;
                 cnt2Tmp = DicCount2[counter2Picker.Items[counter2Picker.SelectedIndex]];
                 counter = counter + cnt2Tmp;
+                OnUnitChosen(this.unitPicker,null);
                 ClearDetail();
                 MealDetails();
                 
