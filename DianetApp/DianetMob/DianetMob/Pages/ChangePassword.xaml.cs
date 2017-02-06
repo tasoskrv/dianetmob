@@ -27,7 +27,11 @@ namespace DianetMob.Pages
             InitializeComponent();
             conn = StorageManager.GetConnection();
         }
+
+        private void OnProfileSubmitClicked(object sender, EventArgs e) { }
+        private void OnUploadClicked(object sender, EventArgs e) { }
         
+
         private void OnUpdatePasswordClicked(object sender, EventArgs e)
         {                       
             if (newPassword.Equals("") || newPassword == null || newPasswordRetype.Equals("") || newPasswordRetype == null)

@@ -19,6 +19,7 @@ namespace DianetMob.Pages
     public partial class ProfilePage : ContentPage
     {
         private SQLiteConnection conn = null;
+        private ChangePassword changePasswordPageDt = new ChangePassword();
         private bool isUploading=false;
         // private int total = 0;
         User user = null;
@@ -225,12 +226,9 @@ namespace DianetMob.Pages
             }
 
         }
-        public void ChangePassword(object sender, EventArgs e)
-        {
-
-
-
-
+        async void ChangePassword(object sender, EventArgs e)
+        {            
+            await Navigation.PushAsync(changePasswordPageDt);            
         }
             
 
