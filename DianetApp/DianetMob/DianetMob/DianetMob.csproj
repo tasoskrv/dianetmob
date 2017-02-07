@@ -56,6 +56,7 @@
     <Compile Include="DB\Entities\Plan.cs" />
     <Compile Include="DB\Entities\Settings.cs" />
     <Compile Include="DB\Entities\Subscription.cs" />
+    <Compile Include="DB\Entities\Sync.cs" />
     <Compile Include="DB\Entities\Unit.cs" />
     <Compile Include="DB\Entities\User.cs" />
     <Compile Include="DB\Entities\UserMeal.cs" />

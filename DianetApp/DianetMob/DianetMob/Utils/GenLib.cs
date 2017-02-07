@@ -27,8 +27,8 @@ namespace DianetMob.Utils
                 {
                     User loginUser = StorageManager.GetConnectionInfo().LoginUser;
                     UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
-                    if (usersettings.LastSyncDate.Date<DateTime.UtcNow.Date)
-                    {
+                   // if (usersettings.LastSyncDate.Date<DateTime.UtcNow.Date)
+                    //{
                         var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
                         notifier.Notify(new LocalNotification()
                         {
@@ -50,7 +50,7 @@ namespace DianetMob.Utils
                             Id = 10000,
                             NotifyTime = DateTime.Now,
                         });
-                    }
+                  //  }
                 }
             }
             catch (Exception ex)
@@ -216,41 +216,67 @@ namespace DianetMob.Utils
             {
                 string gencall = "/accesstoken=" + user.AccessToken + "/updatedate=" + usersettings.LastSyncDate.ToString("yyyyMMddTHHmmss");
                 string usercall = gencall + "/iduser=" + user.IDUser.ToString();
-                
-                //general calls - add required services
-                ModelService<Unit> servUnit = await ServiceConnector.GetServiceData<ModelService<Unit>>("/unit/getall" + gencall);
-                servUnit.SaveAllToDB();
 
-                ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall" + usercall);
-                servMeal.SaveAllToDBWithServerID("IDMeal");
 
-                ModelService<MealUnit> servMealUnit = await ServiceConnector.GetServiceData<ModelService<MealUnit>>("/mealunit/getall" + usercall);
-                servMealUnit.SaveAllToDBWithServerID("IDMealUnit");
+                ModelService<Sync> servsync = await ServiceConnector.GetServiceData<ModelService<Sync>>("/sync/syncdb" + gencall);
 
-                ModelService<Package> servPackage = await ServiceConnector.GetServiceData<ModelService<Package>>("/package/getall" + gencall);
-                servPackage.SaveAllToDB();
-
-                ModelService<Settings> servSettings = await ServiceConnector.GetServiceData<ModelService<Settings>>("/settings/getall" + gencall);
-                servSettings.SaveAllToDB();
-                
+                //general calls
+                if (servsync.data[0].Unit == 1)
+                {
+                    ModelService<Unit> servUnit = await ServiceConnector.GetServiceData<ModelService<Unit>>("/unit/getall" + gencall);
+                    servUnit.SaveAllToDB();
+                }
+                if (servsync.data[0].Meal == 1)
+                {
+                    ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall" + usercall);
+                    servMeal.SaveAllToDBWithServerID("IDMeal");
+                }
+                if (servsync.data[0].MealUnit == 1)
+                {
+                    ModelService<MealUnit> servMealUnit = await ServiceConnector.GetServiceData<ModelService<MealUnit>>("/mealunit/getall" + usercall);
+                    servMealUnit.SaveAllToDBWithServerID("IDMealUnit");
+                }
+                if (servsync.data[0].Package == 1)
+                {
+                    ModelService<Package> servPackage = await ServiceConnector.GetServiceData<ModelService<Package>>("/package/getall" + gencall);
+                    servPackage.SaveAllToDB();
+                }
+                if (servsync.data[0].Settings == 1)
+                {
+                    ModelService<Settings> servSettings = await ServiceConnector.GetServiceData<ModelService<Settings>>("/settings/getall" + gencall);
+                    servSettings.SaveAllToDB();
+                }
                 //User calls
-                ModelService<Alert> servAlert = await ServiceConnector.GetServiceData<ModelService<Alert>>("/alert/getall" + usercall);
-                servAlert.SaveAllToDBWithServerID("IDAlert");
-                
-                ModelService<Exercise> servExercise = await ServiceConnector.GetServiceData<ModelService<Exercise>>("/exercise/getall" + usercall);
-                servExercise.SaveAllToDBWithServerID("IDExercise");
-                
-                ModelService<Plan> servPlan = await ServiceConnector.GetServiceData<ModelService<Plan>>("/plan/getall" + usercall);
-                servPlan.SaveAllToDBWithServerID("IDPlan");
-                
-                ModelService<Subscription> servSubscription = await ServiceConnector.GetServiceData<ModelService<Subscription>>("/subscription/getall" + usercall);
-                servSubscription.SaveAllToDBWithServerID("IDSubscription");
-
-                ModelService<UserMeal> servUserMeal = await ServiceConnector.GetServiceData<ModelService<UserMeal>>("/usermeal/getall" + usercall);
-                servUserMeal.SaveAllToDBWithServerID("IDUserMeal");
-
-                ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
-                servWeight.SaveAllToDBWithServerID("IDWeight");
+                if (servsync.data[0].Alert == 1)
+                {
+                    ModelService<Alert> servAlert = await ServiceConnector.GetServiceData<ModelService<Alert>>("/alert/getall" + usercall);
+                    servAlert.SaveAllToDBWithServerID("IDAlert");
+                }
+                if (servsync.data[0].Exercise == 1)
+                {
+                    ModelService<Exercise> servExercise = await ServiceConnector.GetServiceData<ModelService<Exercise>>("/exercise/getall" + usercall);
+                    servExercise.SaveAllToDBWithServerID("IDExercise");
+                }
+                if (servsync.data[0].Plan == 1)
+                {
+                    ModelService<Plan> servPlan = await ServiceConnector.GetServiceData<ModelService<Plan>>("/plan/getall" + usercall);
+                    servPlan.SaveAllToDBWithServerID("IDPlan");
+                }
+                if (servsync.data[0].Subscription == 1)
+                {
+                    ModelService<Subscription> servSubscription = await ServiceConnector.GetServiceData<ModelService<Subscription>>("/subscription/getall" + usercall);
+                    servSubscription.SaveAllToDBWithServerID("IDSubscription");
+                }
+                if (servsync.data[0].UserMeal == 1)
+                {
+                    ModelService<UserMeal> servUserMeal = await ServiceConnector.GetServiceData<ModelService<UserMeal>>("/usermeal/getall" + usercall);
+                    servUserMeal.SaveAllToDBWithServerID("IDUserMeal");
+                }
+                if (servsync.data[0].Weight == 1)
+                {
+                    ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
+                    servWeight.SaveAllToDBWithServerID("IDWeight");
+                }
                 
             }
             catch (Exception ex)
