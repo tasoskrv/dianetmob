@@ -33,7 +33,7 @@ namespace DianetMob.Pages
         {
             ListViewWeight.ItemsSource = null;
             recordsWgt.Clear();
-            IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, WeightDate FROM Weight WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+ " order by WeightDate desc");
+            IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, WeightDate FROM Weight WHERE deleted=0 and IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+ " order by WeightDate desc");
             foreach (Weight wght in wghts)
             {
                 recordsWgt.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, WeightDate = wght.WeightDate });
@@ -69,42 +69,52 @@ namespace DianetMob.Pages
         {
             Weight myWght = e.Item as Weight;
             myWeightDt.LoadData(myWght.IDWeight);
+            ListViewWeight.SelectedItem = null;
             await Navigation.PushAsync(myWeightDt);
         }
 
         async void OnAddWeightClicked(object sender, EventArgs e)
         {
             
-            //myWeightDt.LoadData(0);
-            //await Navigation.PushAsync(myWeightDt);
+            myWeightDt.LoadData(0);
+            await Navigation.PushAsync(myWeightDt);
         }
 
         async void OnAddPlanClicked(object sender, EventArgs e)
         {
-            planPageDt.LoadData(0);
+            planPageDt.LoadData();
             await Navigation.PushAsync(planPageDt);
         }
 
         private void FillContent()
         {
-
-            string query = "SELECT * FROM Weight where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+ " order by WeightDate desc limit 10";
+                     
+            string query = "SELECT * FROM Weight where deleted=0 and IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+ " order by WeightDate desc limit 10";
             List<Weight> weightRecords = conn.Query<Weight>(query);
 
-            string queryGoal = "SELECT * FROM Plan where IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+" limit 1" ;
+            string queryGoal = "SELECT * FROM Plan where deleted=0 and IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " limit 1";
             List<Plan> planRecords = conn.Query<Plan>(queryGoal);
-
-            double goalValue = planRecords[0].Goal;
-
+            double percentage = 0;
+            double goalValue = 0;
+            if (planRecords.Count > 0)
+            {
+                goalValue = planRecords[0].Goal;
+                string q = "SELECT * FROM Weight where deleted=0 and IDuser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and WeightDate>=" + planRecords[0].StartGoal.Ticks + " order by WeightDate asc limit 1";
+                List<Weight> Firstweight = conn.Query<Weight>(q);
+                if (Firstweight.Count > 0)
+                {
+                    percentage = Math.Round(((Firstweight[0].WValue - recordsWgt.First<Weight>().WValue) / (Firstweight[0].WValue - goalValue)) * 100,1);
+                }
+            }
             double [] data = new double [weightRecords.Count];
             double[] goal = new double[weightRecords.Count];
             string [] label = new string[weightRecords.Count];
             int i = 0;
             foreach (Weight wRecord in weightRecords)
             {
-                data[i] = wRecord.WValue;
                 goal[i] = goalValue;
-                label[i] = '"' + wRecord.WeightDate.ToString("dd-MMM ") + '"';
+                data[weightRecords.Count-1-i] = wRecord.WValue;
+                label[weightRecords.Count-1-i] = '"' + wRecord.WeightDate.ToString("dd-MMM ") + '"';
                 i++; 
             }
             
@@ -136,7 +146,7 @@ namespace DianetMob.Pages
                     "       </style>" +
                     "   </head>" +
                     "<body>" +
-                    "   <div id=\"container-text\" align=\"Center\" >Percentage to complete goal</div>" +
+                    "   <div id=\"container-text\" align=\"Center\" >Completion rate</div>" +
                     "   <div id=\"container\"></div>" +
                     "   <script>" +
                     "      var circle = new ProgressBar.Circle('#container', {" +
@@ -145,7 +155,7 @@ namespace DianetMob.Pages
                     "      	trailColor: '#D7D3E7'," +
                     "      	trailWidth: 10," +
                     "      	text: {" +
-                    "              value: '50%'," +
+                    "              value: '"+percentage+"%'," +
                     "              className: 'progressbar__label'," +
                     "              style: {" +
                     "      			color: '#666'," +
@@ -167,7 +177,7 @@ namespace DianetMob.Pages
                     "      	   warnings: false" +
                     "       }" +
                     "      );" +
-                    "      circle.animate(0.5);  " +
+                    "      circle.animate("+percentage/100+");  " +
                     "   </script>" +
                     "   <div><canvas id=\"canvas\"></canvas></div>" + 
                     "       <script> " + 
@@ -180,6 +190,13 @@ namespace DianetMob.Pages
                     "                   backgroundColor : color(window.chartColors.blue).alpha(0.2).rgbString(), " + 
                     "                   borderColor : window.chartColors.blue," +
                     "                   data : [" + String.Join(",", data) + "] " +
+                    "                 },{ " + 
+                    "                   type  : 'line', " +
+                    "                   label : 'Goal', " +
+                    "                   backgroundColor : color(window.chartColors.red).alpha(0.2).rgbString(),  " +
+                    "                   borderColor : window.chartColors.red, " +
+                    "                   data : [" + String.Join(",", goal)  + "] " +
+                    "                  "+
                     "               }] " + 
                     "           }; " +
                     "           window.onload = function() { var ctx = document.getElementById(\"canvas\").getContext(\"2d\");  window.myBar = new Chart(ctx, {" +

@@ -16,44 +16,40 @@ namespace DianetMob.Pages
         private Plan pln;
         private SQLiteConnection conn = null;
 
-        Dictionary<string, int> status = new Dictionary<string, int>
-        {
-            { "In Progress", 1 }, { "Completed", 2 }, { "Cancelled", 3 }
-        };
-
         public PlanPageDetail()
         {
             InitializeComponent();
 
-            foreach (string sts in status.Keys)
-            {
-                fStatus.Items.Add(sts);
-            }
+            
             conn = StorageManager.GetConnection();
         }
 
-        public void LoadData(int IDPlan = 0)
+        void OnPrevDayClicked(object sender, EventArgs e)
         {
-            if (IDPlan > 0)
-                pln = conn.Get<Plan>(IDPlan);
-            else
-            {
-                pln = new Plan();
-                pln.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
-            }
-            BindingContext = pln;
+            goaldate.Date = goaldate.Date.AddDays(-1);
+        }
 
-            /*
-            List<Weight> wghs = conn.Query<Weight>("Select * from weight order by insertdate limit 1");
-            if (wghs.Count > 0)
+        void OnNextDayClicked(object sender, EventArgs e)
+        {
+            goaldate.Date = goaldate.Date.AddDays(1);
+        }
+
+        protected override void OnAppearing()
+        {
+            GoalEntry.Focus();
+        }
+
+        public void LoadData()
+        {
+            IEnumerable<Plan> plans = conn.Query<Plan>("SELECT * FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+" limit 1");
+            foreach (Plan plan in plans)
             {
-                wgh = wghs[0];
+                pln = plan;
+                break;
             }
-            else {
-                DisplayAlert("Please", "fill in your current weight", "OK");
-                Navigation.PopAsync();
-            }
-            */
+            if (pln == null)
+                pln = new Plan();
+            BindingContext = pln;
         }
 
         private void OnSavePlanClicked(object sender, EventArgs e)
