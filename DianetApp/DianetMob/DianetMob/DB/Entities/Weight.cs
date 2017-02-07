@@ -6,7 +6,7 @@ namespace DianetMob.DB.Entities
 {
     public class Weight : Model
     {
-        private int weight;
+        private double weight;
         private DateTime weightDate;
 
         [PrimaryKey, AutoIncrement]
@@ -17,7 +17,7 @@ namespace DianetMob.DB.Entities
 
         public int IDServer { get; set; }
 
-        public int WValue
+        public double WValue
         {
             get
             {

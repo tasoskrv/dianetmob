@@ -39,6 +39,16 @@ namespace DianetMob.Pages
             BindingContext = wght;
         }
 
+        void OnPrevDayClicked(object sender, EventArgs e)
+        {
+            weightdate.Date = weightdate.Date.AddDays(-1);
+        }
+
+        void OnNextDayClicked(object sender, EventArgs e)
+        {
+            weightdate.Date = weightdate.Date.AddDays(1);
+        }
+
         private void OnSaveWeightClicked(object sender, EventArgs e)
         {
             wght.UpdateDate = DateTime.UtcNow;
