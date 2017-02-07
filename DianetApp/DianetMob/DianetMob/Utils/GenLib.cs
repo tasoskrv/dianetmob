@@ -87,9 +87,7 @@ namespace DianetMob.Utils
                 SQLiteConnection conn = StorageManager.GetConnection();
                 string iduser = user.IDUser.ToString();
 
-                long tick =0;
-                if (usersettings.LastSyncDate.Ticks > 0)
-                    tick = usersettings.LastSyncDate.AddDays(-1).Ticks;
+                long tick = usersettings.LastSyncDate.Ticks;
 
                 //user
                 /*
@@ -216,17 +214,17 @@ namespace DianetMob.Utils
         {
             try
             {
-                string gencall = "/accesstoken=" + user.AccessToken + "/updatedate=" + usersettings.LastSyncDate.ToString("yyyyMMdd");
+                string gencall = "/accesstoken=" + user.AccessToken + "/updatedate=" + usersettings.LastSyncDate.ToString("yyyyMMddTHHmmss");
                 string usercall = gencall + "/iduser=" + user.IDUser.ToString();
                 
                 //general calls - add required services
                 ModelService<Unit> servUnit = await ServiceConnector.GetServiceData<ModelService<Unit>>("/unit/getall" + gencall);
                 servUnit.SaveAllToDB();
 
-                ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall" + gencall);
+                ModelService<Meal> servMeal = await ServiceConnector.GetServiceData<ModelService<Meal>>("/meal/getall" + usercall);
                 servMeal.SaveAllToDBWithServerID("IDMeal");
 
-                ModelService<MealUnit> servMealUnit = await ServiceConnector.GetServiceData<ModelService<MealUnit>>("/mealunit/getall" + gencall);
+                ModelService<MealUnit> servMealUnit = await ServiceConnector.GetServiceData<ModelService<MealUnit>>("/mealunit/getall" + usercall);
                 servMealUnit.SaveAllToDBWithServerID("IDMealUnit");
 
                 ModelService<Package> servPackage = await ServiceConnector.GetServiceData<ModelService<Package>>("/package/getall" + gencall);
