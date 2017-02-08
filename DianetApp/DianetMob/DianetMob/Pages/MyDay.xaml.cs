@@ -71,7 +71,7 @@ namespace DianetMob.Pages
             
             string query = "Select um.IdUserMeal, um.idcategory, (mu.Calories*um.QTY) as Calories,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ?";
 
-            string query2 = "Select um.IdUserMeal, um.idcategory, SUM(mu.Calories*um.QTY) as Calories,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ? GROUP BY um.mealdate";
+            string query2 = "Select um.IdUserMeal, um.idcategory, SUM(mu.Calories*um.QTY) as Calories, um.MealDate , m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ? GROUP BY um.mealdate";
 
             IEnumerable<MapLogData> logrecords = conn.Query<MapLogData>(query, datePick.Date, datePick.Date);
             DashboardDic.Clear();
