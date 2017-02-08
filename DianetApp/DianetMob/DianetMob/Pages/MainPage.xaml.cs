@@ -19,12 +19,20 @@ namespace DianetMob.Pages
             InitializeComponent();
 
             masterPage.ListView.ItemSelected += OnItemSelected;
-
+            masterPage.ButtonProfile.Clicked += OnBtnProfileCliked;
           //  if (Device.OS == TargetPlatform.Windows)
-           // {
+          // {
           //      Master.Icon = "swap.png";
           //  }
         }
+
+        void OnBtnProfileCliked(object sender, EventArgs e)
+        {
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(ProfilePage)));
+            masterPage.ListView.SelectedItem = null;
+            IsPresented = false;
+        }
+
         void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MenuElement;

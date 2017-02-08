@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
+using Xamarin.Forms;
 
 namespace DianetMob.DB.Entities
 {
@@ -90,15 +91,27 @@ namespace DianetMob.DB.Entities
         {
             get
             {
-                return mealdisplay;
+                if (MealType == 1)
+                    return "Breakfast";
+                else if (MealType == 2)
+                    return "Lunch";
+                else if (MealType == 3)
+                    return "Dinner";
+                else
+                    return "Snack";
             }
-            set
-            {
-                if(mealdisplay != value)
-                {
-                    mealdisplay = value;
-                    OnPropertyChanged("MealDisplay");
-                }
+        }
+        [Ignore]
+        public string Image {
+            get {
+                if (MealType == 1)
+                    return "morning.png";
+                else if (MealType == 2)
+                    return "sun.png";
+                else if (MealType == 3)
+                    return "night.png";
+                else
+                    return "snack.png";
             }
         }
 

@@ -42,6 +42,7 @@ namespace DianetMob.DB.Entities
                 {
                     firstname = value;
                     OnPropertyChanged("FirstName");
+                    OnPropertyChanged("Name");
                 }
             }
         }
@@ -59,6 +60,7 @@ namespace DianetMob.DB.Entities
                 {
                     lastname = value;
                     OnPropertyChanged("LastName");
+                    OnPropertyChanged("Name");
                 }
             }
         }
@@ -192,6 +194,13 @@ namespace DianetMob.DB.Entities
         public Byte[] ImageBefore { get; set; }
 
         public Byte[] ImageAfter { get; set; }
+
+        [Ignore]
+        public string Name {
+            get {
+                return FirstName + " " + LastName;
+            }
+        }
 
         [Ignore]
         public double Weight {

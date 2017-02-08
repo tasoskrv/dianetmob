@@ -25,6 +25,7 @@ namespace DianetMob.Pages
         {
             Alert myAlert = e.Item as Alert;
             alertPageDt.LoadData(myAlert);
+            ListViewAlerts.SelectedItem = null;
             await Navigation.PushAsync(alertPageDt);
         }
         

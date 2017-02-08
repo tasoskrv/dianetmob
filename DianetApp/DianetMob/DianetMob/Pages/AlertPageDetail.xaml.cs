@@ -20,14 +20,25 @@ namespace DianetMob.Pages
 
         public void LoadData(Alert myalt)
         {
-            if (myalt.IDAlert > 0)
-                alt = conn.Get<Alert>(myalt.IDAlert);
-            else
-            {
+            if (myalt.IDAlert <= 0) {
                 alt = new Alert();
                 alt.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
                 alt.MealType = myalt.MealType;
+                remindTime.SelectedIndex = 0;
             }
+            else{
+                alt = conn.Get<Alert>(myalt.IDAlert);
+                for (int i = 0; i < remindTime.Items.Count - 1; i++) {
+                    if (remindTime.Items[i] == alt.AlertTime)
+                    {
+                        remindTime.SelectedIndex = i;
+                        break;
+                    }
+                        
+                 }
+            }
+            
+            Title = alt.MealDisplay+" Notification";
             BindingContext = alt;
         }
         
