@@ -19,6 +19,8 @@
       <Grid Margin="20,0,0,0" RowSpacing="0">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="60" />
+          <ColumnDefinition Width="30" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
           <RowDefinition Height="45"/>
@@ -26,14 +28,12 @@
           <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Text="{Binding MealType, Mode=TwoWay, Converter={StaticResource mealConverter}}" FontSize="20"/>
-        
-        <Label Grid.Row="1" Grid.Column="0" Text="Remind Me" FontSize="20"/>
+        <Label Grid.Row="1" Grid.Column="0" Text="Remind Me:" FontSize="20" VerticalTextAlignment="Center"/>
         <Switch Grid.Row="1" Grid.Column="1" x:Name="remindSelect" IsToggled="{Binding Status}"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Text="Remind Time" FontSize="20"/>
+        <Label Grid.Row="2" Grid.Column="0" Text="Remind Time:" FontSize="20" VerticalTextAlignment="Center"/>
         
-        <Picker x:Name="remindTime" Grid.Row="2" Grid.Column="1" SelectedIndex="{Binding AlertTime}">
+        <Picker x:Name="remindTime" Grid.Row="2" Grid.Column="1" SelectedIndex="{Binding AlertTime}" Title="Remind Time" >
           <Picker.Items>
             <x:String>00:00</x:String>
             <x:String>01:00</x:String>
