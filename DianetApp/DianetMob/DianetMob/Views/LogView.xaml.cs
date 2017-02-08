@@ -1,4 +1,5 @@
 ﻿using DianetMob.DB;
+using DianetMob.DB.Entities;
 using DianetMob.Model;
 using DianetMob.Pages;
 using DianetMob.TableMapping;
@@ -21,6 +22,7 @@ namespace DianetMob.Views
         private ObservableCollection<Group> groupedItems = new ObservableCollection<Group>();
         private ConnectionInfo info;
         private Points points = new Points();
+        private SelectMealPage selectPage = null;
 
         public LogView()
         {
@@ -76,7 +78,26 @@ namespace DianetMob.Views
                 await Navigation.PushAsync(searchPage);
             }
         }
+
+        public void OnDeleted(object sender, EventArgs e)
+        {
+            var selectedItem = (MenuItem)sender;
+            //var selectedUserMeal = selectedItem.CommandParameter as ;
+            
+
+        }
+
+        public async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+           // var selectedItem = (MenuItem)sender;
+        }
     }
+
+
+
+
+
+
     public class Group : ObservableCollection<Item>
     {
         public String Name { get; set; }
@@ -92,8 +113,8 @@ namespace DianetMob.Views
     }
     public class Item
     {
-        public String Title { get; private set; }
-        public String Description { get; private set; }
+        public String Title { get;  set; }
+        public String Description { get;  set; }
 
         public Item(String title, String description)
         {
