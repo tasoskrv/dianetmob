@@ -259,7 +259,7 @@ namespace DianetMob.DB.Entities
             UpdateDate = DateTime.MinValue;
             AdjustDiet = -1;
             Isactive = 0;
-            weight = 0;
+            weight = 0;//TODO Weight?
             ImageBefore = null;
             ImageAfter = null;
         }
@@ -289,7 +289,7 @@ namespace DianetMob.DB.Entities
                 str += "&height=\"" + Height.ToString() + "\"";
             if (HeightType != -1)
                 str += "&heighttype=\"" + HeightType.ToString() + "\"";
-            if (Skeleton != -1)
+            if (Skeleton != 0)
                 str += "&skeleton=\"" + Skeleton.ToString() + "\"";
             if (Birthdate != null)
                 str += "&birthdate=\"" + Birthdate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
