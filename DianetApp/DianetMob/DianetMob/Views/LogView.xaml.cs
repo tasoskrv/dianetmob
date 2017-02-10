@@ -1,8 +1,10 @@
 ﻿using DianetMob.DB;
+using DianetMob.DB.Entities;
 using DianetMob.Model;
 using DianetMob.Pages;
 using DianetMob.TableMapping;
 using DianetMob.Utils;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,12 +18,15 @@ namespace DianetMob.Views
 {
     public partial class LogView : ContentView
     {
+        private SQLiteConnection conn = null;
         private DateTime SelectedDate;
         private SearchMealPage searchPage = null;
         private ObservableCollection<Group> groupedItems = new ObservableCollection<Group>();
         private ConnectionInfo info;
         private Points points = new Points();
-
+        private SelectMealPage selectPage = null;
+        private Points pointss = null;
+        private DateTime datee;
         public LogView()
         {
             InitializeComponent();
@@ -48,11 +53,11 @@ namespace DianetMob.Views
 
             foreach (MapLogData logrecord in logrecords)
             {
-                Item item = new Item(logrecord.MealName, PointSystem.PointCalculate(logrecord.Calories).ToString());
+                Item item = new Item(logrecord.MealName, PointSystem.PointCalculate(logrecord.Calories).ToString(), logrecord.IDUserMeal);
                 groupedItems[logrecord.IDCategory - 1].Add(item);
             }
-
-            
+            pointss = points;
+            datee = date;
 
         }
 
@@ -76,7 +81,41 @@ namespace DianetMob.Views
                 await Navigation.PushAsync(searchPage);
             }
         }
+
+        public void OnDeleted(object sender, EventArgs e)
+        {
+            var selectedItem = (MenuItem)sender;
+            var item = selectedItem.CommandParameter as Item;
+            UserMeal usermeal = StorageManager.GetConnection().Get<UserMeal>(item.IDUserMeal);
+
+            if (usermeal.IDServer == 0)
+            {           
+                StorageManager.DeleteData(usermeal);
+            }
+            else
+            {
+                usermeal.Deleted = 1;
+                StorageManager.UpdateData(usermeal);
+
+            }
+            // provlima me to logrecords2
+            string query = "Select um.IdUserMeal, um.idcategory, (mu.Calories*um.QTY) as Calories,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + info.LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ? and um.deleted=0";           
+            IEnumerable<MapLogData> logrecords2 = conn.Query<MapLogData>(query, datee, datee);
+            RecreateData(pointss, logrecords2, datee);
+
+        }
+
+        public async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+           // var selectedItem = (MenuItem)sender;
+        }
     }
+
+
+
+
+
+
     public class Group : ObservableCollection<Item>
     {
         public String Name { get; set; }
@@ -92,13 +131,16 @@ namespace DianetMob.Views
     }
     public class Item
     {
-        public String Title { get; private set; }
-        public String Description { get; private set; }
+        public String Title { get;  set; }
+        public String Description { get;  set; }
 
-        public Item(String title, String description)
+        public int IDUserMeal { get; set; }
+
+        public Item(String title, String description, int idusermeal)
         {
             Title = title;
             Description = description;
+            IDUserMeal = idusermeal;
         }
 
         // Whatever other properties

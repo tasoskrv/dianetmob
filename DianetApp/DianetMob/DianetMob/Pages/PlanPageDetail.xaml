@@ -2,39 +2,32 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:conv="clr-namespace:DianetMob.Converters;assembly=DianetMob"
-             x:Class="DianetMob.Pages.PlanPageDetail">
+             x:Class="DianetMob.Pages.PlanPageDetail"
+             Title="Goal edit">
 
   <ContentPage.ToolbarItems>
     <ToolbarItem x:Name="fSaveBtn" Text="Save"  Clicked="OnSavePlanClicked"/>
-  </ContentPage.ToolbarItems>  
-  
+  </ContentPage.ToolbarItems>
+
   <ContentPage.Resources>
     <ResourceDictionary>
       <conv:DateConverter x:Key="dateConverter" />
+      <conv:NumericConverter x:Key="numConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
-
-  <Grid Margin="20,0,0,0" RowSpacing="0">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="30"/>
-      <RowDefinition Height="45"/>
-
-      <RowDefinition Height="30"/>
-      <RowDefinition Height="45"/>
-    </Grid.RowDefinitions>
-
-    <Label Grid.Row="0" Grid.Column="0" Text="Status" />
-    <!--Entry Grid.Row="1" Grid.Column="0" x:Name="fStatus" Text="{Binding Status, Mode=TwoWay}" Keyboard="Numeric" /-->
-
-    <Picker Grid.Row="1" Grid.Column="0" x:Name="fStatus" SelectedIndex="{Binding Status, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
-      <Picker.Items></Picker.Items>
-    </Picker>
-        
-    <Label Grid.Row="2" Grid.Column="0" Text="Goal"/>
-    <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Goal, Mode=TwoWay}" Keyboard="Numeric"/>
-  </Grid>    
+  <ContentPage.Content>
+    <StackLayout BackgroundColor="#FFFFFF">
+      <StackLayout   x:Name="datepickpanel" Orientation="Horizontal" VerticalOptions="Start" BackgroundColor="#FFFFFF" >
+        <Button FontSize="Large" Text="&lt;" BackgroundColor="#FFFFFF" TextColor="#2196F3" VerticalOptions="Center"
+          HorizontalOptions="EndAndExpand" Clicked="OnPrevDayClicked" />
+        <DatePicker x:Name="goaldate" Format="dddd &#13;&#10; dd MMM, yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" Date="{Binding StartGoal, Mode=TwoWay, Converter={StaticResource dateConverter}}" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Button FontSize="Large" Text="&gt;" BackgroundColor="#FFFFFF" TextColor="#2196F3" VerticalOptions="Center"
+       HorizontalOptions="StartAndExpand" Clicked="OnNextDayClicked" />
+      </StackLayout>
+      <StackLayout Padding="20,0,20,0" VerticalOptions="StartAndExpand">
+        <Entry x:Name="GoalEntry" VerticalOptions="StartAndExpand" Text="{Binding Goal, Mode=TwoWay, Converter={StaticResource numConverter}}" Keyboard="Numeric" FontSize="Large" Placeholder="Goal"  />
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
        
 </ContentPage>

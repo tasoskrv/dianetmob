@@ -50,37 +50,37 @@
 
        
        <Label Grid.Column="0" Grid.Row="4" Text="Calories" Font="Bold" FontSize="17"/>
-       <Label x:Name="Calories" Grid.Column="1" Grid.Row="4" Text="{Binding Calories}" Font="Bold" FontSize="17"/>
+       <Label x:Name="Calories" Grid.Column="3" Grid.Row="4" Text="{Binding Calories}" Font="Bold" FontSize="17"/>
        
        <Label Grid.Column="0" Grid.Row="5" Text="Fats" FontSize="17" />
-       <Label x:Name="Fats" Grid.Column="1" Grid.Row="5" Text="{Binding Fats}" FontSize="17" />
+       <Label x:Name="Fats" Grid.Column="3" Grid.Row="5" Text="{Binding Fats}" FontSize="17" />
        
        <Label Grid.Column="0" Grid.Row="6" Text="Saturated Fats" FontSize="17" />
-       <Label x:Name="SatFats" Grid.Column="1" Grid.Row="6" Text="{Binding SatFats}" FontSize="17" />
+       <Label x:Name="SatFats" Grid.Column="3" Grid.Row="6" Text="{Binding SatFats}" FontSize="17" />
        
        <Label Grid.Column="0" Grid.Row="7" Text="Unsaturated Fats" FontSize="17" />
-       <Label x:Name="UnSatFats" Grid.Column="1" Grid.Row="7" Text="{Binding UnSatFats}" FontSize="17" />
+       <Label x:Name="UnSatFats" Grid.Column="3" Grid.Row="7" Text="{Binding UnSatFats}" FontSize="17" />
 
        <Label Grid.Column="0" Grid.Row="8" Text="Cholesterol" FontSize="17" />
-       <Label x:Name="Cholesterol" Grid.Column="1" Grid.Row="8" Text="{Binding Cholesterol}" FontSize="17" />
+       <Label x:Name="Cholesterol" Grid.Column="3" Grid.Row="8" Text="{Binding Cholesterol}" FontSize="17" />
 
        <Label Grid.Column="0" Grid.Row="9" Text="Natrium" FontSize="17" />
-       <Label x:Name="Natrium" Grid.Column="1" Grid.Row="9" Text="{Binding Natrium}" FontSize="17" />
+       <Label x:Name="Natrium" Grid.Column="3" Grid.Row="9" Text="{Binding Natrium}" FontSize="17" />
 
        <Label Grid.Column="0" Grid.Row="10" Text="Potassium" FontSize="17" />
-       <Label x:Name="Potassium" Grid.Column="1" Grid.Row="10" Text="{Binding Potassium}" FontSize="17" />
+       <Label x:Name="Potassium" Grid.Column="3" Grid.Row="10" Text="{Binding Potassium}" FontSize="17" />
 
        <Label Grid.Column="0" Grid.Row="11" Text="Fiber" FontSize="17" />
-       <Label x:Name="Fiber" Grid.Column="1" Grid.Row="11" Text="{Binding Fiber}" FontSize="17" />
+       <Label x:Name="Fiber" Grid.Column="3" Grid.Row="11" Text="{Binding Fiber}" FontSize="17" />
 
        <Label Grid.Column="0" Grid.Row="12" Text="Sugars" FontSize="17" />
-       <Label x:Name="Sugars" Grid.Column="1" Grid.Row="12" Text="{Binding Sugars}" FontSize="17" />
+       <Label x:Name="Sugars" Grid.Column="3" Grid.Row="12" Text="{Binding Sugars}" FontSize="17" />
 
        <Label Grid.Column="0" Grid.Row="13" Text="Protein" FontSize="17" />
-       <Label x:Name="Protein" Grid.Column="1" Grid.Row="13" Text="{Binding Protein}" FontSize="17" />
+       <Label x:Name="Protein" Grid.Column="3" Grid.Row="13" Text="{Binding Protein}" FontSize="17" />
 
        <Label Grid.Column="0" Grid.Row="14" Text="Carbs" FontSize="17" />
-       <Label x:Name="Carbs" Grid.Column="1" Grid.Row="14" Text="{Binding Carbs}" FontSize="17" />
+       <Label x:Name="Carbs" Grid.Column="3" Grid.Row="14" Text="{Binding Carbs}" FontSize="17" />
 
      </Grid>
     </ScrollView>

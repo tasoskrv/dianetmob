@@ -28,7 +28,7 @@
         <BoxView Grid.Row="2" Grid.ColumnSpan="5" BackgroundColor="#000000" VerticalOptions="Start" HeightRequest="1" >
         </BoxView >
         </Grid>
-        <ListView x:Name="LogList" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsGroupingEnabled="True" GroupDisplayBinding="{Binding Name}">
+        <ListView x:Name="LogList" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsGroupingEnabled="True" GroupDisplayBinding="{Binding Name}" ItemTapped="OnItemTapped">
           <ListView.GroupHeaderTemplate>
             <DataTemplate>
               <ViewCell>
@@ -43,6 +43,9 @@
           <ListView.ItemTemplate>
             <DataTemplate>
               <ViewCell>
+                <ViewCell.ContextActions>
+                  <MenuItem Text="DELETE" CommandParameter="{Binding .}" Clicked="OnDeleted" />
+                </ViewCell.ContextActions>
                 <ContentView>
                   <StackLayout Padding="15,5,35,5"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                     <Label Text="{Binding Title}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />

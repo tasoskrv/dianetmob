@@ -65,7 +65,7 @@ namespace DianetMob.Pages
                 Plan plan = new Plan();
                 plan.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
                 plan.Goal = Convert.ToInt16(goal.Text);
-                plan.Status = 1;
+                plan.StartGoal = DateTime.Now.Date;
                 plan.Deleted = 0;
                 plan.UpdateDate = DateTime.UtcNow;
                 plan.InsertDate = plan.UpdateDate;
