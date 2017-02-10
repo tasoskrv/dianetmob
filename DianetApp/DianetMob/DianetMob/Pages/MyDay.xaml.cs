@@ -29,6 +29,7 @@ namespace DianetMob.Pages
             subscription = info.LoadActiveSubscription();
             
             GenLib.StartUp();
+            addmealview.MyDayPage = this;
         }
 
         protected async override void OnAppearing()
@@ -71,7 +72,7 @@ namespace DianetMob.Pages
             
             string query = "Select um.IdUserMeal, um.idcategory, (mu.Calories*um.QTY) as Calories,  m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ? and um.deleted=0";
 
-            string query2 = "Select um.IdUserMeal, um.idcategory, SUM(mu.Calories*um.QTY) as Calories, um.MealDate , m.name as MealName from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit inner join meal m on mu.idmeal=m.idmeal where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ? and um.deleted=0 GROUP BY um.mealdate";
+            string query2 = "Select  SUM(mu.Calories*um.QTY) as Calories, um.MealDate as MealDate  from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ? and um.deleted=0 GROUP BY um.mealdate";
 
             IEnumerable<MapLogData> logrecords = conn.Query<MapLogData>(query, datePick.Date, datePick.Date);
             DashboardDic.Clear();
@@ -83,20 +84,17 @@ namespace DianetMob.Pages
             {
                 DashboardDic[logrecord.IDCategory] += logrecord.Calories;
             }
-
-            IEnumerable<MapLogData> Weekrecords = conn.Query<MapLogData>(query, datePick.Date.AddDays(-6.0), datePick.Date);
-            foreach (MapLogData week in Weekrecords)
-            {
-                //
-            } 
+            
             Points points = new Points();
             points.Breakfast = DashboardDic[1];
             points.Lunch = DashboardDic[2];
             points.Dinner = DashboardDic[3];
             points.Snack = DashboardDic[4];
 
+            IEnumerable<MapLogData> Weekrecords = conn.Query<MapLogData>(query2, datePick.Date.AddDays(-6.0).Ticks, datePick.Date.Ticks);
+
             logview.RecreateData(points, logrecords, datePick.Date);
-            dashboardview.FillPieContent(DashboardDic, points.Food);
+            dashboardview.FillPieContent(DashboardDic, points.Food, Weekrecords);
         }
 
         public void OnAddMealClicked(object sender, EventArgs e)
@@ -107,22 +105,31 @@ namespace DianetMob.Pages
             }
             else
             {
-                addmealview.IsVisible = !addmealview.IsVisible;
-                addmealview.setDate(datePick.Date);
-                datepickpanel.IsVisible = !addmealview.IsVisible;
-                dashboardview.IsEnabled = datepickpanel.IsVisible;
-                logview.IsEnabled = dashboardview.IsEnabled;
-                if (addmealview.IsVisible)
-                {
-                    dashboardview.Opacity = 0.5;
-                }
-                else
-                {
-                    dashboardview.Opacity = 1;
-                }
-                logview.Opacity = dashboardview.Opacity;
+                ToggleAddView();
             }
-            //await Navigation.PushAsync(new AddMealPage(datePick.Date));
+        }
+
+        public void OnSynchClicked(object sender, EventArgs e)
+        {
+            GenLib.FullSynch(true);
+        }
+        
+        public void ToggleAddView()
+        {
+            addmealview.IsVisible = !addmealview.IsVisible;
+            addmealview.setDate(datePick.Date);
+            datepickpanel.IsVisible = !addmealview.IsVisible;
+            dashboardview.IsEnabled = datepickpanel.IsVisible;
+            logview.IsEnabled = dashboardview.IsEnabled;
+            if (addmealview.IsVisible)
+            {
+                dashboardview.Opacity = 0.5;
+            }
+            else
+            {
+                dashboardview.Opacity = 1;
+            }
+            logview.Opacity = dashboardview.Opacity;
         }
     }
 }

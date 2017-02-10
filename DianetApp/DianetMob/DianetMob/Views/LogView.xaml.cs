@@ -107,7 +107,20 @@ namespace DianetMob.Views
 
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-           // var selectedItem = (MenuItem)sender;
+            if ((info.isTrial) ^ ((info.ActiveSubscription == null) || (info.ActiveSubscription.EndDate < DateTime.UtcNow)))
+            {
+                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
+            }
+            else
+            {
+                UserMeal usermeal = StorageManager.GetConnection().Get<UserMeal>(((Item)e.Item).IDUserMeal);
+                if (searchPage == null)
+                {
+                    searchPage = new SearchMealPage();
+                }
+                searchPage.GetSelectMealPage().CalcUnits(usermeal);
+                await Navigation.PushAsync(searchPage.GetSelectMealPage());
+            }
         }
     }
 

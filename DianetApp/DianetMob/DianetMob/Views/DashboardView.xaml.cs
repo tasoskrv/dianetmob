@@ -48,7 +48,7 @@ namespace DianetMob.Views
             } 
         }
 
-        public void FillPieContent(Dictionary<int, double> DashboardDic, double Total)
+        public void FillPieContent(Dictionary<int, double> DashboardDic, double Total, IEnumerable<MapLogData> maplogs)
         { 
             string data = "";
             string label = "";
@@ -57,7 +57,16 @@ namespace DianetMob.Views
                 label += GetLabelCategory(entry.Key) + ",";
             }
             data =data.Remove(data.Length - 1);
-            label = label.Remove(label.Length - 1);         
+            label = label.Remove(label.Length - 1);
+
+            string Wdata = "";
+            string Wlabel = "";
+            foreach (MapLogData maplog in maplogs) {
+                Wdata += PointSystem.PointCalculate(maplog.Calories) + ",";
+                Wlabel += "\""+maplog.MealDate.DayOfWeek +"\""+ ",";
+            }
+            Wdata = Wdata.Remove(Wdata.Length - 1);
+            Wlabel = Wlabel.Remove(Wlabel.Length - 1);
 
             string web1 = "<!doctype html>" +
             "<html>" +
@@ -83,13 +92,13 @@ namespace DianetMob.Views
                         " labels: [" + label + "] },  options: {legend: {position: 'bottom'} ,title: {display: true, text: 'Points per meal' } }}; " +
                         "var color = Chart.helpers.color; " +
                         "var barChartData = { " +
-                        "labels: [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"], " +
+                        "labels: [" + Wlabel + "], " +
                         "datasets: [{ type: \"bar\", label: \"Week Points\", backgroundColor: color(window.chartColors.blue).alpha(0.4).rgbString(), ";
                         
                         
                         
                         
-                        string web2= "borderColor: window.chartColors.blue, data: [ 10,20,6,8,14,"+ Total + ",11]}] }; " +
+                        string web2= "borderColor: window.chartColors.blue, data: [ " + Wdata + "]}] }; " +
                         "window.onload = function() {" +
                         "var ctx1 = document.getElementById(\"chart - area\").getContext(\"2d\"); " +
                         "window.myPie = new Chart(ctx1, config); " +

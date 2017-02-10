@@ -18,8 +18,13 @@ namespace DianetMob.Utils
     {
         private static RecurringTask ServiceTask;
         private static RecurringTask NotifTask;
+        private static bool isRunning;
 
-        public async static void FullSynch()
+        public static void FullSynchA() {
+            FullSynch();
+        }
+
+        public async static void FullSynch(bool force=false)
         {            
             try
             {
@@ -27,8 +32,14 @@ namespace DianetMob.Utils
                 {
                     User loginUser = StorageManager.GetConnectionInfo().LoginUser;
                     UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
-                    if (usersettings.LastSyncDate.Date<DateTime.UtcNow.Date)
+                    if (usersettings.LastSyncDate.Date < DateTime.UtcNow.Date || force)
                     {
+                        if (isRunning)
+                        {
+                            await App.Current.MainPage.DisplayAlert("Alert", "Sync process is already running!", "OK");
+                            return;
+                        }
+                        isRunning = true;
                         var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
                         notifier.Notify(new LocalNotification()
                         {
@@ -50,12 +61,14 @@ namespace DianetMob.Utils
                             Id = 10000,
                             NotifyTime = DateTime.Now,
                         });
+                        isRunning = false;
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                isRunning = false;
             }
         }
 
@@ -65,7 +78,7 @@ namespace DianetMob.Utils
             if (ServiceTask == null)
             {
                 FullSynch();
-                ServiceTask = new RecurringTask(new Action(FullSynch), minutes);
+                ServiceTask = new RecurringTask(new Action(FullSynchA), minutes);
             }
             ServiceTask.Start();
 

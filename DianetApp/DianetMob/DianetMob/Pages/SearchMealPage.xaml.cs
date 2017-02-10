@@ -20,8 +20,8 @@ namespace DianetMob.Pages
         protected string url = "http://dianet.cloudocean.gr/api/v1/meal/getall";
         public int Mode { get; set; }
         public DateTime SelectedDate { get; set; }
-
         SQLiteConnection conn = null;
+
         public SearchMealPage()
         {
             InitializeComponent();
@@ -29,6 +29,11 @@ namespace DianetMob.Pages
             conn = StorageManager.GetConnection();
 
         }
+
+        public SelectMealPage GetSelectMealPage() {
+            return selectPage;
+        }
+
 
         public void OnSearchBarPressed(object sender, EventArgs eventArgs)
         {

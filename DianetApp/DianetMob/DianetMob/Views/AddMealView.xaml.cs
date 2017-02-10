@@ -15,6 +15,9 @@ namespace DianetMob.Views
         private SearchMealPage searchPage = new SearchMealPage();
         private DateTime SelectedDate;
         private ConnectionInfo info;
+        public MyDay MyDayPage { get; set; }
+         
+
         public AddMealView()
         {
             InitializeComponent();
@@ -29,6 +32,7 @@ namespace DianetMob.Views
             else
             {
                 searchPage.Mode = mode;
+                MyDayPage.ToggleAddView();
                 await Navigation.PushAsync(searchPage);
             }
         }
