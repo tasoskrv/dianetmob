@@ -19,6 +19,7 @@ namespace DianetMob.Pages
     public partial class ProfilePage : ContentPage
     {
         private SQLiteConnection conn = null;
+        private ChangePassword changePasswordPageDt = new ChangePassword();
         private bool isUploading=false;
         // private int total = 0;
         User user = null;
@@ -87,7 +88,7 @@ namespace DianetMob.Pages
                     if (AllFieldsAreFilled())
                     {
                       //  var user = StorageManager.GetConnectionInfo().LoginUser;
-                        user.UpdateDate = DateTime.UtcNow;
+                      user.UpdateDate = DateTime.UtcNow;
                       //  int heightType = heights[fHeightPicker.Items[fHeightPicker.SelectedIndex]];
                       //  int genderType = genders[fSexPicker.Items[fSexPicker.SelectedIndex]];
                       //  user.FirstName = fFirstNameEntry.Text;
@@ -95,11 +96,11 @@ namespace DianetMob.Pages
                       //  user.Birthdate = fbirthDatePicker.Date;
                       //  user.Gender = genderType;
                       //  user.HeightType = heightType;
-                      //    user.Height = Convert.ToDouble(fHeightEntry.Text);
+                      //  user.Height = Convert.ToDouble(fHeightEntry.Text);
                       //  user.Skeleton = Convert.ToDouble(fSkeletonEntry.Text);
-                      //   user.Location = fLocationEntry.Text;                        
-                        StorageManager.UpdateData(user);
-                        RefreshPage();
+                      //  user.Location = fLocationEntry.Text;                        
+                      StorageManager.UpdateData(user);
+                      RefreshPage();
                     }
                     else
                     {
@@ -125,8 +126,7 @@ namespace DianetMob.Pages
             btnTB.IsVisible = false;
             btnPB.IsVisible = false;
         }
-        
-        
+                
         private void TakePhotoButtonOnClickedB(object sender, EventArgs e)
         {
             TakeImage(1);
@@ -158,7 +158,6 @@ namespace DianetMob.Pages
 
             ResizeAndSetImg(file,mode);
         }
-
 
         private void ResizeAndSetImg(MediaFile file,int mode) {
             byte[] bitmapData;
@@ -193,7 +192,6 @@ namespace DianetMob.Pages
                 return;
 
             ResizeAndSetImg(file, mode);
-
         }
 
         private void PickPhotoButtonOnClickedB(object sender, EventArgs e)
@@ -223,16 +221,12 @@ namespace DianetMob.Pages
             {
                 uploadImage(user.ImageAfter, "after");
             }
-
         }
-        public void ChangePassword(object sender, EventArgs e)
-        {
 
-
-
-
-        }
-            
+        async void ChangePassword(object sender, EventArgs e)
+        {            
+            await Navigation.PushAsync(changePasswordPageDt);            
+        }            
 
         private async void uploadImage(byte[] bitmapData, string type)
         {

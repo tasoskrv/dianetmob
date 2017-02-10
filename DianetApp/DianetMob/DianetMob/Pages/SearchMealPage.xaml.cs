@@ -39,19 +39,19 @@ namespace DianetMob.Pages
         {
             Meal myMeal = e.Item as Meal;
             //var pg = new SelectMealPage();
-            var answer = await DisplayActionSheet("Add " + Title + " ?", "cancel", null, "ΝΑΙ", "ΟΧΙ");
+            //var answer = await DisplayActionSheet("Add " + Title + " ?", "cancel", null, "ΝΑΙ", "ΟΧΙ");
             //await Navigation.PushModalAsync(SelectMealPage);
 
             //await  Navigation.PushModalAsync(pg);
-            if (answer == "ΝΑΙ")
-            {
+            //if (answer == "ΝΑΙ")
+            //{
                 selectPage.IDMealSelected = myMeal.IDMeal;
                 selectPage.IDCategorySelected = Mode;
                 selectPage.SelectedDate = SelectedDate;
                 selectPage.CalcUnits();
                 ASearchBar.Text = "";
                 await Navigation.PushAsync(selectPage);
-            }
+            //}
         }
 
         public void OnSearchBarTextChanged(object sender, EventArgs eventArgs)

@@ -28,7 +28,7 @@
               <RowDefinition Height="40" />
             </Grid.RowDefinitions> 
             <RelativeLayout Grid.Row="0"  Grid.Column="0">
-              <Image  x:Name="BeforeImage"  Source="image_holder.png" Aspect="AspectFill"/>
+              <Image x:Name="BeforeImage"  Source="image_holder.png" Aspect="AspectFill"/>
               <Button x:Name="btnTB" IsVisible="false" Clicked="TakePhotoButtonOnClickedB" BackgroundColor="#00ffffff" Image="camera.png" RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=44}"  
                                                                                                                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=35}" 
                                                                                                                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-40}" 
