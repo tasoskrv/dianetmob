@@ -1,6 +1,7 @@
 ﻿using Dianet.Notification;
 using DianetMob.DB;
 using DianetMob.DB.Entities;
+using DianetMob.Service;
 using DianetMob.Utils;
 using Java.IO;
 using Newtonsoft.Json.Linq;
@@ -32,27 +33,41 @@ namespace DianetMob.Pages
         private void OnUploadClicked(object sender, EventArgs e) { }
         
 
-        private void OnUpdatePasswordClicked(object sender, EventArgs e)
+        async void OnUpdatePasswordClicked(object sender, EventArgs e)
         {                       
-            if (newPassword.Equals("") || newPassword == null || newPasswordRetype.Equals("") || newPasswordRetype == null)
+            if (newPassword.Text == null || newPasswordRetype.Text == null || newPassword.Text.Equals("") || newPasswordRetype.Text.Equals(""))
             {
-
+                await DisplayAlert("Warning", "Fill all fields", "OK");
             }
             else
-            {
-                //  var user = StorageManager.GetConnectionInfo().LoginUser;
-                user.UpdateDate = DateTime.UtcNow;
-                //  int heightType = heights[fHeightPicker.Items[fHeightPicker.SelectedIndex]];
-                //  int genderType = genders[fSexPicker.Items[fSexPicker.SelectedIndex]];
-                //  user.FirstName = fFirstNameEntry.Text;
-                //  user.LastName = fSurNameEntry.Text;
-                //  user.Birthdate = fbirthDatePicker.Date;
-                //  user.Gender = genderType;
-                //  user.HeightType = heightType;
-                //    user.Height = Convert.ToDouble(fHeightEntry.Text);
-                //  user.Skeleton = Convert.ToDouble(fSkeletonEntry.Text);
-                //   user.Location = fLocationEntry.Text;                        
-                StorageManager.UpdateData(user);
+            {                               
+                try
+                {
+                    User user = new User();
+                    user.Password = newPassword.Text;
+                    user.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                    ModelService<User> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/update/", user);
+                    if ((srvNewUser.success == true) && (srvNewUser.ID > 0) && !(srvNewUser.ErrorCode > 0))
+                    {
+                        await DisplayAlert("Message", "Password updated", "OK");
+                        /*
+                        user.IDUser = srvNewUser.ID;
+                        user.AccessToken = srvNewUser.AccessToken;
+                        srvNewUser.InsertRecordToDB(user);
+                        App.Current.MainPage = new Registered();
+                        */
+                        return;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Warning", srvNewUser.message, "OK");
+                    }
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", ex.Message, "OK");                    
+                }
             }                        
         }             
     }
