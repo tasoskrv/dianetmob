@@ -65,7 +65,7 @@ namespace DianetMob.Pages
             string str= GenLib.NormalizeGreek(GenLib.GreeklishToGreek(ASearchBar.Text));
             if (ASearchBar.Text.Equals(""))
                 return;
-            IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName FROM meal WHERE NormalizedName LIKE '" + str + "%'" );
+            IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName FROM meal WHERE Deleted=0 AND NormalizedName LIKE '" + str + "%'" );
             foreach (Meal meal in meals)
             {
                 records.Add(new Meal { Name = meal.Name, IDMeal = meal.IDMeal });

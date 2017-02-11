@@ -41,7 +41,7 @@ namespace DianetMob.Pages
 
         public void LoadData()
         {
-            IEnumerable<Plan> plans = conn.Query<Plan>("SELECT * FROM Plan WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+" limit 1");
+            IEnumerable<Plan> plans = conn.Query<Plan>("SELECT * FROM Plan WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+" limit 1");
             foreach (Plan plan in plans)
             {
                 pln = plan;

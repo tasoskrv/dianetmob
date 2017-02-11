@@ -72,7 +72,7 @@ namespace DianetMob.Pages
                 weightdate.Date.Ticks
                 */
 
-                List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE WeightDate = ? ", weightdate.Date.Ticks);
+                List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE Deleted=0 AND WeightDate = ? ", weightdate.Date.Ticks);
                 if (wghts.Count > 0)
                 {
                     wght.UpdateDate = DateTime.UtcNow;
