@@ -43,6 +43,8 @@ namespace DianetMob.Pages
                     Settings settings = StorageManager.GetConnectionInfo().Settings;
                     settings.LastLoggedIn = 0;
                     StorageManager.UpdateData<Settings>(settings);
+                    StorageManager.GetConnectionInfo().UserSettings = null;
+                    StorageManager.GetConnectionInfo().ActiveSubscription = null;
                     App.Current.MainPage = new LoginPage();
                 }
                 else if (item.TargetType == typeof(ShopPage))

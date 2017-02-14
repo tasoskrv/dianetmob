@@ -34,7 +34,7 @@ namespace DianetMob.Utils
 
         public static double PointCalculate(double cal)
         {
-            return Math.Round(cal / 80, 1);
+            return Math.Round(cal / 80, 2);
         }
 
 

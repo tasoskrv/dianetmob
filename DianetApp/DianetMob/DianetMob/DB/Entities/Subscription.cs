@@ -59,7 +59,7 @@ namespace DianetMob.DB.Entities
                 str += "&price=\"" + Price.ToString() + "\"";
             if (IsActive != 0)
                 str += "&isactive=\"" + IsActive.ToString() + "\"";
-            if (!Trncode.Equals(""))
+            if (Trncode!=null && !Trncode.Equals(""))
                 str += "&trncode=\"" + Trncode + "\"";
             if (Deleted != 0)
                 str += "&deleted=\"" + Deleted.ToString() + "\"";

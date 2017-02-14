@@ -231,7 +231,7 @@ namespace DianetMob.Utils
                 string usercall = gencall + "/iduser=" + user.IDUser.ToString();
 
 
-                ModelService<Sync> servsync = await ServiceConnector.GetServiceData<ModelService<Sync>>("/sync/syncdb" + gencall);
+                ModelService<Sync> servsync = await ServiceConnector.GetServiceData<ModelService<Sync>>("/sync/syncdb" + usercall);
 
                 //general calls
                 if (servsync.data[0].Unit == 1)

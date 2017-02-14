@@ -65,9 +65,11 @@ namespace DianetMob.Views
                 Wdata += PointSystem.PointCalculate(maplog.Calories) + ",";
                 Wlabel += "\""+maplog.MealDate.DayOfWeek +"\""+ ",";
             }
-            Wdata = Wdata.Remove(Wdata.Length - 1);
-            Wlabel = Wlabel.Remove(Wlabel.Length - 1);
-
+            if (Wdata.Length > 0)
+            {
+                Wdata = Wdata.Remove(Wdata.Length - 1);
+                Wlabel = Wlabel.Remove(Wlabel.Length - 1);
+            }
             string web1 = "<!doctype html>" +
             "<html>" +
                 "<head> " +
