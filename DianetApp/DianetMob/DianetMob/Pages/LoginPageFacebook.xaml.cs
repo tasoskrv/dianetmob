@@ -59,8 +59,8 @@ namespace DianetMob.Pages
                         StorageManager.SaveData(user);
 
                         SQLiteConnection conn = StorageManager.GetConnection(); ;
-                        List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE IDUser=" + user.IDUser);
-                        List<Plan> plans = conn.Query<Plan>("SELECT IDPlan FROM Plan WHERE IDUser=" + user.IDUser);
+                        List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE Deleted=0 AND IDUser=" + user.IDUser);
+                        List<Plan> plans = conn.Query<Plan>("SELECT IDPlan FROM Plan WHERE Deleted=0 AND IDUser=" + user.IDUser);
 
                         ConnectionInfo info = StorageManager.GetConnectionInfo();
                         info.LoginUser = user;
