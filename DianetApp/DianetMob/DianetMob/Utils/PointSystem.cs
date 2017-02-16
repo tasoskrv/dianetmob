@@ -74,7 +74,7 @@ namespace DianetMob.Utils
                 Cal = Cal - 500;
 
 
-            return PointCalculate(Cal); 
+            return PointCalculate(Cal) - user.AdjustDiet; 
         }
 
 

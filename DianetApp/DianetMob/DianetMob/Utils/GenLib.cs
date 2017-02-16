@@ -18,6 +18,8 @@ namespace DianetMob.Utils
     {
         private static RecurringTask ServiceTask;
         private static RecurringTask NotifTask;
+        public static Dictionary<int, RecurringTask> NotifAlerts = new Dictionary<int, RecurringTask>();
+
         private static bool isRunning;
 
         public static void FullSynchA() {
@@ -90,7 +92,23 @@ namespace DianetMob.Utils
                 NotifTask = new RecurringTask(new Action(CheckMessages), minutes);
             }
             NotifTask.Start();
-        }
+
+            SQLiteConnection conn = StorageManager.GetConnection();
+            string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
+            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
+
+            foreach (Alert alt in alts)
+            {
+                if (alt.Status == 1)
+                {
+                    NotifAlerts.Add(alt.IDAlert, new RecurringTask(new Action(() => alt.AlertWake()), alt.GetTimeLeft()));
+                    NotifAlerts[alt.IDAlert].Start();
+                }
+            }
+            
+
+
+        }  
 
         public async static Task FullServiceSend(User user, UserSettings usersettings)
         {
@@ -319,7 +337,7 @@ namespace DianetMob.Utils
                     {
                         Title = msg.Title,
                         Text = msg.MessageText,
-                        Id = msg.IDMessage,
+                        Id = msg.IDMessage+30000,
                         NotifyTime = DateTime.Now,
                     });
                     msg.seen = 1;

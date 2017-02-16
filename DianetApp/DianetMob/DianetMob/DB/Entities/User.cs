@@ -266,7 +266,7 @@ namespace DianetMob.DB.Entities
             RemindDate = null;
             InsertDate = DateTime.MinValue;
             UpdateDate = DateTime.MinValue;
-            AdjustDiet = -1;
+            AdjustDiet = 0;
             Isactive = 0;
             weight = 0;//TODO Weight?
             ImageBefore = null;

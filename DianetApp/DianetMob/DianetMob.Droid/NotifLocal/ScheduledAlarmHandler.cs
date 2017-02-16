@@ -6,6 +6,7 @@ using Android.App;
 using Android.Content;
 using Android.Runtime;
 using Dianet.Notification;
+using Android.Media;
 
 namespace DianetMob.Droid.NotifLocal
 {
@@ -37,6 +38,7 @@ namespace DianetMob.Droid.NotifLocal
                 .SetContentTitle(notification.Title)
                 .SetContentText(notification.Text)
 //                .SetSmallIcon(Resource.Drawable.IcDialogEmail);
+                .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
                 .SetSmallIcon(Application.Context.ApplicationInfo.Icon);
 
             var nativeNotification = builder.Build();

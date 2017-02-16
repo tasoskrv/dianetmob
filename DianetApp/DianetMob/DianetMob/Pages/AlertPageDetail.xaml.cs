@@ -1,5 +1,6 @@
 ﻿using DianetMob.DB;
 using DianetMob.DB.Entities;
+using DianetMob.Utils;
 using SQLite;
 using System;
 
@@ -51,7 +52,7 @@ namespace DianetMob.Pages
                 alt.AlertTime = "";
 
             alt.Status = (remindSelect.IsToggled) ? 1 : 0 ;
-                        
+            
             if ((alt.AlertTime.Equals("") || alt.AlertTime == null) && alt.Status == 1)
             {
                 DisplayAlert("Please", "Fill Recurrence", "OK");
@@ -59,6 +60,7 @@ namespace DianetMob.Pages
             else if (alt.IDAlert > 0)
             {
                 StorageManager.UpdateData(alt);
+                NotifyLoacalServices(alt);
                 new AlertPage();
                 Navigation.PopAsync();
             }
@@ -66,9 +68,35 @@ namespace DianetMob.Pages
             {
                 alt.InsertDate = alt.UpdateDate;
                 StorageManager.InsertData(alt);
+                NotifyLoacalServices(alt);
                 new AlertPage();
                 Navigation.PopAsync();
-            }                                 
+            }  
+                                           
+        }
+
+        private void NotifyLoacalServices(Alert alt) {
+            if (alt.Status == 0)
+            {
+                if (GenLib.NotifAlerts.ContainsKey(alt.IDAlert))
+                {
+                    GenLib.NotifAlerts[alt.IDAlert].Stop();
+                    GenLib.NotifAlerts.Remove(alt.IDAlert);
+                }
+            }
+            else if (alt.Status == 1){
+                if (GenLib.NotifAlerts.ContainsKey(alt.IDAlert))
+                {
+                    GenLib.NotifAlerts[alt.IDAlert].Stop();
+                    GenLib.NotifAlerts.Remove(alt.IDAlert);
+                    GenLib.NotifAlerts.Add(alt.IDAlert, new RecurringTask(new Action(() => alt.AlertWake()), alt.GetTimeLeft()));
+                    GenLib.NotifAlerts[alt.IDAlert].Start();
+                }
+                else {
+                    GenLib.NotifAlerts.Add(alt.IDAlert, new RecurringTask(new Action(() => alt.AlertWake()), alt.GetTimeLeft()));
+                    GenLib.NotifAlerts[alt.IDAlert].Start();
+                }
+            }
         }
     }
 }

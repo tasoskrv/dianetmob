@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Dianet.Notification;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
 using Xamarin.Forms;
@@ -123,7 +124,43 @@ namespace DianetMob.DB.Entities
         {
             IDServer = 0;
             alerttime = "00:00";// DateTime.Now;
-        }        
+        }
+
+        public TimeSpan GetTimeLeft()
+        {
+            var dateNow = DateTime.Now;
+            var timeParts = alerttime.Split(new char[1] { ':' });
+            var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day,
+                       int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
+
+            if (date > dateNow)
+                return date - dateNow;
+
+            date = date.AddDays(1);
+            return date - dateNow;
+        }
+
+        public void AlertWake()
+        {
+            var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+            string atitle = "";
+            if (MealType == 1)
+                atitle = "Breakfast";
+            else if (MealType == 2)
+                atitle = "Lunch";
+            else if (MealType == 3)
+                atitle = "Dinner";
+            else if (MealType == 4)
+                atitle = "Snack";
+
+            notifier.Notify(new LocalNotification()
+            {
+                Title = atitle + " Reminder",
+                Text = "Time to eat!",
+                Id = IDAlert + 20000,
+                NotifyTime = DateTime.Now,
+            });
+        }
 
         public override string ToString()
         {
