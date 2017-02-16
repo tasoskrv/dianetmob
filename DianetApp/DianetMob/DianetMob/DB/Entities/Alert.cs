@@ -1,4 +1,5 @@
 ﻿using Dianet.Notification;
+using DianetMob.Utils;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
@@ -153,6 +154,7 @@ namespace DianetMob.DB.Entities
             else if (MealType == 4)
                 atitle = "Snack";
 
+            
             notifier.Notify(new LocalNotification()
             {
                 Title = atitle + " Reminder",
@@ -160,6 +162,12 @@ namespace DianetMob.DB.Entities
                 Id = IDAlert + 20000,
                 NotifyTime = DateTime.Now,
             });
+
+            GenLib.NotifAlerts[IDAlert].Stop();
+            GenLib.NotifAlerts.Remove(IDAlert);
+            GenLib.NotifAlerts.Add(IDAlert, new RecurringTask(new Action(() => AlertWake()), GetTimeLeft()));
+            GenLib.NotifAlerts[IDAlert].Start();
+
         }
 
         public override string ToString()

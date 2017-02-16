@@ -76,6 +76,22 @@ namespace DianetMob.Utils
 
         public static void StartUp()
         {
+            if (ServiceTask == null && NotifAlerts.Count==0)
+            {
+                SQLiteConnection conn = StorageManager.GetConnection();
+                string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
+                IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
+
+                foreach (Alert alt in alts)
+                {
+                    if (alt.Status == 1)
+                    {
+                        NotifAlerts.Add(alt.IDAlert, new RecurringTask(new Action(() => alt.AlertWake()), alt.GetTimeLeft()));
+                        NotifAlerts[alt.IDAlert].Start();
+                    }
+                }
+            }
+
             var minutes = TimeSpan.FromDays(1);
             if (ServiceTask == null)
             {
@@ -92,19 +108,6 @@ namespace DianetMob.Utils
                 NotifTask = new RecurringTask(new Action(CheckMessages), minutes);
             }
             NotifTask.Start();
-
-            SQLiteConnection conn = StorageManager.GetConnection();
-            string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
-            IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
-
-            foreach (Alert alt in alts)
-            {
-                if (alt.Status == 1)
-                {
-                    NotifAlerts.Add(alt.IDAlert, new RecurringTask(new Action(() => alt.AlertWake()), alt.GetTimeLeft()));
-                    NotifAlerts[alt.IDAlert].Start();
-                }
-            }
             
 
 
