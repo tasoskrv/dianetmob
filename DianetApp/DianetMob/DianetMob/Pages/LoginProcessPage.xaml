@@ -24,6 +24,8 @@
       <Picker x:Name="genderPicker"> 
         <Picker.Items></Picker.Items>
       </Picker>
+      <Label Text="Birthday" FontSize="Medium"/>
+      <DatePicker x:Name="AgePicker" Format="dd/MM/yyyy" />
 
       <Entry x:Name="weight" Placeholder="Weight" Keyboard="Numeric" Text="100"/>
       <Label Text="Weight Date" FontSize="Medium"/>

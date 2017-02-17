@@ -42,7 +42,7 @@ namespace DianetMob.Pages
             saveBtn.IsEnabled = false;
             if (heighttype.SelectedIndex == -1 || genderPicker.SelectedIndex == -1 || height.Text.Equals("") || height.Text == null
                 || weight.Text.Equals("") || weight.Text == null || WeightDatePicker.Date.Equals("") || WeightDatePicker.Date == null
-                || goal.Text.Equals("") || goal.Text == null)
+                || goal.Text.Equals("") || goal.Text == null || AgePicker.Date.Equals(""))
             {
                 MessageLabel.Text = "Fill all fields";
             }
@@ -76,6 +76,7 @@ namespace DianetMob.Pages
                 info.LoginUser.Gender = genderType;
                 info.LoginUser.HeightType = heightType;
                 info.LoginUser.Height = Convert.ToDouble(height.Text);
+                info.LoginUser.Birthdate= AgePicker.Date;
                 info.LoginUser.UpdateDate = DateTime.UtcNow;
                 StorageManager.UpdateData(info.LoginUser);
                 App.Current.MainPage = new MainPage();

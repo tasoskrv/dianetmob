@@ -73,8 +73,11 @@ namespace DianetMob.Utils
             else if (user.Goal < user.Weight)
                 Cal = Cal - 500;
 
-
-            return PointCalculate(Cal) - user.AdjustDiet; 
+            double points = PointCalculate(Cal) - user.AdjustDiet;
+            if (points > 0)
+                return points;
+            else
+                return 0;
         }
 
 

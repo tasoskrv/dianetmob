@@ -268,7 +268,7 @@ namespace DianetMob.Pages
                 else
                 {
                     isUploading = false;
-                    await DisplayAlert("Message", "Error - " + res["error"].ToString() + " code:" + res["code"].ToString(), "OK");
+                    await DisplayAlert("Message", "Error - " + res["message"].ToString() + " errorcode:" + res["errorcode"].ToString(), "OK");
                 }
             }
         }

@@ -22,7 +22,7 @@
 
         </Grid.RowDefinitions>
                
-        <Entry Grid.Row="0" Grid.Column="0" x:Name="nameEntry" Keyboard="Text" Placeholder="Name"/>
+        <Entry Grid.Row="0" Grid.Column="0" x:Name="nameEntry" Keyboard="Text" Placeholder="Name" />
         <Entry Grid.Row="1" Grid.Column="0"  x:Name="surnameEntry" Keyboard="Text" Placeholder="Surname"/>
         <Entry Grid.Row="2" Grid.Column="0" x:Name="emailEntry" Keyboard="Email" Completed="OnValidateEmail" Placeholder="Email"/>
         <Entry Grid.Row="3" Grid.Column="0" x:Name="passwdEntry" IsPassword="True" Placeholder="Password"/>

@@ -19,6 +19,10 @@ namespace DianetMob.Pages
         {
             InitializeComponent();
             StorageManager.GetConnection();
+            nameEntry.Completed += (object sender, EventArgs e) => { surnameEntry.Focus(); };
+            surnameEntry.Completed += (object sender, EventArgs e) => { emailEntry.Focus(); };
+            emailEntry.Completed += (object sender, EventArgs e) => { passwdEntry.Focus(); };
+            passwdEntry.Completed += (object sender, EventArgs e) => { passwdRetype.Focus(); };
         }
 
         private void OnCancelButtonTap(object sender, EventArgs e)
@@ -32,7 +36,7 @@ namespace DianetMob.Pages
             {
                 if (AllFieldsAreFilled() && CheckValidMail() && CheckPassword())
                 {
-                    submitBtn.IsEnabled = false;
+                    //submitBtn.IsEnabled = false;
                     int token = GetRegistrationToken(emailEntry.Text, passwdEntry.Text);
                     User user = new User();
                     user.FirstName = nameEntry.Text;
@@ -64,10 +68,6 @@ namespace DianetMob.Pages
                         MessageLabel.Text = "Warning - " + srvNewUser.message;
                     }
                     return;
-                }
-                else
-                {
-                    MessageLabel.Text = "Something went wrong";
                 }
             }
             catch (Exception ex)
