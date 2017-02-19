@@ -36,6 +36,7 @@ namespace DianetMob.Pages
                     })
                 }
             );
+            usernameEntry.Completed += (object sender, EventArgs e) => { passwordEntry.Focus(); };
         }
 
         void OnValidateEmail(object sender, EventArgs e)

@@ -83,7 +83,7 @@ namespace DianetMob.Views
                 sub.Trncode = _purchases[0].OrderId;
                 StorageManager.InsertData<Subscription>(sub);
                 StorageManager.GetConnectionInfo().ActiveSubscription = sub;
-                App.Current.MainPage = new MyDay();
+                App.Current.MainPage = new MainPage();
           //  }
            // throw new System.NotImplementedException();
         }

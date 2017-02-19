@@ -65,11 +65,7 @@ namespace DianetMob.Views
 
         public async void OnClickGridButton(object sender, EventArgs e)
         {
-            if ((info.isTrial) ^ ((info.ActiveSubscription == null) || (info.ActiveSubscription.EndDate < DateTime.UtcNow)))
-            {
-                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
-            }
-            else
+            if ((info.isTrial) || ((info.ActiveSubscription != null) && (info.ActiveSubscription.EndDate >= DateTime.UtcNow)))
             {
                 var item = (Xamarin.Forms.Button)sender;
                 if (searchPage == null)
@@ -80,6 +76,11 @@ namespace DianetMob.Views
                 searchPage.Mode = int.Parse(item.CommandParameter.ToString());
                 await Navigation.PushAsync(searchPage);
             }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription has expired. Please renew.", "OK");
+            }
+           
         }
 
         public void OnDeleted(object sender, EventArgs e)
@@ -107,11 +108,7 @@ namespace DianetMob.Views
 
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            if ((info.isTrial) ^ ((info.ActiveSubscription == null) || (info.ActiveSubscription.EndDate < DateTime.UtcNow)))
-            {
-                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
-            }
-            else
+            if ((info.isTrial) || ((info.ActiveSubscription != null) && (info.ActiveSubscription.EndDate >= DateTime.UtcNow)))
             {
                 UserMeal usermeal = StorageManager.GetConnection().Get<UserMeal>(((Item)e.Item).IDUserMeal);
                 if (searchPage == null)
@@ -121,6 +118,11 @@ namespace DianetMob.Views
                 searchPage.GetSelectMealPage().CalcUnits(usermeal);
                 await Navigation.PushAsync(searchPage.GetSelectMealPage());
             }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription has expired. Please renew.", "OK");
+            }
+            
         }
     }
 

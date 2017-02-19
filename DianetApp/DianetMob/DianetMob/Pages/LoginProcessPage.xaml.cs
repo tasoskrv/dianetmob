@@ -35,6 +35,12 @@ namespace DianetMob.Pages
             {
                 genderPicker.Items.Add(gender);
             }
+            heighttype.SelectedIndexChanged += (object sender, EventArgs e) => { height.Focus(); };
+            height.Completed += (object sender, EventArgs e) => { genderPicker.Focus(); };
+           // genderPicker.SelectedIndexChanged += (object sender, EventArgs e) => { AgePicker.Focus(); };
+            AgePicker.DateSelected += (object sender, DateChangedEventArgs e) => { weight.Focus(); };
+        //    weight.Completed += (object sender, EventArgs e) => { WeightDatePicker.Focus(); };
+            WeightDatePicker.DateSelected += (object sender, DateChangedEventArgs e) => { goal.Focus(); };
         }
 
         private void OnSaveClicked(object sender, EventArgs e)
@@ -51,34 +57,35 @@ namespace DianetMob.Pages
                 int heightType = heights[heighttype.Items[heighttype.SelectedIndex]];
                 int genderType = genders[genderPicker.Items[genderPicker.SelectedIndex]];
 
+                User loginuser = StorageManager.GetConnectionInfo().LoginUser;
+
                 //weight
                 Weight wght = new Weight();
-                wght.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                wght.IDUser = loginuser.IDUser;
                 wght.WValue = Convert.ToInt16(weight.Text);
                 wght.WeightDate = WeightDatePicker.Date;
                 wght.Deleted = 0;
                 wght.UpdateDate = DateTime.UtcNow;
                 wght.InsertDate = wght.UpdateDate;
-                StorageManager.InsertData(wght);
+                StorageManager.InsertData<Weight>(wght);
 
                 //goal
                 Plan plan = new Plan();
-                plan.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
+                plan.IDUser = loginuser.IDUser;
                 plan.Goal = Convert.ToInt16(goal.Text);
                 plan.StartGoal = DateTime.Now.Date;
                 plan.Deleted = 0;
                 plan.UpdateDate = DateTime.UtcNow;
                 plan.InsertDate = plan.UpdateDate;
-                StorageManager.InsertData(plan);
+                StorageManager.InsertData<Plan>(plan);
 
                 //TODO update user data
-                ConnectionInfo info = StorageManager.GetConnectionInfo();
-                info.LoginUser.Gender = genderType;
-                info.LoginUser.HeightType = heightType;
-                info.LoginUser.Height = Convert.ToDouble(height.Text);
-                info.LoginUser.Birthdate= AgePicker.Date;
-                info.LoginUser.UpdateDate = DateTime.UtcNow;
-                StorageManager.UpdateData(info.LoginUser);
+                loginuser.Gender = genderType;
+                loginuser.HeightType = heightType;
+                loginuser.Height = Convert.ToDouble(height.Text);
+                loginuser.Birthdate= AgePicker.Date;
+                loginuser.UpdateDate = DateTime.UtcNow;
+                StorageManager.UpdateData<User>(loginuser);
                 App.Current.MainPage = new MainPage();
             }
             saveBtn.IsEnabled = true;

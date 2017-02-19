@@ -25,15 +25,15 @@ namespace DianetMob.Views
         }
         public async void GotoPage(int mode)
         {
-            if ((info.isTrial) ^ ((info.ActiveSubscription == null) || (info.ActiveSubscription.EndDate < DateTime.UtcNow)))
-            {
-                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
-            }
-            else
+            if ((info.isTrial) || ((info.ActiveSubscription != null) && (info.ActiveSubscription.EndDate >= DateTime.UtcNow)))
             {
                 searchPage.Mode = mode;
                 MyDayPage.ToggleAddView();
                 await Navigation.PushAsync(searchPage);
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription has expired. Please renew.", "OK");
             }
         }
 

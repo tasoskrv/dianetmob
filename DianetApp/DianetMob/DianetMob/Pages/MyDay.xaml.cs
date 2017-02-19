@@ -99,13 +99,12 @@ namespace DianetMob.Pages
 
         public void OnAddMealClicked(object sender, EventArgs e)
         {
-            if ((info.isTrial) ^ ((subscription==null) || (subscription.EndDate < DateTime.UtcNow)))
-            {
-                DisplayAlert("Subscription", "Your subscription haw expired. Please renew.", "OK");
-            }
-            else
+            if ((info.isTrial) ||((subscription != null) && (subscription.EndDate >= DateTime.UtcNow)))
             {
                 ToggleAddView();
+            }
+            else {
+                DisplayAlert("Subscription", "Your subscription has expired. Please renew.", "OK");
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using DianetMob.DB.Entities;
+using SQLite;
 using System;
 using System.Collections.Generic;
 
@@ -11,6 +12,11 @@ namespace DianetMob.DB
 
         private Settings settings;
         private UserSettings userSettings;
+        private SQLiteConnection conn;
+
+        public ConnectionInfo() {
+            conn=StorageManager.GetConnection();
+        }
 
         public bool isTrial
         {
@@ -23,7 +29,7 @@ namespace DianetMob.DB
         public Subscription LoadActiveSubscription()
         {
             ActiveSubscription = null;
-            List<Subscription> subs = StorageManager.GetConnection().Query<Subscription>("SELECT * FROM subscription WHERE iduser=" + LoginUser.IDUser.ToString() + " and isactive=1 order by enddate desc limit 1");
+            List<Subscription> subs = conn.Query<Subscription>("SELECT * FROM subscription WHERE iduser=" + LoginUser.IDUser.ToString() + " and isactive=1 order by enddate desc limit 1");
             if (subs.Count > 0)
             {
                 ActiveSubscription = subs[0];
@@ -37,13 +43,13 @@ namespace DianetMob.DB
             {
                 if (userSettings == null)
                 {
-                    userSettings = StorageManager.GetConnection().Find<UserSettings>(LoginUser.IDUser);
+                    userSettings = conn.Find<UserSettings>(LoginUser.IDUser);
                     if (userSettings == null)
                     {
                         userSettings = new UserSettings();
                         userSettings.IDUser = LoginUser.IDUser;
                         userSettings.LastSyncDate = DateTime.MinValue;
-                        StorageManager.InsertData(userSettings);
+                        StorageManager.InsertData<UserSettings>(userSettings);
                     }
                 }
                 return userSettings;
@@ -60,9 +66,9 @@ namespace DianetMob.DB
             {
                 if (settings == null)
                 {
-                    settings = StorageManager.GetConnection().Find<Settings>(1);
+                    settings = conn.Find<Settings>(1);
                     if (settings.LastLoggedIn > 0)
-                        LoginUser = StorageManager.GetConnection().Find<User>(settings.LastLoggedIn);
+                        LoginUser = conn.Find<User>(settings.LastLoggedIn);
                 }
                 return settings;
             }
