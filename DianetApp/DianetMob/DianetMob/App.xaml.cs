@@ -25,7 +25,11 @@ namespace DianetMob
 
             ConnectionInfo info = StorageManager.GetConnectionInfo();
             Settings settings = info.Settings;
-            if (settings.LastLoggedIn != 0)
+            if (settings.Lang == 0)
+            {
+                MainPage = new LanguagesPage();
+            }
+            else if (settings.LastLoggedIn != 0)
             {//TODO weight, goal
 
                 SQLiteConnection conn = StorageManager.GetConnection(); ;

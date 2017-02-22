@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DianetMob.Pages.LoginPage" Title="Login">
+             x:Class="DianetMob.Pages.LoginPage" 
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
+             Title="Login">
       
   <ContentPage.Content>
     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 30, 20, 50">
       <Image Source="logo1.png"  />           
-      <Entry x:Name="usernameEntry" Placeholder="Username - Enter a valid email" Keyboard="Email" Completed="OnValidateEmail"/>
+      <Entry x:Name="usernameEntry" Placeholder="{iLang:Translate username}" Keyboard="Email" Completed="OnValidateEmail"/>
       <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true" />      
       <Button Text="Log In" Clicked="OnLoginButtonClicked" />
       <Button Text="Login with Facebook" Clicked="OnFacebookLoginClicked" BackgroundColor="#4267b2" TextColor="#fff"/>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DianetMob.Pages.LanguagesPage"
+             Title="Language">
+  <StackLayout  Margin="20, 30, 20, 50">
+    <Image Source="logo1.png" />
+    <Label Margin="0, 30, 0, 5" VerticalOptions="Start" Text="Select language:" Font="Large"/>
+    <ListView VerticalOptions="Start" x:Name="LangPicker" BackgroundColor="#FFF" HeightRequest="101" RowHeight = "50">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Label Text="{Binding Name}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <Button VerticalOptions="StartAndExpand" Text="Select" Clicked="OnSelectLangButtonClicked" /> 
+  </StackLayout>
+</ContentPage>
