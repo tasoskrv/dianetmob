@@ -242,7 +242,7 @@ namespace DianetMob.DB.Entities
             get
             {
                 DateTime zeroTime = new DateTime(1, 1, 1);
-                TimeSpan span = DateTime.UtcNow - (DateTime)Birthdate;
+                TimeSpan span = DateTime.Now - (DateTime)Birthdate;
                 return (zeroTime + span).Year - 1;
             }
         }

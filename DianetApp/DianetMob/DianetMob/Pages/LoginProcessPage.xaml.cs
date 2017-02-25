@@ -43,52 +43,62 @@ namespace DianetMob.Pages
             WeightDatePicker.DateSelected += (object sender, DateChangedEventArgs e) => { goal.Focus(); };
         }
 
-        private void OnSaveClicked(object sender, EventArgs e)
+        private async void OnSaveClicked(object sender, EventArgs e)
         {
-            saveBtn.IsEnabled = false;
             if (heighttype.SelectedIndex == -1 || genderPicker.SelectedIndex == -1 || height.Text.Equals("") || height.Text == null
                 || weight.Text.Equals("") || weight.Text == null || WeightDatePicker.Date.Equals("") || WeightDatePicker.Date == null
                 || goal.Text.Equals("") || goal.Text == null || AgePicker.Date.Equals(""))
             {
-                MessageLabel.Text = "Fill all fields";
+                await DisplayAlert("Error", "Please fill all the fields!", "OK");
             }
             else
             {
-                int heightType = heights[heighttype.Items[heighttype.SelectedIndex]];
-                int genderType = genders[genderPicker.Items[genderPicker.SelectedIndex]];
+                if (AgePicker.Date.Year > DateTime.Now.Year - 6) {
+                    await DisplayAlert("Error", "Too young to be on diet :D", "OK");
+                    return;
+                }
+                saveBtn.IsEnabled = false;
+                try
+                {
+                    int heightType = heights[heighttype.Items[heighttype.SelectedIndex]];
+                    int genderType = genders[genderPicker.Items[genderPicker.SelectedIndex]];
 
-                User loginuser = StorageManager.GetConnectionInfo().LoginUser;
+                    User loginuser = StorageManager.GetConnectionInfo().LoginUser;
 
-                //weight
-                Weight wght = new Weight();
-                wght.IDUser = loginuser.IDUser;
-                wght.WValue = Convert.ToInt16(weight.Text);
-                wght.WeightDate = WeightDatePicker.Date;
-                wght.Deleted = 0;
-                wght.UpdateDate = DateTime.UtcNow;
-                wght.InsertDate = wght.UpdateDate;
-                StorageManager.InsertData<Weight>(wght);
+                    //weight
+                    Weight wght = new Weight();
+                    wght.IDUser = loginuser.IDUser;
+                    wght.WValue = Convert.ToInt16(weight.Text);
+                    wght.WeightDate = WeightDatePicker.Date;
+                    wght.Deleted = 0;
+                    wght.UpdateDate = DateTime.UtcNow;
+                    wght.InsertDate = wght.UpdateDate;
+                    StorageManager.InsertData<Weight>(wght);
 
-                //goal
-                Plan plan = new Plan();
-                plan.IDUser = loginuser.IDUser;
-                plan.Goal = Convert.ToInt16(goal.Text);
-                plan.StartGoal = DateTime.Now.Date;
-                plan.Deleted = 0;
-                plan.UpdateDate = DateTime.UtcNow;
-                plan.InsertDate = plan.UpdateDate;
-                StorageManager.InsertData<Plan>(plan);
+                    //goal
+                    Plan plan = new Plan();
+                    plan.IDUser = loginuser.IDUser;
+                    plan.Goal = Convert.ToInt16(goal.Text);
+                    plan.StartGoal = DateTime.Now.Date;
+                    plan.Deleted = 0;
+                    plan.UpdateDate = DateTime.UtcNow;
+                    plan.InsertDate = plan.UpdateDate;
+                    StorageManager.InsertData<Plan>(plan);
 
-                //TODO update user data
-                loginuser.Gender = genderType;
-                loginuser.HeightType = heightType;
-                loginuser.Height = Convert.ToDouble(height.Text);
-                loginuser.Birthdate= AgePicker.Date;
-                loginuser.UpdateDate = DateTime.UtcNow;
-                StorageManager.UpdateData<User>(loginuser);
-                App.Current.MainPage = new MainPage();
+                    //TODO update user data
+                    loginuser.Gender = genderType;
+                    loginuser.HeightType = heightType;
+                    loginuser.Height = Convert.ToDouble(height.Text);
+                    loginuser.Birthdate = AgePicker.Date;
+                    loginuser.UpdateDate = DateTime.UtcNow;
+                    StorageManager.UpdateData<User>(loginuser);
+                    App.Current.MainPage = new MainPage();
+                }
+                finally {
+                    saveBtn.IsEnabled = true;
+                }
             }
-            saveBtn.IsEnabled = true;
+            
         }        
     }
 }
