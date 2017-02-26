@@ -20,6 +20,7 @@ namespace DianetMob.DB.Entities
         private string location;
         private double weight;
         private double goal;
+        private DateTime weightdate;
 
         [PrimaryKey]
         public int IDUser { get; set; }
@@ -208,9 +209,12 @@ namespace DianetMob.DB.Entities
             {
                 if (weight == 0)
                 {
-                    List<Weight> whts= StorageManager.GetConnection().Query<Weight>("select WValue from Weight where IDUser=" + IDUser.ToString() + " order by WeightDate DESC LIMIT 1");
-                    if (whts.Count>0)
-                        weight= whts[0].WValue;
+                    List<Weight> whts= StorageManager.GetConnection().Query<Weight>("select WValue, WeightDate from Weight where IDUser=" + IDUser.ToString() + " order by WeightDate DESC LIMIT 1");
+                    if (whts.Count > 0)
+                    {
+                        weight = whts[0].WValue;
+                        weightdate = whts[0].WeightDate;
+                    }
                 }
                 return weight;
             }
@@ -218,6 +222,16 @@ namespace DianetMob.DB.Entities
                 weight = value;
             }
         }
+
+        [Ignore]
+        public DateTime LastWeightDate
+        {
+            get
+            {
+                return weightdate;
+            }
+        }
+
         [Ignore]
         public double Goal
         {
