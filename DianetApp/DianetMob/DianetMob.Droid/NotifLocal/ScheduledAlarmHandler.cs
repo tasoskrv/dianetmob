@@ -34,14 +34,27 @@ namespace DianetMob.Droid.NotifLocal
 
         private Notification createNativeNotification(LocalNotification notification)
         {
+            var activeContext = Application.Context.ApplicationContext;
+
+            Intent intent = new Intent(activeContext, typeof(PendingActivity))
+                .PutExtra(MainActivity.ACTIVITY_NOTIF, notification.Id.ToString());
+
+            // Create a PendingIntent; we're only using one PendingIntent (ID = 0):
+            const int pendingIntentId = 0;
+            PendingIntent pendingIntent =
+                PendingIntent.GetActivity(activeContext, pendingIntentId, intent, PendingIntentFlags.OneShot);
+
+
             var builder = new Notification.Builder(Application.Context)
+                .SetContentIntent(pendingIntent)
                 .SetContentTitle(notification.Title)
                 .SetContentText(notification.Text)
-//                .SetSmallIcon(Resource.Drawable.IcDialogEmail);
                 .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
                 .SetSmallIcon(Application.Context.ApplicationInfo.Icon);
+            
 
             var nativeNotification = builder.Build();
+            nativeNotification.Flags |= NotificationFlags.AutoCancel;
             return nativeNotification;
         }
 

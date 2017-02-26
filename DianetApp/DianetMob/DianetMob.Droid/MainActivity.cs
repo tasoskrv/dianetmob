@@ -16,7 +16,7 @@ namespace DianetMob.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static MainActivity Instance;
-
+        public static string ACTIVITY_NOTIF = "ACTIVITY_NOTIF";
         protected override async void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;

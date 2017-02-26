@@ -17,13 +17,19 @@ namespace DianetMob.Pages
         public MainPage()
         {
             InitializeComponent();
-
+            MessagingCenter.Subscribe<MainPage, string>(this, "NotificationAction", OnNotificationMessage);
             masterPage.ListView.ItemSelected += OnItemSelected;
             masterPage.ButtonProfile.Clicked += OnBtnProfileCliked;
           //  if (Device.OS == TargetPlatform.Windows)
           // {
           //      Master.Icon = "swap.png";
           //  }
+        }
+
+        private void OnNotificationMessage(MainPage sender, string id)
+        {  
+            if (Convert.ToInt32(id)==33)
+                Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MyWeight)));
         }
 
         void OnBtnProfileCliked(object sender, EventArgs e)

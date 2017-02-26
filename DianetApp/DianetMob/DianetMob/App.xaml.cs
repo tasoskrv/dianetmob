@@ -1,4 +1,5 @@
-﻿using DianetMob.DB;
+﻿using Dianet.Notification;
+using DianetMob.DB;
 using DianetMob.DB.Entities;
 using DianetMob.Pages;
 using DianetMob.Utils;
@@ -31,17 +32,25 @@ namespace DianetMob
             }
             else if (settings.LastLoggedIn != 0)
             {//TODO weight, goal
-
-                SQLiteConnection conn = StorageManager.GetConnection(); ;
-                List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE IDUser=" + info.LoginUser.IDUser);
-                List<Plan> plans = conn.Query<Plan>("SELECT IDPlan FROM Plan WHERE IDUser=" + info.LoginUser.IDUser);
-
-                if (info.LoginUser.HeightType == -1 || info.LoginUser.Height == -1 || info.LoginUser.Gender == -1 || wghts.Count == 0 || plans.Count == 0)
+                
+                if (info.LoginUser.HeightType == -1 || info.LoginUser.Height == -1 || info.LoginUser.Gender == -1 || info.LoginUser.Weight == 0 || info.LoginUser.Goal == 0)
                 {
                     MainPage = new LoginProcessPage();
                 }
                 else
                 {
+                    int days = (int)(info.LoginUser.LastWeightDate - DateTime.Now).TotalDays;
+                    if (settings.RemindWeight < days)
+                    {
+                        var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+                        notifier.Notify(new LocalNotification()
+                        {
+                            Title = "Weight Reminder",
+                            Text = "It has been "+ days+" days since you last entered your weight.",
+                            Id = 33,
+                            NotifyTime = DateTime.Now,
+                        });
+                    }
                     MainPage = new MainPage();
                 }                
             }
