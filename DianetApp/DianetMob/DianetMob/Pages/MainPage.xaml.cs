@@ -27,9 +27,12 @@ namespace DianetMob.Pages
         }
 
         private void OnNotificationMessage(MainPage sender, string id)
-        {  
-            if (Convert.ToInt32(id)==33)
+        {
+            if (Convert.ToInt32(id) == 33)
                 Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MyWeight)));
+            else if (Convert.ToInt32(id) > 20000 && Convert.ToInt32(id) < 20100) {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MyDay)));
+            }
         }
 
         void OnBtnProfileCliked(object sender, EventArgs e)

@@ -141,35 +141,6 @@ namespace DianetMob.DB.Entities
             return date - dateNow;
         }
 
-        public void AlertWake()
-        {
-            var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
-            string atitle = "";
-            if (MealType == 1)
-                atitle = "Breakfast";
-            else if (MealType == 2)
-                atitle = "Lunch";
-            else if (MealType == 3)
-                atitle = "Dinner";
-            else if (MealType == 4)
-                atitle = "Snack";
-
-            
-            notifier.Notify(new LocalNotification()
-            {
-                Title = atitle + " Reminder",
-                Text = "Time to eat!",
-                Id = IDAlert + 20000,
-                NotifyTime = DateTime.Now,
-            });
-
-            GenLib.NotifAlerts[IDAlert].Stop();
-            GenLib.NotifAlerts.Remove(IDAlert);
-            GenLib.NotifAlerts.Add(IDAlert, new RecurringTask(new Action(() => AlertWake()), GetTimeLeft()));
-            GenLib.NotifAlerts[IDAlert].Start();
-
-        }
-
         public override string ToString()
         {
             string str = "";

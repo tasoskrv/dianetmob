@@ -80,21 +80,18 @@ namespace DianetMob.Pages
             {
                 if (GenLib.NotifAlerts.ContainsKey(alt.IDAlert))
                 {
-                    GenLib.NotifAlerts[alt.IDAlert].Stop();
                     GenLib.NotifAlerts.Remove(alt.IDAlert);
+                    GenLib.CalcNextAlert();
                 }
             }
             else if (alt.Status == 1){
                 if (GenLib.NotifAlerts.ContainsKey(alt.IDAlert))
                 {
-                    GenLib.NotifAlerts[alt.IDAlert].Stop();
-                    GenLib.NotifAlerts.Remove(alt.IDAlert);
-                    GenLib.NotifAlerts.Add(alt.IDAlert, new RecurringTask(new Action(() => alt.AlertWake()), alt.GetTimeLeft()));
-                    GenLib.NotifAlerts[alt.IDAlert].Start();
+                    GenLib.CalcNextAlert();
                 }
                 else {
-                    GenLib.NotifAlerts.Add(alt.IDAlert, new RecurringTask(new Action(() => alt.AlertWake()), alt.GetTimeLeft()));
-                    GenLib.NotifAlerts[alt.IDAlert].Start();
+                    GenLib.NotifAlerts.Add(alt.IDAlert, alt);
+                    GenLib.CalcNextAlert();
                 }
             }
         }

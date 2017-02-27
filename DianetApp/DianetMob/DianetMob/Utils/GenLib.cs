@@ -18,7 +18,9 @@ namespace DianetMob.Utils
     {
         private static RecurringTask ServiceTask;
         private static RecurringTask NotifTask;
-        public static Dictionary<int, RecurringTask> NotifAlerts = new Dictionary<int, RecurringTask>();
+        public static Dictionary<int, Alert> NotifAlerts = new Dictionary<int, Alert>();
+        private static RecurringTask nextAlertNotif =null;
+        private static Alert selalert = null;
 
         private static bool isRunning;
 
@@ -80,15 +82,22 @@ namespace DianetMob.Utils
             {
                 SQLiteConnection conn = StorageManager.GetConnection();
                 string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
-                IEnumerable<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
+                List<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
 
+                selalert = null;
                 foreach (Alert alt in alts)
                 {
                     if (alt.Status == 1)
                     {
-                        NotifAlerts.Add(alt.IDAlert, new RecurringTask(new Action(() => alt.AlertWake()), alt.GetTimeLeft()));
-                        NotifAlerts[alt.IDAlert].Start();
+                        NotifAlerts.Add(alt.IDAlert, alt);
+                        if ((selalert == null) || (alt.GetTimeLeft() < selalert.GetTimeLeft())) {
+                            selalert = alt;
+                        }
                     }
+                }
+                if (selalert != null) {
+                    nextAlertNotif = new RecurringTask(new Action(() => AlertWake()), selalert.GetTimeLeft());
+                    nextAlertNotif.Start();
                 }
             }
 
@@ -108,10 +117,56 @@ namespace DianetMob.Utils
                 NotifTask = new RecurringTask(new Action(CheckMessages), minutes);
             }
             NotifTask.Start();
-            
+
+        }
+
+        public static void CalcNextAlert() {
+            selalert = null;
+            if (nextAlertNotif != null)
+            {
+                nextAlertNotif.Stop();
+                nextAlertNotif = null; 
+            }
+            foreach (var pair in NotifAlerts)
+            {
+                Alert alt = NotifAlerts[pair.Key];
+
+                if ((selalert == null) || (alt.GetTimeLeft() < selalert.GetTimeLeft()))
+                {
+                    selalert = alt;
+                }
+            }
+
+            if (selalert != null)
+            {
+                nextAlertNotif = new RecurringTask(new Action(() => AlertWake()), selalert.GetTimeLeft());
+                nextAlertNotif.Start();
+            }
+        }
+
+        public static void AlertWake()
+        {
+            var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+            string atitle = "";
+            if (selalert.MealType == 1)
+                atitle = "Breakfast";
+            else if (selalert.MealType == 2)
+                atitle = "Lunch";
+            else if (selalert.MealType == 3)
+                atitle = "Dinner";
+            else if (selalert.MealType == 4)
+                atitle = "Snack";
 
 
-        }  
+            notifier.Notify(new LocalNotification()
+            {
+                Title = atitle + " Reminder",
+                Text = "Time to eat!",
+                Id = selalert.IDAlert + 20000,
+                NotifyTime = DateTime.Now,
+            });
+            CalcNextAlert();
+        }
 
         public async static Task FullServiceSend(User user, UserSettings usersettings)
         {
