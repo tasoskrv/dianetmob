@@ -62,11 +62,425 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string add {
+            get {
+                return ResourceManager.GetString("add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add your Info.
+        /// </summary>
+        internal static string addInfo {
+            get {
+                return ResourceManager.GetString("addInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alerts.
+        /// </summary>
+        internal static string alerts {
+            get {
+                return ResourceManager.GetString("alerts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birthday.
+        /// </summary>
+        internal static string birthday {
+            get {
+                return ResourceManager.GetString("birthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calories.
+        /// </summary>
+        internal static string calories {
+            get {
+                return ResourceManager.GetString("calories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carbohydrates.
+        /// </summary>
+        internal static string carbohydrates {
+            get {
+                return ResourceManager.GetString("carbohydrates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cholesterol.
+        /// </summary>
+        internal static string Cholesterol {
+            get {
+                return ResourceManager.GetString("Cholesterol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE.
+        /// </summary>
+        internal static string DELETE {
+            get {
+                return ResourceManager.GetString("DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string description {
+            get {
+                return ResourceManager.GetString("description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your email.
+        /// </summary>
+        internal static string enterMail {
+            get {
+                return ResourceManager.GetString("enterMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fats.
+        /// </summary>
+        internal static string Fats {
+            get {
+                return ResourceManager.GetString("Fats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiber.
+        /// </summary>
+        internal static string Fiber {
+            get {
+                return ResourceManager.GetString("Fiber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Foodname {
+            get {
+                return ResourceManager.GetString("Foodname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot Password?.
+        /// </summary>
+        internal static string forgotPsd {
+            get {
+                return ResourceManager.GetString("forgotPsd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        internal static string gender {
+            get {
+                return ResourceManager.GetString("gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goal.
+        /// </summary>
+        internal static string goal {
+            get {
+                return ResourceManager.GetString("goal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heigth.
+        /// </summary>
+        internal static string heigth {
+            get {
+                return ResourceManager.GetString("heigth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert your height..
+        /// </summary>
+        internal static string insertHeight {
+            get {
+                return ResourceManager.GetString("insertHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert your weight..
+        /// </summary>
+        internal static string insertWeight {
+            get {
+                return ResourceManager.GetString("insertWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert your age..
+        /// </summary>
+        internal static string insertΑge {
+            get {
+                return ResourceManager.GetString("insertΑge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string language {
+            get {
+                return ResourceManager.GetString("language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        internal static string login {
+            get {
+                return ResourceManager.GetString("login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login via Facebook.
+        /// </summary>
+        internal static string loginFB {
+            get {
+                return ResourceManager.GetString("loginFB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Day.
+        /// </summary>
+        internal static string myDay {
+            get {
+                return ResourceManager.GetString("myDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My food.
+        /// </summary>
+        internal static string myfood {
+            get {
+                return ResourceManager.GetString("myfood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Natrium.
+        /// </summary>
+        internal static string Natrium {
+            get {
+                return ResourceManager.GetString("Natrium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Password.
+        /// </summary>
+        internal static string newPsd {
+            get {
+                return ResourceManager.GetString("newPsd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to password.
+        /// </summary>
+        internal static string password {
+            get {
+                return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potassium.
+        /// </summary>
+        internal static string Potassium {
+            get {
+                return ResourceManager.GetString("Potassium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protein.
+        /// </summary>
+        internal static string protein {
+            get {
+                return ResourceManager.GetString("protein", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remind Me:.
+        /// </summary>
+        internal static string remind {
+            get {
+                return ResourceManager.GetString("remind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remind Time:.
+        /// </summary>
+        internal static string remindTime {
+            get {
+                return ResourceManager.GetString("remindTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retype PAssword.
+        /// </summary>
+        internal static string retypePsd {
+            get {
+                return ResourceManager.GetString("retypePsd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saturated Fats.
+        /// </summary>
+        internal static string saturatedFats {
+            get {
+                return ResourceManager.GetString("saturatedFats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string save {
+            get {
+                return ResourceManager.GetString("save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        internal static string select {
+            get {
+                return ResourceManager.GetString("select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select language:.
+        /// </summary>
+        internal static string selectlang {
+            get {
+                return ResourceManager.GetString("selectlang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        internal static string send {
+            get {
+                return ResourceManager.GetString("send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serving Unit.
+        /// </summary>
+        internal static string servingUnit {
+            get {
+                return ResourceManager.GetString("servingUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set up your profile.
+        /// </summary>
+        internal static string setupProfile {
+            get {
+                return ResourceManager.GetString("setupProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signup.
+        /// </summary>
+        internal static string signup {
+            get {
+                return ResourceManager.GetString("signup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sugars.
+        /// </summary>
+        internal static string Sugars {
+            get {
+                return ResourceManager.GetString("Sugars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsaturated Fats.
+        /// </summary>
+        internal static string unsaturatedFats {
+            get {
+                return ResourceManager.GetString("unsaturatedFats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Password.
+        /// </summary>
+        internal static string updatePsd {
+            get {
+                return ResourceManager.GetString("updatePsd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username - Enter a valid email.
         /// </summary>
         internal static string username {
             get {
                 return ResourceManager.GetString("username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weight.
+        /// </summary>
+        internal static string weight {
+            get {
+                return ResourceManager.GetString("weight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight Date.
+        /// </summary>
+        internal static string weightDate {
+            get {
+                return ResourceManager.GetString("weightDate", resourceCulture);
             }
         }
     }

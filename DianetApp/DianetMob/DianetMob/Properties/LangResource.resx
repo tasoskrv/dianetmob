@@ -117,7 +117,145 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="addInfo" xml:space="preserve">
+    <value>Add your Info</value>
+  </data>
+  <data name="alerts" xml:space="preserve">
+    <value>Alerts</value>
+  </data>
+  <data name="birthday" xml:space="preserve">
+    <value>Birthday</value>
+  </data>
+  <data name="calories" xml:space="preserve">
+    <value>Calories</value>
+  </data>
+  <data name="carbohydrates" xml:space="preserve">
+    <value>Carbohydrates</value>
+  </data>
+  <data name="Cholesterol" xml:space="preserve">
+    <value>Cholesterol</value>
+  </data>
+  <data name="DELETE" xml:space="preserve">
+    <value>DELETE</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="enterMail" xml:space="preserve">
+    <value>Enter your email</value>
+  </data>
+  <data name="Fats" xml:space="preserve">
+    <value>Fats</value>
+  </data>
+  <data name="Fiber" xml:space="preserve">
+    <value>Fiber</value>
+  </data>
+  <data name="Foodname" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="forgotPsd" xml:space="preserve">
+    <value>Forgot Password?</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="goal" xml:space="preserve">
+    <value>Goal</value>
+  </data>
+  <data name="heigth" xml:space="preserve">
+    <value>Heigth</value>
+  </data>
+  <data name="insertHeight" xml:space="preserve">
+    <value>Insert your height.</value>
+  </data>
+  <data name="insertWeight" xml:space="preserve">
+    <value>Insert your weight.</value>
+  </data>
+  <data name="insertΑge" xml:space="preserve">
+    <value>Insert your age.</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="loginFB" xml:space="preserve">
+    <value>Login via Facebook</value>
+  </data>
+  <data name="myDay" xml:space="preserve">
+    <value>My Day</value>
+  </data>
+  <data name="myfood" xml:space="preserve">
+    <value>My food</value>
+  </data>
+  <data name="Natrium" xml:space="preserve">
+    <value>Natrium</value>
+  </data>
+  <data name="newPsd" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="Potassium" xml:space="preserve">
+    <value>Potassium</value>
+  </data>
+  <data name="protein" xml:space="preserve">
+    <value>Protein</value>
+  </data>
+  <data name="remind" xml:space="preserve">
+    <value>Remind Me:</value>
+  </data>
+  <data name="remindTime" xml:space="preserve">
+    <value>Remind Time:</value>
+  </data>
+  <data name="retypePsd" xml:space="preserve">
+    <value>Retype PAssword</value>
+  </data>
+  <data name="saturatedFats" xml:space="preserve">
+    <value>Saturated Fats</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="selectlang" xml:space="preserve">
+    <value>Select language:</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="servingUnit" xml:space="preserve">
+    <value>Serving Unit</value>
+  </data>
+  <data name="setupProfile" xml:space="preserve">
+    <value>Set up your profile</value>
+  </data>
+  <data name="signup" xml:space="preserve">
+    <value>Signup</value>
+  </data>
+  <data name="Sugars" xml:space="preserve">
+    <value>Sugars</value>
+  </data>
+  <data name="unsaturatedFats" xml:space="preserve">
+    <value>Unsaturated Fats</value>
+  </data>
+  <data name="updatePsd" xml:space="preserve">
+    <value>Update Password</value>
+  </data>
   <data name="username" xml:space="preserve">
     <value>Username - Enter a valid email</value>
+  </data>
+  <data name="weight" xml:space="preserve">
+    <value>weight</value>
+  </data>
+  <data name="weightDate" xml:space="preserve">
+    <value>Weight Date</value>
   </data>
 </root>

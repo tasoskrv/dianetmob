@@ -117,7 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Προσθήκη</value>
+  </data>
+  <data name="AddInfo" xml:space="preserve">
+    <value>Επιπλέον πληροφορίες</value>
+  </data>
+  <data name="alerts" xml:space="preserve">
+    <value>Ειδοποιήσεις</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Ημερομηνία γέννησης</value>
+  </data>
+  <data name="DELETE" xml:space="preserve">
+    <value>ΔΙΑΓΡΑΦΗ</value>
+  </data>
+  <data name="enterMail" xml:space="preserve">
+    <value>Εισάγετε το email σας</value>
+  </data>
+  <data name="forgotPsd" xml:space="preserve">
+    <value>Ξεχάσατε το κωδικό;</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Φύλο</value>
+  </data>
+  <data name="goal" xml:space="preserve">
+    <value>Στόχος</value>
+  </data>
+  <data name="heigth" xml:space="preserve">
+    <value>Ύψος</value>
+  </data>
+  <data name="InsertHeight" xml:space="preserve">
+    <value>Εισάγετε το ύψος σας.</value>
+  </data>
+  <data name="InsertWeight" xml:space="preserve">
+    <value>Εισάγετε το βάρος σας.</value>
+  </data>
+  <data name="InsertΑge" xml:space="preserve">
+    <value>Εισάγετε την ηλικία σας.</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Γλώσσα</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Σύνδεση</value>
+  </data>
+  <data name="loginFB" xml:space="preserve">
+    <value>Σύνδεση μέσω Facebook</value>
+  </data>
+  <data name="myDay" xml:space="preserve">
+    <value>Επισκόπηση ημέρας</value>
+  </data>
+  <data name="myfood" xml:space="preserve">
+    <value>Το φαγητό μου</value>
+  </data>
+  <data name="newPsd" xml:space="preserve">
+    <value>Νέος κωδικός</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="remind" xml:space="preserve">
+    <value>Υπενθύμιση</value>
+  </data>
+  <data name="remindTime" xml:space="preserve">
+    <value>Ώρα υπενθύμισης</value>
+  </data>
+  <data name="retypePsd" xml:space="preserve">
+    <value>Εισάγετε ξανά</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Καταχώρηση</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Επιλογή</value>
+  </data>
+  <data name="selectlang" xml:space="preserve">
+    <value>Επιλογή γλώσσας</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Αποστολή</value>
+  </data>
+  <data name="setupProfile" xml:space="preserve">
+    <value>Ρύθμιση Προφιλ</value>
+  </data>
+  <data name="signup" xml:space="preserve">
+    <value>Εγγραφή</value>
+  </data>
+  <data name="updatePsd" xml:space="preserve">
+    <value>Ενημέρωση κωδικού</value>
+  </data>
   <data name="username" xml:space="preserve">
-    <value>onoma xrhsth - prosuhkh vanid email</value>
+    <value>Όνομα χρήστη- έγκυρη διεύθυνση email</value>
+  </data>
+  <data name="weight" xml:space="preserve">
+    <value>Βάρος</value>
+  </data>
+  <data name="weightDate" xml:space="preserve">
+    <value>Ημεριμηνία βάρους</value>
   </data>
 </root>
