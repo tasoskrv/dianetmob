@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              x:Class="DianetMob.Pages.SignUpPage2">
   <ContentPage.Content>
     <StackLayout VerticalOptions="CenterAndExpand">
-      <Label Text="Please take some time" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold"/>
-      <Button Text="to complete your profile" VerticalOptions="FillAndExpand" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" 
+      <Label Text="{iLang:Translate time}" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold"/>
+      <Button Text="{iLang:Translate completeProfile}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" 
               BackgroundColor="Transparent" Clicked="OnClickProfilePage"/>
-      <Button Text="or maybe later?" VerticalOptions="FillAndExpand" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" BackgroundColor="Transparent"
+      <Button Text="{iLang:Translate later}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" BackgroundColor="Transparent"
               Clicked="OnClickMainPage"/>
     </StackLayout>
   </ContentPage.Content>

@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.MyWeight"
-             Title="Βάρος">
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
+             Title="{iLang:Translate weight}">
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Add Weight" Clicked="OnAddWeightClicked"/> 
-    <ToolbarItem Text="Edit Goal" Clicked="OnAddPlanClicked"/> 
+    <ToolbarItem Text="{iLang:Translate addWeight}" Clicked="OnAddWeightClicked"/> 
+    <ToolbarItem Text="{iLang:Translate goalEdit}" Clicked="OnAddPlanClicked"/> 
   </ContentPage.ToolbarItems>
   <Grid Margin="0,0,0,0" RowSpacing="0" >
     <Grid.ColumnDefinitions>
@@ -20,14 +21,14 @@
     </Grid.RowDefinitions>
     <WebView x:Name="webview2" Grid.Row="0" Grid.Column="0" />
     <Label Grid.Row="1"  Grid.Column="0" Text=""  BackgroundColor="#666" TextColor="#FFF"/>
-    <Label Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="Recorded weights" Font="Bold,12" TextColor="#666" BackgroundColor="#FFFFFF"/>
+    <Label Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="{iLang:Translate recordWeight}" Font="Bold,12" TextColor="#666" BackgroundColor="#FFFFFF"/>
     <Label Grid.Row="3"  Grid.Column="0" Text=""  BackgroundColor="#666" TextColor="#FFF"/>
     <ListView x:Name="ListViewWeight" Grid.Row="4" Grid.Column="0" ItemTapped="OnItemTapped" RowHeight="40" BackgroundColor="#FFFFFF">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <ViewCell.ContextActions>
-              <MenuItem Text="DELETE" CommandParameter="{Binding .}" Clicked="OnDeleted" />              
+              <MenuItem Text="{iLang:Translate delete}" CommandParameter="{Binding .}" Clicked="OnDeleted" />              
             </ViewCell.ContextActions>                        
               <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="5">
                 <StackLayout Orientation="Horizontal">
@@ -37,7 +38,7 @@
                          Source="weight_list.png"/>
                   <Label Text="{Binding WeightDate, StringFormat='Weight on {0:dddd, dd MMMM}'}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" TextColor="#503026" FontSize="14"/>
                   <Label Text="{Binding WValue}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" TextColor="#2196F3" FontSize="14"/>
-                  <Label Text="kgs" HorizontalOptions="End" TextColor="#2196F3" VerticalOptions="CenterAndExpand" FontSize="14" />
+                  <Label Text="{iLang:Translate kgs}" HorizontalOptions="End" TextColor="#2196F3" VerticalOptions="CenterAndExpand" FontSize="14" />
                 </StackLayout>
               </StackLayout>   
           </ViewCell>

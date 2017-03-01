@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:conv="clr-namespace:DianetMob.Converters;assembly=DianetMob"
              x:Class="DianetMob.Pages.MyWeightDetail"
-             Title="Record weight">
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
+             Title="{iLang:Translate recordWeight}">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Save"  Clicked="OnSaveWeightClicked"/>
+    <ToolbarItem Text="{iLang:Translate save}"  Clicked="OnSaveWeightClicked"/>
   </ContentPage.ToolbarItems>  
   
   <ContentPage.Resources>

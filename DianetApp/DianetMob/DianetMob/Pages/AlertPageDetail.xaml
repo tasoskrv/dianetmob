@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:conv="clr-namespace:DianetMob.Converters;assembly=DianetMob"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              x:Class="DianetMob.Pages.AlertPageDetail">
 
   <ContentPage.ToolbarItems>
@@ -28,12 +29,12 @@
           <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" Grid.Column="0" Text="Remind Me:" FontSize="20" VerticalTextAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="0" Text="{iLang:Translate remind}" FontSize="20" VerticalTextAlignment="Center"/>
         <Switch Grid.Row="1" Grid.Column="1" x:Name="remindSelect" IsToggled="{Binding Status}"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Text="Remind Time:" FontSize="20" VerticalTextAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="0" Text="{iLang:Translate remind}" FontSize="20" VerticalTextAlignment="Center"/>
         
-        <Picker x:Name="remindTime" Grid.Row="2" Grid.Column="1" SelectedIndex="{Binding AlertTime}" Title="Remind Time" >
+        <Picker x:Name="remindTime" Grid.Row="2" Grid.Column="1" SelectedIndex="{Binding AlertTime}" Title="{iLang:Translate remindTime}" >
           <Picker.Items>
             <x:String>00:00</x:String>
             <x:String>01:00</x:String>

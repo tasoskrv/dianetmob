@@ -129,7 +129,7 @@
   <data name="Birthday" xml:space="preserve">
     <value>Ημερομηνία γέννησης</value>
   </data>
-  <data name="DELETE" xml:space="preserve">
+  <data name="delete" xml:space="preserve">
     <value>ΔΙΑΓΡΑΦΗ</value>
   </data>
   <data name="enterMail" xml:space="preserve">
@@ -215,5 +215,164 @@
   </data>
   <data name="weightDate" xml:space="preserve">
     <value>Ημεριμηνία βάρους</value>
+  </data>
+  <data name="after" xml:space="preserve">
+    <value>Μετά</value>
+  </data>
+  <data name="already" xml:space="preserve">
+    <value>Έχω ήδη λογαριασμό</value>
+  </data>
+  <data name="before" xml:space="preserve">
+    <value>Πριν</value>
+  </data>
+  <data name="buy" xml:space="preserve">
+    <value>Αγορά</value>
+  </data>
+  <data name="calories" xml:space="preserve">
+    <value>Θερμίδες</value>
+  </data>
+  <data name="carbohydrates" xml:space="preserve">
+    <value>Υδατάνθρακες</value>
+  </data>
+  <data name="changePsd" xml:space="preserve">
+    <value>Αλλαγή κωδικού</value>
+  </data>
+  <data name="cholesterol" xml:space="preserve">
+    <value>Χολιστερόλη</value>
+  </data>
+  <data name="completeProfile" xml:space="preserve">
+    <value>Για να ολοκληρώσετε το προφιλ </value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Περιγραφή</value>
+  </data>
+  <data name="detail" xml:space="preserve">
+    <value>Λεπτομέρειες</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Επεξεργασία</value>
+  </data>
+  <data name="fats" xml:space="preserve">
+    <value>Λιπαρά</value>
+  </data>
+  <data name="fiber" xml:space="preserve">
+    <value>Φυτικές Ίνες</value>
+  </data>
+  <data name="goalEdit" xml:space="preserve">
+    <value>Επεξεργασία στόχου</value>
+  </data>
+  <data name="gotoLogin" xml:space="preserve">
+    <value>Σύνδεση</value>
+  </data>
+  <data name="insert" xml:space="preserve">
+    <value>εισαγωγή..</value>
+  </data>
+  <data name="kgs" xml:space="preserve">
+    <value>κιλά</value>
+  </data>
+  <data name="later" xml:space="preserve">
+    <value>αργότερα;</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Όνομα</value>
+  </data>
+  <data name="natrium" xml:space="preserve">
+    <value>Νάτριο</value>
+  </data>
+  <data name="points" xml:space="preserve">
+    <value>Πόντοι</value>
+  </data>
+  <data name="potassium" xml:space="preserve">
+    <value>Ποτάσιο</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Προφιλ</value>
+  </data>
+  <data name="protein" xml:space="preserve">
+    <value>Πρωτείνη</value>
+  </data>
+  <data name="purchases" xml:space="preserve">
+    <value>Αγορές</value>
+  </data>
+  <data name="quantity" xml:space="preserve">
+    <value>Ποσότητα</value>
+  </data>
+  <data name="recordWeight" xml:space="preserve">
+    <value>Καταγεγραμμένο βάρος</value>
+  </data>
+  <data name="registrationMail" xml:space="preserve">
+    <value>Παρακαλώ ελέγξτε το email σας για την ολοκλήρωση της εγγραφής.</value>
+  </data>
+  <data name="saturatedFats" xml:space="preserve">
+    <value>Κορεσμένα </value>
+  </data>
+  <data name="searchFood" xml:space="preserve">
+    <value>Αναζήτηση ανά γεύμα</value>
+  </data>
+  <data name="selectQuantity" xml:space="preserve">
+    <value>Επιλογή ποσότητας</value>
+  </data>
+  <data name="servingUnit" xml:space="preserve">
+    <value>Μονάδα σερβιρίσματος</value>
+  </data>
+  <data name="shop" xml:space="preserve">
+    <value>Κατάστημα</value>
+  </data>
+  <data name="subscription" xml:space="preserve">
+    <value>Συνδρομή</value>
+  </data>
+  <data name="sugars" xml:space="preserve">
+    <value>Ζάκχαρα</value>
+  </data>
+  <data name="surname" xml:space="preserve">
+    <value>Επώνυμο</value>
+  </data>
+  <data name="time" xml:space="preserve">
+    <value>Παρακαλώ αφιερώστε λίγο χρόνο</value>
+  </data>
+  <data name="unsaturatedFats" xml:space="preserve">
+    <value>Ακόρεστα</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>Ενημέρωση</value>
+  </data>
+  <data name="valid" xml:space="preserve">
+    <value>Ισχύει μέχρι:</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Καλωσήρθατε στο Dianet!</value>
+  </data>
+  <data name="addLog" xml:space="preserve">
+    <value>Εισαγωγή εγγραφής</value>
+  </data>
+  <data name="addWeight" xml:space="preserve">
+    <value>Προσθήκη Βάρους</value>
+  </data>
+  <data name="budget" xml:space="preserve">
+    <value>Εκτίμηση</value>
+  </data>
+  <data name="excercise" xml:space="preserve">
+    <value>Άσκηση</value>
+  </data>
+  <data name="exit" xml:space="preserve">
+    <value>Έξοδος</value>
+  </data>
+  <data name="food" xml:space="preserve">
+    <value>Φαγητό</value>
+  </data>
+  <data name="net" xml:space="preserve">
+    <value>Καθαρό</value>
+  </data>
+  <data name="products" xml:space="preserve">
+    <value>Προιόντα</value>
+  </data>
+  <data name="refund" xml:space="preserve">
+    <value>επιστροφή χρημάτων</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Εγγραφή</value>
+  </data>
+  <data name="under" xml:space="preserve">
+    <value>Υπολοιπόμενο</value>
   </data>
 </root>

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.SelectMealPage"
-             Title="Quantity">
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
+             Title="{iLang:Translate quantity}">
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Save" Clicked="OnChooseBtnClicked"/>
   </ContentPage.ToolbarItems>
@@ -20,7 +21,7 @@
            <RowDefinition Height="2"/>
            <RowDefinition Height="*"/>
          </Grid.RowDefinitions>
-         <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" BackgroundColor="#666" TextColor="#FFF" Text="Select Quantity" Font="Bold,12" />
+         <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" BackgroundColor="#666" TextColor="#FFF" Text="{iLang:Translate selectQuantity}" Font="Bold,12" />
          <Grid  Grid.Row="1" Padding="0,2,0,0" Grid.Column="0"  RowSpacing="0"  ColumnSpacing="2">
            <Grid.ColumnDefinitions>
              <ColumnDefinition Width="*" />
@@ -60,7 +61,7 @@
            </ListView>
          </Grid>
          <Label Grid.Row="2"  Grid.Column="0" Text=""  BackgroundColor="#666" />
-         <Label Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0"  BackgroundColor="#666" TextColor="#FFF" Text="Detail" Font="Bold,12" />
+         <Label Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0"  BackgroundColor="#666" TextColor="#FFF" Text="{iLang:Translate detail}" Font="Bold,12" />
          <Label Grid.Row="4"  Grid.Column="0" Text=""  BackgroundColor="#FFF" TextColor="#FFF"/>
          <Grid  Grid.Row="5" Padding="0,2,0,0" Grid.Column="0" RowSpacing="0" BackgroundColor="#EEE" VerticalOptions="FillAndExpand" >
            <Grid.ColumnDefinitions>
@@ -84,40 +85,40 @@
              <RowDefinition Height="*" />
            </Grid.RowDefinitions>
 
-           <Label Grid.Column="1" Grid.Row="0" Text="Points:" Font="Bold" FontSize="17"  HorizontalTextAlignment="End" TextColor="#2196F3"/>
+           <Label Grid.Column="1" Grid.Row="0" Text="{iLang:Translate points}" Font="Bold" FontSize="17"  HorizontalTextAlignment="End" TextColor="#2196F3"/>
            <Label x:Name="Points" Grid.Column="2" Grid.Row="0" Text="{Binding Points}" Font="Bold" FontSize="17" TextColor="#2196F3"/>
 
-           <Label Grid.Column="1" Grid.Row="1" Text="Calories:"  FontSize="17"  HorizontalTextAlignment="End" TextColor="#444"/>
+           <Label Grid.Column="1" Grid.Row="1" Text="{iLang:Translate calories}"  FontSize="17"  HorizontalTextAlignment="End" TextColor="#444"/>
            <Label x:Name="Calories" Grid.Column="2" Grid.Row="1" Text="{Binding Calories}"  FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="2" Text="Fats:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="2" Text="{iLang:Translate fats}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="Fats" Grid.Column="2" Grid.Row="2" Text="{Binding Fats}" FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="3" Text="Saturated Fats:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="3" Text="{iLang:Translate saturatedFats}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="SatFats" Grid.Column="2" Grid.Row="3" Text="{Binding SatFats}" FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="4" Text="Unsaturated Fats:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="4" Text="{iLang:Translate unsaturatedFats}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="UnSatFats" Grid.Column="2" Grid.Row="4" Text="{Binding UnSatFats}" FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="5" Text="Cholesterol:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="5" Text="{iLang:Translate cholesterol}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="Cholesterol" Grid.Column="2" Grid.Row="5" Text="{Binding Cholesterol}" FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="6" Text="Natrium:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="6" Text="{iLang:Translate natrium}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="Natrium" Grid.Column="2" Grid.Row="6" Text="{Binding Natrium}" FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="7" Text="Potassium:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="7" Text="{iLang:Translate potassium}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="Potassium" Grid.Column="2" Grid.Row="7" Text="{Binding Potassium}" FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="8" Text="Fiber:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="8" Text="{iLang:Translate fiber}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="Fiber" Grid.Column="2" Grid.Row="8" Text="{Binding Fiber}" FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="9" Text="Sugars:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="9" Text="{iLang:Translate sugars}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="Sugars" Grid.Column="2" Grid.Row="9" Text="{Binding Sugars}" FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="10" Text="Protein:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="10" Text="{iLang:Translate protein}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="Protein" Grid.Column="2" Grid.Row="10" Text="{Binding Protein}" FontSize="17" TextColor="#444"/>
 
-           <Label Grid.Column="1" Grid.Row="11" Text="Carbs:" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
+           <Label Grid.Column="1" Grid.Row="11" Text="{iLang:Translate carbohydrates}" FontSize="17" TextColor="#444" HorizontalTextAlignment="End"/>
            <Label x:Name="Carbs" Grid.Column="2" Grid.Row="11" Text="{Binding Carbs}" FontSize="17" TextColor="#444"/>
          </Grid>
        </Grid>

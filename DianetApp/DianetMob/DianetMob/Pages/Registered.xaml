@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              x:Class="DianetMob.Pages.Registered">
   <ContentPage.Content>
     <StackLayout VerticalOptions="Center">
-      <Label Text="Please check your email to complete your registration." VerticalOptions="FillAndExpand" 
+      <Label Text="{iLang:Translate registrationMail}" VerticalOptions="FillAndExpand" 
              HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold"/>
-      <Button Text="Go to login" Clicked="OnClickLogin" Margin="0,10,0,0"/>
+      <Button Text="{iLang:Translate gotoLogin}" Clicked="OnClickLogin" Margin="0,10,0,0"/>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>

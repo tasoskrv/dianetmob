@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.MasterPage"
              Padding="0,0,0,0"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              Title="Dianet">
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand" >

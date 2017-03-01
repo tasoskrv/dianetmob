@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              x:Class="DianetMob.Pages.LoginProcessPage">
       
   <ContentPage.Content>
@@ -8,7 +9,7 @@
     
     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 30, 20, 50">
 
-      <Label Text="Set up your profile" FontSize="Large" HorizontalTextAlignment="Center"/>
+      <Label Text="{iLang:Translate setupProfile}" FontSize="Large" HorizontalTextAlignment="Center"/>
       
       <Label Text="Heigth" FontSize="Medium"/>
       <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" >       
@@ -20,20 +21,20 @@
         <Entry x:Name="height" Keyboard="Numeric" HorizontalOptions="FillAndExpand" />
       </StackLayout>
 
-      <Label Text="Gender" FontSize="Medium"/>
+      <Label Text="{iLang:Translate gender}" FontSize="Medium"/>
       <Picker x:Name="genderPicker"> 
         <Picker.Items></Picker.Items>
       </Picker>
-      <Label Text="Birthday" FontSize="Medium"/>
+      <Label Text="{iLang:Translate birthday}" FontSize="Medium"/>
       <DatePicker x:Name="AgePicker" Format="dd/MM/yyyy" />
 
-      <Entry x:Name="weight" Placeholder="Weight" Keyboard="Numeric" />
-      <Label Text="Weight Date" FontSize="Medium"/>
+      <Entry x:Name="weight" Placeholder="{iLang:Translate weight}" Keyboard="Numeric" />
+      <Label Text="{iLang:Translate weightDate}" FontSize="Medium"/>
       <DatePicker x:Name="WeightDatePicker" Format="dd/MM/yyyy" />
 
-      <Entry x:Name="goal" Placeholder="Goal" Keyboard="Numeric" />
+      <Entry x:Name="goal" Placeholder="{iLang:Translate goal}" Keyboard="Numeric" />
 
-      <Button x:Name="saveBtn" Text="Save" Clicked="OnSaveClicked"/>     
+      <Button x:Name="saveBtn" Text="{iLang:Translate save}" Clicked="OnSaveClicked"/>     
       
     </StackLayout>
   </ContentPage.Content>

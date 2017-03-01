@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:me="clr-namespace:DianetMob.Views;assembly=DianetMob"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              x:Class="DianetMob.Pages.MyDay"
-             Title="My Day">
+             Title="{iLang:Translate myDay}">
   <ContentPage.ToolbarItems>
     <ToolbarItem Text=""  Clicked="OnSynchClicked" Icon="Synch2.png"/>
     <ToolbarItem Text=""  Clicked="OnAddMealClicked" Icon="plus.png"/>

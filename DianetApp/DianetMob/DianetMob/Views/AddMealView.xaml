@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DianetMob.Views.AddMealView">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
+             x:Class="DianetMob.Views.AddMealView">
   <ContentView.Content>
     <Grid BackgroundColor="#2196F3" >
       <Grid.RowDefinitions>
@@ -13,7 +16,7 @@
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
       
-      <Label TextColor="#FFFFFF" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" VerticalTextAlignment="End" FontSize = "20" Text="Add Entry To Log" />
+      <Label TextColor="#FFFFFF" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" VerticalTextAlignment="End" FontSize = "20" Text="{iLang:Translate addLog}" />
       <Button Text="Breakfast" Image="morning.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Grid.Row="1" Grid.Column="0"  Clicked="OnAddBreakfastClicked" />
       <Button Text="Lunch" Image="sun.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddLunchClicked"/>
       <Button Text="Dinner"  Image="night.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="1" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddDinnerClicked"/>

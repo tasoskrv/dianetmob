@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:conv="clr-namespace:DianetMob.Converters;assembly=DianetMob"             
+             xmlns:conv="clr-namespace:DianetMob.Converters;assembly=DianetMob"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              x:Class="DianetMob.Pages.ProfilePage"
-             Title="Profile">
+             Title="{iLang:Translate profile}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <conv:MinusOneConverter x:Key="minusOneConv" />
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
-    <ToolbarItem x:Name="ProfileBtn" Text="Edit" Clicked="OnProfileSubmitClicked"/>
-    <ToolbarItem x:Name="UploadBtn" Text="Upload" Clicked="OnUploadClicked"/>    
+    <ToolbarItem x:Name="ProfileBtn" Text="{iLang:Translate edit}" Clicked="OnProfileSubmitClicked"/>
+    <ToolbarItem x:Name="UploadBtn" Text="{iLang:Translate upload}" Clicked="OnUploadClicked"/>    
   </ContentPage.ToolbarItems>
 
   <ContentPage.Content>
@@ -51,9 +52,9 @@
                                                                                                                 RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=50}"/>
             </RelativeLayout>
             
-            <Label Grid.Row="1" Grid.Column="0" Text="Before"  BackgroundColor="#cc0606" TextColor="#FFF" Font="Bold,12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="{iLang:Translate before}"  BackgroundColor="#cc0606" TextColor="#FFF" Font="Bold,12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
             <Label Grid.Row="1"  Grid.Column="1"  BackgroundColor="#666"/>
-            <Label Grid.Row="1" Grid.Column="2" Text="After"  BackgroundColor="#16820e" TextColor="#FFF" Font="Bold,12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Grid.Row="1" Grid.Column="2" Text="{iLang:Translate after}"  BackgroundColor="#16820e" TextColor="#FFF" Font="Bold,12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
           </Grid>
           
       
@@ -84,7 +85,7 @@
           <DatePicker Grid.Row="3" Grid.Column="1" x:Name="fbirthDatePicker" Date="{Binding Birthdate, Mode=TwoWay}"  Format="dd-MM-yyyy" IsEnabled="False" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050"/>        
           
           <Image Grid.Row="4" Grid.Column="0" Source="gender.png"  />      
-          <Picker Grid.Row="4" Grid.Column="1" x:Name="fSexPicker" Title="Sex" IsEnabled="False" SelectedIndex="{Binding Gender, Converter={StaticResource minusOneConv}, Mode=TwoWay}" >
+          <Picker Grid.Row="4" Grid.Column="1" x:Name="fSexPicker" Title="Gender" IsEnabled="False" SelectedIndex="{Binding Gender, Converter={StaticResource minusOneConv}, Mode=TwoWay}" >
             <Picker.Items></Picker.Items>
           </Picker>        
           
@@ -108,7 +109,7 @@
           
           <Image Grid.Row="7" Grid.Column="0" Source="location.png"  />
           <Entry Grid.Row="7" Grid.Column="1" x:Name="fLocationEntry" Placeholder="Location" Text="{Binding Location}" Keyboard="Text"  IsEnabled="False"/>
-          <Button Grid.Row="8" Grid.Column="1" Clicked="ChangePassword" BackgroundColor="#00ffffff" Text="Change Password" Font="Bold,12" TextColor="#2196F3" />
+          <Button Grid.Row="8" Grid.Column="1" Clicked="ChangePassword" BackgroundColor="#00ffffff" Text="{iLang:Translate changePsd}" Font="Bold,12" TextColor="#2196F3" />
 
         </Grid> 
           

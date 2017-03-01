@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              x:Class="DianetMob.Pages.SignUpPage">
   <ContentPage.Content>
     
@@ -22,16 +23,16 @@
 
         </Grid.RowDefinitions>
                
-        <Entry Grid.Row="0" Grid.Column="0" x:Name="nameEntry" Keyboard="Text" Placeholder="Name" />
-        <Entry Grid.Row="1" Grid.Column="0"  x:Name="surnameEntry" Keyboard="Text" Placeholder="Surname"/>
-        <Entry Grid.Row="2" Grid.Column="0" x:Name="emailEntry" Keyboard="Email" Completed="OnValidateEmail" Placeholder="Email"/>
-        <Entry Grid.Row="3" Grid.Column="0" x:Name="passwdEntry" IsPassword="True" Placeholder="Password"/>
-        <Entry Grid.Row="4" Grid.Column="0" x:Name="passwdRetype" IsPassword="True" Placeholder="Retype Password"/>
+        <Entry Grid.Row="0" Grid.Column="0" x:Name="nameEntry" Keyboard="Text" Placeholder="{iLang:Translate name}" />
+        <Entry Grid.Row="1" Grid.Column="0"  x:Name="surnameEntry" Keyboard="Text" Placeholder="{iLang:Translate surname}"/>
+        <Entry Grid.Row="2" Grid.Column="0" x:Name="emailEntry" Keyboard="Email" Completed="OnValidateEmail" Placeholder="{iLang:Translate email}"/>
+        <Entry Grid.Row="3" Grid.Column="0" x:Name="passwdEntry" IsPassword="True" Placeholder="{iLang:Translate password}"/>
+        <Entry Grid.Row="4" Grid.Column="0" x:Name="passwdRetype" IsPassword="True" Placeholder="{iLang:Translate retypePsd}"/>
       </Grid>
       
       <StackLayout Orientation="Horizontal" HorizontalOptions="Center">        
-        <Button Text="Login" Clicked="OnCancelButtonTap" />
-        <Button Text="Register" Clicked="OnSubmitButtonTap" x:Name="submitBtn" />
+        <Button Text="{iLang:Translate login}" Clicked="OnCancelButtonTap" />
+        <Button Text="{iLang:Translate register}" Clicked="OnSubmitButtonTap" x:Name="submitBtn" />
       </StackLayout>
 
       <Label x:Name="MessageLabel" TextColor="Red" HorizontalOptions="CenterAndExpand" Margin="0, 20, 0, 0" FontSize="Medium"/>

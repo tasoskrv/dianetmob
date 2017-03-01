@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DianetMob;assembly=DianetMob"
              x:Class="DianetMob.Pages.PurchasesPage"
-             Title="Subscription"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
+             Title="{iLang:Translate subscription}"
              Icon="contacts.png"
              BackgroundColor="White">
 
@@ -12,13 +13,13 @@
                VerticalOptions="FillAndExpand">
 
     <ContentView Padding="10, 36, 0, 5">
-      <Label Text="Purchases"
+      <Label Text="{iLang:Translate purchases}"
              TextColor="#AAAAAA"/>
     </ContentView>
 
     <BoxView Color="Gray"
              HeightRequest="1"/>
-    <Label Text="Valid until:"
+    <Label Text="{iLang:Translate valid}"
                  TextColor="Green" />
     
     <Label Text="{Binding EndDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="Green" />

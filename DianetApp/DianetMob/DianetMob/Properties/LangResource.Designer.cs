@@ -80,6 +80,33 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Entry To Log.
+        /// </summary>
+        internal static string addLog {
+            get {
+                return ResourceManager.GetString("addLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Weight.
+        /// </summary>
+        internal static string addWeight {
+            get {
+                return ResourceManager.GetString("addWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After.
+        /// </summary>
+        internal static string after {
+            get {
+                return ResourceManager.GetString("after", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alerts.
         /// </summary>
         internal static string alerts {
@@ -89,11 +116,47 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Already have an account.
+        /// </summary>
+        internal static string already {
+            get {
+                return ResourceManager.GetString("already", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before.
+        /// </summary>
+        internal static string before {
+            get {
+                return ResourceManager.GetString("before", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Birthday.
         /// </summary>
         internal static string birthday {
             get {
                 return ResourceManager.GetString("birthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Budget.
+        /// </summary>
+        internal static string budget {
+            get {
+                return ResourceManager.GetString("budget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buy.
+        /// </summary>
+        internal static string buy {
+            get {
+                return ResourceManager.GetString("buy", resourceCulture);
             }
         }
         
@@ -116,11 +179,29 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        internal static string changePsd {
+            get {
+                return ResourceManager.GetString("changePsd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cholesterol.
         /// </summary>
         internal static string Cholesterol {
             get {
                 return ResourceManager.GetString("Cholesterol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to complete your profile.
+        /// </summary>
+        internal static string completeProfile {
+            get {
+                return ResourceManager.GetString("completeProfile", resourceCulture);
             }
         }
         
@@ -143,6 +224,24 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detail.
+        /// </summary>
+        internal static string detail {
+            get {
+                return ResourceManager.GetString("detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string edit {
+            get {
+                return ResourceManager.GetString("edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter your email.
         /// </summary>
         internal static string enterMail {
@@ -152,29 +251,56 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Excercise.
+        /// </summary>
+        internal static string excercise {
+            get {
+                return ResourceManager.GetString("excercise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string exit {
+            get {
+                return ResourceManager.GetString("exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fats.
         /// </summary>
-        internal static string Fats {
+        internal static string fats {
             get {
-                return ResourceManager.GetString("Fats", resourceCulture);
+                return ResourceManager.GetString("fats", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Fiber.
         /// </summary>
-        internal static string Fiber {
+        internal static string fiber {
             get {
-                return ResourceManager.GetString("Fiber", resourceCulture);
+                return ResourceManager.GetString("fiber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Food.
+        /// </summary>
+        internal static string food {
+            get {
+                return ResourceManager.GetString("food", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string Foodname {
+        internal static string foodname {
             get {
-                return ResourceManager.GetString("Foodname", resourceCulture);
+                return ResourceManager.GetString("foodname", resourceCulture);
             }
         }
         
@@ -206,11 +332,38 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Goal edit.
+        /// </summary>
+        internal static string goalEdit {
+            get {
+                return ResourceManager.GetString("goalEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Go to login.
+        /// </summary>
+        internal static string gotoLogin {
+            get {
+                return ResourceManager.GetString("gotoLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heigth.
         /// </summary>
         internal static string heigth {
             get {
                 return ResourceManager.GetString("heigth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to insert...
+        /// </summary>
+        internal static string insert {
+            get {
+                return ResourceManager.GetString("insert", resourceCulture);
             }
         }
         
@@ -242,11 +395,29 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to kgs.
+        /// </summary>
+        internal static string kgs {
+            get {
+                return ResourceManager.GetString("kgs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string language {
             get {
                 return ResourceManager.GetString("language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to or maybe later?.
+        /// </summary>
+        internal static string later {
+            get {
+                return ResourceManager.GetString("later", resourceCulture);
             }
         }
         
@@ -296,6 +467,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Net.
+        /// </summary>
+        internal static string net {
+            get {
+                return ResourceManager.GetString("net", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Password.
         /// </summary>
         internal static string newPsd {
@@ -314,6 +494,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Points.
+        /// </summary>
+        internal static string points {
+            get {
+                return ResourceManager.GetString("points", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Potassium.
         /// </summary>
         internal static string Potassium {
@@ -323,11 +512,83 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Products.
+        /// </summary>
+        internal static string products {
+            get {
+                return ResourceManager.GetString("products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        internal static string profile {
+            get {
+                return ResourceManager.GetString("profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Protein.
         /// </summary>
         internal static string protein {
             get {
                 return ResourceManager.GetString("protein", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchases.
+        /// </summary>
+        internal static string purchases {
+            get {
+                return ResourceManager.GetString("purchases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        internal static string quantity {
+            get {
+                return ResourceManager.GetString("quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recorded weights.
+        /// </summary>
+        internal static string recordWeight {
+            get {
+                return ResourceManager.GetString("recordWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refund.
+        /// </summary>
+        internal static string refund {
+            get {
+                return ResourceManager.GetString("refund", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        internal static string register {
+            get {
+                return ResourceManager.GetString("register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please check your email to complete your registration..
+        /// </summary>
+        internal static string registrationMail {
+            get {
+                return ResourceManager.GetString("registrationMail", resourceCulture);
             }
         }
         
@@ -377,6 +638,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search by food.
+        /// </summary>
+        internal static string searchFood {
+            get {
+                return ResourceManager.GetString("searchFood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select.
         /// </summary>
         internal static string select {
@@ -391,6 +661,15 @@ namespace DianetMob.Properties {
         internal static string selectlang {
             get {
                 return ResourceManager.GetString("selectlang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Quantity.
+        /// </summary>
+        internal static string selectQuantity {
+            get {
+                return ResourceManager.GetString("selectQuantity", resourceCulture);
             }
         }
         
@@ -422,11 +701,29 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Signup.
+        ///   Looks up a localized string similar to Shop.
+        /// </summary>
+        internal static string shop {
+            get {
+                return ResourceManager.GetString("shop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up.
         /// </summary>
         internal static string signup {
             get {
                 return ResourceManager.GetString("signup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscription.
+        /// </summary>
+        internal static string subscription {
+            get {
+                return ResourceManager.GetString("subscription", resourceCulture);
             }
         }
         
@@ -436,6 +733,33 @@ namespace DianetMob.Properties {
         internal static string Sugars {
             get {
                 return ResourceManager.GetString("Sugars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surname.
+        /// </summary>
+        internal static string surname {
+            get {
+                return ResourceManager.GetString("surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please take some time.
+        /// </summary>
+        internal static string time {
+            get {
+                return ResourceManager.GetString("time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Under.
+        /// </summary>
+        internal static string under {
+            get {
+                return ResourceManager.GetString("under", resourceCulture);
             }
         }
         
@@ -458,11 +782,29 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        internal static string upload {
+            get {
+                return ResourceManager.GetString("upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username - Enter a valid email.
         /// </summary>
         internal static string username {
             get {
                 return ResourceManager.GetString("username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid until:.
+        /// </summary>
+        internal static string valid {
+            get {
+                return ResourceManager.GetString("valid", resourceCulture);
             }
         }
         
@@ -481,6 +823,15 @@ namespace DianetMob.Properties {
         internal static string weightDate {
             get {
                 return ResourceManager.GetString("weightDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to Dianet!.
+        /// </summary>
+        internal static string welcome {
+            get {
+                return ResourceManager.GetString("welcome", resourceCulture);
             }
         }
     }

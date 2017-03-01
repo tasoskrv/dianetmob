@@ -147,13 +147,13 @@
   <data name="enterMail" xml:space="preserve">
     <value>Enter your email</value>
   </data>
-  <data name="Fats" xml:space="preserve">
+  <data name="fats" xml:space="preserve">
     <value>Fats</value>
   </data>
-  <data name="Fiber" xml:space="preserve">
+  <data name="fiber" xml:space="preserve">
     <value>Fiber</value>
   </data>
-  <data name="Foodname" xml:space="preserve">
+  <data name="foodname" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="forgotPsd" xml:space="preserve">
@@ -238,7 +238,7 @@
     <value>Set up your profile</value>
   </data>
   <data name="signup" xml:space="preserve">
-    <value>Signup</value>
+    <value>Sign up</value>
   </data>
   <data name="Sugars" xml:space="preserve">
     <value>Sugars</value>
@@ -257,5 +257,122 @@
   </data>
   <data name="weightDate" xml:space="preserve">
     <value>Weight Date</value>
+  </data>
+  <data name="after" xml:space="preserve">
+    <value>After</value>
+  </data>
+  <data name="already" xml:space="preserve">
+    <value>Already have an account</value>
+  </data>
+  <data name="before" xml:space="preserve">
+    <value>Before</value>
+  </data>
+  <data name="buy" xml:space="preserve">
+    <value>Buy</value>
+  </data>
+  <data name="changePsd" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="completeProfile" xml:space="preserve">
+    <value>to complete your profile</value>
+  </data>
+  <data name="detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="goalEdit" xml:space="preserve">
+    <value>Goal edit</value>
+  </data>
+  <data name="gotoLogin" xml:space="preserve">
+    <value>"Go to login</value>
+  </data>
+  <data name="insert" xml:space="preserve">
+    <value>insert..</value>
+  </data>
+  <data name="kgs" xml:space="preserve">
+    <value>kgs</value>
+  </data>
+  <data name="later" xml:space="preserve">
+    <value>or maybe later?</value>
+  </data>
+  <data name="points" xml:space="preserve">
+    <value>Points</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="purchases" xml:space="preserve">
+    <value>Purchases</value>
+  </data>
+  <data name="quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="recordWeight" xml:space="preserve">
+    <value>Recorded weights</value>
+  </data>
+  <data name="registrationMail" xml:space="preserve">
+    <value>Please check your email to complete your registration.</value>
+  </data>
+  <data name="searchFood" xml:space="preserve">
+    <value>Search by food</value>
+  </data>
+  <data name="selectQuantity" xml:space="preserve">
+    <value>Select Quantity</value>
+  </data>
+  <data name="shop" xml:space="preserve">
+    <value>Shop</value>
+  </data>
+  <data name="subscription" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="surname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="time" xml:space="preserve">
+    <value>Please take some time</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="valid" xml:space="preserve">
+    <value>Valid until:</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Welcome to Dianet!</value>
+  </data>
+  <data name="addLog" xml:space="preserve">
+    <value>Add Entry To Log</value>
+  </data>
+  <data name="addWeight" xml:space="preserve">
+    <value>Add Weight</value>
+  </data>
+  <data name="budget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="excercise" xml:space="preserve">
+    <value>Excercise</value>
+  </data>
+  <data name="exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="food" xml:space="preserve">
+    <value>Food</value>
+  </data>
+  <data name="net" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="refund" xml:space="preserve">
+    <value>Refund</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="under" xml:space="preserve">
+    <value>Under</value>
   </data>
 </root>

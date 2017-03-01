@@ -19,7 +19,7 @@ namespace DianetMob.Pages
             var masterPageItems = new List<MenuElement>();
             masterPageItems.Add(new MenuElement
             {
-                Title = "Myday",
+                Title = Properties.LangResource.myDay,
                 IconSource = "mydayn.png",
                 TargetType = typeof(MyDay)
             });
@@ -40,35 +40,35 @@ namespace DianetMob.Pages
 
             masterPageItems.Add(new MenuElement
             {
-                Title = "Βάρος",
+                Title = Properties.LangResource.weight,
                 IconSource = "weight.png",
                 TargetType = typeof(MyWeight)
             });
 
             masterPageItems.Add(new MenuElement
             {
-                Title = "Alerts",
+                Title = Properties.LangResource.alerts,
                 IconSource = "alarm.png",
                 TargetType = typeof(AlertPage)
             });
 
             masterPageItems.Add(new MenuElement
             {
-                Title = "Συνδρομή",
+                Title = Properties.LangResource.subscription,
                 IconSource = "plan.png",
                 TargetType = typeof(ShopPage)
             });
 
             masterPageItems.Add(new MenuElement
             {
-                Title = "Φαγητά μου",
+                Title = Properties.LangResource.myfood,
                 IconSource = "myfood.png",
                 TargetType = typeof(MyFoodPage)
             });
 
             masterPageItems.Add(new MenuElement
             {
-                Title = "Έξοδος",
+                Title = Properties.LangResource.exit,
                 IconSource = "logout.png",
                 TargetType = typeof(LoginPage)
             });

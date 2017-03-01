@@ -2,17 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DianetMob.Pages.AddWeightPage"
-             Title="Add your Info">
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
+             Title="{iLang:Translate addInfo}">
   <ContentPage.Content>
     <StackLayout Padding="5,10">
-      <Label TextColor="Navy" FontSize = "20" Text="Insert your weight." />
+      <Label TextColor="Navy" FontSize = "20" Text="{iLang:Translate insertWeight}" />
       <Entry Placeholder="insert.." TextColor="Navy" FontSize="18"/>
 
-      <Label TextColor="Navy" FontSize = "20" Text="Insert your height." />
+      <Label TextColor="Navy" FontSize = "20" Text="{iLang:Translate insertHeight}" />
       <Entry Placeholder="insert.." TextColor="Navy" FontSize="18"/>
       <Label TextColor="Navy" FontSize = "20" Text="" />
-      <Label TextColor="Navy" FontSize = "20" Text="Insert your age." />
-      <Entry Placeholder="insert.." TextColor="Navy" FontSize="18"/>
+      <Label TextColor="Navy" FontSize = "20" Text="{iLang:Translate insertAge}" />
+      <Entry Placeholder="{iLang:Translate insert}" TextColor="Navy" FontSize="18"/>
       <Label TextColor="Navy" FontSize = "20" Text="" />
       <Label TextColor="Navy" FontSize = "20" Text="" />
       <Button Text="Save" FontSize="24" BorderColor="Navy" />

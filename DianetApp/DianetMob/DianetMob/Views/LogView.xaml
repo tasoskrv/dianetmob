@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DianetMob.Views.LogView">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
+             x:Class="DianetMob.Views.LogView">
   <ContentView.Content>
     <StackLayout>      
       <Grid Margin="0,0,0,0" RowSpacing="0" >
@@ -15,11 +18,11 @@
           <RowDefinition Height="20"/>
           <RowDefinition Height="1"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="Budget" FontSize="10" />
-        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Text="Food" FontSize="10" />
-        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Text="Exercise" FontSize="10" />
-        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Text="Net" FontSize="10" />
-        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Text="Under" FontSize="10" />
+        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="{iLang:Translate budget}" FontSize="10" />
+        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Text="{iLang:Translate food}" FontSize="10" />
+        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Text="{iLang:Translate excercise}" FontSize="10" />
+        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Text="{iLang:Translate net}" FontSize="10" />
+        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Text="{iLang:Translate under}" FontSize="10" />
         <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="{Binding Budget}" Font="Bold,15" />
         <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Text="{Binding Food}" Font="Bold,15" />
         <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Text="{Binding Exercise}" Font="Bold,15" />
@@ -44,7 +47,7 @@
             <DataTemplate>
               <ViewCell>
                 <ViewCell.ContextActions>
-                  <MenuItem Text="DELETE" CommandParameter="{Binding .}" Clicked="OnDeleted" />
+                  <MenuItem Text="{iLang:Translate delete}" CommandParameter="{Binding .}" Clicked="OnDeleted" />
                 </ViewCell.ContextActions>
                 <ContentView>
                   <StackLayout Padding="15,5,35,5"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
