@@ -104,7 +104,7 @@ namespace DianetMob.Pages
                 ToggleAddView();
             }
             else {
-                DisplayAlert("Subscription", "Your subscription has expired. Please renew.", "OK");
+                DisplayAlert(Properties.LangResource.subscription, Properties.LangResource.subAlert, "OK");
             }
         }
 

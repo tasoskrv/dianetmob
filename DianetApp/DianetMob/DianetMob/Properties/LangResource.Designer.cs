@@ -143,6 +143,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Breakfast.
+        /// </summary>
+        internal static string breakfast {
+            get {
+                return ResourceManager.GetString("breakfast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Budget.
         /// </summary>
         internal static string budget {
@@ -229,6 +238,15 @@ namespace DianetMob.Properties {
         internal static string detail {
             get {
                 return ResourceManager.GetString("detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dinner.
+        /// </summary>
+        internal static string dinner {
+            get {
+                return ResourceManager.GetString("dinner", resourceCulture);
             }
         }
         
@@ -436,6 +454,15 @@ namespace DianetMob.Properties {
         internal static string loginFB {
             get {
                 return ResourceManager.GetString("loginFB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lunch.
+        /// </summary>
+        internal static string lunch {
+            get {
+                return ResourceManager.GetString("lunch", resourceCulture);
             }
         }
         
@@ -715,6 +742,24 @@ namespace DianetMob.Properties {
         internal static string signup {
             get {
                 return ResourceManager.GetString("signup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snack.
+        /// </summary>
+        internal static string snack {
+            get {
+                return ResourceManager.GetString("snack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription has expired. Please renew..
+        /// </summary>
+        internal static string subAlert {
+            get {
+                return ResourceManager.GetString("subAlert", resourceCulture);
             }
         }
         

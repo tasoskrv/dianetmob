@@ -348,8 +348,14 @@
   <data name="addWeight" xml:space="preserve">
     <value>Προσθήκη Βάρους</value>
   </data>
+  <data name="breakfast" xml:space="preserve">
+    <value>Πρωινό</value>
+  </data>
   <data name="budget" xml:space="preserve">
     <value>Εκτίμηση</value>
+  </data>
+  <data name="dinner" xml:space="preserve">
+    <value>Δείπνο</value>
   </data>
   <data name="excercise" xml:space="preserve">
     <value>Άσκηση</value>
@@ -359,6 +365,9 @@
   </data>
   <data name="food" xml:space="preserve">
     <value>Φαγητό</value>
+  </data>
+  <data name="lunch" xml:space="preserve">
+    <value>Γεύμα</value>
   </data>
   <data name="net" xml:space="preserve">
     <value>Καθαρό</value>
@@ -371,6 +380,12 @@
   </data>
   <data name="register" xml:space="preserve">
     <value>Εγγραφή</value>
+  </data>
+  <data name="snack" xml:space="preserve">
+    <value>Σνακ</value>
+  </data>
+  <data name="subAlert" xml:space="preserve">
+    <value>Η Συνδρομή σας έλειξε. Παρακαλώ ανανεώστε τη</value>
   </data>
   <data name="under" xml:space="preserve">
     <value>Υπολοιπόμενο</value>

@@ -348,8 +348,14 @@
   <data name="addWeight" xml:space="preserve">
     <value>Add Weight</value>
   </data>
+  <data name="breakfast" xml:space="preserve">
+    <value>Breakfast</value>
+  </data>
   <data name="budget" xml:space="preserve">
     <value>Budget</value>
+  </data>
+  <data name="dinner" xml:space="preserve">
+    <value>Dinner</value>
   </data>
   <data name="excercise" xml:space="preserve">
     <value>Excercise</value>
@@ -359,6 +365,9 @@
   </data>
   <data name="food" xml:space="preserve">
     <value>Food</value>
+  </data>
+  <data name="lunch" xml:space="preserve">
+    <value>Lunch</value>
   </data>
   <data name="net" xml:space="preserve">
     <value>Net</value>
@@ -371,6 +380,12 @@
   </data>
   <data name="register" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="snack" xml:space="preserve">
+    <value>Snack</value>
+  </data>
+  <data name="subAlert" xml:space="preserve">
+    <value>Your subscription has expired. Please renew.</value>
   </data>
   <data name="under" xml:space="preserve">
     <value>Under</value>

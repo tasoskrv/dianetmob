@@ -42,13 +42,13 @@ namespace DianetMob.Views
             for (int i = 0; i < groupedItems.Count; i++)
                 groupedItems[i].Clear();
             groupedItems.Clear();
-            Group group = new Group("Breakfast: "+ points.Breakfast, "1");
+            Group group = new Group(Properties.LangResource.breakfast+": "+ points.Breakfast, "1");
             groupedItems.Add(group);
-            group = new Group("Lunch: "+ points.Lunch, "2");
+            group = new Group(Properties.LangResource.lunch+": " + points.Lunch, "2");
             groupedItems.Add(group);
-            group = new Group("Dinner: "+ points.Dinner, "3");
+            group = new Group(Properties.LangResource.dinner+": " + points.Dinner, "3");
             groupedItems.Add(group);
-            group = new Group("Snack: "+ points.Snack, "4");
+            group = new Group(Properties.LangResource.snack+": " + points.Snack, "4");
             groupedItems.Add(group);
 
             foreach (MapLogData logrecord in logrecords)
@@ -78,7 +78,7 @@ namespace DianetMob.Views
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription has expired. Please renew.", "OK");
+                await App.Current.MainPage.DisplayAlert(Properties.LangResource.subscription, Properties.LangResource.subAlert, "OK");
             }
            
         }
@@ -120,7 +120,7 @@ namespace DianetMob.Views
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Subscription", "Your subscription has expired. Please renew.", "OK");
+                await App.Current.MainPage.DisplayAlert(Properties.LangResource.subscription, Properties.LangResource.subAlert, "OK");
             }
             
         }
