@@ -62,9 +62,9 @@ namespace DianetMob.Pages
         
         private void OnProfileSubmitClicked(object sender, EventArgs e)
         {
-            if (ProfileBtn.Text.ToLower().Equals("edit"))
+            if (ProfileBtn.Text.Equals(Properties.LangResource.edit))
             {
-                ProfileBtn.Text = "Save";
+                ProfileBtn.Text = Properties.LangResource.save;
                 fFirstNameEntry.IsEnabled = true;
                 fSurNameEntry.IsEnabled = true;
                 //fEmailEntry.IsEnabled = true;
@@ -81,7 +81,7 @@ namespace DianetMob.Pages
             }
             else
             {
-                ProfileBtn.Text = "Edit";
+                ProfileBtn.Text = Properties.LangResource.edit;
                 if (fFirstNameEntry.IsEnabled || fSurNameEntry.IsEnabled || fbirthDatePicker.IsEnabled ||
                     fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled || fLocationEntry.IsEnabled)
                 {
@@ -104,7 +104,7 @@ namespace DianetMob.Pages
                     }
                     else
                     {
-                        ProfileBtn.Text = "Save";
+                        ProfileBtn.Text = Properties.LangResource.save;
                     }
                 }
             }

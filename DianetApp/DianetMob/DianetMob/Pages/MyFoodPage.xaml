@@ -23,7 +23,7 @@
                 <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#c3c3c3" />
                 <StackLayout Orientation="Horizontal">
                   <Label Text="{Binding Name}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
-                  <Label Text="{Binding Description}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/> <!---->
+                  <Label Text="{Binding Description}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/> 
                 </StackLayout>
               </StackLayout>
             </StackLayout>

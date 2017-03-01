@@ -98,9 +98,10 @@ namespace DianetMob.Pages
             }
             else
             {
-                uFood.InsertDate = uFood.UpdateDate;
+                uFood.IDLang = StorageManager.GetConnectionInfo().Settings.Lang;
                 if (mapMeal.IDMeal == 0)
                 {
+                    uFood.InsertDate = uFood.UpdateDate;
                     StorageManager.InsertData(uFood);
                     MyFoodPage.recordsMeal.Add(uFood);
                     ml.IDMeal = uFood.IDMeal;

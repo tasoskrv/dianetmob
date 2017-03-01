@@ -179,14 +179,13 @@ namespace DianetMob.Utils
                 long tick = usersettings.LastSyncDate.Ticks;
 
                 //user
-                /*
                 IEnumerable<User> users = conn.Query<User>("SELECT * FROM User WHERE IDUser=" + iduser + " AND UpdateDate>= ?", tick);
                 ModelService<User> srvNewUser = null;
                 foreach (User us in users)
                 {
-                    srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/save", us);
+                    srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/update", us);
                 }
-                */
+                
                 //meal
                 IEnumerable<Meal> meals = conn.Query<Meal>("SELECT * FROM Meal WHERE IDUser=" + iduser + " AND UpdateDate>= ?" , tick);
                 ModelService<Meal> srvNewMeal = null;

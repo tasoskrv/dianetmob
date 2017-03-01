@@ -30,7 +30,7 @@
         <RowDefinition Height="45" />
       </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Text="{iLang:Translate name}" FontSize="20"/>
+        <Label Grid.Row="0" Grid.Column="0" Text="{iLang:Translate foodname}" FontSize="20"/>
         <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" />
 
         <Label Grid.Row="2" Grid.Column="0" Text="{iLang:Translate description}" FontSize="20"/>
