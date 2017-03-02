@@ -17,6 +17,11 @@ namespace DianetMob.Pages
             { "Cm", 1 }, { "In", 2 } 
         };
 
+        Dictionary<string, int> weights = new Dictionary<string, int>
+        {
+            { "Kg", 1 }, { "Pound", 2 }, { "Ounce", 3 }
+        };
+
         Dictionary<string, int> genders = new Dictionary<string, int>
         {
             { "Male", 1 }, { "Female", 2 }
@@ -31,13 +36,21 @@ namespace DianetMob.Pages
             {
                 heighttype.Items.Add(height);
             }
+            foreach (string weight in weights.Keys)
+            {
+                weighttype.Items.Add(weight);
+            }
+
             foreach (string gender in genders.Keys)
             {
                 genderPicker.Items.Add(gender);
             }
             heighttype.SelectedIndexChanged += (object sender, EventArgs e) => { height.Focus(); };
             height.Completed += (object sender, EventArgs e) => { genderPicker.Focus(); };
-           // genderPicker.SelectedIndexChanged += (object sender, EventArgs e) => { AgePicker.Focus(); };
+
+            weighttype.SelectedIndexChanged += (object sender, EventArgs e) => { weight.Focus(); };
+            weight.Completed += (object sender, EventArgs e) => { genderPicker.Focus(); };
+            // genderPicker.SelectedIndexChanged += (object sender, EventArgs e) => { AgePicker.Focus(); };
             AgePicker.DateSelected += (object sender, DateChangedEventArgs e) => { weight.Focus(); };
         //    weight.Completed += (object sender, EventArgs e) => { WeightDatePicker.Focus(); };
             WeightDatePicker.DateSelected += (object sender, DateChangedEventArgs e) => { goal.Focus(); };

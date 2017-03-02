@@ -12,15 +12,26 @@
       <Label Text="{iLang:Translate setupProfile}" FontSize="Large" HorizontalTextAlignment="Center"/>
       
       <Label Text="Heigth" FontSize="Medium"/>
-      <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" >       
-
+     
+       <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" >       
         <Picker x:Name="heighttype" HorizontalOptions="FillAndExpand">
           <Picker.Items></Picker.Items>
         </Picker>
-
         <Entry x:Name="height" Keyboard="Numeric" HorizontalOptions="FillAndExpand" />
       </StackLayout>
-
+      
+      <Label Text="Weight" FontSize="Medium"/>
+      
+        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+        <Picker x:Name="weighttype" HorizontalOptions="FillAndExpand">
+          <Picker.Items></Picker.Items>
+        </Picker>             
+        <Entry x:Name="weight" Keyboard="Numeric"  HorizontalOptions="FillAndExpand"  />     
+      </StackLayout>
+      
+      <Label Text="{iLang:Translate weightDate}" FontSize="Medium"/> 
+      <DatePicker x:Name="WeightDatePicker" Format="dd/MM/yyyy" />
+      
       <Label Text="{iLang:Translate gender}" FontSize="Medium"/>
       <Picker x:Name="genderPicker"> 
         <Picker.Items></Picker.Items>
@@ -28,9 +39,8 @@
       <Label Text="{iLang:Translate birthday}" FontSize="Medium"/>
       <DatePicker x:Name="AgePicker" Format="dd/MM/yyyy" />
 
-      <Entry x:Name="weight" Placeholder="{iLang:Translate weight}" Keyboard="Numeric" />
-      <Label Text="{iLang:Translate weightDate}" FontSize="Medium"/>
-      <DatePicker x:Name="WeightDatePicker" Format="dd/MM/yyyy" />
+     
+     
 
       <Entry x:Name="goal" Placeholder="{iLang:Translate goal}" Keyboard="Numeric" />
 
