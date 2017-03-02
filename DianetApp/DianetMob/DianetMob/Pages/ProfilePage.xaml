@@ -119,10 +119,14 @@
             </Picker>
           </Grid>                          
           <Entry Grid.Row="7" Grid.Column="1" x:Name="fSkeletonEntry" Placeholder="{iLang:Translate skeletontype}" Keyboard="Numeric" Text="{Binding Skeleton}"  IsEnabled="False"/>
+
+          <Picker Grid.Row="8" Grid.Column="1" x:Name="fDietTypePicker" Title="{iLang:Translate diettype}" IsEnabled="False" SelectedIndex="{Binding DietType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
+            <Picker.Items></Picker.Items>
+          </Picker>
           
-          <Image Grid.Row="8" Grid.Column="0" Source="location.png"  />
-          <Entry Grid.Row="8" Grid.Column="1" x:Name="fLocationEntry" Placeholder="Location" Text="{Binding Location}" Keyboard="Text"  IsEnabled="False"/>
-          <Button Grid.Row="9" Grid.Column="1" Clicked="ChangePassword" BackgroundColor="#00ffffff" Text="{iLang:Translate changePsd}" Font="Bold,12" TextColor="#2196F3" />
+          <Image Grid.Row="9" Grid.Column="0" Source="location.png"  />
+          <Entry Grid.Row="9" Grid.Column="1" x:Name="fLocationEntry" Placeholder="Location" Text="{Binding Location}" Keyboard="Text"  IsEnabled="False"/>
+          <Button Grid.Row="10" Grid.Column="1" Clicked="ChangePassword" BackgroundColor="#00ffffff" Text="{iLang:Translate changePsd}" Font="Bold,12" TextColor="#2196F3" />
 
         </Grid> 
           

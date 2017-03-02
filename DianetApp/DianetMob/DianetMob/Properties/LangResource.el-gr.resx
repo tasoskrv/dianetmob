@@ -402,4 +402,28 @@
   <data name="email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="diettype" xml:space="preserve">
+    <value>Τύπος δίαιτας</value>
+  </data>
+  <data name="female" xml:space="preserve">
+    <value>Γυναίκα</value>
+  </data>
+  <data name="male" xml:space="preserve">
+    <value>Άνδρας</value>
+  </data>
+  <data name="normal" xml:space="preserve">
+    <value>Κανονική</value>
+  </data>
+  <data name="ounces" xml:space="preserve">
+    <value>Ούγιες</value>
+  </data>
+  <data name="ovum" xml:space="preserve">
+    <value>Ωάρια</value>
+  </data>
+  <data name="pounds" xml:space="preserve">
+    <value>Λίβρες</value>
+  </data>
+  <data name="sperm" xml:space="preserve">
+    <value>Σπερματοζωάρια</value>
+  </data>
 </root>

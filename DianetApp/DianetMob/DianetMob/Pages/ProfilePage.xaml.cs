@@ -31,12 +31,17 @@ namespace DianetMob.Pages
 
         Dictionary<string, int> weights = new Dictionary<string, int>
         {
-            { "Kg", 1 }, { "Pound", 2 }, { "Ounce", 3 }
+            { Properties.LangResource.kgs, 1 }, {  Properties.LangResource.pounds, 2 }, {  Properties.LangResource.ounces, 3 }
+        };
+
+        Dictionary<string, int> diets = new Dictionary<string, int>
+        {
+            { Properties.LangResource.normal, 1 }, { "NK", 2 }, {  Properties.LangResource.ovum, 3 }, {  Properties.LangResource.sperm, 4 }
         };
 
         Dictionary<string, int> genders = new Dictionary<string, int>
         {
-            { "Male", 1 }, { "Female", 2 }
+            { Properties.LangResource.male, 1 }, { Properties.LangResource.female, 2 }
         };
 
         public ProfilePage()
@@ -51,6 +56,10 @@ namespace DianetMob.Pages
             foreach (string weight in weights.Keys)
             {
                 fWeightPicker.Items.Add(weight);
+            }
+            foreach (string diet in diets.Keys)
+            {
+                fDietTypePicker.Items.Add(diet);
             }
             foreach (string gender in genders.Keys)
             {
@@ -81,6 +90,7 @@ namespace DianetMob.Pages
                 fSexPicker.IsEnabled = true;
                 fHeightPicker.IsEnabled = true;
                 fWeightPicker.IsEnabled = true;
+                fDietTypePicker.IsEnabled = true;
                 fHeightEntry.IsEnabled = true;
                 fSkeletonEntry.IsEnabled = true;
                 fLocationEntry.IsEnabled = true;
@@ -93,7 +103,7 @@ namespace DianetMob.Pages
             {
                 ProfileBtn.Text = Properties.LangResource.edit;
                 if (fFirstNameEntry.IsEnabled || fSurNameEntry.IsEnabled || fbirthDatePicker.IsEnabled ||
-                    fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fHeightEntry.IsEnabled || fLocationEntry.IsEnabled)
+                    fSexPicker.IsEnabled || fHeightPicker.IsEnabled || fWeightPicker.IsEnabled || fHeightEntry.IsEnabled || fLocationEntry.IsEnabled)
                 {
                     if (AllFieldsAreFilled())
                     {
@@ -129,6 +139,7 @@ namespace DianetMob.Pages
             fSexPicker.IsEnabled = false;
             fHeightPicker.IsEnabled = false;
             fWeightPicker.IsEnabled = false;
+            fDietTypePicker.IsEnabled = false;
             fHeightEntry.IsEnabled = false;
             fSkeletonEntry.IsEnabled = false;
             fLocationEntry.IsEnabled = false;

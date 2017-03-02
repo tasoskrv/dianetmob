@@ -242,6 +242,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diet type.
+        /// </summary>
+        internal static string diettype {
+            get {
+                return ResourceManager.GetString("diettype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dinner.
         /// </summary>
         internal static string dinner {
@@ -301,6 +310,15 @@ namespace DianetMob.Properties {
         internal static string fats {
             get {
                 return ResourceManager.GetString("fats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Female.
+        /// </summary>
+        internal static string female {
+            get {
+                return ResourceManager.GetString("female", resourceCulture);
             }
         }
         
@@ -485,6 +503,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Male.
+        /// </summary>
+        internal static string male {
+            get {
+                return ResourceManager.GetString("male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Day.
         /// </summary>
         internal static string myDay {
@@ -539,6 +566,33 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        internal static string normal {
+            get {
+                return ResourceManager.GetString("normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ounces.
+        /// </summary>
+        internal static string ounces {
+            get {
+                return ResourceManager.GetString("ounces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ovum.
+        /// </summary>
+        internal static string ovum {
+            get {
+                return ResourceManager.GetString("ovum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to password.
         /// </summary>
         internal static string password {
@@ -562,6 +616,15 @@ namespace DianetMob.Properties {
         internal static string Potassium {
             get {
                 return ResourceManager.GetString("Potassium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pounds.
+        /// </summary>
+        internal static string pounds {
+            get {
+                return ResourceManager.GetString("pounds", resourceCulture);
             }
         }
         
@@ -787,6 +850,15 @@ namespace DianetMob.Properties {
         internal static string snack {
             get {
                 return ResourceManager.GetString("snack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sperm.
+        /// </summary>
+        internal static string sperm {
+            get {
+                return ResourceManager.GetString("sperm", resourceCulture);
             }
         }
         
