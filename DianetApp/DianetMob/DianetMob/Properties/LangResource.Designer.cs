@@ -260,6 +260,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string email {
+            get {
+                return ResourceManager.GetString("email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter your email.
         /// </summary>
         internal static string enterMail {
@@ -364,6 +373,15 @@ namespace DianetMob.Properties {
         internal static string gotoLogin {
             get {
                 return ResourceManager.GetString("gotoLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height type.
+        /// </summary>
+        internal static string heighttype {
+            get {
+                return ResourceManager.GetString("heighttype", resourceCulture);
             }
         }
         
@@ -481,6 +499,15 @@ namespace DianetMob.Properties {
         internal static string myfood {
             get {
                 return ResourceManager.GetString("myfood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string name {
+            get {
+                return ResourceManager.GetString("name", resourceCulture);
             }
         }
         
@@ -746,6 +773,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skeleton type.
+        /// </summary>
+        internal static string skeletontype {
+            get {
+                return ResourceManager.GetString("skeletontype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Snack.
         /// </summary>
         internal static string snack {
@@ -868,6 +904,15 @@ namespace DianetMob.Properties {
         internal static string weightDate {
             get {
                 return ResourceManager.GetString("weightDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight type.
+        /// </summary>
+        internal static string weighttype {
+            get {
+                return ResourceManager.GetString("weighttype", resourceCulture);
             }
         }
         

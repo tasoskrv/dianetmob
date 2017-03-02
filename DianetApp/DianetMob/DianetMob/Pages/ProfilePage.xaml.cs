@@ -29,6 +29,11 @@ namespace DianetMob.Pages
             { "Cm", 1 }, { "In", 2 }
         };
 
+        Dictionary<string, int> weights = new Dictionary<string, int>
+        {
+            { "Kg", 1 }, { "Pound", 2 }, { "Ounce", 3 }
+        };
+
         Dictionary<string, int> genders = new Dictionary<string, int>
         {
             { "Male", 1 }, { "Female", 2 }
@@ -42,6 +47,10 @@ namespace DianetMob.Pages
             foreach (string height in heights.Keys)
             {
                 fHeightPicker.Items.Add(height);
+            }
+            foreach (string weight in weights.Keys)
+            {
+                fWeightPicker.Items.Add(weight);
             }
             foreach (string gender in genders.Keys)
             {
@@ -71,6 +80,7 @@ namespace DianetMob.Pages
                 fbirthDatePicker.IsEnabled = true;
                 fSexPicker.IsEnabled = true;
                 fHeightPicker.IsEnabled = true;
+                fWeightPicker.IsEnabled = true;
                 fHeightEntry.IsEnabled = true;
                 fSkeletonEntry.IsEnabled = true;
                 fLocationEntry.IsEnabled = true;
@@ -118,6 +128,7 @@ namespace DianetMob.Pages
             fbirthDatePicker.IsEnabled = false;
             fSexPicker.IsEnabled = false;
             fHeightPicker.IsEnabled = false;
+            fWeightPicker.IsEnabled = false;
             fHeightEntry.IsEnabled = false;
             fSkeletonEntry.IsEnabled = false;
             fLocationEntry.IsEnabled = false;

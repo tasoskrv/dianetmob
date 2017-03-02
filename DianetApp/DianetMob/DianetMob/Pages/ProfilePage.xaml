@@ -98,18 +98,31 @@
             <Grid.RowDefinitions>
               <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
-              <Entry Grid.Row="0" Grid.Column="0" x:Name="fHeightEntry" Placeholder="Height" Keyboard="Numeric" IsEnabled="False" Text="{Binding Height, Mode=TwoWay}" />
+              <Entry Grid.Row="0" Grid.Column="0" x:Name="fHeightEntry" Placeholder="{iLang:Translate heighttype}" Keyboard="Numeric" IsEnabled="False" Text="{Binding Height, Mode=TwoWay}" />
 
               <Picker Grid.Row="0" Grid.Column="1" x:Name="fHeightPicker" Title="Height" IsEnabled="False" SelectedIndex="{Binding HeightType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
                 <Picker.Items></Picker.Items>
               </Picker>
-          </Grid>             
-                                     
-          <Entry Grid.Row="6" Grid.Column="1" x:Name="fSkeletonEntry" Placeholder="Skeleton" Keyboard="Numeric" Text="{Binding Skeleton}"  IsEnabled="False"/>
+          </Grid>
+
+          <Grid Grid.Row="6" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+
+            <Picker Grid.Row="0" Grid.Column="0" x:Name="fWeightPicker" Title="{iLang:Translate weighttype}" IsEnabled="False" SelectedIndex="{Binding WeightType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
+              <Picker.Items></Picker.Items>
+            </Picker>
+          </Grid>                          
+          <Entry Grid.Row="7" Grid.Column="1" x:Name="fSkeletonEntry" Placeholder="{iLang:Translate skeletontype}" Keyboard="Numeric" Text="{Binding Skeleton}"  IsEnabled="False"/>
           
-          <Image Grid.Row="7" Grid.Column="0" Source="location.png"  />
-          <Entry Grid.Row="7" Grid.Column="1" x:Name="fLocationEntry" Placeholder="Location" Text="{Binding Location}" Keyboard="Text"  IsEnabled="False"/>
-          <Button Grid.Row="8" Grid.Column="1" Clicked="ChangePassword" BackgroundColor="#00ffffff" Text="{iLang:Translate changePsd}" Font="Bold,12" TextColor="#2196F3" />
+          <Image Grid.Row="8" Grid.Column="0" Source="location.png"  />
+          <Entry Grid.Row="8" Grid.Column="1" x:Name="fLocationEntry" Placeholder="Location" Text="{Binding Location}" Keyboard="Text"  IsEnabled="False"/>
+          <Button Grid.Row="9" Grid.Column="1" Clicked="ChangePassword" BackgroundColor="#00ffffff" Text="{iLang:Translate changePsd}" Font="Bold,12" TextColor="#2196F3" />
 
         </Grid> 
           

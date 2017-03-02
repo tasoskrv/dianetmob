@@ -390,4 +390,19 @@
   <data name="under" xml:space="preserve">
     <value>Under</value>
   </data>
+  <data name="heighttype" xml:space="preserve">
+    <value>Height type</value>
+  </data>
+  <data name="skeletontype" xml:space="preserve">
+    <value>Skeleton type</value>
+  </data>
+  <data name="weighttype" xml:space="preserve">
+    <value>Weight type</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

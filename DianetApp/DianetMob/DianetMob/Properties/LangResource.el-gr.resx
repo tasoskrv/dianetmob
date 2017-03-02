@@ -273,7 +273,7 @@
   <data name="later" xml:space="preserve">
     <value>αργότερα;</value>
   </data>
-  <data name="Name" xml:space="preserve">
+  <data name="name" xml:space="preserve">
     <value>Όνομα</value>
   </data>
   <data name="natrium" xml:space="preserve">
@@ -389,5 +389,17 @@
   </data>
   <data name="under" xml:space="preserve">
     <value>Υπολοιπόμενο</value>
+  </data>
+  <data name="heighttype" xml:space="preserve">
+    <value>Μονάδα ύψους</value>
+  </data>
+  <data name="skeletontype" xml:space="preserve">
+    <value>Τύπος σκελετού</value>
+  </data>
+  <data name="weighttype" xml:space="preserve">
+    <value>Μονάδα βάρους</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
   </data>
 </root>
