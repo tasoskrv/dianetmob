@@ -78,7 +78,11 @@ namespace DianetMob.Views
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert(Properties.LangResource.subscription, Properties.LangResource.subAlert, "OK");
+                var answer = await App.Current.MainPage.DisplayAlert(Properties.LangResource.subscription, Properties.LangResource.subAlert, Properties.LangResource.yes, Properties.LangResource.no);
+                if (answer == true)
+                {
+                    await Navigation.PushAsync(new ShopPage());
+                }
             }
            
         }
@@ -120,7 +124,11 @@ namespace DianetMob.Views
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert(Properties.LangResource.subscription, Properties.LangResource.subAlert, "OK");
+                var answer = await App.Current.MainPage.DisplayAlert(Properties.LangResource.subscription, Properties.LangResource.subAlert, Properties.LangResource.yes, Properties.LangResource.no);
+                if (answer == true)
+                {
+                    await Navigation.PushAsync(new ShopPage());
+                }
             }
             
         }

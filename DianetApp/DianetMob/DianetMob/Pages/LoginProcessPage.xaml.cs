@@ -3,6 +3,7 @@ using DianetMob.DB.Entities;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using DianetMob.Utils;
 
 using Xamarin.Forms;
 
@@ -54,16 +55,16 @@ namespace DianetMob.Pages
             {
                 genderPicker.Items.Add(gender);
             }
-            heighttype.SelectedIndexChanged += (object sender, EventArgs e) => { height.Focus(); };
-            height.Completed += (object sender, EventArgs e) => { genderPicker.Focus(); };
+          //  heighttype.SelectedIndexChanged += (object sender, EventArgs e) => { height.Focus(); };
+           // height.Completed += (object sender, EventArgs e) => { genderPicker.Focus(); };
 
-            weighttype.SelectedIndexChanged += (object sender, EventArgs e) => { weight.Focus(); };
-            weight.Completed += (object sender, EventArgs e) => { genderPicker.Focus(); };
+            //weighttype.SelectedIndexChanged += (object sender, EventArgs e) => { weight.Focus(); };
+            //weight.Completed += (object sender, EventArgs e) => { genderPicker.Focus(); };
 
             // genderPicker.SelectedIndexChanged += (object sender, EventArgs e) => { AgePicker.Focus(); };
-            AgePicker.DateSelected += (object sender, DateChangedEventArgs e) => { weight.Focus(); };
+           // AgePicker.DateSelected += (object sender, DateChangedEventArgs e) => { weight.Focus(); };
         //    weight.Completed += (object sender, EventArgs e) => { WeightDatePicker.Focus(); };
-            WeightDatePicker.DateSelected += (object sender, DateChangedEventArgs e) => { goal.Focus(); };
+           // WeightDatePicker.DateSelected += (object sender, DateChangedEventArgs e) => { goal.Focus(); };
         }
 
         private async void OnSaveClicked(object sender, EventArgs e)
@@ -84,7 +85,7 @@ namespace DianetMob.Pages
                 try
                 {
                     int heightType = heights[heighttype.Items[heighttype.SelectedIndex]];
-                    int weightType = heights[weighttype.Items[weighttype.SelectedIndex]];
+                    int weightType = weights[weighttype.Items[weighttype.SelectedIndex]];
                     int genderType = genders[genderPicker.Items[genderPicker.SelectedIndex]];
 
                     User loginuser = StorageManager.GetConnectionInfo().LoginUser;

@@ -385,7 +385,7 @@
     <value>Snack</value>
   </data>
   <data name="subAlert" xml:space="preserve">
-    <value>Your subscription has expired. Please renew.</value>
+    <value>Your subscription has expired. Do you want to reactivate?</value>
   </data>
   <data name="under" xml:space="preserve">
     <value>Under</value>
@@ -428,5 +428,11 @@
   </data>
   <data name="sperm" xml:space="preserve">
     <value>Sperm</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>YES</value>
   </data>
 </root>

@@ -28,7 +28,7 @@ namespace DianetMob.Utils
             FullSynch();
         }
 
-        public async static void FullSynch(bool force=false)
+        public async static Task FullSynch(bool force=false)
         {            
             try
             {
@@ -55,7 +55,7 @@ namespace DianetMob.Utils
 
                         await FullServiceLoadAndStore(loginUser, usersettings);
                         await FullServiceSend(loginUser, usersettings);
-
+                        
                         usersettings.LastSyncDate = DateTime.UtcNow;
                         StorageManager.UpdateData<UserSettings>(usersettings);
                         notifier.Notify(new LocalNotification()

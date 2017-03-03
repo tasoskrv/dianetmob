@@ -214,7 +214,7 @@
     <value>Βάρος</value>
   </data>
   <data name="weightDate" xml:space="preserve">
-    <value>Ημεριμηνία βάρους</value>
+    <value>Ημερομηνία βάρους</value>
   </data>
   <data name="after" xml:space="preserve">
     <value>Μετά</value>
@@ -385,7 +385,7 @@
     <value>Σνακ</value>
   </data>
   <data name="subAlert" xml:space="preserve">
-    <value>Η Συνδρομή σας έλειξε. Παρακαλώ ανανεώστε τη</value>
+    <value>Η Συνδρομή σας έλειξε. Θέλετε να την ανανεώσετε;</value>
   </data>
   <data name="under" xml:space="preserve">
     <value>Υπολοιπόμενο</value>
@@ -425,5 +425,11 @@
   </data>
   <data name="sperm" xml:space="preserve">
     <value>Σπερματοζωάρια</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>OXI</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>NAI</value>
   </data>
 </root>

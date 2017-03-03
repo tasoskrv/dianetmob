@@ -5,6 +5,7 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using DianetMob.Utils;
 
 using Xamarin.Forms;
 
@@ -85,15 +86,16 @@ namespace DianetMob.Pages
             }
         }
 
-        private void PerformLogin(User user)
+        private async void PerformLogin(User user)
         {
+            BeginLogin();
             ConnectionInfo info = StorageManager.GetConnectionInfo();
             info.LoginUser = user;
             info.LoginUser.Password = passwordEntry.Text;
             info.Settings.LastLoggedIn = user.IDUser;
             Settings settings = info.Settings;
             StorageManager.UpdateData<Settings>(settings);
-
+            await GenLib.FullSynch();
             if (user.Isactive == 0)
             {
                 MessageLabel.Text = "User is not active";
@@ -104,6 +106,7 @@ namespace DianetMob.Pages
                 List<Plan> plans = conn.Query<Plan>("SELECT IDPlan FROM Plan WHERE Deleted=0 AND IDUser=" + user.IDUser);
                 if (user.HeightType == -1 || user.Height == -1 || user.Gender == -1 || wghts.Count == 0 || plans.Count == 0)
                 {
+                   
                     App.Current.MainPage = new LoginProcessPage();
                 }
                 else
@@ -111,6 +114,29 @@ namespace DianetMob.Pages
                     App.Current.MainPage = new MainPage();
                 }                
             }
+            EndLogin();
+        }
+
+        public void BeginLogin()
+        {
+            loader.IsRunning = true;
+            btnlogin.IsEnabled = false;
+            btnfblogin.IsEnabled = false;
+            passwordEntry.IsEnabled = false;
+            usernameEntry.IsEnabled = false;
+            ForgotPassword.IsEnabled = false;
+            Signup.IsEnabled = false;
+        }
+
+        public void EndLogin()
+        {
+            loader.IsRunning = false;
+            btnlogin.IsEnabled = true;
+            btnfblogin.IsEnabled = true;
+            passwordEntry.IsEnabled = true;
+            usernameEntry.IsEnabled = true;
+            ForgotPassword.IsEnabled = true;
+            Signup.IsEnabled = true;
         }
 
         public async void AreCredentialsCorrect(User user)
@@ -126,6 +152,7 @@ namespace DianetMob.Pages
             /* e.g. /user/login/username=spiroskaravanis2@gmail.com/password=12345 */
             try
             {
+                BeginLogin();
                 ModelService<User> srvUser = await ServiceConnector.GetServiceData<ModelService<User>>("/user/login/email=" + user.Email + "/password=" + user.Password);
                 if (srvUser.totalRows > 0)
                 {
@@ -134,10 +161,12 @@ namespace DianetMob.Pages
                     PerformLogin(srvUser.data[0]);
                     return;
                 }
+                EndLogin();
             }
             catch (Exception ex)
             {
                 MessageLabel.Text = "Error " + ex.Message;
+                EndLogin();
             }
             MessageLabel.Text = "Wrong credentials";
         }

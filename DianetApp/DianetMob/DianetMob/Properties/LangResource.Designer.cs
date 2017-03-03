@@ -566,6 +566,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NO.
+        /// </summary>
+        internal static string no {
+            get {
+                return ResourceManager.GetString("no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Normal.
         /// </summary>
         internal static string normal {
@@ -863,7 +872,7 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your subscription has expired. Please renew..
+        ///   Looks up a localized string similar to Your subscription has expired. Do you want to reactivate?.
         /// </summary>
         internal static string subAlert {
             get {
@@ -994,6 +1003,15 @@ namespace DianetMob.Properties {
         internal static string welcome {
             get {
                 return ResourceManager.GetString("welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YES.
+        /// </summary>
+        internal static string yes {
+            get {
+                return ResourceManager.GetString("yes", resourceCulture);
             }
         }
     }

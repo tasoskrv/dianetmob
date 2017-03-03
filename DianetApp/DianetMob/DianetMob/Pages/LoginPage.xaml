@@ -10,9 +10,9 @@
       <Image Source="logo1.png"  />           
       <Entry x:Name="usernameEntry" Placeholder="{iLang:Translate username}" Keyboard="Email" Completed="OnValidateEmail"/>
       <Entry x:Name="passwordEntry" Placeholder="{iLang:Translate password}" IsPassword="true" />      
-      <Button Text="{iLang:Translate login}" Clicked="OnLoginButtonClicked" />
-      <Button Text="{iLang:Translate loginFB}" Clicked="OnFacebookLoginClicked" BackgroundColor="#4267b2" TextColor="#fff"/>
-
+      <Button x:Name="btnlogin" Text="{iLang:Translate login}" Clicked="OnLoginButtonClicked" />
+      <Button x:Name="btnfblogin" Text="{iLang:Translate loginFB}" Clicked="OnFacebookLoginClicked" BackgroundColor="#4267b2" TextColor="#fff"/>
+      <ActivityIndicator x:Name="loader" Color="#2196F3" IsRunning="false" />
       <StackLayout Orientation="Horizontal" Margin="0, 20, 0, 0">
           <Label x:Name="Signup" Text="{iLang:Translate signup}" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
           <Label x:Name="ForgotPassword" Text="{iLang:Translate forgotPsd}" HorizontalOptions="CenterAndExpand" FontSize="Medium"/> 

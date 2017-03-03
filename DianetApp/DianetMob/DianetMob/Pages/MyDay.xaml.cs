@@ -38,7 +38,7 @@ namespace DianetMob.Pages
             {
                 if (info.isTrial)
                 {
-                  await  DisplayAlert("Trial", (info.LoginUser.InsertDate.AddDays(info.Settings.TrialPeriod).Subtract(DateTime.UtcNow)).Days + " Days left! Please subscribe.", "OK");
+                  await  DisplayAlert("Trial", (info.LoginUser.InsertDate.AddDays(info.Settings.TrialPeriod).Subtract(DateTime.UtcNow)).Days + " Days left! Please subscribe.", "Yes");
                 }
             }
             RecreateData();
@@ -97,14 +97,17 @@ namespace DianetMob.Pages
             dashboardview.FillPieContent(DashboardDic, points.Food, Weekrecords);
         }
 
-        public void OnAddMealClicked(object sender, EventArgs e)
+        public async void OnAddMealClicked(object sender, EventArgs e)
         {
             if ((info.isTrial) ||((subscription != null) && (subscription.EndDate >= DateTime.UtcNow)))
             {
                 ToggleAddView();
             }
             else {
-                DisplayAlert(Properties.LangResource.subscription, Properties.LangResource.subAlert, "OK");
+                var answer = await DisplayAlert(Properties.LangResource.subscription, Properties.LangResource.subAlert, Properties.LangResource.yes, Properties.LangResource.no);
+                if (answer==true) {
+                    await Navigation.PushAsync(new ShopPage());
+                }
             }
         }
 
