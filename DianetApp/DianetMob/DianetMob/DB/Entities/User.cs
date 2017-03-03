@@ -15,6 +15,7 @@ namespace DianetMob.DB.Entities
         private DateTime? birthday;
         private double height;
         private int heighttype;
+        private int weighttype;
         private int gender;
         private double skeleton;
         private string location;
@@ -146,6 +147,21 @@ namespace DianetMob.DB.Entities
                 {
                     heighttype = value;
                     OnPropertyChanged("HeightType");
+                }
+            }
+        }
+        public int WeightType
+        {
+            get
+            {
+                return weighttype;
+            }
+            set
+            {
+                if (weighttype != value)
+                {
+                    weighttype = value;
+                    OnPropertyChanged("WeightType");
                 }
             }
         }

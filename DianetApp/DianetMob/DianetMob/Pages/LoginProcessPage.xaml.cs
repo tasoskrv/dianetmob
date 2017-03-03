@@ -19,14 +19,19 @@ namespace DianetMob.Pages
 
         Dictionary<string, int> weights = new Dictionary<string, int>
         {
-            { "Kg", 1 }, { "Pound", 2 }, { "Ounce", 3 }
+            { Properties.LangResource.kgs, 1 }, {  Properties.LangResource.pounds, 2 }, {  Properties.LangResource.ounces, 3 }
+        };
+
+        Dictionary<string, int> diets = new Dictionary<string, int>
+        {
+            { Properties.LangResource.normal, 1 }, { "NK", 2 }, {  Properties.LangResource.ovum, 3 }, {  Properties.LangResource.sperm, 4 }
         };
 
         Dictionary<string, int> genders = new Dictionary<string, int>
         {
-            { "Male", 1 }, { "Female", 2 }
+            { Properties.LangResource.male, 1 }, { Properties.LangResource.female, 2 }
         };
-        
+
         public LoginProcessPage()
         {
             InitializeComponent();
@@ -40,6 +45,10 @@ namespace DianetMob.Pages
             {
                 weighttype.Items.Add(weight);
             }
+            foreach (string diet in diets.Keys)
+            {
+                fDietTypePicker.Items.Add(diet);
+            }
 
             foreach (string gender in genders.Keys)
             {
@@ -50,6 +59,7 @@ namespace DianetMob.Pages
 
             weighttype.SelectedIndexChanged += (object sender, EventArgs e) => { weight.Focus(); };
             weight.Completed += (object sender, EventArgs e) => { genderPicker.Focus(); };
+
             // genderPicker.SelectedIndexChanged += (object sender, EventArgs e) => { AgePicker.Focus(); };
             AgePicker.DateSelected += (object sender, DateChangedEventArgs e) => { weight.Focus(); };
         //    weight.Completed += (object sender, EventArgs e) => { WeightDatePicker.Focus(); };
@@ -74,6 +84,7 @@ namespace DianetMob.Pages
                 try
                 {
                     int heightType = heights[heighttype.Items[heighttype.SelectedIndex]];
+                    int weightType = heights[weighttype.Items[weighttype.SelectedIndex]];
                     int genderType = genders[genderPicker.Items[genderPicker.SelectedIndex]];
 
                     User loginuser = StorageManager.GetConnectionInfo().LoginUser;
@@ -101,6 +112,7 @@ namespace DianetMob.Pages
                     //TODO update user data
                     loginuser.Gender = genderType;
                     loginuser.HeightType = heightType;
+                    loginuser.WeightType = weightType;
                     loginuser.Height = Convert.ToDouble(height.Text);
                     loginuser.Birthdate = AgePicker.Date;
                     loginuser.UpdateDate = DateTime.UtcNow;

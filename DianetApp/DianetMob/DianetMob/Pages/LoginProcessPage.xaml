@@ -38,6 +38,10 @@
 
         <Entry x:Name="goal" Placeholder="{iLang:Translate goal}" Keyboard="Numeric" />
 
+        <Picker x:Name="fDietTypePicker" Title="{iLang:Translate diettype}" IsEnabled="False" SelectedIndex="{Binding DietType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
+          <Picker.Items></Picker.Items>
+        </Picker>
+
         <Button x:Name="saveBtn" Text="{iLang:Translate save}" Clicked="OnSaveClicked"/>
 
       </StackLayout>
