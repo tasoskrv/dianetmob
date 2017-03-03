@@ -5,47 +5,42 @@
              x:Class="DianetMob.Pages.LoginProcessPage">
       
   <ContentPage.Content>
+    <ScrollView x:Name="ProfileScrollView">
+      <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 30, 20, 50">
+        <Label Text="{iLang:Translate setupProfile}" FontSize="Large" HorizontalTextAlignment="Center"/>
+        <Label Text="Heigth" FontSize="Medium"/>
 
-    
-    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 30, 20, 50">
+        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" >
+          <Picker x:Name="heighttype" HorizontalOptions="FillAndExpand">
+            <Picker.Items></Picker.Items>
+          </Picker>
+          <Entry x:Name="height" Keyboard="Numeric" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
 
-      <Label Text="{iLang:Translate setupProfile}" FontSize="Large" HorizontalTextAlignment="Center"/>
-      
-      <Label Text="Heigth" FontSize="Medium"/>
-     
-       <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" >       
-        <Picker x:Name="heighttype" HorizontalOptions="FillAndExpand">
+        <Label Text="Weight" FontSize="Medium"/>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+          <Picker x:Name="weighttype" HorizontalOptions="FillAndExpand">
+            <Picker.Items></Picker.Items>
+          </Picker>
+          <Entry x:Name="weight" Keyboard="Numeric"  HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+
+        <Label Text="{iLang:Translate weightDate}" FontSize="Medium"/>
+        <DatePicker x:Name="WeightDatePicker" Format="dd/MM/yyyy" />
+
+        <Label Text="{iLang:Translate gender}" FontSize="Medium"/>
+        <Picker x:Name="genderPicker">
           <Picker.Items></Picker.Items>
         </Picker>
-        <Entry x:Name="height" Keyboard="Numeric" HorizontalOptions="FillAndExpand" />
+        <Label Text="{iLang:Translate birthday}" FontSize="Medium"/>
+        <DatePicker x:Name="AgePicker" Format="dd/MM/yyyy" />
+
+        <Entry x:Name="goal" Placeholder="{iLang:Translate goal}" Keyboard="Numeric" />
+
+        <Button x:Name="saveBtn" Text="{iLang:Translate save}" Clicked="OnSaveClicked"/>
+
       </StackLayout>
-      
-      <Label Text="Weight" FontSize="Medium"/>
-      
-        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-        <Picker x:Name="weighttype" HorizontalOptions="FillAndExpand">
-          <Picker.Items></Picker.Items>
-        </Picker>             
-        <Entry x:Name="weight" Keyboard="Numeric"  HorizontalOptions="FillAndExpand"  />     
-      </StackLayout>
-      
-      <Label Text="{iLang:Translate weightDate}" FontSize="Medium"/> 
-      <DatePicker x:Name="WeightDatePicker" Format="dd/MM/yyyy" />
-      
-      <Label Text="{iLang:Translate gender}" FontSize="Medium"/>
-      <Picker x:Name="genderPicker"> 
-        <Picker.Items></Picker.Items>
-      </Picker>
-      <Label Text="{iLang:Translate birthday}" FontSize="Medium"/>
-      <DatePicker x:Name="AgePicker" Format="dd/MM/yyyy" />
-
-     
-     
-
-      <Entry x:Name="goal" Placeholder="{iLang:Translate goal}" Keyboard="Numeric" />
-
-      <Button x:Name="saveBtn" Text="{iLang:Translate save}" Clicked="OnSaveClicked"/>     
-      
-    </StackLayout>
+    </ScrollView>
   </ContentPage.Content>
 </ContentPage>
