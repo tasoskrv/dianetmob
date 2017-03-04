@@ -296,6 +296,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exercise time (in minutes).
+        /// </summary>
+        internal static string exerciseMinutes {
+            get {
+                return ResourceManager.GetString("exerciseMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string exit {

@@ -435,4 +435,7 @@
   <data name="yes" xml:space="preserve">
     <value>YES</value>
   </data>
+  <data name="exerciseMinutes" xml:space="preserve">
+    <value>Exercise time (in minutes)</value>
+  </data>
 </root>

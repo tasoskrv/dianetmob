@@ -1,15 +1,13 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DianetMob.DB.Entities
 {
     public class Exercise : Model
     {
+        private int minutes;
+
         [PrimaryKey, AutoIncrement]
         public int IDExercise { get; set; }
 
@@ -18,7 +16,21 @@ namespace DianetMob.DB.Entities
 
         public int IDServer { get; set; }
 
-        public int Minutes { get; set; }
+        public int Minutes
+        {
+            get
+            {
+                return minutes;
+            }
+            set
+            {
+                if (minutes != value)
+                {
+                    minutes = value;
+                    OnPropertyChanged("Minutes");
+                }
+            }
+        }
 
         public DateTime TrainDate { get; set; }
 

@@ -13,6 +13,7 @@ namespace DianetMob.Views
     public partial class AddMealView : ContentView
     {
         private SearchMealPage searchPage = new SearchMealPage();
+        private AddExercisePage exerPage = new AddExercisePage();
         private DateTime SelectedDate;
         private ConnectionInfo info;
         public MyDay MyDayPage { get; set; }
@@ -62,9 +63,10 @@ namespace DianetMob.Views
             GotoPage(4);
         }
 
-        void OnAddExerciseClicked(object sender, EventArgs e)
+        public async void OnAddExerciseClicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new AddMealPage());
+            exerPage.LoadData(SelectedDate);
+            await Navigation.PushAsync(exerPage);
         }
 
         void OnAddRecordWeightClicked(object sender, EventArgs e)

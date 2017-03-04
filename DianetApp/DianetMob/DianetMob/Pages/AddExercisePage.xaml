@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DianetMob.Pages.AddExercisePage"
+             xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
+             Title="{iLang:Translate addInfo}">
+
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Save" Clicked="OnSaveExerciseBtnClicked"/>
+  </ContentPage.ToolbarItems>
+  
+  <ContentPage.Content>
+    <StackLayout Padding="5,10">
+      <Label TextColor="Navy" FontSize = "20" Text="{iLang:Translate exerciseMinutes}" />
+      <Entry Placeholder="" TextColor="Navy" FontSize="18" Text="{Binding Minutes, Mode=TwoWay}" x:Name="exerciseMins" Keyboard="Numeric"/>
+    </StackLayout>
+
+  </ContentPage.Content>
+</ContentPage>

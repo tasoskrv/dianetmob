@@ -31,6 +31,7 @@ namespace DianetMob.Pages
 
         public int IDMealSelected { get; set; }
         public int IDCategorySelected { get; set; }
+
         public SelectMealPage()
         {
             InitializeComponent();
@@ -54,6 +55,7 @@ namespace DianetMob.Pages
             unitPicker.ItemsSource = recordsUnits;
             ClearDetail();
         }
+
         public void CalcUnits(UserMeal usermeal = null)
         {
             this.usermeal = usermeal;
@@ -114,8 +116,6 @@ namespace DianetMob.Pages
             }
         }
 
-
-
         void OnCount1Chosen(object sender, SelectedItemChangedEventArgs e)
         {
             MealDetails();
@@ -125,7 +125,6 @@ namespace DianetMob.Pages
         {
             MealDetails();
         }
-
 
         void OnUnitChosen(object sender, SelectedItemChangedEventArgs e)
         {
@@ -222,7 +221,6 @@ namespace DianetMob.Pages
             }
 
             await Navigation.PopToRootAsync(true);
-
         }
     }
 }

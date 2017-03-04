@@ -432,4 +432,7 @@
   <data name="yes" xml:space="preserve">
     <value>NAI</value>
   </data>
+  <data name="exerciseMinutes" xml:space="preserve">
+    <value>Χρόνος άσκησης (σε λεπτά)</value>
+  </data>
 </root>
