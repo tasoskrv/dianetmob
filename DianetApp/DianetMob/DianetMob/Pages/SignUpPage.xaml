@@ -5,8 +5,8 @@
              x:Class="DianetMob.Pages.SignUpPage">
   <ContentPage.Content>
     
-    <StackLayout Orientation="Vertical">
-      <Image Source="logo1.png" Margin="20, 30, 20, 20" />
+    <StackLayout Orientation="Vertical" Margin="20, 30, 20, 20" >
+      <Image Source="logo2.png" HeightRequest="150"/>
 
       <Grid Margin="20,0,0,0" RowSpacing="0">
         <Grid.ColumnDefinitions>
