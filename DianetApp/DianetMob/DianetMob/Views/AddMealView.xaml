@@ -22,7 +22,7 @@
       <Button Text="Dinner"  Image="night.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="1" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddDinnerClicked"/>
       <Button Text="Snack" Image="snack.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddSnackClicked"/>
       <Button Text="Exercise" Image="exercise.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddExerciseClicked"/>
-      <Button Text="Record Weight" Image="recweight.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddRecordWeightClicked"/>
+      <Button Text="Water" Image="water.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddRecordWeightClicked"/>
     </Grid>
   </ContentView.Content>
 </ContentView>
