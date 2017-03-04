@@ -2266,8 +2266,8 @@ namespace DianetMob.Droid
 			// aapt resource value: 0x7f0200b5
 			public const int night_blue = 2130837685;
 			
-			// aapt resource value: 0x7f0200c4
-			public const int notification_template_icon_bg = 2130837700;
+			// aapt resource value: 0x7f0200c3
+			public const int notification_template_icon_bg = 2130837699;
 			
 			// aapt resource value: 0x7f0200b6
 			public const int pick = 2130837686;
@@ -2279,37 +2279,34 @@ namespace DianetMob.Droid
 			public const int profile = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int shop = 2130837689;
+			public const int smile = 2130837689;
 			
 			// aapt resource value: 0x7f0200ba
-			public const int smile = 2130837690;
+			public const int snack = 2130837690;
 			
 			// aapt resource value: 0x7f0200bb
-			public const int snack = 2130837691;
+			public const int snack_blue = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int snack_blue = 2130837692;
+			public const int splash = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int splash = 2130837693;
+			public const int sun = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int sun = 2130837694;
+			public const int sun_blue = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int sun_blue = 2130837695;
+			public const int Synch2 = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int Synch2 = 2130837696;
+			public const int water = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int water = 2130837697;
+			public const int weight = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int weight = 2130837698;
-			
-			// aapt resource value: 0x7f0200c3
-			public const int weight_list = 2130837699;
+			public const int weight_list = 2130837698;
 			
 			static Drawable()
 			{

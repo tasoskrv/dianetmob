@@ -674,7 +674,7 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Purchases.
+        ///   Looks up a localized string similar to Subscription.
         /// </summary>
         internal static string purchases {
             get {

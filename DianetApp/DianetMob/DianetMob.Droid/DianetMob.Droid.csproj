@@ -313,12 +313,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\addgrid.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\shop.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\shop.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\progressbar.js" />
   </ItemGroup>
   <ItemGroup>

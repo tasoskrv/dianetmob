@@ -304,7 +304,7 @@
     <value>Profile</value>
   </data>
   <data name="purchases" xml:space="preserve">
-    <value>Purchases</value>
+    <value>Subscription</value>
   </data>
   <data name="quantity" xml:space="preserve">
     <value>Quantity</value>
