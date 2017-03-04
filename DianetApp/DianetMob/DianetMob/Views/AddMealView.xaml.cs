@@ -30,7 +30,39 @@ namespace DianetMob.Views
             {
                 searchPage.Mode = mode;
                 MyDayPage.ToggleAddView();
-                await Navigation.PushAsync(searchPage);
+
+                if (mode == 6)
+                {
+
+                    /*
+                    IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName FROM meal WHERE Deleted=0 AND NormalizedName LIKE '" + str + "%'");
+                    foreach (Meal meal in meals)
+                    {
+                        records.Add(new Meal { Name = meal.Name, IDMeal = meal.IDMeal });
+                    }
+
+
+                    Meal myMeal = e.Item as Meal;
+
+                    selectPage.IDMealSelected = myMeal.IDMeal;
+                    selectPage.IDCategorySelected = Mode;
+                    selectPage.SelectedDate = SelectedDate;
+                    selectPage.CalcUnits();
+                    ASearchBar.Text = "";
+                    await Navigation.PushAsync(selectPage);
+
+                    */
+
+
+
+
+
+
+                }
+                else
+                {
+                    await Navigation.PushAsync(searchPage);
+                }                    
             }
             else
             {
@@ -69,9 +101,9 @@ namespace DianetMob.Views
             await Navigation.PushAsync(exerPage);
         }
 
-        void OnAddRecordWeightClicked(object sender, EventArgs e)
+        void OnAddWaterClicked(object sender, EventArgs e)
         {
-            // await Navigation.PushAsync(new AddMealPage());
+            GotoPage(6);
         }
     }
 }
