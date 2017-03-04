@@ -5,7 +5,7 @@
              xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              Title="Language">
   <StackLayout  Margin="20, 30, 20, 50">
-    <Image Source="logo1.png" />
+    <Image Source="logo2.png" HeightRequest="150" />
     <Label Margin="0, 30, 0, 5" VerticalOptions="Start" Text="Select Language" Font="Large"/>
     <ListView VerticalOptions="Start" x:Name="LangPicker" BackgroundColor="#FFF" HeightRequest="101" RowHeight = "50">
       <ListView.ItemTemplate>

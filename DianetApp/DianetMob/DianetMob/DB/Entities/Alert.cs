@@ -107,13 +107,13 @@ namespace DianetMob.DB.Entities
         public string Image {
             get {
                 if (MealType == 1)
-                    return "morning.png";
+                    return "morning_blue.png";
                 else if (MealType == 2)
-                    return "sun.png";
+                    return "sun_blue.png";
                 else if (MealType == 3)
-                    return "night.png";
+                    return "night_blue.png";
                 else
-                    return "snack.png";
+                    return "snack_blue.png";
             }
         }
 

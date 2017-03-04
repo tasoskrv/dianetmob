@@ -7,7 +7,7 @@
       
   <ContentPage.Content>
     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 30, 20, 50">
-      <Image Source="logo1.png"  />           
+      <Image Source="logo2.png" HeightRequest="150"/>           
       <Entry x:Name="usernameEntry" Placeholder="{iLang:Translate username}" Keyboard="Email" Completed="OnValidateEmail"/>
       <Entry x:Name="passwordEntry" Placeholder="{iLang:Translate password}" IsPassword="true" />      
       <Button x:Name="btnlogin" Text="{iLang:Translate login}" Clicked="OnLoginButtonClicked" />

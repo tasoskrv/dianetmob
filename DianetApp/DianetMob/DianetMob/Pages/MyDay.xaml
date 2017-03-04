@@ -7,7 +7,7 @@
              Title="{iLang:Translate myDay}">
   <ContentPage.ToolbarItems>
     <ToolbarItem Text=""  Clicked="OnSynchClicked" Icon="Synch2.png"/>
-    <ToolbarItem Text=""  Clicked="OnAddMealClicked" Icon="plus.png"/>
+    <ToolbarItem Text=""  Clicked="OnAddMealClicked" Icon="add.png"/>
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
     <StackLayout>
