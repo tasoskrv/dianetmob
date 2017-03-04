@@ -19,10 +19,15 @@
 
     <BoxView Color="Gray"
              HeightRequest="1"/>
-    <Label Text="{iLang:Translate valid}"
-                 TextColor="Green" />
-    
-    <Label Text="{Binding EndDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="Green" />
+
+    <Label HeightRequest ="50" Margin="0,20,0,0"
+                             WidthRequest="50"
+                             VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="#689f39" Font="20" Text="{iLang:Translate valid}"/>
+
+    <Label HeightRequest ="50"
+                                 WidthRequest="50"
+                                 VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="#689f39" Font="20" Text="{Binding EndDate, StringFormat='{0:MMMM dd, yyyy}'}"/>
+
   </StackLayout>
 
 </ContentPage>

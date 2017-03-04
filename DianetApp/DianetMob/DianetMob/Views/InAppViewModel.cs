@@ -165,7 +165,7 @@ namespace DianetMob.Views
                     ProductId = pack.GooglePlay,
                     Title = pack.Name,
                     Description = pack.Description,
-                    Price = pack.Price.ToString(),
+                    Price = pack.Price.ToString()+ " €",
                     PriceCurrencyCode = "EUR",
                     ProductPackage = pack,
                     IconSource="shop.png"

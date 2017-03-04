@@ -13,7 +13,7 @@
   <StackLayout Spacing="0"
                VerticalOptions="FillAndExpand">
 
-    <ContentView Padding="10, 36, 0, 5">
+    <ContentView Padding="10, 25, 0, 5">
       <Label Text="{iLang:Translate products}"
              TextColor="#AAAAAA"/>
     </ContentView>
@@ -38,38 +38,36 @@
                 <StackLayout HorizontalOptions="FillAndExpand">
                   <Label Text="{Binding Title}"
                          FontSize="Large"
-                         TextColor="Black"/>
+                         TextColor="#444"/>
                   <Label Text="{Binding Description}"
                          FontSize="Medium"
                          TextColor="#666"/>
-                  <Label Text="Restore"
+                  <Label Text=""
                          TextColor="Blue">
-                    <Label.GestureRecognizers>
+                    <!--<Label.GestureRecognizers>
                       <TapGestureRecognizer Command="{Binding Source={x:Static local:App.ViewModel}, Path=RestoreCommand}"
                                             CommandParameter="{Binding}" />
-                    </Label.GestureRecognizers>
+                    </Label.GestureRecognizers>-->
                   </Label>
-                  <Label Text="{iLang:Translate refund}"
+                  <Label Text=""
                          TextColor="Green">
-                    <Label.GestureRecognizers>
+                    <!--<Label.GestureRecognizers>
                       <TapGestureRecognizer Command="{Binding Source={x:Static local:App.ViewModel}, Path=RefundCommand}"
                                             CommandParameter="{Binding}" />
-                    </Label.GestureRecognizers>
+                    </Label.GestureRecognizers>-->
                   </Label>
                 </StackLayout>
 
                 <StackLayout>
-                  <Image HeightRequest ="50"
+                  <Label HeightRequest ="50"
                          WidthRequest="50"
-                         Aspect="AspectFill"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Source="{Binding IconSource}"/>
+                         VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="#689f39" Font="20" Text="{Binding Price}"/>
+                  
                   <Button Text="{iLang:Translate buy}"
                           TextColor="White"
                           FontSize="Small"
                           HorizontalOptions="End"
-                          BackgroundColor="Green"
+                          BackgroundColor="#689f39"
                           Command="{Binding Source={x:Static local:App.ViewModel}, Path=PurchaseCommand}"
                           CommandParameter="{Binding}"/>
                 </StackLayout>
