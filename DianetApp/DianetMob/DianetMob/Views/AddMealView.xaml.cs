@@ -1,5 +1,7 @@
 ﻿using DianetMob.DB;
+using DianetMob.DB.Entities;
 using DianetMob.Pages;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +17,16 @@ namespace DianetMob.Views
         private SearchMealPage searchPage = new SearchMealPage();
         private AddExercisePage exerPage = new AddExercisePage();
         private DateTime SelectedDate;
+        private SelectMealPage selectPage = new SelectMealPage();
         private ConnectionInfo info;
         public MyDay MyDayPage { get; set; }
-         
+        private SQLiteConnection conn = null;
 
         public AddMealView()
         {
             InitializeComponent();
             info = StorageManager.GetConnectionInfo();
+            conn = StorageManager.GetConnection();
         }
         public async void GotoPage(int mode)
         {
@@ -34,29 +38,19 @@ namespace DianetMob.Views
                 if (mode == 6)
                 {
 
-                    /*
-                    IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName FROM meal WHERE Deleted=0 AND NormalizedName LIKE '" + str + "%'");
+                    
+                    IEnumerable<Meal> meals = conn.Query<Meal>("SELECT IDMeal,Name,Identifier FROM meal WHERE Deleted=0 AND Identifier=1 LIMIT 1");
                     foreach (Meal meal in meals)
                     {
-                        records.Add(new Meal { Name = meal.Name, IDMeal = meal.IDMeal });
+                        //records.Add(new Meal { Name = meal.Name, IDMeal = meal.IDMeal });
+                        //Meal myMeal = e.Item as Meal;
+                        selectPage.IDMealSelected = meal.IDMeal;
+                        selectPage.IDCategorySelected = mode;
+                        selectPage.SelectedDate = SelectedDate;
+                        //selectPage.CalcUnits();                        
                     }
-
-
-                    Meal myMeal = e.Item as Meal;
-
-                    selectPage.IDMealSelected = myMeal.IDMeal;
-                    selectPage.IDCategorySelected = Mode;
-                    selectPage.SelectedDate = SelectedDate;
-                    selectPage.CalcUnits();
-                    ASearchBar.Text = "";
                     await Navigation.PushAsync(selectPage);
-
-                    */
-
-
-
-
-
+                    
 
                 }
                 else
