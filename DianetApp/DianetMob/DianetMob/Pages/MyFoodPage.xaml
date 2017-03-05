@@ -16,6 +16,13 @@
           <ViewCell>
             <ViewCell.ContextActions>
               <MenuItem Text="{iLang:Translate delete}" CommandParameter="{Binding .}" Clicked="OnDeleted"/>
+
+              <MenuItem Clicked="OnDeleted" CommandParameter="{Binding .}"
+               Text="More" />
+              <MenuItem Clicked="OnDeleted" CommandParameter="{Binding .}"
+                 Text="Delete" IsDestructive="True" />
+
+
             </ViewCell.ContextActions>
             <StackLayout Orientation="Horizontal" Padding="5">
               <Image Source="myfood.png" />
@@ -26,7 +33,14 @@
                   <Label Text="{Binding Description}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/> 
                 </StackLayout>
               </StackLayout>
-            </StackLayout>
+              <Image Source="http://findicons.com/files/icons/99/office/128/delete.png">
+                <Image.GestureRecognizers>
+                  <TapGestureRecognizer
+                          Tapped="OnDeleted"
+                          NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+              </Image>
+              </StackLayout>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>

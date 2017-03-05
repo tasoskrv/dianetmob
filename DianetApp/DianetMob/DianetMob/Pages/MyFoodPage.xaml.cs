@@ -46,7 +46,7 @@ namespace DianetMob.Pages
         }
 
         public void OnDeleted(object sender, EventArgs e)
-        {
+        {            
             var selectedItem = (MenuItem)sender;
             var selectedMeal = selectedItem.CommandParameter as Meal;
 
@@ -62,6 +62,11 @@ namespace DianetMob.Pages
             setRecords();
         }
 
+        /*
+        void OnTapGestureRecognizerTapped(object sender, EventArgs args) {
+            DisplayAlert("1", "2", "3");
+        }
+        */
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             Meal myFood = e.Item as Meal;
