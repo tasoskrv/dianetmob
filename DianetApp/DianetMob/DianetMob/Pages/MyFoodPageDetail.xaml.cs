@@ -93,10 +93,16 @@ namespace DianetMob.Pages
             ml.IDUnit = mapMeal.IDUnit;
 
             if ((uFood.Name == null) || uFood.Name.Equals(""))
+            {
                 DisplayAlert("Please", "fill name", "OK");
-            else if ((uFood.Description == null) || uFood.Description.Equals(""))
+            }
+            else if (uFood.Description == null || uFood.Description.Equals(""))
             {
                 DisplayAlert("Please", "fill description", "OK");
+            }
+            else if (unitPicker.SelectedIndex == -1)
+            {
+                DisplayAlert("Please", "select unit", "OK");
             }
             else
             {
@@ -124,6 +130,7 @@ namespace DianetMob.Pages
                 Navigation.PopAsync();
             }
         }
+
         void OnUnitChosen(object sender, EventArgs e)
         {
             Picker unitPicker = (Picker)sender;
