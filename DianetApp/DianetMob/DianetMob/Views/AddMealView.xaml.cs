@@ -35,7 +35,7 @@ namespace DianetMob.Views
                 searchPage.Mode = mode;
                 MyDayPage.ToggleAddView();
 
-                if (mode == 6)
+                if (mode == 5)
                 {
 
                     
@@ -44,14 +44,18 @@ namespace DianetMob.Views
                     {
                         //records.Add(new Meal { Name = meal.Name, IDMeal = meal.IDMeal });
                         //Meal myMeal = e.Item as Meal;
-                        selectPage.IDMealSelected = meal.IDMeal;
+                       // selectPage.IDMealSelected = meal.IDMeal;
                         selectPage.IDCategorySelected = mode;
                         selectPage.SelectedDate = SelectedDate;
-                        //selectPage.CalcUnits();                        
+                        selectPage.CalcUnits(meal.IDMeal);                        
                     }
                     await Navigation.PushAsync(selectPage);
                     
 
+                }
+                else if (mode == 6) {
+                    exerPage.LoadData(SelectedDate);
+                    await Navigation.PushAsync(exerPage);
                 }
                 else
                 {
@@ -91,13 +95,12 @@ namespace DianetMob.Views
 
         public async void OnAddExerciseClicked(object sender, EventArgs e)
         {
-            exerPage.LoadData(SelectedDate);
-            await Navigation.PushAsync(exerPage);
+            GotoPage(6);
         }
 
         void OnAddWaterClicked(object sender, EventArgs e)
         {
-            GotoPage(6);
+            GotoPage(5);
         }
     }
 }

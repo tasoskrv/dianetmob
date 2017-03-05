@@ -50,10 +50,10 @@ namespace DianetMob.Pages
             //await  Navigation.PushModalAsync(pg);
             //if (answer == "ΝΑΙ")
             //{
-                selectPage.IDMealSelected = myMeal.IDMeal;
+               // selectPage.IDMealSelected = myMeal.IDMeal;
                 selectPage.IDCategorySelected = Mode;
                 selectPage.SelectedDate = SelectedDate;
-                selectPage.CalcUnits();
+                selectPage.CalcUnits(myMeal.IDMeal);
                 ASearchBar.Text = "";
                 await Navigation.PushAsync(selectPage);
             //}

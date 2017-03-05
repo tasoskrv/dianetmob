@@ -357,7 +357,7 @@
   <data name="dinner" xml:space="preserve">
     <value>Δείπνο</value>
   </data>
-  <data name="excercise" xml:space="preserve">
+  <data name="exercise" xml:space="preserve">
     <value>Άσκηση</value>
   </data>
   <data name="exit" xml:space="preserve">
@@ -434,5 +434,8 @@
   </data>
   <data name="exerciseMinutes" xml:space="preserve">
     <value>Χρόνος άσκησης (σε λεπτά)</value>
+  </data>
+  <data name="water" xml:space="preserve">
+    <value>Νερό</value>
   </data>
 </root>

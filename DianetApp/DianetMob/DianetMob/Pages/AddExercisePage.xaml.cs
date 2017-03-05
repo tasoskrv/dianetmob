@@ -20,6 +20,12 @@ namespace DianetMob.Pages
             conn = StorageManager.GetConnection();
         }
 
+        protected override void OnAppearing()
+        {
+            exerciseMins.Focus();
+        }
+
+
         public async void OnSaveExerciseBtnClicked(object sender, EventArgs eventArgs)
         {
             exercise.TrainDate = SelectedDate;

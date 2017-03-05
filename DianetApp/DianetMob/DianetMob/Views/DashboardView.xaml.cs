@@ -36,13 +36,15 @@ namespace DianetMob.Views
         public string GetLabelCategory(int id) {
             switch (id) {
                 case 1:
-                    return "\"Breakfast\"";
+                    return "\""+Properties.LangResource.breakfast+"\"";
                 case 2:
-                    return "\"Lunch\"";
+                    return "\"" + Properties.LangResource.lunch + "\"";
                 case 3:
-                    return "\"Dinner\"";
+                    return "\"" + Properties.LangResource.dinner + "\"";
                 case 4:
-                    return "\"Snack\"";
+                    return "\"" + Properties.LangResource.snack + "\"";
+                case 6:
+                    return "\"" + Properties.LangResource.exercise + "\"";
                 default:
                     return "\"\"";
             } 

@@ -29,7 +29,7 @@ namespace DianetMob.Pages
 
         public DateTime SelectedDate { get; set; }
 
-        public int IDMealSelected { get; set; }
+        //public int IDMealSelected { get; set; }
         public int IDCategorySelected { get; set; }
 
         public SelectMealPage()
@@ -56,16 +56,18 @@ namespace DianetMob.Pages
             ClearDetail();
         }
 
-        public void CalcUnits(UserMeal usermeal = null)
+        public void CalcUnits(int IDMealSelected, UserMeal usermeal = null)
         {
+           // int IDMealSelected = 0;
+            SelMapMealUnit = null; 
             this.usermeal = usermeal;
             recordsUnits.Clear();
-            if (usermeal != null)
-            {
-                IDMealSelected = conn.Get<MealUnit>(usermeal.IDMealUnit).IDMeal;
-            }
+           // if (usermeal != null)
+           // {
+          //      IDMealSelected = conn.Get<MealUnit>(usermeal.IDMealUnit).IDMeal;
+          //  }
                 // DicUnit.Clear();
-            IEnumerable<MapMealUnit> mlUnit = conn.Query<MapMealUnit>("SELECT M.IdMealUnit as IdMealUnit , U.Name as UName, M.calories as Calories, M.protein as Protein, M.Carb as Carb, M.fat as Fat, M.satfat as Satfat, M.unsatfat as Unsatfat, M.cholesterol as Cholesterol, M.sugar as Sugar, M.natrium as Natrium, M.potassium as Potassium, M.fiber as Fiber FROM MealUnit as M  JOIN Unit as U ON M.idUnit = U.idUnit WHERE M.IDMeal=" + this.IDMealSelected);
+            IEnumerable<MapMealUnit> mlUnit = conn.Query<MapMealUnit>("SELECT M.IdMealUnit as IdMealUnit , U.Name as UName, M.calories as Calories, M.protein as Protein, M.Carb as Carb, M.fat as Fat, M.satfat as Satfat, M.unsatfat as Unsatfat, M.cholesterol as Cholesterol, M.sugar as Sugar, M.natrium as Natrium, M.potassium as Potassium, M.fiber as Fiber FROM MealUnit as M  JOIN Unit as U ON M.idUnit = U.idUnit WHERE M.IDMeal=" + IDMealSelected);
             SelMapMealUnit = mlUnit.First();
 
 
@@ -105,14 +107,16 @@ namespace DianetMob.Pages
                 counter2Picker.ScrollTo(counter2Picker.SelectedItem, ScrollToPosition.Center, true);
                 MealDetails();
             }
-            else
-            {
+            else {
+
                 counter1Picker.ItemSelected -= OnCount1Chosen;
                 counter1Picker.SelectedItem = DicCount1[0];
                 counter1Picker.ItemSelected += OnCount1Chosen;
+                counter1Picker.ScrollTo(counter1Picker.SelectedItem, ScrollToPosition.Center, true);
                 counter2Picker.ItemSelected -= OnCount2Chosen;
                 counter2Picker.SelectedItem = DicCount2[0];
                 counter2Picker.ItemSelected += OnCount2Chosen;
+                counter2Picker.ScrollTo(counter2Picker.SelectedItem, ScrollToPosition.Center, true);
             }
         }
 

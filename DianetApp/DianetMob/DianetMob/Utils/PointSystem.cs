@@ -37,6 +37,10 @@ namespace DianetMob.Utils
             return Math.Round(cal / 80, 2);
         }
 
+        public static double PointExerciseCalculate(double min) {
+            return min;
+        }
+
 
         //----Ypologismos thermidwn 
         //     TODO: pws eisagw entasi askisis!!!

@@ -13,6 +13,7 @@ namespace DianetMob.Model
         private double lunch;
         private double dinner;
         private double snack;
+        private double exercise;
 
         public double Budget
         {
@@ -22,22 +23,36 @@ namespace DianetMob.Model
             } 
         }
 
-        public double Food {
-            get {
+        public double Food
+        {
+            get
+            {
                 return Breakfast + Lunch + Dinner + Snack;
             }
         }
 
-        public double Exercise { get; set; }
+        public double Exercise
+        {
+            get
+            {
+                return PointSystem.PointExerciseCalculate(exercise);
+            }
+            set
+            {
+                exercise = value;
+            }
+        }
 
-        public double Net {
+        public double Net
+        {
             get
             {
                 return Food - Exercise;
             }
         }
 
-        public double Under {
+        public double Under
+        {
             get
             {
                 return Budget - Net;

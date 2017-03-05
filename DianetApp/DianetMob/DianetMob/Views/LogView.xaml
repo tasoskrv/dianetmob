@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="{iLang:Translate budget}" FontSize="10" />
         <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Text="{iLang:Translate food}" FontSize="10" />
-        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Text="{iLang:Translate excercise}" FontSize="10" />
+        <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Text="{iLang:Translate exercise}" FontSize="10" />
         <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Text="{iLang:Translate net}" FontSize="10" />
         <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Text="{iLang:Translate under}" FontSize="10" />
         <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="{Binding Budget}" Font="Bold,15" />

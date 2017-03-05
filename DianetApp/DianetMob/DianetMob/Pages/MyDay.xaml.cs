@@ -30,6 +30,7 @@ namespace DianetMob.Pages
             
             GenLib.StartUp();
             addmealview.MyDayPage = this;
+            logview.RecreateDataAction = RecreateData;
         }
 
         protected async override void OnAppearing()
@@ -74,15 +75,20 @@ namespace DianetMob.Pages
 
             string query2 = "Select  SUM(mu.Calories*um.QTY) as Calories, um.MealDate as MealDate  from usermeal as um inner join mealunit as mu on um.IDMealUnit=mu.IDMealUnit where um.iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and um.mealdate BETWEEN ? and ? and um.deleted=0 GROUP BY um.mealdate";
 
+            string query3 = "Select IDExercise, Minutes, TrainDate from exercise where iduser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " and TrainDate BETWEEN ? and ? and deleted=0";
+
+
             IEnumerable<MapLogData> logrecords = conn.Query<MapLogData>(query, datePick.Date, datePick.Date);
             DashboardDic.Clear();
             DashboardDic.Add(1, 0);
             DashboardDic.Add(2, 0);
             DashboardDic.Add(3, 0);
             DashboardDic.Add(4, 0);
+            DashboardDic.Add(6, 0);
             foreach (MapLogData logrecord in logrecords)
             {
-                DashboardDic[logrecord.IDCategory] += logrecord.Calories;
+                if (logrecord.IDCategory!=5)//oxi nero
+                    DashboardDic[logrecord.IDCategory] += logrecord.Calories;
             }
             
             Points points = new Points();
@@ -93,7 +99,14 @@ namespace DianetMob.Pages
 
             IEnumerable<MapLogData> Weekrecords = conn.Query<MapLogData>(query2, datePick.Date.AddDays(-6.0).Ticks, datePick.Date.Ticks);
 
-            logview.RecreateData(points, logrecords, datePick.Date);
+            IEnumerable<Exercise> exerciseRecords = conn.Query<Exercise>(query3, datePick.Date, datePick.Date);
+            foreach (Exercise exrecord in exerciseRecords)
+            {
+                DashboardDic[6] += exrecord.Minutes;
+            }
+            points.Exercise = DashboardDic[6];
+
+            logview.RecreateData(points, logrecords, exerciseRecords, datePick.Date);
             dashboardview.FillPieContent(DashboardDic, points.Food, Weekrecords);
         }
 

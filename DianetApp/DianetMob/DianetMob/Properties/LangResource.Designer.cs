@@ -289,9 +289,9 @@ namespace DianetMob.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Excercise.
         /// </summary>
-        internal static string excercise {
+        internal static string exercise {
             get {
-                return ResourceManager.GetString("excercise", resourceCulture);
+                return ResourceManager.GetString("exercise", resourceCulture);
             }
         }
         
@@ -976,6 +976,15 @@ namespace DianetMob.Properties {
         internal static string valid {
             get {
                 return ResourceManager.GetString("valid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water.
+        /// </summary>
+        internal static string water {
+            get {
+                return ResourceManager.GetString("water", resourceCulture);
             }
         }
         

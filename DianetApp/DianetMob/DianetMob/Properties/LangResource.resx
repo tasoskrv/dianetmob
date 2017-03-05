@@ -357,7 +357,7 @@
   <data name="dinner" xml:space="preserve">
     <value>Dinner</value>
   </data>
-  <data name="excercise" xml:space="preserve">
+  <data name="exercise" xml:space="preserve">
     <value>Excercise</value>
   </data>
   <data name="exit" xml:space="preserve">
@@ -437,5 +437,8 @@
   </data>
   <data name="exerciseMinutes" xml:space="preserve">
     <value>Exercise time (in minutes)</value>
+  </data>
+  <data name="water" xml:space="preserve">
+    <value>Water</value>
   </data>
 </root>
