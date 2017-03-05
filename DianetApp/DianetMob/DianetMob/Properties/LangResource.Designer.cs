@@ -197,6 +197,24 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have changed the measurement unit. Do you want to automatically convert the measurements?.
+        /// </summary>
+        internal static string changeWeightType {
+            get {
+                return ResourceManager.GetString("changeWeightType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Measurement unit change.
+        /// </summary>
+        internal static string changeWeightTypeTitle {
+            get {
+                return ResourceManager.GetString("changeWeightTypeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cholesterol.
         /// </summary>
         internal static string Cholesterol {

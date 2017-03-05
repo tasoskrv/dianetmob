@@ -373,7 +373,11 @@ namespace DianetMob.Utils
                 if (servsync.data[0].Settings == 1)
                 {
                     ModelService<Settings> servSettings = await ServiceConnector.GetServiceData<ModelService<Settings>>("/settings/getall" + gencall);
-                    servSettings.SaveAllToDB();
+                    Settings settings = StorageManager.GetConnectionInfo().Settings;
+                    settings.RemindWeight = servSettings.data[0].RemindWeight;
+                    settings.TrialPeriod= servSettings.data[0].TrialPeriod;
+                    settings.UpdateDate = servSettings.data[0].UpdateDate;
+                    StorageManager.UpdateData<Settings>(settings);
                 }
                 //User calls
                 if (servsync.data[0].Alert == 1)

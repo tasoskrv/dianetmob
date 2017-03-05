@@ -438,4 +438,10 @@
   <data name="water" xml:space="preserve">
     <value>Νερό</value>
   </data>
+  <data name="changeWeightType" xml:space="preserve">
+    <value>Έχετε αλλάξει την μονάδα μέτρησης. Θέλετε να μετατρέψετε αυτόματα τις μετρήσεις?</value>
+  </data>
+  <data name="changeWeightTypeTitle" xml:space="preserve">
+    <value>Αλλαγή μονάδας μέτρησης</value>
+  </data>
 </root>

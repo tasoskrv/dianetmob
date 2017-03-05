@@ -8,7 +8,7 @@ namespace DianetMob.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (int.Parse(value.ToString()) == 0)
+            if (Double.Parse(value.ToString()) == 0)
                 return "";
             return value;
         }

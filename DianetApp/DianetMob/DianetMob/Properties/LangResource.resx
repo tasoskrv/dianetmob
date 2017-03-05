@@ -441,4 +441,10 @@
   <data name="water" xml:space="preserve">
     <value>Water</value>
   </data>
+  <data name="changeWeightType" xml:space="preserve">
+    <value>You have changed the measurement unit. Do you want to automatically convert the measurements?</value>
+  </data>
+  <data name="changeWeightTypeTitle" xml:space="preserve">
+    <value>Measurement unit change</value>
+  </data>
 </root>

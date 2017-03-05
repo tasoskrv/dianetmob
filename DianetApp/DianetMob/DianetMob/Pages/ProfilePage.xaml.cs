@@ -22,7 +22,8 @@ namespace DianetMob.Pages
         private ChangePassword changePasswordPageDt = new ChangePassword();
         private bool isUploading=false;
         // private int total = 0;
-        User user = null;
+        private User user = null;
+        private int Aweighttype;
 
         Dictionary<string, int> heights = new Dictionary<string, int>
         {
@@ -67,6 +68,7 @@ namespace DianetMob.Pages
             }
             user = StorageManager.GetConnectionInfo().LoginUser;
             BindingContext = user;
+            Aweighttype = user.WeightType;
             if (user.ImageBefore != null) {
                 Stream Astream = new MemoryStream(user.ImageBefore);
                 BeforeImage.Source = ImageSource.FromStream(() => { return Astream; });
@@ -78,7 +80,7 @@ namespace DianetMob.Pages
             }
         }
         
-        private void OnProfileSubmitClicked(object sender, EventArgs e)
+        private async void OnProfileSubmitClicked(object sender, EventArgs e)
         {
             if (ProfileBtn.Text.Equals(Properties.LangResource.edit))
             {
@@ -107,8 +109,75 @@ namespace DianetMob.Pages
                 {
                     if (AllFieldsAreFilled())
                     {
-                      //  var user = StorageManager.GetConnectionInfo().LoginUser;
-                      user.UpdateDate = DateTime.UtcNow;
+                        if (Aweighttype != user.WeightType)
+                        {
+                            var answer = await App.Current.MainPage.DisplayAlert(Properties.LangResource.changeWeightTypeTitle, Properties.LangResource.changeWeightType, Properties.LangResource.yes, Properties.LangResource.no);
+                            if (answer == true)
+                            {
+                                IEnumerable<Weight> Wrecords = conn.Query<Weight>("select * from weight where iduser=" + user.IDUser);
+
+                                if (Aweighttype == 1)
+                                {
+                                    if (user.WeightType == 2)
+                                    {
+                                        foreach (Weight wrecord in Wrecords)
+                                        {
+                                            wrecord.WValue = Math.Round(wrecord.WValue * 2.204, 2);
+                                            StorageManager.UpdateData<Weight>(wrecord);
+                                        }
+                                    }
+                                    else if (user.WeightType == 3)
+                                    {
+                                        foreach (Weight wrecord in Wrecords)
+                                        {
+                                            wrecord.WValue = Math.Round(wrecord.WValue * 35.273, 2);
+                                            StorageManager.UpdateData<Weight>(wrecord);
+                                        }
+                                    }
+                                }
+                                else if (Aweighttype == 2)
+                                {
+                                    if (user.WeightType == 1)
+                                    {
+                                        foreach (Weight wrecord in Wrecords)
+                                        {
+                                            wrecord.WValue = Math.Round(wrecord.WValue * 0.453, 2);
+                                            StorageManager.UpdateData<Weight>(wrecord);
+                                        }
+                                    }
+                                    else if (user.WeightType == 3)
+                                    {
+                                        foreach (Weight wrecord in Wrecords)
+                                        {
+                                            wrecord.WValue = Math.Round(wrecord.WValue * 16, 2);
+                                            StorageManager.UpdateData<Weight>(wrecord);
+                                        }
+                                    }
+                                }
+                                else if (Aweighttype == 3)
+                                {
+                                    if (user.WeightType == 1)
+                                    {
+                                        foreach (Weight wrecord in Wrecords)
+                                        {
+                                            wrecord.WValue = Math.Round(wrecord.WValue * 0.028, 2);
+                                            StorageManager.UpdateData<Weight>(wrecord);
+                                        }
+                                    }
+                                    else if (user.WeightType == 2)
+                                    {
+                                        foreach (Weight wrecord in Wrecords)
+                                        {
+                                            wrecord.WValue = Math.Round(wrecord.WValue * 0.0625, 2);
+                                            StorageManager.UpdateData<Weight>(wrecord);
+                                        }
+                                    }
+                                }
+                            }
+                            Aweighttype = user.WeightType;
+                        }
+                        //  var user = StorageManager.GetConnectionInfo().LoginUser;
+                        user.UpdateDate = DateTime.UtcNow;
                       //  int heightType = heights[fHeightPicker.Items[fHeightPicker.SelectedIndex]];
                       //  int genderType = genders[fSexPicker.Items[fSexPicker.SelectedIndex]];
                       //  user.FirstName = fFirstNameEntry.Text;

@@ -59,7 +59,7 @@ namespace DianetMob.Pages
             else if (wght.IDWeight > 0)
             {
                 StorageManager.UpdateData(wght);
-                new MyWeight();
+                setRecordsAction();
                 Navigation.PopAsync();
             }
             else
