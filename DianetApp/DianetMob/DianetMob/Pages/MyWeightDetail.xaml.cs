@@ -15,6 +15,7 @@ namespace DianetMob.Pages
     {
         private Weight wght;
         private SQLiteConnection conn = null;
+        public Action setRecordsAction { get; set; }
 
         public MyWeightDetail()
         {
@@ -63,15 +64,6 @@ namespace DianetMob.Pages
             }
             else
             {
-                /*
-                long tick = 0;
-                if (weightdate.Ticks > 0)
-                    tick = usersettings.LastSyncDate.AddDays(-1).Ticks;
-                //meal
-                IEnumerable<Meal> meals = conn.Query<Meal>("SELECT * FROM Meal WHERE IDUser=" + iduser + " AND UpdateDate>= ?", tick);
-                weightdate.Date.Ticks
-                */
-
                 List<Weight> wghts = conn.Query<Weight>("SELECT IDWeight FROM Weight WHERE Deleted=0 AND WeightDate = ? ", weightdate.Date.Ticks);
                 if (wghts.Count > 0)
                 {
@@ -84,8 +76,8 @@ namespace DianetMob.Pages
                 {
                     wght.InsertDate = wght.UpdateDate;
                     StorageManager.InsertData(wght);
-                    MyWeight.recordsWgt.Add(wght);
-                }                                
+                }
+                setRecordsAction();
                 Navigation.PopAsync();
             }
         }

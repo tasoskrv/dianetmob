@@ -95,7 +95,7 @@ namespace DianetMob.Pages
             info.Settings.LastLoggedIn = user.IDUser;
             Settings settings = info.Settings;
             StorageManager.UpdateData<Settings>(settings);
-            await GenLib.FullSynch();
+            await GenLib.LoginSynch();
             if (user.Isactive == 0)
             {
                 MessageLabel.Text = "User is not active";

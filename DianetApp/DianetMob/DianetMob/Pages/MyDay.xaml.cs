@@ -28,7 +28,7 @@ namespace DianetMob.Pages
             info = StorageManager.GetConnectionInfo();
             subscription = info.LoadActiveSubscription();
             
-            GenLib.StartUp();
+            GenLib.StartUp(loader);
             addmealview.MyDayPage = this;
             logview.RecreateDataAction = RecreateData;
         }
@@ -126,7 +126,7 @@ namespace DianetMob.Pages
 
         public void OnSynchClicked(object sender, EventArgs e)
         {
-            GenLib.FullSynch(true);
+            GenLib.FullSynch(loader,true);
         }
         
         public void ToggleAddView()

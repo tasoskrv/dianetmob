@@ -9,7 +9,7 @@
     <ToolbarItem Text="{iLang:Translate add}" Clicked="OnAddFoodClicked" />
   </ContentPage.ToolbarItems>
   
-  <StackLayout VerticalOptions="StartAndExpand" >
+  <StackLayout VerticalOptions="FillAndExpand" >
     <ListView x:Name="ListViewMyFoods" ItemTapped="OnItemTapped" RowHeight="70">
       <ListView.ItemTemplate>
         <DataTemplate>
@@ -20,7 +20,7 @@
             <StackLayout Orientation="Horizontal" Padding="5">
               <Image Source="myfood.png" />
               <StackLayout Orientation="Vertical">
-                <Label Text="{Binding InsertDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#c3c3c3" />
+                <Label Text="{Binding UpdateDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#c3c3c3" />
                 <StackLayout Orientation="Horizontal">
                   <Label Text="{Binding Name}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
                   <Label Text="{Binding Description}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/> 

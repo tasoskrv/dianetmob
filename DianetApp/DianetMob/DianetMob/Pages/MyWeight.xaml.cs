@@ -15,7 +15,7 @@ namespace DianetMob.Pages
     public partial class MyWeight : ContentPage
     {
         private SQLiteConnection conn = null;
-        public static ObservableCollection<Weight> recordsWgt = new ObservableCollection<Weight>();
+        public ObservableCollection<Weight> recordsWgt = new ObservableCollection<Weight>();
         private MyWeightDetail myWeightDt = new MyWeightDetail();
         private PlanPageDetail planPageDt = new PlanPageDetail();
         private HtmlWebViewSource webview = null;
@@ -23,22 +23,30 @@ namespace DianetMob.Pages
         public MyWeight()
         {
             InitializeComponent();
+            ListViewWeight.ItemsSource = recordsWgt;
             conn = StorageManager.GetConnection();            
             webview = new HtmlWebViewSource();
             webview2.Source = webview;
             setRecords();
+            myWeightDt.setRecordsAction = setRecords;
         }
 
         public void setRecords()
         {
-            ListViewWeight.ItemsSource = null;
-            recordsWgt.Clear();
-            IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, WeightDate FROM Weight WHERE deleted=0 and IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString()+ " order by WeightDate desc");
-            foreach (Weight wght in wghts)
+            ListViewWeight.BeginRefresh();
+            try
             {
-                recordsWgt.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, WeightDate = wght.WeightDate });
+                recordsWgt.Clear();
+                IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, WeightDate FROM Weight WHERE deleted=0 and IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " order by WeightDate desc");
+                foreach (Weight wght in wghts)
+                {
+                    recordsWgt.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, WeightDate = wght.WeightDate });
+                }
             }
-            ListViewWeight.ItemsSource = recordsWgt; 
+            finally
+            {
+                ListViewWeight.EndRefresh();
+            }
         }
 
         protected override void OnAppearing()
@@ -53,15 +61,14 @@ namespace DianetMob.Pages
 
             if (selectedWeight.IDServer == 0)
             {
-                recordsWgt.Remove(selectedWeight);
                 StorageManager.DeleteData(selectedWeight);
             }
             else
             {
                 selectedWeight.Deleted = 1;
-                StorageManager.UpdateData(selectedWeight);
-                setRecords();
+                StorageManager.UpdateData(selectedWeight);   
             }
+            setRecords();
             FillContent();
         }
 

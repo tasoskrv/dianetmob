@@ -16,6 +16,7 @@ namespace DianetMob.Pages
         private MealUnit ml;
         private string Uname;
         private IEnumerable<Unit> mUnit = null;
+        public Action setRecordsAction { get; set; }
 
 
         private SQLiteConnection conn = null;
@@ -74,7 +75,8 @@ namespace DianetMob.Pages
 
         private void OnSaveFoodClicked(object sender, EventArgs e)
         {
-            uFood.UpdateDate = DateTime.UtcNow;
+            DateTime utcdate = DateTime.UtcNow;
+            uFood.UpdateDate = utcdate;
             uFood.Name = mapMeal.Name;
             uFood.Description = mapMeal.Description;
             ml.Calories = mapMeal.Calories;
@@ -101,12 +103,11 @@ namespace DianetMob.Pages
                 uFood.IDLang = StorageManager.GetConnectionInfo().Settings.Lang;
                 if (mapMeal.IDMeal == 0)
                 {
-                    uFood.InsertDate = uFood.UpdateDate;
+                    uFood.InsertDate = utcdate;
                     StorageManager.InsertData(uFood);
-                    MyFoodPage.recordsMeal.Add(uFood);
                     ml.IDMeal = uFood.IDMeal;
                     mapMeal.IDMeal = uFood.IDMeal;
-                    ml.InsertDate = ml.UpdateDate;
+                    ml.InsertDate = utcdate;
                     StorageManager.InsertData(ml);
                     mapMeal.IDMealUnit = ml.IDMealUnit;
                 }
@@ -116,10 +117,10 @@ namespace DianetMob.Pages
                     StorageManager.UpdateData(uFood);
                     ml.IDMeal = uFood.IDMeal;
                     mapMeal.IDMeal = uFood.IDMeal;
-                    ml.UpdateDate = ml.UpdateDate;
+                    ml.UpdateDate = utcdate;
                     StorageManager.UpdateData(ml);
-                    new MyFoodPage();
                 }
+                setRecordsAction();
                 Navigation.PopAsync();
             }
         }

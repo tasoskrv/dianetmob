@@ -28,12 +28,37 @@ namespace DianetMob.Utils
             FullSynch();
         }
 
-        public async static Task FullSynch(bool force=false)
+        public async static Task LoginSynch()
+        {
+            try
+            {
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    User loginUser = StorageManager.GetConnectionInfo().LoginUser;
+                    UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
+                    string gencall = "/accesstoken=" + loginUser.AccessToken + "/updatedate=" + usersettings.LastSyncDate.ToString("yyyyMMddTHHmmss");
+                    string usercall = gencall + "/iduser=" + loginUser.IDUser.ToString();
+
+                    ModelService<Plan> servPlan = await ServiceConnector.GetServiceData<ModelService<Plan>>("/plan/getall" + usercall);
+                    servPlan.SaveAllToDBWithServerID("IDPlan");
+                    ModelService<Weight> servWeight = await ServiceConnector.GetServiceData<ModelService<Weight>>("/weight/getall" + usercall);
+                    servWeight.SaveAllToDBWithServerID("IDWeight");
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
+
+        public async static Task FullSynch(ActivityIndicator loader=null, bool force =false)
         {            
             try
             {
                 if (CrossConnectivity.Current.IsConnected)
                 {
+
                     User loginUser = StorageManager.GetConnectionInfo().LoginUser;
                     UserSettings usersettings = StorageManager.GetConnectionInfo().UserSettings;
                     if (usersettings.LastSyncDate.Date < DateTime.UtcNow.Date || force)
@@ -44,6 +69,11 @@ namespace DianetMob.Utils
                             return;
                         }
                         isRunning = true;
+                        if (loader != null)
+                        {
+                            loader.IsRunning = true;
+                            loader.IsVisible = true;
+                        }
                         var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
                         notifier.Notify(new LocalNotification()
                         {
@@ -52,7 +82,6 @@ namespace DianetMob.Utils
                             Id = 10000,
                             NotifyTime = DateTime.Now,
                         });
-
                         await FullServiceLoadAndStore(loginUser, usersettings);
                         await FullServiceSend(loginUser, usersettings);
                         
@@ -65,7 +94,13 @@ namespace DianetMob.Utils
                             Id = 10000,
                             NotifyTime = DateTime.Now,
                         });
+                        if (loader != null)
+                        {
+                            loader.IsRunning = false;
+                            loader.IsVisible = false;
+                        }
                         isRunning = false;
+                        
                     }
                 }
             }
@@ -73,10 +108,16 @@ namespace DianetMob.Utils
             {
                 await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
                 isRunning = false;
+
+                if (loader != null)
+                {
+                    loader.IsRunning = false;
+                    loader.IsVisible = false;
+                }
             }
         }
 
-        public static void StartUp()
+        public static void StartUp(ActivityIndicator loader=null)
         {
             if (ServiceTask == null && NotifAlerts.Count==0)
             {
@@ -104,7 +145,7 @@ namespace DianetMob.Utils
             var minutes = TimeSpan.FromDays(1);
             if (ServiceTask == null)
             {
-                FullSynch();
+                FullSynch(loader);
                 ServiceTask = new RecurringTask(new Action(FullSynchA), minutes);
             }
             ServiceTask.Start();

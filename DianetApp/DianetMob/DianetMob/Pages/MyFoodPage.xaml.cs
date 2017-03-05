@@ -16,26 +16,33 @@ namespace DianetMob.Pages
     {
       
         private SQLiteConnection conn = null;
-        public static ObservableCollection<Meal> recordsMeal = new ObservableCollection<Meal>();
+        public  ObservableCollection<Meal> recordsMeal = new ObservableCollection<Meal>();
         private MyFoodPageDetail myFoodDt = new MyFoodPageDetail();
 
         public MyFoodPage()
         {
             InitializeComponent();
+            ListViewMyFoods.ItemsSource = recordsMeal;
             conn = StorageManager.GetConnection();
             setRecords();
+            myFoodDt.setRecordsAction = setRecords;
         }
 
         public void setRecords()
         {
-            ListViewMyFoods.ItemsSource = null;
-            recordsMeal.Clear();
-            IEnumerable<Meal> foods = conn.Query<Meal>("SELECT * FROM Meal WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
-            foreach (Meal food in foods)
+            ListViewMyFoods.BeginRefresh();
+            try
             {
-                recordsMeal.Add(new Meal { IDUser = food.IDUser, IDMeal = food.IDMeal, Name = food.Name, Description = food.Description, InsertDate = food.InsertDate });
+                recordsMeal.Clear();
+                IEnumerable<Meal> foods = conn.Query<Meal>("SELECT * FROM Meal WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
+                foreach (Meal food in foods)
+                {
+                    recordsMeal.Add(new Meal { IDUser = food.IDUser, IDMeal = food.IDMeal, Name = food.Name, Description = food.Description, UpdateDate = food.UpdateDate });
+                }
             }
-            ListViewMyFoods.ItemsSource = recordsMeal;            
+            finally {
+                ListViewMyFoods.EndRefresh();
+            }
         }
 
         public void OnDeleted(object sender, EventArgs e)
@@ -45,15 +52,14 @@ namespace DianetMob.Pages
 
             if (selectedMeal.IDServer == 0)
             {
-                recordsMeal.Remove(selectedMeal);
                 StorageManager.DeleteData(selectedMeal);
             }
             else
             {
                 selectedMeal.Deleted = 1;
                 StorageManager.UpdateData(selectedMeal);
-                setRecords();
             }
+            setRecords();
         }
 
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)

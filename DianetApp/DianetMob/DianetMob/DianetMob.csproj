@@ -107,9 +107,6 @@
     <Compile Include="Notification\ICrossLocalNotifications.cs" />
     <Compile Include="Notification\ILocalNotifier.cs" />
     <Compile Include="Notification\LocalNotification.cs" />
-    <Compile Include="Pages\AddWeightPage.xaml.cs">
-      <DependentUpon>AddWeightPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\AlertPage.xaml.cs">
       <DependentUpon>AlertPage.xaml</DependentUpon>
     </Compile>
@@ -334,12 +331,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\ProfilePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\AddWeightPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

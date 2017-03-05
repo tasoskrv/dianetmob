@@ -11,6 +11,7 @@ namespace DianetMob.DB.Entities
     public class Meal : Model
     {
         private string name;
+        private string description;
 
         [PrimaryKey, AutoIncrement]
         public int IDMeal { get; set; }
@@ -30,6 +31,7 @@ namespace DianetMob.DB.Entities
                 {
                     name = value;
                     NormalizedName=GenLib.NormalizeGreek(name);
+                    OnPropertyChanged("Name");
                 }
             }
         }
@@ -38,7 +40,16 @@ namespace DianetMob.DB.Entities
         public string NormalizedName { get; set; }
 
         [MaxLength(800)]
-        public string Description { get; set; }
+        public string Description {
+            get
+            {
+                return description;
+            }
+            set {
+                description = value;
+                OnPropertyChanged("Description");
+            }
+        }
 
         public int IDLang { get; set; }
 
