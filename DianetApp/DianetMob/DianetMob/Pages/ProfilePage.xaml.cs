@@ -37,7 +37,7 @@ namespace DianetMob.Pages
 
         Dictionary<string, int> diets = new Dictionary<string, int>
         {
-            { Properties.LangResource.normal, 1 }, { "NK", 2 }, {  Properties.LangResource.ovum, 3 }, {  Properties.LangResource.sperm, 4 }
+            { Properties.LangResource.normal, 0 }, {  Properties.LangResource.ovum, 1 }, {  Properties.LangResource.sperm, 2 }, { Properties.LangResource.nkcells, 3 }
         };
 
         Dictionary<string, int> genders = new Dictionary<string, int>

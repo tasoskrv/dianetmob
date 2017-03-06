@@ -120,7 +120,7 @@
           </Grid>                          
           <Entry Grid.Row="7" Grid.Column="1" x:Name="fSkeletonEntry" Placeholder="{iLang:Translate skeletontype}" Keyboard="Numeric" Text="{Binding Skeleton}"  IsEnabled="False"/>
 
-          <Picker Grid.Row="8" Grid.Column="1" x:Name="fDietTypePicker" Title="{iLang:Translate diettype}" IsEnabled="False" SelectedIndex="{Binding DietType, Converter={StaticResource minusOneConv}, Mode=TwoWay}">
+          <Picker Grid.Row="8" Grid.Column="1" x:Name="fDietTypePicker" Title="{iLang:Translate diettype}" IsEnabled="False" SelectedIndex="{Binding Fertility, Mode=TwoWay}">
             <Picker.Items></Picker.Items>
           </Picker>
           

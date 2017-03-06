@@ -444,4 +444,10 @@
   <data name="changeWeightTypeTitle" xml:space="preserve">
     <value>Αλλαγή μονάδας μέτρησης</value>
   </data>
+  <data name="fertility" xml:space="preserve">
+    <value>Γονιμότητα</value>
+  </data>
+  <data name="nkcells" xml:space="preserve">
+    <value>ΝΚ κύτταρα</value>
+  </data>
 </root>

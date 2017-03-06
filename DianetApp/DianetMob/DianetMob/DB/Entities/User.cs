@@ -22,6 +22,7 @@ namespace DianetMob.DB.Entities
         private double weight;
         private double goal;
         private DateTime weightdate;
+        private int fertility;
 
         [PrimaryKey]
         public int IDUser { get; set; }
@@ -198,6 +199,22 @@ namespace DianetMob.DB.Entities
             }
         }
 
+        public int Fertility
+        {
+            get
+            {
+                return fertility;
+            }
+            set
+            {
+                if (fertility != value)
+                {
+                    fertility = value;
+                    OnPropertyChanged("Fertility");
+                }
+            }
+        }
+
         public DateTime? RemindDate { get; set; }
 
         public int AdjustDiet { get; set; }
@@ -299,6 +316,7 @@ namespace DianetMob.DB.Entities
             AdjustDiet = 0;
             Isactive = 0;
             weight = 0;//TODO Weight?
+            fertility = 0;
             ImageBefore = null;
             ImageAfter = null;
         }
@@ -330,6 +348,8 @@ namespace DianetMob.DB.Entities
                 str += "&heighttype=\"" + HeightType.ToString() + "\"";
             if (Skeleton != 0)
                 str += "&skeleton=\"" + Skeleton.ToString() + "\"";
+            if (fertility != -1)
+                str += "&fertility=\"" + Fertility.ToString() + "\"";
             if (Birthdate != null)
                 str += "&birthdate=\"" + Birthdate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
             if (RemindDate != null)

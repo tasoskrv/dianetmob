@@ -156,7 +156,7 @@ namespace DianetMob.Views
         {
             _products = new ObservableCollection<InAppProduct>();
             SQLiteConnection conn = StorageManager.GetConnection();
-            IEnumerable<Package> packs = conn.Query<Package>("SELECT * FROM package WHERE IsActive=1");
+            IEnumerable<Package> packs = conn.Query<Package>("SELECT * FROM package WHERE IsActive=1 and IDLang="+ StorageManager.GetConnectionInfo().Settings.Lang);
 
             foreach (Package pack in packs)
             {

@@ -350,6 +350,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fertility.
+        /// </summary>
+        internal static string fertility {
+            get {
+                return ResourceManager.GetString("fertility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fiber.
         /// </summary>
         internal static string fiber {
@@ -589,6 +598,15 @@ namespace DianetMob.Properties {
         internal static string newPsd {
             get {
                 return ResourceManager.GetString("newPsd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NK cells.
+        /// </summary>
+        internal static string nkcells {
+            get {
+                return ResourceManager.GetString("nkcells", resourceCulture);
             }
         }
         

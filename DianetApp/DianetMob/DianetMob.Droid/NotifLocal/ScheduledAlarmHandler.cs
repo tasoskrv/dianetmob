@@ -44,13 +44,16 @@ namespace DianetMob.Droid.NotifLocal
             PendingIntent pendingIntent =
                 PendingIntent.GetActivity(activeContext, pendingIntentId, intent, PendingIntentFlags.OneShot);
 
-
+            Notification.BigTextStyle textStyle = new Notification.BigTextStyle();
+            textStyle.BigText(notification.Text);
+            //textStyle.SetSummaryText("The summary text goes here.");
             var builder = new Notification.Builder(Application.Context)
                 .SetContentIntent(pendingIntent)
                 .SetContentTitle(notification.Title)
-                .SetContentText(notification.Text)
+                //.SetContentText(notification.Text)
                 .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
-                .SetSmallIcon(Application.Context.ApplicationInfo.Icon);
+                .SetSmallIcon(Application.Context.ApplicationInfo.Icon)
+                .SetStyle(textStyle);
             
 
             var nativeNotification = builder.Build();

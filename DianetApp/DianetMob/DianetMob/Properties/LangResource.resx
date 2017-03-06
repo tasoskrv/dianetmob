@@ -447,4 +447,10 @@
   <data name="changeWeightTypeTitle" xml:space="preserve">
     <value>Measurement unit change</value>
   </data>
+  <data name="fertility" xml:space="preserve">
+    <value>Fertility</value>
+  </data>
+  <data name="nkcells" xml:space="preserve">
+    <value>NK cells</value>
+  </data>
 </root>

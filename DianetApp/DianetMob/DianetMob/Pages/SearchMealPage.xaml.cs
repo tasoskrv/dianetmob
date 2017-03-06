@@ -21,12 +21,14 @@ namespace DianetMob.Pages
         public int Mode { get; set; }
         public DateTime SelectedDate { get; set; }
         SQLiteConnection conn = null;
+        ConnectionInfo info=null;
 
         public SearchMealPage()
         {
             InitializeComponent();
             ListViewSearch.ItemsSource = records;
             conn = StorageManager.GetConnection();
+            info = StorageManager.GetConnectionInfo();
 
         }
 
@@ -65,7 +67,17 @@ namespace DianetMob.Pages
             string str= GenLib.NormalizeGreek(GenLib.GreeklishToGreek(ASearchBar.Text));
             if (ASearchBar.Text.Equals(""))
                 return;
-            IEnumerable<Meal> meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName FROM meal WHERE Deleted=0 AND NormalizedName LIKE '" + str + "%'" );
+
+            IEnumerable<Meal> meals = null;
+            if (info.LoginUser.Fertility == 0)
+            {
+                meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName, fertility FROM meal WHERE Deleted=0 AND NormalizedName LIKE '" + str + "%' " + " and IDLang=" + info.Settings.Lang + " ");
+            }
+            else
+            {
+                meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName FROM meal WHERE Deleted=0 AND NormalizedName LIKE '" + str + "%' " + " and IDLang=" + info.Settings.Lang + " and fertility like '%"+ info.LoginUser.Fertility.ToString() + "%'");
+            }
+
             foreach (Meal meal in meals)
             {
                 records.Add(new Meal { Name = meal.Name, IDMeal = meal.IDMeal });
