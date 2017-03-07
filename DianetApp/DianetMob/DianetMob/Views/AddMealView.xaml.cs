@@ -33,12 +33,10 @@ namespace DianetMob.Views
             if ((info.isTrial) || ((info.ActiveSubscription != null) && (info.ActiveSubscription.EndDate >= DateTime.UtcNow)))
             {
                 searchPage.Mode = mode;
-                MyDayPage.ToggleAddView();
+                //MyDayPage.ToggleAddView();
 
                 if (mode == 5)
-                {
-
-                    
+                {                    
                     IEnumerable<Meal> meals = conn.Query<Meal>("SELECT IDMeal,Name,Identifier FROM meal WHERE Deleted=0 AND Identifier=1 LIMIT 1");
                     foreach (Meal meal in meals)
                     {
@@ -49,9 +47,7 @@ namespace DianetMob.Views
                         selectPage.SelectedDate = SelectedDate;
                         selectPage.CalcUnits(meal.IDMeal);                        
                     }
-                    await Navigation.PushAsync(selectPage);
-                    
-
+                    await Navigation.PushAsync(selectPage);                   
                 }
                 else if (mode == 6) {
                     exerPage.LoadData(SelectedDate);
@@ -97,7 +93,7 @@ namespace DianetMob.Views
             GotoPage(4);
         }
 
-        public async void OnAddExerciseClicked(object sender, EventArgs e)
+        public void OnAddExerciseClicked(object sender, EventArgs e)
         {
             GotoPage(6);
         }
