@@ -73,12 +73,13 @@ namespace DianetMob.Pages
                 || weight.Text.Equals("") || weight.Text == null || WeightDatePicker.Date.Equals("") || WeightDatePicker.Date == null
                 || goal.Text.Equals("") || goal.Text == null || AgePicker.Date.Equals(""))
             {
-                await DisplayAlert("Error", "Please fill all the fields!", "OK");
+                await DisplayAlert(Properties.LangResource.error, Properties.LangResource.fillfields, "OK");
+                
             }
             else
             {
                 if (AgePicker.Date.Year > DateTime.Now.Year - 6) {
-                    await DisplayAlert("Error", "Too young to be on diet :D", "OK");
+                    await DisplayAlert(Properties.LangResource.error, Properties.LangResource.youngerror, "OK");
                     return;
                 }
                 saveBtn.IsEnabled = false;

@@ -136,6 +136,7 @@ namespace DianetMob.Pages
             datepickpanel.IsVisible = !addmealview.IsVisible;
             dashboardview.IsEnabled = datepickpanel.IsVisible;
             logview.IsEnabled = dashboardview.IsEnabled;
+
             if (addmealview.IsVisible)
             {
                 dashboardview.Opacity = 0.5;

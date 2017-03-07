@@ -14,21 +14,28 @@
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <ViewCell.ContextActions>
+            <!--ViewCell.ContextActions>
               <MenuItem Text="{iLang:Translate delete}" CommandParameter="{Binding .}" Clicked="OnDeleted"/>
-            </ViewCell.ContextActions>
+              <MenuItem Clicked="OnDeleted" CommandParameter="{Binding .}"
+               Text="More" />
+              <MenuItem Clicked="OnDeleted" CommandParameter="{Binding .}"
+                 Text="Delete" IsDestructive="True" />
+            </ViewCell.ContextActions-->
             <ViewCell.View>
-              <StackLayout Orientation="Horizontal" Padding="5">
-                <Image Source="myfood.png" />
-                <StackLayout Orientation="Vertical">
-                  <Label Text="{Binding UpdateDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#c3c3c3" />
-                  <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Name}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
-                    <Label Text="{Binding Description}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/> 
-                  </StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="5">
+              <Image Source="myfood.png" />
+              <StackLayout Orientation="Vertical">
+                <Label Text="{Binding UpdateDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#c3c3c3" />
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="{Binding Name}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
+                  <Label Text="{Binding Description}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
+                  <Label Text="{Binding IDMeal}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
                 </StackLayout>
               </StackLayout>
+              <Button Image="addgrid.png" BackgroundColor="#FFFFFF" CommandParameter="{Binding IDMeal}" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Clicked="OnDeleted"/>                            
+            </StackLayout>
             </ViewCell.View>
+
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>

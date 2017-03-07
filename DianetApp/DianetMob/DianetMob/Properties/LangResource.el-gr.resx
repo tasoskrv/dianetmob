@@ -450,7 +450,28 @@
   <data name="nkcells" xml:space="preserve">
     <value>ΝΚ κύτταρα</value>
   </data>
+  <data name="entercredentials" xml:space="preserve">
+    <value>Συμπληρώστε τα στοιχεία σας</value>
+  </data>
   <data name="myfoods" xml:space="preserve">
     <value>Το φαγητά μου</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Σφάλμα</value>
+  </data>
+  <data name="fillfields" xml:space="preserve">
+    <value>Παρακαλώ συμπληρώστε όλα τα πεδία</value>
+  </data>
+  <data name="genericerror" xml:space="preserve">
+    <value>Κάτι πήγε λάθος</value>
+  </data>
+  <data name="notactive" xml:space="preserve">
+    <value>Ο χρήστης δεν είναι ενεργός</value>
+  </data>
+  <data name="wrongcredentials" xml:space="preserve">
+    <value>Λάθος στοιχεία</value>
+  </data>
+  <data name="youngerror" xml:space="preserve">
+    <value>Είσαι πολύ νέος για δίαιτα</value>
   </data>
 </root>

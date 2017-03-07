@@ -13,15 +13,15 @@
     <StackLayout>
       <StackLayout BackgroundColor="#2196F3"  Orientation="Horizontal" VerticalOptions="StartAndExpand" >
         <Button x:Name="btnDashboard" FontSize="Small" BackgroundColor="#2196F3" TextColor="#FFFFFF" Text="Dashboard" Clicked="OnDashboardClicked" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
-        <Button x:Name="btnLog" FontSize="Small" BackgroundColor="#2196F3" TextColor="#FFFFFF"  Text="Log"  Clicked="OnLogClicked" VerticalOptions="End" HorizontalOptions="CenterAndExpand"/>
+        <Button x:Name="btnLog" FontSize="Small" BackgroundColor="#2196F3" TextColor="#FFFFFF" Text="Log" Clicked="OnLogClicked" VerticalOptions="End" HorizontalOptions="CenterAndExpand"/>
       </StackLayout>
       <StackLayout IsEnabled="false">
     <ActivityIndicator x:Name="loader" BackgroundColor="#FFFFFF" IsVisible="False" Color="#2196F3" IsRunning="false" VerticalOptions="Start" />
     <me:DashboardView x:Name="dashboardview" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-    <me:LogView  x:Name="logview" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+    <me:LogView x:Name="logview" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
         </StackLayout>
-    <me:AddMealView  x:Name="addmealview" HeightRequest="700" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" />  
-    <StackLayout  x:Name="datepickpanel" Orientation="Horizontal" VerticalOptions="EndAndExpand" BackgroundColor="#FFFFFF" >
+    <me:AddMealView x:Name="addmealview" HeightRequest="700" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" />  
+    <StackLayout x:Name="datepickpanel" Orientation="Horizontal" VerticalOptions="EndAndExpand" BackgroundColor="#FFFFFF" >
       <Button FontSize="Large" Text="&lt;" BackgroundColor="#FFFFFF" TextColor="#2196F3" VerticalOptions="Center"
         HorizontalOptions="EndAndExpand" Clicked="OnPrevDayClicked" />
         <DatePicker x:Name="datePick" Format="dddd &#13;&#10; dd MMM, yyyy" MinimumDate="Jan 01 1900" MaximumDate="Jan 01 2050" VerticalOptions="Center" HorizontalOptions="Center"/>

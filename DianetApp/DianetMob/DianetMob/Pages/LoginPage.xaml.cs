@@ -71,7 +71,7 @@ namespace DianetMob.Pages
             //call InsertMeal            
             if ((usernameEntry.Text == null) || (passwordEntry.Text == null) || (usernameEntry.Text == "") || (passwordEntry.Text == ""))
             {
-                MessageLabel.Text = "Please enter your credentials";
+                MessageLabel.Text = Properties.LangResource.entercredentials;
                 return;
             }
             var user = new User
@@ -98,7 +98,7 @@ namespace DianetMob.Pages
             await GenLib.LoginSynch();
             if (user.Isactive == 0)
             {
-                MessageLabel.Text = "User is not active";
+                MessageLabel.Text = Properties.LangResource.notactive;
             }
             else
             {
@@ -165,10 +165,10 @@ namespace DianetMob.Pages
             }
             catch (Exception ex)
             {
-                MessageLabel.Text = "Error " + ex.Message;
+                MessageLabel.Text = Properties.LangResource.error + " " + ex.Message;
                 EndLogin();
             }
-            MessageLabel.Text = "Wrong credentials";
+            MessageLabel.Text = Properties.LangResource.wrongcredentials;
         }
     }
 }

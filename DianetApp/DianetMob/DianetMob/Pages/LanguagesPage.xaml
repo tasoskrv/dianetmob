@@ -16,6 +16,6 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-    <Button VerticalOptions="StartAndExpand" Text="SELECT" Clicked="OnSelectLangButtonClicked" /> 
+    <Button VerticalOptions="StartAndExpand" Text="{iLang:Translate select}" Clicked="OnSelectLangButtonClicked" /> 
   </StackLayout>
 </ContentPage>

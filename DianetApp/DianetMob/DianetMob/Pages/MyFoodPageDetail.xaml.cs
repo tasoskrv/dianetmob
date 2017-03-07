@@ -87,6 +87,10 @@ namespace DianetMob.Pages
             {
                 DisplayAlert("Please", "fill description", "OK");
             }
+            else if (unitPicker.SelectedIndex == -1)
+            {
+                DisplayAlert("Please", "select unit", "OK");
+            }
             else
             {
                 DateTime utcdate = DateTime.UtcNow;
@@ -115,6 +119,7 @@ namespace DianetMob.Pages
                 Navigation.PopAsync();
             }
         }
+
         void OnUnitChosen(object sender, EventArgs e)
         {
             Picker unitPicker = (Picker)sender;

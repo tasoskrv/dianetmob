@@ -86,7 +86,7 @@ namespace DianetMob.Pages
                     }
                     else
                     {
-                        await DisplayAlert("Error", "Something went wrong", "OK");
+                        await DisplayAlert(Properties.LangResource.error, Properties.LangResource.genericerror, "OK");
                     }
                     
                 }

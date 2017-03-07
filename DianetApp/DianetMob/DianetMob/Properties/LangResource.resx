@@ -453,7 +453,28 @@
   <data name="nkcells" xml:space="preserve">
     <value>NK cells</value>
   </data>
+  <data name="entercredentials" xml:space="preserve">
+    <value>Please enter your credentials</value>
+  </data>
   <data name="myfoods" xml:space="preserve">
     <value>My food</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="fillfields" xml:space="preserve">
+    <value>Please fill all fields</value>
+  </data>
+  <data name="genericerror" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="notactive" xml:space="preserve">
+    <value>User is not active</value>
+  </data>
+  <data name="wrongcredentials" xml:space="preserve">
+    <value>Wrong credentials</value>
+  </data>
+  <data name="youngerror" xml:space="preserve">
+    <value>Too young to be on diet</value>
   </data>
 </root>

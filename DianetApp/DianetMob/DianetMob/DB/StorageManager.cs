@@ -58,6 +58,11 @@ namespace DianetMob.DB
             return db.Delete(model);
         }
 
+        public static int DeletePK<T>(int PK)
+        {
+            return db.Delete<T>(PK);
+        }
+
         public static void InsertData(SQLiteConnection condb)
         {
             Settings set = new Settings();
