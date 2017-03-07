@@ -450,4 +450,7 @@
   <data name="nkcells" xml:space="preserve">
     <value>ΝΚ κύτταρα</value>
   </data>
+  <data name="myfoods" xml:space="preserve">
+    <value>Το φαγητά μου</value>
+  </data>
 </root>

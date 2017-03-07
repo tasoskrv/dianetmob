@@ -65,13 +65,13 @@ namespace DianetMob.Pages
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             Meal myFood = e.Item as Meal;
-            myFoodDt.LoadData(myFood.IDMeal, myFood.IDUser);
+            myFoodDt.LoadData(myFood.IDMeal);
             await Navigation.PushAsync(myFoodDt);
         }
 
         async void OnAddFoodClicked(object sender, EventArgs e)
         {
-            myFoodDt.LoadData(0,0);
+            myFoodDt.LoadData(0);
             await Navigation.PushAsync(myFoodDt);
         }
 

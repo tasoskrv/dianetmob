@@ -36,7 +36,9 @@
              <ListView.ItemTemplate>
                <DataTemplate>
                  <ViewCell>
-                   <Label Text="{Binding UName}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                   <ViewCell.View>
+                    <Label Text="{Binding UName}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                   </ViewCell.View>
                  </ViewCell>
                </DataTemplate>
              </ListView.ItemTemplate>
@@ -45,7 +47,9 @@
              <ListView.ItemTemplate>
                <DataTemplate>
                  <ViewCell>
-                   <Label Text="{Binding Value}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                   <ViewCell.View>
+                   <Label Text="{Binding Value}"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                   </ViewCell.View>
                  </ViewCell>
                </DataTemplate>
              </ListView.ItemTemplate>
@@ -54,7 +58,9 @@
              <ListView.ItemTemplate>
                <DataTemplate>
                  <ViewCell>
-                   <Label Text="{Binding Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                   <ViewCell.View>
+                     <Label Text="{Binding Caption}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </ViewCell.View>
                  </ViewCell>
                </DataTemplate>
              </ListView.ItemTemplate>

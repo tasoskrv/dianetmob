@@ -17,12 +17,12 @@
       </Grid.ColumnDefinitions>
       
       <Label TextColor="#FFFFFF" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" VerticalTextAlignment="End" FontSize = "20" Text="{iLang:Translate addLog}" />
-      <Button Text="Breakfast" Image="morning.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Grid.Row="1" Grid.Column="0"  Clicked="OnAddBreakfastClicked" />
-      <Button Text="Lunch" Image="sun.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddLunchClicked"/>
-      <Button Text="Dinner"  Image="night.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="1" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddDinnerClicked"/>
-      <Button Text="Snack" Image="snack.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddSnackClicked"/>
-      <Button Text="Exercise" Image="exercise.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddExerciseClicked"/>
-      <Button Text="Water" Image="water.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddWaterClicked"/>
+      <Button Text="{iLang:Translate breakfast}" Image="morning.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Grid.Row="1" Grid.Column="0"  Clicked="OnAddBreakfastClicked" />
+      <Button Text="{iLang:Translate lunch}" Image="sun.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddLunchClicked"/>
+      <Button Text="{iLang:Translate dinner}"  Image="night.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="1" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddDinnerClicked"/>
+      <Button Text="{iLang:Translate snack}" Image="snack.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddSnackClicked"/>
+      <Button Text="{iLang:Translate exercise}" Image="exercise.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddExerciseClicked"/>
+      <Button Text="{iLang:Translate water}" Image="water.png" ContentLayout="Top,0" TextColor="#FFFFFF" BackgroundColor="#2196F3" Grid.Row="2" Grid.Column="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnAddWaterClicked"/>
     </Grid>
   </ContentView.Content>
 </ContentView>

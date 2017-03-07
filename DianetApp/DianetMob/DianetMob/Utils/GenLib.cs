@@ -460,7 +460,6 @@ namespace DianetMob.Utils
                 text = text.Replace(english[i], greek[i]);
             }
             return text;
-
         }
 
         public static string NormalizeGreek(string text)

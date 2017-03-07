@@ -566,6 +566,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My food.
+        /// </summary>
+        internal static string myfoods {
+            get {
+                return ResourceManager.GetString("myfoods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string name {

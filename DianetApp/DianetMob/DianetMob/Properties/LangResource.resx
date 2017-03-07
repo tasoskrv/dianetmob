@@ -453,4 +453,7 @@
   <data name="nkcells" xml:space="preserve">
     <value>NK cells</value>
   </data>
+  <data name="myfoods" xml:space="preserve">
+    <value>My food</value>
+  </data>
 </root>

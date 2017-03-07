@@ -11,10 +11,8 @@ namespace DianetMob.Pages
 {
     public partial class MyFoodPageDetail : ContentPage
     {
-        private MapCustomMeal mapMeal = null;
         private Meal uFood;
         private MealUnit ml;
-        private string Uname;
         private IEnumerable<Unit> mUnit = null;
         public Action setRecordsAction { get; set; }
 
@@ -35,16 +33,19 @@ namespace DianetMob.Pages
 
         }
 
-        public void LoadData(int IDMeal, int IDUser)
+        public void LoadData(int IDMeal)
         {
-            uFood = new Meal();
-            ml = new MealUnit();
             
-
             if (IDMeal > 0)
             {
-                IEnumerable<MapCustomMeal> cusMeal = conn.Query<MapCustomMeal>("SELECT N.Name, N.Description, N.IDUser, N.IDMeal, M.IDMealUnit, M.IDUnit, M.Fat, M.Carb, M.Calories, M.Cholesterol, M.Fiber, M.Natrium, M.Potassium, M.SatFat, M.Protein, M.Sugar, M.UnSatFat FROM Meal as N inner join MealUnit as M ON M.IDMeal= N.IDMeal WHERE N.IDMeal=" + IDMeal.ToString() + " AND N.IDUser=" + IDUser.ToString());
-                mapMeal = cusMeal.First();
+                uFood = conn.Get<Meal>(IDMeal);
+                ml = new MealUnit();
+                IEnumerable<MealUnit> cusMeal = conn.Query<MealUnit>("SELECT * FROM MealUnit WHERE IDMeal=" + IDMeal.ToString() );
+                MealUnit mapMeal = cusMeal.First();
+                txtName.Text= uFood.Name;
+                txtDescription.Text= uFood.Description;
+
+                string Uname = "";
                 foreach (Unit u1 in mUnit)
                 {
                     if (u1.IDUnit == mapMeal.IDUnit)
@@ -64,60 +65,50 @@ namespace DianetMob.Pages
             }
             else
             {
-                mapMeal = new MapCustomMeal();
+                uFood = new Meal();
+                ml = new MealUnit();
+                unitPicker.SelectedIndex = -1;
+                txtName.Text = "";
+                txtDescription.Text = "";
+
                 uFood.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
 
             }
-            uFood.IDUser = StorageManager.GetConnectionInfo().LoginUser.IDUser;
-            BindingContext = mapMeal;
+            BindingContext = ml;
 
         }
 
         private void OnSaveFoodClicked(object sender, EventArgs e)
         {
-            DateTime utcdate = DateTime.UtcNow;
-            uFood.UpdateDate = utcdate;
-            uFood.Name = mapMeal.Name;
-            uFood.Description = mapMeal.Description;
-            ml.Calories = mapMeal.Calories;
-            ml.Carb = mapMeal.Carb;
-            ml.Cholesterol = mapMeal.Cholesterol;
-            ml.Sugar = mapMeal.Sugar;
-            ml.Protein = mapMeal.Protein;
-            ml.Fat = mapMeal.Fat;
-            ml.SatFat = mapMeal.SatFat;
-            ml.UnSatFat = mapMeal.UnSatFat;
-            ml.Natrium = mapMeal.Natrium;
-            ml.Potassium = mapMeal.Potassium;
-            ml.IDMealUnit = mapMeal.IDMealUnit;
-            ml.IDUnit = mapMeal.IDUnit;
-
-            if ((uFood.Name == null) || uFood.Name.Equals(""))
+            
+            if ((txtName.Text == null) || txtName.Text.Equals(""))
                 DisplayAlert("Please", "fill name", "OK");
-            else if ((uFood.Description == null) || uFood.Description.Equals(""))
+            else if ((txtDescription.Text == null) || txtDescription.Text.Equals(""))
             {
                 DisplayAlert("Please", "fill description", "OK");
             }
             else
             {
-                uFood.IDLang = StorageManager.GetConnectionInfo().Settings.Lang;
-                if (mapMeal.IDMeal == 0)
+                DateTime utcdate = DateTime.UtcNow;
+                uFood.UpdateDate = utcdate;
+                uFood.Name = txtName.Text;
+                uFood.Description = txtDescription.Text;
+                ml.UpdateDate = utcdate;
+
+                if (uFood.IDMeal == 0)
                 {
+                    uFood.IsActive = 1;
+                    uFood.Deleted = 0;
+                    uFood.IDLang = StorageManager.GetConnectionInfo().Settings.Lang;
                     uFood.InsertDate = utcdate;
                     StorageManager.InsertData(uFood);
                     ml.IDMeal = uFood.IDMeal;
-                    mapMeal.IDMeal = uFood.IDMeal;
                     ml.InsertDate = utcdate;
                     StorageManager.InsertData(ml);
-                    mapMeal.IDMealUnit = ml.IDMealUnit;
                 }
                 else
                 {
-                    uFood.IDMeal = mapMeal.IDMeal;
-                    StorageManager.UpdateData(uFood);
-                    ml.IDMeal = uFood.IDMeal;
-                    mapMeal.IDMeal = uFood.IDMeal;
-                    ml.UpdateDate = utcdate;
+                    StorageManager.UpdateData(uFood);  
                     StorageManager.UpdateData(ml);
                 }
                 setRecordsAction();
@@ -132,7 +123,7 @@ namespace DianetMob.Pages
 
                 string Name = unitPicker.Items[unitPicker.SelectedIndex];
                 Unit unit = DicUnit[Name];
-                mapMeal.IDUnit = unit.IDUnit;               
+                ml.IDUnit = unit.IDUnit;               
             }
         }
     }

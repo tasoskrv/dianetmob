@@ -71,11 +71,11 @@ namespace DianetMob.Pages
             IEnumerable<Meal> meals = null;
             if (info.LoginUser.Fertility == 0)
             {
-                meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName, fertility FROM meal WHERE Deleted=0 AND NormalizedName LIKE '" + str + "%' " + " and IDLang=" + info.Settings.Lang + " ");
+                meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName, fertility FROM meal WHERE Deleted=0 AND (NormalizedName LIKE '" + str + "%' or NormalizedName LIKE '" + ASearchBar.Text + "%') " + " and IDLang=" + info.Settings.Lang  + " and isactive=1");
             }
             else
             {
-                meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName FROM meal WHERE Deleted=0 AND NormalizedName LIKE '" + str + "%' " + " and IDLang=" + info.Settings.Lang + " and fertility like '%"+ info.LoginUser.Fertility.ToString() + "%'");
+                meals = conn.Query<Meal>("SELECT name, IDMeal, NormalizedName FROM meal WHERE Deleted=0 AND (NormalizedName LIKE '" + str + "%' or NormalizedName NormalizedNameLIKE '" + ASearchBar.Text + "%') and IDLang=" + info.Settings.Lang + " and isactive=1 and fertility like '%" + info.LoginUser.Fertility.ToString() + "%'");
             }
 
             foreach (Meal meal in meals)

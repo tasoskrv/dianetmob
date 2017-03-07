@@ -29,7 +29,8 @@
           <ViewCell>
             <ViewCell.ContextActions>
               <MenuItem Text="{iLang:Translate delete}" CommandParameter="{Binding .}" Clicked="OnDeleted" />              
-            </ViewCell.ContextActions>                        
+            </ViewCell.ContextActions>
+            <ViewCell.View>
               <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="5">
                 <StackLayout Orientation="Horizontal">
                   <Image 
@@ -40,7 +41,8 @@
                   <Label Text="{Binding WValue}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" TextColor="#2196F3" FontSize="14"/>
                   <Label Text="{iLang:Translate kgs}" HorizontalOptions="End" TextColor="#2196F3" VerticalOptions="CenterAndExpand" FontSize="14" />
                 </StackLayout>
-              </StackLayout>   
+              </StackLayout>
+            </ViewCell.View>  
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
