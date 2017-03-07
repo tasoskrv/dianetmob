@@ -480,11 +480,23 @@
   <data name="checkemail" xml:space="preserve">
     <value>Check your email</value>
   </data>
+  <data name="desiredweight" xml:space="preserve">
+    <value>Fill desired weight</value>
+  </data>
+  <data name="filldescr" xml:space="preserve">
+    <value>Fill description</value>
+  </data>
   <data name="fillmin" xml:space="preserve">
     <value>Fill minutes</value>
   </data>
+  <data name="fillname" xml:space="preserve">
+    <value>Fill name</value>
+  </data>
   <data name="fillrecur" xml:space="preserve">
     <value>Fill recurrence</value>
+  </data>
+  <data name="filltoday" xml:space="preserve">
+    <value>Fill today's weight</value>
   </data>
   <data name="invalidemail" xml:space="preserve">
     <value>Enter valid email</value>
@@ -492,14 +504,41 @@
   <data name="message" xml:space="preserve">
     <value>Message</value>
   </data>
+  <data name="nocamera" xml:space="preserve">
+    <value>No camera available</value>
+  </data>
+  <data name="nomatch" xml:space="preserve">
+    <value>Passwords not match</value>
+  </data>
   <data name="passwordupdated" xml:space="preserve">
     <value>Password updated</value>
+  </data>
+  <data name="photoerror" xml:space="preserve">
+    <value>Pick photo is not supported</value>
+  </data>
+  <data name="photossharing" xml:space="preserve">
+    <value>Thanks for sharing your photos with us!</value>
   </data>
   <data name="please" xml:space="preserve">
     <value>Please</value>
   </data>
+  <data name="profileimages" xml:space="preserve">
+    <value>Profile images uploaded</value>
+  </data>
+  <data name="selectunit" xml:space="preserve">
+    <value>Select unit</value>
+  </data>
   <data name="subscribe" xml:space="preserve">
     <value>Days left! Please subscribe</value>
+  </data>
+  <data name="uploadaction" xml:space="preserve">
+    <value>Cannot perform this action. Upload process has not finished!</value>
+  </data>
+  <data name="uploading" xml:space="preserve">
+    <value>Uploading...</value>
+  </data>
+  <data name="userexists" xml:space="preserve">
+    <value>User exists</value>
   </data>
   <data name="usernotfound" xml:space="preserve">
     <value>User not found</value>

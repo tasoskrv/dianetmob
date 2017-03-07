@@ -477,11 +477,23 @@
   <data name="checkemail" xml:space="preserve">
     <value>Ελέξτε το email σας</value>
   </data>
+  <data name="desiredweight" xml:space="preserve">
+    <value>Συμπληρώστε επιθυμητό βάρος</value>
+  </data>
+  <data name="filldescr" xml:space="preserve">
+    <value>Συμπληρώστε περιγραφή</value>
+  </data>
   <data name="fillmin" xml:space="preserve">
     <value>Συμπληρώστε τα λεπτά</value>
   </data>
+  <data name="fillname" xml:space="preserve">
+    <value>Συμπληρώστε όνομα</value>
+  </data>
   <data name="fillrecur" xml:space="preserve">
     <value>Συμπληρώστε την επανάληπτικότητα</value>
+  </data>
+  <data name="filltoday" xml:space="preserve">
+    <value>Συπληρώστε το βάρος της ημέρας</value>
   </data>
   <data name="foodname" xml:space="preserve">
     <value>Ονομασία</value>
@@ -492,14 +504,41 @@
   <data name="message" xml:space="preserve">
     <value>Μήνυμα</value>
   </data>
+  <data name="nocamera" xml:space="preserve">
+    <value>Η κάμερα δεν είναι διαθέσιμη</value>
+  </data>
+  <data name="nomatch" xml:space="preserve">
+    <value>Οι κωδικοί δεν ταιρίαζουν</value>
+  </data>
   <data name="passwordupdated" xml:space="preserve">
     <value>Ο κωδικός ενημερώθηκε</value>
+  </data>
+  <data name="photoerror" xml:space="preserve">
+    <value>Δεν μπορείτε να επιλέξετε εικόνα</value>
+  </data>
+  <data name="photossharing" xml:space="preserve">
+    <value>Ευχαριστούμε που μοιραστήκατε τις φωτογραφίες σας</value>
   </data>
   <data name="please" xml:space="preserve">
     <value>Παρακαλώ</value>
   </data>
+  <data name="profileimages" xml:space="preserve">
+    <value>Οι φωτογραφίες ανέβηκαν</value>
+  </data>
+  <data name="selectunit" xml:space="preserve">
+    <value>Επιλέξτε μονάδα</value>
+  </data>
   <data name="subscribe" xml:space="preserve">
     <value>Μέρες έμειναν. Παρακαλώ εγγραφείτε</value>
+  </data>
+  <data name="uploadaction" xml:space="preserve">
+    <value>Η ενέργεια δεν μπορεί να πραγματοποιηθεί. Το ανέβασμα δεν έχει ολοκληρωθεί</value>
+  </data>
+  <data name="uploading" xml:space="preserve">
+    <value>Uploading...</value>
+  </data>
+  <data name="userexists" xml:space="preserve">
+    <value>Ο χρήστης υπάρχει</value>
   </data>
   <data name="usernotfound" xml:space="preserve">
     <value>Ο χρήστης δεν βρέθηκε</value>

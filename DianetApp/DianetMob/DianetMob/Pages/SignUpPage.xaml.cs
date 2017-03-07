@@ -61,18 +61,18 @@ namespace DianetMob.Pages
                     }
                     else if (srvNewUser.ErrorCode == 2)
                     {
-                        MessageLabel.Text = "User already exists";
+                        MessageLabel.Text = Properties.LangResource.userexists;
                     }
                     else
                     {
-                        MessageLabel.Text = "Warning - " + srvNewUser.message;
+                        MessageLabel.Text = Properties.LangResource.warning + " - " + srvNewUser.message;
                     }
                     return;
                 }
             }
             catch (Exception ex)
             {
-                MessageLabel.Text = "Error" + ex.Message;
+                MessageLabel.Text = Properties.LangResource.error + "-" + ex.Message;
             }
         }
 
@@ -91,7 +91,7 @@ namespace DianetMob.Pages
             bool isValid = GenLib.CheckValidMail(emailEntry.Text);
             if (!isValid)
             {
-                MessageLabel.Text = "Please enter a valid email";
+                MessageLabel.Text = Properties.LangResource.invalidemail;
             }
             return isValid;
         }
@@ -101,7 +101,7 @@ namespace DianetMob.Pages
             if (emailEntry.Text == null || nameEntry.Text == null || surnameEntry.Text == null || passwdEntry.Text == null || passwdRetype.Text == null ||
                 emailEntry.Text == "" || nameEntry.Text == "" || surnameEntry.Text == "" || passwdEntry.Text == "" || passwdRetype.Text == "")
             {
-                MessageLabel.Text = "Please fill all fields";
+                MessageLabel.Text = Properties.LangResource.fillfields;
                 return false;
             }
             return true;            
@@ -111,7 +111,7 @@ namespace DianetMob.Pages
         {
             if (passwdEntry.Text != passwdRetype.Text)
             {
-                MessageLabel.Text = "Passwords do not match";
+                MessageLabel.Text = Properties.LangResource.nomatch;
                 return false;
             }
             return true;

@@ -56,7 +56,7 @@ namespace DianetMob.Pages
         {
             pln.UpdateDate = DateTime.UtcNow;
             if (pln.Goal <= 0)
-                DisplayAlert("Please", "fill in your desired weight", "OK");
+                DisplayAlert(Properties.LangResource.please, Properties.LangResource.desiredweight, "OK");
             else if (pln.IDPlan > 0)
             {
                 StorageManager.UpdateData(pln);

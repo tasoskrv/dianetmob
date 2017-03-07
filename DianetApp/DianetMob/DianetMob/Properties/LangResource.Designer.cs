@@ -260,6 +260,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fill desired weight.
+        /// </summary>
+        internal static string desiredweight {
+            get {
+                return ResourceManager.GetString("desiredweight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detail.
         /// </summary>
         internal static string detail {
@@ -395,6 +404,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fill description.
+        /// </summary>
+        internal static string filldescr {
+            get {
+                return ResourceManager.GetString("filldescr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please fill all fields.
         /// </summary>
         internal static string fillfields {
@@ -413,11 +431,29 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fill name.
+        /// </summary>
+        internal static string fillname {
+            get {
+                return ResourceManager.GetString("fillname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fill recurrence.
         /// </summary>
         internal static string fillrecur {
             get {
                 return ResourceManager.GetString("fillrecur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill today&apos;s weight.
+        /// </summary>
+        internal static string filltoday {
+            get {
+                return ResourceManager.GetString("filltoday", resourceCulture);
             }
         }
         
@@ -710,6 +746,24 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No camera available.
+        /// </summary>
+        internal static string nocamera {
+            get {
+                return ResourceManager.GetString("nocamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords not match.
+        /// </summary>
+        internal static string nomatch {
+            get {
+                return ResourceManager.GetString("nomatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Normal.
         /// </summary>
         internal static string normal {
@@ -764,6 +818,24 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pick photo is not supported.
+        /// </summary>
+        internal static string photoerror {
+            get {
+                return ResourceManager.GetString("photoerror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for sharing your photos with us!.
+        /// </summary>
+        internal static string photossharing {
+            get {
+                return ResourceManager.GetString("photossharing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please.
         /// </summary>
         internal static string please {
@@ -814,6 +886,15 @@ namespace DianetMob.Properties {
         internal static string profile {
             get {
                 return ResourceManager.GetString("profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile images uploaded.
+        /// </summary>
+        internal static string profileimages {
+            get {
+                return ResourceManager.GetString("profileimages", resourceCulture);
             }
         }
         
@@ -958,6 +1039,15 @@ namespace DianetMob.Properties {
         internal static string selectQuantity {
             get {
                 return ResourceManager.GetString("selectQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select unit.
+        /// </summary>
+        internal static string selectunit {
+            get {
+                return ResourceManager.GetString("selectunit", resourceCulture);
             }
         }
         
@@ -1120,6 +1210,33 @@ namespace DianetMob.Properties {
         internal static string upload {
             get {
                 return ResourceManager.GetString("upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot perform this action. Upload process has not finished!.
+        /// </summary>
+        internal static string uploadaction {
+            get {
+                return ResourceManager.GetString("uploadaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploading....
+        /// </summary>
+        internal static string uploading {
+            get {
+                return ResourceManager.GetString("uploading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User exists.
+        /// </summary>
+        internal static string userexists {
+            get {
+                return ResourceManager.GetString("userexists", resourceCulture);
             }
         }
         

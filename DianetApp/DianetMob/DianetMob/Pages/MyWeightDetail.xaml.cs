@@ -55,7 +55,7 @@ namespace DianetMob.Pages
             wght.UpdateDate = DateTime.UtcNow;
             wght.WeightDate = wght.WeightDate.Date;//only date
             if (wght.WValue <= 0)
-                DisplayAlert("Please", "fill in today's weight", "OK");
+                DisplayAlert(Properties.LangResource.please, Properties.LangResource.filltoday, "OK");
             else if (wght.IDWeight > 0)
             {
                 StorageManager.UpdateData(wght);

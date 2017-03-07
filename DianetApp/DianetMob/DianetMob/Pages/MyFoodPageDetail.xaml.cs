@@ -82,14 +82,14 @@ namespace DianetMob.Pages
         {
             
             if ((txtName.Text == null) || txtName.Text.Equals(""))
-                DisplayAlert("Please", "fill name", "OK");
+                DisplayAlert(Properties.LangResource.please, Properties.LangResource.fillname, "OK");
             else if ((txtDescription.Text == null) || txtDescription.Text.Equals(""))
             {
-                DisplayAlert("Please", "fill description", "OK");
+                DisplayAlert(Properties.LangResource.please, Properties.LangResource.filldescr, "OK");
             }
             else if (unitPicker.SelectedIndex == -1)
             {
-                DisplayAlert("Please", "select unit", "OK");
+                DisplayAlert(Properties.LangResource.please, Properties.LangResource.selectunit, "OK");
             }
             else
             {

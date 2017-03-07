@@ -233,7 +233,7 @@ namespace DianetMob.Pages
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
-                await DisplayAlert("No Camera", "No camera available", "OK");
+                await DisplayAlert(Properties.LangResource.warning, Properties.LangResource.nocamera, "OK");
                 return;
             }
 
@@ -275,7 +275,7 @@ namespace DianetMob.Pages
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
             {
-                await DisplayAlert("Oops", "Pick photo is not supported", "OK");
+                await DisplayAlert(Properties.LangResource.warning, Properties.LangResource.photoerror, "OK");
                 return;
             }
             var file = await CrossMedia.Current.PickPhotoAsync();
@@ -299,7 +299,7 @@ namespace DianetMob.Pages
         {
             if (isUploading)
             {
-                DisplayAlert("Uploading...", "Cannot perform this action. Upload process has not finished!" , "OK");
+                DisplayAlert(Properties.LangResource.uploading, Properties.LangResource.uploadaction, "OK");
                 return;
             }
             isUploading = true;
@@ -346,8 +346,8 @@ namespace DianetMob.Pages
                     var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
                     notifier.Notify(new LocalNotification()
                     {
-                        Title = "Profile images uploaded",
-                        Text = "Thanks for sharing your photos with us!",
+                        Title = Properties.LangResource.profileimages,
+                        Text = Properties.LangResource.photossharing,
                         Id = 10001,
                         NotifyTime = DateTime.Now,
                     });
@@ -359,7 +359,7 @@ namespace DianetMob.Pages
                 else
                 {
                     isUploading = false;
-                    await DisplayAlert("Message", "Error - " + res["message"].ToString() + " errorcode:" + res["errorcode"].ToString(), "OK");
+                    await DisplayAlert(Properties.LangResource.message, Properties.LangResource.error + " - " + res["message"].ToString() + " errorcode:" + res["errorcode"].ToString(), "OK");
                 }
             }
         }
@@ -379,7 +379,7 @@ namespace DianetMob.Pages
             if (fEmailEntry.Text == null || fFirstNameEntry.Text == null || fSurNameEntry.Text == null || fHeightEntry.Text == null ||
                 fEmailEntry.Text.Equals("") || fFirstNameEntry.Text.Equals("") || fSurNameEntry.Text.Equals("") || fHeightEntry.Text.Equals(""))
             {
-                DisplayAlert("Please", "Fill all fields", "OK");
+                DisplayAlert(Properties.LangResource.please, Properties.LangResource.fillfields, "OK");
                 return false;
             }            
             return true;            
