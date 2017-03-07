@@ -135,10 +135,10 @@
   <data name="carbohydrates" xml:space="preserve">
     <value>Carbohydrates</value>
   </data>
-  <data name="Cholesterol" xml:space="preserve">
+  <data name="cholesterol" xml:space="preserve">
     <value>Cholesterol</value>
   </data>
-  <data name="DELETE" xml:space="preserve">
+  <data name="delete" xml:space="preserve">
     <value>DELETE</value>
   </data>
   <data name="description" xml:space="preserve">
@@ -192,7 +192,7 @@
   <data name="myfood" xml:space="preserve">
     <value>My food</value>
   </data>
-  <data name="Natrium" xml:space="preserve">
+  <data name="natrium" xml:space="preserve">
     <value>Natrium</value>
   </data>
   <data name="newPsd" xml:space="preserve">
@@ -201,7 +201,7 @@
   <data name="password" xml:space="preserve">
     <value>password</value>
   </data>
-  <data name="Potassium" xml:space="preserve">
+  <data name="potassium" xml:space="preserve">
     <value>Potassium</value>
   </data>
   <data name="protein" xml:space="preserve">
@@ -240,7 +240,7 @@
   <data name="signup" xml:space="preserve">
     <value>Sign up</value>
   </data>
-  <data name="Sugars" xml:space="preserve">
+  <data name="sugars" xml:space="preserve">
     <value>Sugars</value>
   </data>
   <data name="unsaturatedFats" xml:space="preserve">
@@ -476,5 +476,35 @@
   </data>
   <data name="youngerror" xml:space="preserve">
     <value>Too young to be on diet</value>
+  </data>
+  <data name="checkemail" xml:space="preserve">
+    <value>Check your email</value>
+  </data>
+  <data name="fillmin" xml:space="preserve">
+    <value>Fill minutes</value>
+  </data>
+  <data name="fillrecur" xml:space="preserve">
+    <value>Fill recurrence</value>
+  </data>
+  <data name="invalidemail" xml:space="preserve">
+    <value>Enter valid email</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="passwordupdated" xml:space="preserve">
+    <value>Password updated</value>
+  </data>
+  <data name="please" xml:space="preserve">
+    <value>Please</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Days left! Please subscribe</value>
+  </data>
+  <data name="usernotfound" xml:space="preserve">
+    <value>User not found</value>
+  </data>
+  <data name="warning" xml:space="preserve">
+    <value>Warning</value>
   </data>
 </root>

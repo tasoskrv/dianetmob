@@ -55,7 +55,7 @@ namespace DianetMob.Pages
             
             if ((alt.AlertTime.Equals("") || alt.AlertTime == null) && alt.Status == 1)
             {
-                DisplayAlert("Please", "Fill Recurrence", "OK");
+                DisplayAlert(Properties.LangResource.please, Properties.LangResource.fillrecur, "OK");
             }
             else if (alt.IDAlert > 0)
             {

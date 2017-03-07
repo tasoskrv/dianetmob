@@ -39,7 +39,7 @@ namespace DianetMob.Pages
             {
                 if (info.isTrial)
                 {
-                  await  DisplayAlert("Trial", (info.LoginUser.InsertDate.AddDays(info.Settings.TrialPeriod).Subtract(DateTime.UtcNow)).Days + " Days left! Please subscribe.", "Yes");
+                  await  DisplayAlert("Trial", (info.LoginUser.InsertDate.AddDays(info.Settings.TrialPeriod).Subtract(DateTime.UtcNow)).Days + " " + Properties.LangResource.subscribe, Properties.LangResource.yes);
                 }
             }
             RecreateData();

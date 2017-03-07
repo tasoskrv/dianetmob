@@ -120,13 +120,13 @@
   <data name="add" xml:space="preserve">
     <value>Προσθήκη</value>
   </data>
-  <data name="AddInfo" xml:space="preserve">
+  <data name="addInfo" xml:space="preserve">
     <value>Επιπλέον πληροφορίες</value>
   </data>
   <data name="alerts" xml:space="preserve">
     <value>Ειδοποιήσεις</value>
   </data>
-  <data name="Birthday" xml:space="preserve">
+  <data name="birthday" xml:space="preserve">
     <value>Ημερομηνία γέννησης</value>
   </data>
   <data name="delete" xml:space="preserve">
@@ -243,7 +243,7 @@
   <data name="completeProfile" xml:space="preserve">
     <value>Για να ολοκληρώσετε το προφιλ </value>
   </data>
-  <data name="Description" xml:space="preserve">
+  <data name="description" xml:space="preserve">
     <value>Περιγραφή</value>
   </data>
   <data name="detail" xml:space="preserve">
@@ -460,7 +460,7 @@
     <value>Σφάλμα</value>
   </data>
   <data name="fillfields" xml:space="preserve">
-    <value>Παρακαλώ συμπληρώστε όλα τα πεδία</value>
+    <value>Συμπληρώστε όλα τα πεδία</value>
   </data>
   <data name="genericerror" xml:space="preserve">
     <value>Κάτι πήγε λάθος</value>
@@ -473,5 +473,38 @@
   </data>
   <data name="youngerror" xml:space="preserve">
     <value>Είσαι πολύ νέος για δίαιτα</value>
+  </data>
+  <data name="checkemail" xml:space="preserve">
+    <value>Ελέξτε το email σας</value>
+  </data>
+  <data name="fillmin" xml:space="preserve">
+    <value>Συμπληρώστε τα λεπτά</value>
+  </data>
+  <data name="fillrecur" xml:space="preserve">
+    <value>Συμπληρώστε την επανάληπτικότητα</value>
+  </data>
+  <data name="foodname" xml:space="preserve">
+    <value>Ονομασία</value>
+  </data>
+  <data name="invalidemail" xml:space="preserve">
+    <value>Συμπληρώστε έγκυρο email</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Μήνυμα</value>
+  </data>
+  <data name="passwordupdated" xml:space="preserve">
+    <value>Ο κωδικός ενημερώθηκε</value>
+  </data>
+  <data name="please" xml:space="preserve">
+    <value>Παρακαλώ</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Μέρες έμειναν. Παρακαλώ εγγραφείτε</value>
+  </data>
+  <data name="usernotfound" xml:space="preserve">
+    <value>Ο χρήστης δεν βρέθηκε</value>
+  </data>
+  <data name="warning" xml:space="preserve">
+    <value>Προειδοποίηση</value>
   </data>
 </root>

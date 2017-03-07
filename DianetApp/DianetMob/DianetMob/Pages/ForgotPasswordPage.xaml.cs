@@ -30,14 +30,14 @@ namespace DianetMob.Pages
         {
             if (emailEntry.Text == "" || emailEntry.Text == null)
             {
-                MessageLabel.Text = "Enter your email";
+                MessageLabel.Text = Properties.LangResource.enterMail;
                 return;
             }
 
             bool isValid = GenLib.CheckValidMail(emailEntry.Text);
             if (!isValid)
             {
-                MessageLabel.Text = "Please enter a valid email";
+                MessageLabel.Text = Properties.LangResource.invalidemail;
             }
             else
             {                
@@ -49,16 +49,16 @@ namespace DianetMob.Pages
                 ModelService<User> srvRecoverUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/recover/", user);
                 if (srvRecoverUser.success == true)
                 {
-                    await DisplayAlert("Message", "Check your email", "OK");
+                    await DisplayAlert(Properties.LangResource.message, Properties.LangResource.checkemail, "OK");
                     App.Current.MainPage = new LoginPage();
                 }
                 else if (srvRecoverUser.ErrorCode == 2)
                 {
-                    MessageLabel.Text = "User not found";
+                    MessageLabel.Text = Properties.LangResource.usernotfound;
                 }
                 else
                 {
-                    MessageLabel.Text = "Something went wrong";
+                    MessageLabel.Text = Properties.LangResource.genericerror;
                 }
                 mailSend.IsEnabled = true;                
             }

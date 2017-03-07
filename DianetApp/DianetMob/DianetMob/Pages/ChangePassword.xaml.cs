@@ -37,7 +37,7 @@ namespace DianetMob.Pages
         {                       
             if (newPassword.Text == null || newPasswordRetype.Text == null || newPassword.Text.Equals("") || newPasswordRetype.Text.Equals(""))
             {
-                await DisplayAlert("Warning", "Fill all fields", "OK");
+                await DisplayAlert(Properties.LangResource.warning, Properties.LangResource.fillfields, "OK");
             }
             else
             {                               
@@ -49,7 +49,7 @@ namespace DianetMob.Pages
                     ModelService<User> srvNewUser = await ServiceConnector.InsertServiceData<ModelService<User>>("/user/update/", user);
                     if ((srvNewUser.success == true) && (srvNewUser.ID > 0) && !(srvNewUser.ErrorCode > 0))
                     {
-                        await DisplayAlert("Message", "Password updated", "OK");
+                        await DisplayAlert(Properties.LangResource.message, Properties.LangResource.passwordupdated, "OK");
                         /*
                         user.IDUser = srvNewUser.ID;
                         user.AccessToken = srvNewUser.AccessToken;
@@ -60,13 +60,13 @@ namespace DianetMob.Pages
                     }
                     else
                     {
-                        await DisplayAlert("Warning", srvNewUser.message, "OK");
+                        await DisplayAlert(Properties.LangResource.warning, srvNewUser.message, "OK");
                     }
                     return;
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Error", ex.Message, "OK");                    
+                    await DisplayAlert(Properties.LangResource.error, ex.Message, "OK");                    
                 }
             }                        
         }             

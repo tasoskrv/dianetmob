@@ -33,7 +33,7 @@ namespace DianetMob.Pages
 
             if (exerciseMins.Text.Equals("") || exerciseMins.Text == null)
             {
-                await DisplayAlert("Please", "Fill minutes", "OK");
+                await DisplayAlert(Properties.LangResource.please, Properties.LangResource.fillmin, "OK");
             }
             else
             {

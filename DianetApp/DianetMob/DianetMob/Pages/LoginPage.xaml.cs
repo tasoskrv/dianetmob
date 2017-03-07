@@ -50,7 +50,7 @@ namespace DianetMob.Pages
             string pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
             if (usernameEntry.Text == null || !Regex.IsMatch(usernameEntry.Text, pattern))
             {
-                MessageLabel.Text = "Please enter a valid email";
+                MessageLabel.Text = Properties.LangResource.invalidemail;
                 return false;
             }
             else
