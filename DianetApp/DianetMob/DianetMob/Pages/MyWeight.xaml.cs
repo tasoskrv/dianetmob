@@ -56,17 +56,18 @@ namespace DianetMob.Pages
 
         public void OnDeleted(object sender, EventArgs e)
         {
-            var selectedItem = (MenuItem)sender;
-            var selectedWeight = selectedItem.CommandParameter as Weight;
-
-            if (selectedWeight.IDServer == 0)
+            var item = (Button)sender;
+            int idweight = Convert.ToInt32(item.CommandParameter.ToString());
+            Weight weightObj = StorageManager.GetConnection().Get<Weight>(idweight);
+           
+            if (weightObj.IDServer == 0)
             {
-                StorageManager.DeleteData(selectedWeight);
+                StorageManager.DeleteData<Weight>(weightObj);
             }
             else
             {
-                selectedWeight.Deleted = 1;
-                StorageManager.UpdateData(selectedWeight);   
+                weightObj.Deleted = 1;
+                StorageManager.UpdateData(weightObj);
             }
             setRecords();
             FillContent();

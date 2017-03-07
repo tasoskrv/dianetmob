@@ -37,7 +37,7 @@ namespace DianetMob.Pages
                 IEnumerable<Meal> foods = conn.Query<Meal>("SELECT * FROM Meal WHERE Deleted=0 AND IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString());
                 foreach (Meal food in foods)
                 {
-                    recordsMeal.Add(new Meal { IDUser = food.IDUser, IDMeal = food.IDMeal, Name = food.Name, Description = food.Description, UpdateDate = food.UpdateDate });
+                    recordsMeal.Add(new Meal { IDUser = food.IDUser, IDServer = food.IDServer, IDMeal = food.IDMeal, Name = food.Name, Description = food.Description, UpdateDate = food.UpdateDate });
                 }
             }
             finally {
@@ -46,27 +46,23 @@ namespace DianetMob.Pages
         }
 
         public void OnDeleted(object sender, EventArgs e)
-        {            
-            var selectedItem = (MenuItem)sender;
-            var selectedMeal = selectedItem.CommandParameter as Meal;
-
-            if (selectedMeal.IDServer == 0)
+        {
+            var item = (Button)sender;
+            int idmeal = Convert.ToInt32(item.CommandParameter.ToString());            
+            Meal mealObj = StorageManager.GetConnection().Get<Meal>(idmeal);
+           
+            if (mealObj.IDServer == 0)
             {
-                StorageManager.DeleteData(selectedMeal);
+                StorageManager.DeleteData<Meal>(mealObj);
             }
             else
             {
-                selectedMeal.Deleted = 1;
-                StorageManager.UpdateData(selectedMeal);
-            }
+                mealObj.Deleted = 1;
+                StorageManager.UpdateData(mealObj);
+            }            
             setRecords();
         }
 
-        /*
-        void OnTapGestureRecognizerTapped(object sender, EventArgs args) {
-            DisplayAlert("1", "2", "3");
-        }
-        */
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             Meal myFood = e.Item as Meal;

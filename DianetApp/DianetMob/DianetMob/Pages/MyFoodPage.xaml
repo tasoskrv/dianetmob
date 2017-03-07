@@ -14,32 +14,24 @@
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <ViewCell.ContextActions>
+            <!--ViewCell.ContextActions>
               <MenuItem Text="{iLang:Translate delete}" CommandParameter="{Binding .}" Clicked="OnDeleted"/>
-
               <MenuItem Clicked="OnDeleted" CommandParameter="{Binding .}"
                Text="More" />
               <MenuItem Clicked="OnDeleted" CommandParameter="{Binding .}"
                  Text="Delete" IsDestructive="True" />
-
-
-            </ViewCell.ContextActions>
+            </ViewCell.ContextActions-->
             <StackLayout Orientation="Horizontal" Padding="5">
               <Image Source="myfood.png" />
               <StackLayout Orientation="Vertical">
                 <Label Text="{Binding UpdateDate, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="#c3c3c3" />
                 <StackLayout Orientation="Horizontal">
                   <Label Text="{Binding Name}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
-                  <Label Text="{Binding Description}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/> 
+                  <Label Text="{Binding Description}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
+                  <Label Text="{Binding IDMeal}" HorizontalOptions="Start" TextColor="#503026" FontSize="Medium"/>
                 </StackLayout>
               </StackLayout>
-              <Image Source="http://findicons.com/files/icons/99/office/128/delete.png">
-                <Image.GestureRecognizers>
-                  <TapGestureRecognizer
-                          Tapped="OnDeleted"
-                          NumberOfTapsRequired="1" />
-                </Image.GestureRecognizers>
-              </Image>
+              <Button Image="addgrid.png" BackgroundColor="#FFFFFF" CommandParameter="{Binding IDMeal}" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Clicked="OnDeleted"/>                            
               </StackLayout>
           </ViewCell>
         </DataTemplate>
