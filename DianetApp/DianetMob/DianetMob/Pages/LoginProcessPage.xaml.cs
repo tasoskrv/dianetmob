@@ -69,7 +69,7 @@ namespace DianetMob.Pages
 
         private async void OnSaveClicked(object sender, EventArgs e)
         {
-            if (heighttype.SelectedIndex == -1 || genderPicker.SelectedIndex == -1 || height.Text.Equals("") || height.Text == null
+            if (heighttype.SelectedIndex == -1 || genderPicker.SelectedIndex == -1 || weighttype.SelectedIndex == -1 || fDietTypePicker.SelectedIndex == -1 || height.Text.Equals("") || height.Text == null
                 || weight.Text.Equals("") || weight.Text == null || WeightDatePicker.Date.Equals("") || WeightDatePicker.Date == null
                 || goal.Text.Equals("") || goal.Text == null || AgePicker.Date.Equals(""))
             {
