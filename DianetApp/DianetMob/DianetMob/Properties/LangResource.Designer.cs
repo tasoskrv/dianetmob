@@ -296,11 +296,29 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter your credentials.
+        /// </summary>
+        internal static string entercredentials {
+            get {
+                return ResourceManager.GetString("entercredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter your email.
         /// </summary>
         internal static string enterMail {
             get {
                 return ResourceManager.GetString("enterMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
             }
         }
         
@@ -368,6 +386,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please fill all fields.
+        /// </summary>
+        internal static string fillfields {
+            get {
+                return ResourceManager.GetString("fillfields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Food.
         /// </summary>
         internal static string food {
@@ -400,6 +427,15 @@ namespace DianetMob.Properties {
         internal static string gender {
             get {
                 return ResourceManager.GetString("gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong.
+        /// </summary>
+        internal static string genericerror {
+            get {
+                return ResourceManager.GetString("genericerror", resourceCulture);
             }
         }
         
@@ -625,6 +661,15 @@ namespace DianetMob.Properties {
         internal static string normal {
             get {
                 return ResourceManager.GetString("normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User is not active.
+        /// </summary>
+        internal static string notactive {
+            get {
+                return ResourceManager.GetString("notactive", resourceCulture);
             }
         }
         
@@ -1061,11 +1106,29 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wrong credentials.
+        /// </summary>
+        internal static string wrongcredentials {
+            get {
+                return ResourceManager.GetString("wrongcredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to YES.
         /// </summary>
         internal static string yes {
             get {
                 return ResourceManager.GetString("yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too young to be on diet.
+        /// </summary>
+        internal static string youngerror {
+            get {
+                return ResourceManager.GetString("youngerror", resourceCulture);
             }
         }
     }

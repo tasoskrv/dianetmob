@@ -14,7 +14,7 @@
     <ScrollView x:Name="ProfileScrollView">
       <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="20, 30, 20, 50">
         <Label Text="{iLang:Translate setupProfile}" FontSize="Large" HorizontalTextAlignment="Center"/>
-        <Label Text="Heigth" FontSize="Medium"/>
+        <Label Text="{iLang:Translate heigth}" FontSize="Medium"/>
 
         <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" >
           <Picker x:Name="heighttype" HorizontalOptions="FillAndExpand">
@@ -23,13 +23,13 @@
           <Entry x:Name="height" Keyboard="Numeric" HorizontalOptions="FillAndExpand" />
         </StackLayout>
 
-        <Label Text="Weight" FontSize="Medium"/>
+        <Label Text="{iLang:Translate weight}" FontSize="Medium"/>
 
         <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
           <Picker x:Name="weighttype" HorizontalOptions="FillAndExpand">
             <Picker.Items></Picker.Items>
           </Picker>
-          <Entry x:Name="weight" Keyboard="Numeric"  HorizontalOptions="FillAndExpand" />
+          <Entry x:Name="weight" Keyboard="Numeric" HorizontalOptions="FillAndExpand" />
         </StackLayout>
 
         <Label Text="{iLang:Translate weightDate}" FontSize="Medium"/>

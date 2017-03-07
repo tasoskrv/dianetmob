@@ -20,13 +20,13 @@
         </Grid.ColumnDefinitions>
         <Image Source="smile.png" Grid.Row="1" Grid.Column="1" />
         <StackLayout Grid.Row="1" Grid.Column="2">
-          <Button x:Name="btnProfile"  Text="{Binding Name}" HorizontalOptions="Start" BackgroundColor="#2196F3" FontSize="20" TextColor="#FFF" ></Button>
+          <Button x:Name="btnProfile" Text="{Binding Name}" HorizontalOptions="Start" BackgroundColor="#2196F3" FontSize="20" TextColor="#FFF" ></Button>
         </StackLayout> 
       </Grid>
      <ListView x:Name="listView" VerticalOptions="FillAndExpand"  SeparatorVisibility="None">
         <ListView.ItemTemplate>
           <DataTemplate>
-            <ImageCell Text="{Binding Title}"  ImageSource="{Binding IconSource}" />
+            <ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}" />
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
