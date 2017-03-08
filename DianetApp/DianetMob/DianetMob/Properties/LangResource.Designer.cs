@@ -1133,7 +1133,7 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Days left! Please subscribe.
+        ///   Looks up a localized string similar to Days left! Do you want to subscribe?.
         /// </summary>
         internal static string subscribe {
             get {
@@ -1174,6 +1174,15 @@ namespace DianetMob.Properties {
         internal static string time {
             get {
                 return ResourceManager.GetString("time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trial period.
+        /// </summary>
+        internal static string trial {
+            get {
+                return ResourceManager.GetString("trial", resourceCulture);
             }
         }
         

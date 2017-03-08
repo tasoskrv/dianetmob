@@ -40,7 +40,7 @@
                          FontSize="Large"
                          TextColor="#444"/>
                   <Label Text="{Binding Description}"
-                         FontSize="Medium"
+                         FontSize="14"
                          TextColor="#666"/>
                   <Label Text=""
                          TextColor="Blue">

@@ -529,7 +529,7 @@
     <value>Select unit</value>
   </data>
   <data name="subscribe" xml:space="preserve">
-    <value>Days left! Please subscribe</value>
+    <value>Days left! Do you want to subscribe?</value>
   </data>
   <data name="uploadaction" xml:space="preserve">
     <value>Cannot perform this action. Upload process has not finished!</value>
@@ -545,5 +545,8 @@
   </data>
   <data name="warning" xml:space="preserve">
     <value>Warning</value>
+  </data>
+  <data name="trial" xml:space="preserve">
+    <value>Trial period</value>
   </data>
 </root>

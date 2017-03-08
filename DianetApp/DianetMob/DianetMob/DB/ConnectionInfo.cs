@@ -16,6 +16,7 @@ namespace DianetMob.DB
 
         public ConnectionInfo() {
             conn=StorageManager.GetConnection();
+            isTrialShown = false;
         }
 
         public bool isTrial
@@ -25,6 +26,7 @@ namespace DianetMob.DB
                 return (LoginUser.InsertDate.AddDays(settings.TrialPeriod) > DateTime.UtcNow);
             }
         }
+        public bool isTrialShown { get; set; }
 
         public Subscription LoadActiveSubscription()
         {

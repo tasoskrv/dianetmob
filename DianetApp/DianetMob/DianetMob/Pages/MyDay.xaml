@@ -17,10 +17,10 @@
       </StackLayout>
       <StackLayout IsEnabled="false">
     <ActivityIndicator x:Name="loader" BackgroundColor="#FFFFFF" IsVisible="False" Color="#2196F3" IsRunning="false" VerticalOptions="Start" />
-    <me:DashboardView x:Name="dashboardview" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
-    <me:LogView x:Name="logview" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+    <me:DashboardView x:Name="dashboardview" HorizontalOptions="FillAndExpand" HeightRequest="500" VerticalOptions="FillAndExpand" />
+    <me:LogView x:Name="logview" IsVisible="False" HorizontalOptions="FillAndExpand" HeightRequest="600" VerticalOptions="FillAndExpand" />
         </StackLayout>
-    <me:AddMealView x:Name="addmealview" HeightRequest="700" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" />  
+    <me:AddMealView x:Name="addmealview" IsVisible="False" HorizontalOptions="FillAndExpand" HeightRequest="900" VerticalOptions="FillAndExpand" />  
     <StackLayout x:Name="datepickpanel" Orientation="Horizontal" VerticalOptions="EndAndExpand" BackgroundColor="#FFFFFF" >
       <Button FontSize="Large" Text="&lt;" BackgroundColor="#FFFFFF" TextColor="#2196F3" VerticalOptions="Center"
         HorizontalOptions="EndAndExpand" Clicked="OnPrevDayClicked" />

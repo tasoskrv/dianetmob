@@ -529,7 +529,7 @@
     <value>Επιλέξτε μονάδα</value>
   </data>
   <data name="subscribe" xml:space="preserve">
-    <value>Μέρες έμειναν. Παρακαλώ εγγραφείτε</value>
+    <value>Μέρες έμειναν. Θέλετε  να εγγραφείτε;</value>
   </data>
   <data name="uploadaction" xml:space="preserve">
     <value>Η ενέργεια δεν μπορεί να πραγματοποιηθεί. Το ανέβασμα δεν έχει ολοκληρωθεί</value>
@@ -545,5 +545,8 @@
   </data>
   <data name="warning" xml:space="preserve">
     <value>Προειδοποίηση</value>
+  </data>
+  <data name="trial" xml:space="preserve">
+    <value>Δοκιμαστική περίοδος</value>
   </data>
 </root>

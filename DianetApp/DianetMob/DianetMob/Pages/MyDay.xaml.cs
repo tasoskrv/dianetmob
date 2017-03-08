@@ -21,6 +21,7 @@ namespace DianetMob.Pages
         private ConnectionInfo info;
         private Dictionary<int, double> DashboardDic = new Dictionary<int, double>();
 
+
         public MyDay()
         {
             InitializeComponent();
@@ -37,9 +38,14 @@ namespace DianetMob.Pages
         {
             if (subscription == null)
             {
-                if (info.isTrial)
+                if (info.isTrial && !info.isTrialShown)
                 {
-                  await  DisplayAlert("Trial", (info.LoginUser.InsertDate.AddDays(info.Settings.TrialPeriod).Subtract(DateTime.UtcNow)).Days + " " + Properties.LangResource.subscribe, Properties.LangResource.yes);
+                    info.isTrialShown = true;
+                    var answer = await DisplayAlert(Properties.LangResource.trial, (info.LoginUser.InsertDate.AddDays(info.Settings.TrialPeriod).Subtract(DateTime.UtcNow)).Days + " " + Properties.LangResource.subscribe, Properties.LangResource.yes, Properties.LangResource.no);
+                    if (answer == true)
+                    {
+                        await Navigation.PushAsync(new ShopPage());
+                    }
                 }
             }
             RecreateData();
