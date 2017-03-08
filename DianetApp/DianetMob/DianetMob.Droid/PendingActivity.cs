@@ -20,10 +20,12 @@ namespace DianetMob.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            StartActivity(typeof(MainActivity));
+
             string extraData = Intent.GetStringExtra(MainActivity.ACTIVITY_NOTIF);
-            if (extraData != null)
-                MessagingCenter.Send<MainPage, string>((MainPage)App.Current.MainPage, "NotificationAction", extraData);
-            Finish();
-        }
+                if (extraData != null)
+                    MessagingCenter.Send<MainPage, string>((MainPage)App.Current.MainPage, "NotificationAction", extraData);
+                Finish();
+            }
     }
 }

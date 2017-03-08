@@ -6,8 +6,6 @@ using Plugin.Connectivity;
 using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -124,7 +122,7 @@ namespace DianetMob.Utils
                 SQLiteConnection conn = StorageManager.GetConnection();
                 string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
                 List<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
-
+                
                 selalert = null;
                 foreach (Alert alt in alts)
                 {
@@ -135,6 +133,7 @@ namespace DianetMob.Utils
                             selalert = alt;
                         }
                     }
+                    
                 }
                 if (selalert != null) {
                     nextAlertNotif = new RecurringTask(new Action(() => AlertWake()), selalert.GetTimeLeft());
@@ -142,22 +141,22 @@ namespace DianetMob.Utils
                 }
             }
 
-            var minutes = TimeSpan.FromDays(1);
             if (ServiceTask == null)
             {
+                var minutes = TimeSpan.FromDays(1);
                 FullSynch(loader);
                 ServiceTask = new RecurringTask(new Action(FullSynchA), minutes);
+                ServiceTask.Start();
             }
-            ServiceTask.Start();
-
-            minutes = TimeSpan.FromHours(6);
+            
             if (NotifTask == null)
             {
-
+                var minutes = TimeSpan.FromHours(6);
                 CheckMessages();
                 NotifTask = new RecurringTask(new Action(CheckMessages), minutes);
+                NotifTask.Start();
             }
-            NotifTask.Start();
+            
 
         }
 

@@ -42,7 +42,7 @@ namespace DianetMob.Droid.NotifLocal
             // Create a PendingIntent; we're only using one PendingIntent (ID = 0):
             const int pendingIntentId = 0;
             PendingIntent pendingIntent =
-                PendingIntent.GetActivity(activeContext, pendingIntentId, intent, PendingIntentFlags.OneShot);
+                PendingIntent.GetActivity(activeContext, pendingIntentId, intent, PendingIntentFlags.UpdateCurrent);
 
             Notification.BigTextStyle textStyle = new Notification.BigTextStyle();
             textStyle.BigText(notification.Text);

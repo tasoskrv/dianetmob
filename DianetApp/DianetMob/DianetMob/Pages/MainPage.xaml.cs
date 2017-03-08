@@ -3,6 +3,7 @@ using DianetMob.DB.Entities;
 using DianetMob.Model;
 using DianetMob.Pages;
 using DianetMob.Views;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,17 @@ namespace DianetMob.Pages
         private void OnNotificationMessage(MainPage sender, string id)
         {
             if (Convert.ToInt32(id) == 33)
+            {
                 Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MyWeight)));
-            else if (Convert.ToInt32(id) > 20000 && Convert.ToInt32(id) < 20100) {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MyDay)));
+            }
+            else if (Convert.ToInt32(id) > 20000 && Convert.ToInt32(id) < 20100)
+            {
+                MyDay day = (MyDay)Activator.CreateInstance(typeof(MyDay));
+                Detail = new NavigationPage((Page)day);
+               
+                SQLiteConnection conn = StorageManager.GetConnection();
+                Alert alert = conn.Get<Alert>(int.Parse(id)-20000);
+                day.OpenSearch(alert.MealType);
             }
         }
 

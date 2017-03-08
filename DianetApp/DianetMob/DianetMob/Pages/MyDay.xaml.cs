@@ -3,6 +3,7 @@ using DianetMob.DB.Entities;
 using DianetMob.Model;
 using DianetMob.TableMapping;
 using DianetMob.Utils;
+using DianetMob.Views;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,6 @@ namespace DianetMob.Pages
         private Subscription subscription = null;
         private ConnectionInfo info;
         private Dictionary<int, double> DashboardDic = new Dictionary<int, double>();
-
 
         public MyDay()
         {
@@ -50,6 +50,16 @@ namespace DianetMob.Pages
             }
             RecreateData();
         }
+
+        public async void OpenSearch(int mode)
+        {
+            SearchMealPage searchPage = new SearchMealPage();
+
+            searchPage.SelectedDate = DateTime.Now.Date;
+            searchPage.Mode = mode;
+            await Navigation.PushAsync(searchPage);
+        }
+
         void OnDashboardClicked(object sender, EventArgs e)
         {
             logview.IsVisible = false;
