@@ -12,7 +12,7 @@ using Dianet.Droid.Services;
 
 namespace DianetMob.Droid
 {
-    [Activity(Label = "DianetMob", Icon = "@drawable/logo", LaunchMode =LaunchMode.SingleInstance,Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "DianetMob", Icon = "@drawable/logo", LaunchMode =LaunchMode.SingleTask,Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static MainActivity Instance;
@@ -23,8 +23,8 @@ namespace DianetMob.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-            this.Intent.SetFlags(ActivityFlags.ClearTop);
-            this.Intent.SetFlags(ActivityFlags.NewTask);
+          //  this.Intent.SetFlags(ActivityFlags.ClearTop);
+          //  this.Intent.SetFlags(ActivityFlags.NewTask);
             MainActivity.Instance = this;
             await CrossMedia.Current.Initialize();
 
