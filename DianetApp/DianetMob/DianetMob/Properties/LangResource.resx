@@ -549,4 +549,10 @@
   <data name="trial" xml:space="preserve">
     <value>Trial period</value>
   </data>
+  <data name="reminder" xml:space="preserve">
+    <value>Reminder</value>
+  </data>
+  <data name="time_to_eat" xml:space="preserve">
+    <value>Time to eat!</value>
+  </data>
 </root>

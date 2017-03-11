@@ -127,18 +127,12 @@ namespace DianetMob.DB.Entities
             alerttime = "00:00";// DateTime.Now;
         }
 
-        public TimeSpan GetTimeLeft()
+        public DateTime GetAlertDateTime()
         {
             var dateNow = DateTime.Now;
             var timeParts = alerttime.Split(new char[1] { ':' });
-            var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day,
+            return new DateTime(dateNow.Year, dateNow.Month, dateNow.Day,
                        int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
-
-            if (date > dateNow)
-                return date - dateNow;
-
-            date = date.AddDays(1);
-            return date - dateNow;
         }
 
         public override string ToString()

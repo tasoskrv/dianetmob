@@ -971,6 +971,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reminder.
+        /// </summary>
+        internal static string reminder {
+            get {
+                return ResourceManager.GetString("reminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remind Time:.
         /// </summary>
         internal static string remindTime {
@@ -1174,6 +1183,15 @@ namespace DianetMob.Properties {
         internal static string time {
             get {
                 return ResourceManager.GetString("time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time to eat!.
+        /// </summary>
+        internal static string time_to_eat {
+            get {
+                return ResourceManager.GetString("time_to_eat", resourceCulture);
             }
         }
         

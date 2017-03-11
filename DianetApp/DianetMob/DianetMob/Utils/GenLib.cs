@@ -16,9 +16,7 @@ namespace DianetMob.Utils
     {
         private static RecurringTask ServiceTask;
         private static RecurringTask NotifTask;
-        public static Dictionary<int, Alert> NotifAlerts = new Dictionary<int, Alert>();
-        private static RecurringTask nextAlertNotif =null;
-        private static Alert selalert = null;
+        public static Dictionary<int, ILocalNotifier> NotifAlerts = new Dictionary<int, ILocalNotifier>();
 
         private static bool isRunning;
 
@@ -114,6 +112,28 @@ namespace DianetMob.Utils
                 }
             }
         }
+        public static void AddAlertNotif(Alert alt) {
+            var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
+            string atitle = "";
+            if (alt.MealType == 1)
+                atitle = Properties.LangResource.breakfast;
+            else if (alt.MealType == 2)
+                atitle = Properties.LangResource.lunch;
+            else if (alt.MealType == 3)
+                atitle = Properties.LangResource.dinner;
+            else if (alt.MealType == 4)
+                atitle = Properties.LangResource.snack;
+
+            notifier.Notify(new LocalNotification()
+            {
+                Title = atitle + " " + Properties.LangResource.reminder,
+                Text = Properties.LangResource.time_to_eat,
+                Id = alt.IDAlert + 20000,
+                NotifyTime = alt.GetAlertDateTime(),
+                Recurrence = 24
+            });
+            NotifAlerts.Add(alt.IDAlert, notifier);
+        }
 
         public static void StartUp(ActivityIndicator loader=null)
         {
@@ -123,21 +143,13 @@ namespace DianetMob.Utils
                 string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
                 List<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
                 
-                selalert = null;
                 foreach (Alert alt in alts)
                 {
                     if (alt.Status == 1)
                     {
-                        NotifAlerts.Add(alt.IDAlert, alt);
-                        if ((selalert == null) || (alt.GetTimeLeft() < selalert.GetTimeLeft())) {
-                            selalert = alt;
-                        }
+                        AddAlertNotif(alt);
                     }
                     
-                }
-                if (selalert != null) {
-                    nextAlertNotif = new RecurringTask(new Action(() => AlertWake()), selalert.GetTimeLeft());
-                    nextAlertNotif.Start();
                 }
             }
 
@@ -159,54 +171,7 @@ namespace DianetMob.Utils
             
 
         }
-
-        public static void CalcNextAlert() {
-            selalert = null;
-            if (nextAlertNotif != null)
-            {
-                nextAlertNotif.Stop();
-                nextAlertNotif = null; 
-            }
-            foreach (var pair in NotifAlerts)
-            {
-                Alert alt = NotifAlerts[pair.Key];
-
-                if ((selalert == null) || (alt.GetTimeLeft() < selalert.GetTimeLeft()))
-                {
-                    selalert = alt;
-                }
-            }
-
-            if (selalert != null)
-            {
-                nextAlertNotif = new RecurringTask(new Action(() => AlertWake()), selalert.GetTimeLeft());
-                nextAlertNotif.Start();
-            }
-        }
-
-        public static void AlertWake()
-        {
-            var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
-            string atitle = "";
-            if (selalert.MealType == 1)
-                atitle = "Breakfast";
-            else if (selalert.MealType == 2)
-                atitle = "Lunch";
-            else if (selalert.MealType == 3)
-                atitle = "Dinner";
-            else if (selalert.MealType == 4)
-                atitle = "Snack";
-
-
-            notifier.Notify(new LocalNotification()
-            {
-                Title = atitle + " Reminder",
-                Text = "Time to eat!",
-                Id = selalert.IDAlert + 20000,
-                NotifyTime = DateTime.Now,
-            });
-            CalcNextAlert();
-        }
+        
 
         public async static Task FullServiceSend(User user, UserSettings usersettings)
         {

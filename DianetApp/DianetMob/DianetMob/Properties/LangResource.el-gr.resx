@@ -549,4 +549,10 @@
   <data name="trial" xml:space="preserve">
     <value>Δοκιμαστική περίοδος</value>
   </data>
+  <data name="reminder" xml:space="preserve">
+    <value>Υπενθύμιση</value>
+  </data>
+  <data name="time_to_eat" xml:space="preserve">
+    <value>Ώρα για φαγητό!</value>
+  </data>
 </root>

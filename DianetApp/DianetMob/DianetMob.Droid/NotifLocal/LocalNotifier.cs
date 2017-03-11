@@ -28,8 +28,15 @@ namespace DianetMob.Droid.NotifLocal
           var triggerTime = notifyTimeInMilliseconds(notification.NotifyTime);
           var alarmManager = getAlarmManager();
 
-          alarmManager.Set(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + triggerTime, pendingIntent);
-      }
+            if (notification.Recurrence > 0)
+            {
+                var notifTime = notifyTimeInMilliseconds(DateTime.Now.AddMinutes(notification.Recurrence));
+                alarmManager.SetRepeating(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + triggerTime, notification.Recurrence * 60 * 60 * 1000, pendingIntent);
+            }
+            else {
+                alarmManager.Set(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + triggerTime, pendingIntent);
+            }
+        }
 
       /// <summary>
       /// Cancels the specified notification identifier.

@@ -38,5 +38,8 @@ namespace Dianet.Notification
         /// The notify time of notification.
         /// </value>
         public DateTime NotifyTime { get; set; }
+
+
+        public int Recurrence { get; set; }
     }
 }
