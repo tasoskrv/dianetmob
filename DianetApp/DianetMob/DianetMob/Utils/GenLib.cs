@@ -14,15 +14,12 @@ namespace DianetMob.Utils
 {
     public class GenLib
     {
-        private static RecurringTask ServiceTask;
-        private static RecurringTask NotifTask;
+        private static DateTime ServiceLastRun;
+        private static DateTime MessagesLastRun;
+        private static bool AlertsLoaded = false;
         public static Dictionary<int, ILocalNotifier> NotifAlerts = new Dictionary<int, ILocalNotifier>();
 
         private static bool isRunning;
-
-        public static void FullSynchA() {
-            FullSynch();
-        }
 
         public async static Task LoginSynch()
         {
@@ -112,7 +109,7 @@ namespace DianetMob.Utils
                 }
             }
         }
-        public static void AddAlertNotif(Alert alt) {
+        private static void AddAlertNotif(Alert alt) {
             var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
             string atitle = "";
             if (alt.MealType == 1)
@@ -135,10 +132,34 @@ namespace DianetMob.Utils
             NotifAlerts.Add(alt.IDAlert, notifier);
         }
 
+        public static void SetAlert(Alert alert) {
+            if (alert.Status == 0)
+            {
+                if (NotifAlerts.ContainsKey(alert.IDAlert))
+                {
+                    NotifAlerts[alert.IDAlert].Cancel(alert.IDAlert + 20000);
+                    NotifAlerts.Remove(alert.IDAlert);
+                }
+            }
+            else if (alert.Status == 1)
+            {
+                if (NotifAlerts.ContainsKey(alert.IDAlert))
+                {
+                    NotifAlerts[alert.IDAlert].Cancel(alert.IDAlert + 20000);
+                    NotifAlerts.Remove(alert.IDAlert);
+                    AddAlertNotif(alert);
+                }
+                else
+                {
+                    AddAlertNotif(alert);
+                }
+            }
+        }
         public static void StartUp(ActivityIndicator loader=null)
         {
-            if (ServiceTask == null && NotifAlerts.Count==0)
+            if (!AlertsLoaded)
             {
+                AlertsLoaded = true;
                 SQLiteConnection conn = StorageManager.GetConnection();
                 string iduser = StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString();
                 List<Alert> alts = conn.Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + iduser);
@@ -152,21 +173,16 @@ namespace DianetMob.Utils
                     
                 }
             }
-
-            if (ServiceTask == null)
+            if (DateTime.Now>ServiceLastRun.AddDays(1))
             {
-                var minutes = TimeSpan.FromDays(1);
+                ServiceLastRun = DateTime.Now;
                 FullSynch(loader);
-                ServiceTask = new RecurringTask(new Action(FullSynchA), minutes);
-                ServiceTask.Start();
             }
             
-            if (NotifTask == null)
+            if (DateTime.Now > MessagesLastRun.AddHours(6))
             {
-                var minutes = TimeSpan.FromHours(6);
+                MessagesLastRun = DateTime.Now;
                 CheckMessages();
-                NotifTask = new RecurringTask(new Action(CheckMessages), minutes);
-                NotifTask.Start();
             }
             
 
@@ -348,6 +364,11 @@ namespace DianetMob.Utils
                 {
                     ModelService<Alert> servAlert = await ServiceConnector.GetServiceData<ModelService<Alert>>("/alert/getall" + usercall);
                     servAlert.SaveAllToDBWithServerID("IDAlert");
+                    IEnumerable<Alert> alts = StorageManager.GetConnection().Query<Alert>("SELECT * FROM Alert WHERE IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser);
+                    foreach (Alert alt in alts)
+                    {
+                        SetAlert(alt);
+                    }
                 }
                 if (servsync.data[0].Exercise == 1)
                 {

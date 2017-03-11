@@ -131,8 +131,13 @@ namespace DianetMob.DB.Entities
         {
             var dateNow = DateTime.Now;
             var timeParts = alerttime.Split(new char[1] { ':' });
-            return new DateTime(dateNow.Year, dateNow.Month, dateNow.Day,
+            var date=new DateTime(dateNow.Year, dateNow.Month, dateNow.Day,
                        int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
+            if (date < dateNow)
+            {
+                date = date.AddDays(1);
+            }
+            return date;
         }
 
         public override string ToString()
