@@ -13,27 +13,28 @@ namespace DianetMob.Droid.NotifLocal
     /// </summary>
   public class LocalNotifier : ILocalNotifier
   {
-      /// <summary>
-      /// Notifies the specified notification.
-      /// </summary>
-      /// <param name="notification">The notification.</param>
-      public void Notify(LocalNotification notification)
-      {
-          var intent = createIntent(notification.Id);
-          
-          var serializedNotification = serializeNotification(notification);
-          intent.PutExtra(ScheduledAlarmHandler.LocalNotificationKey, serializedNotification);
+        /// <summary>
+        /// Notifies the specified notification.
+        /// </summary>
+        /// <param name="notification">The notification.</param>
+        public void Notify(LocalNotification notification)
+        {
+            var intent = createIntent(notification.Id);
 
-          var pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.CancelCurrent);
-          var triggerTime = notifyTimeInMilliseconds(notification.NotifyTime);
-          var alarmManager = getAlarmManager();
+            var serializedNotification = serializeNotification(notification);
+            intent.PutExtra(ScheduledAlarmHandler.LocalNotificationKey, serializedNotification);
+
+            var pendingIntent = PendingIntent.GetBroadcast(Application.Context, notification.Id, intent, PendingIntentFlags.CancelCurrent);
+            var triggerTime = notifyTimeInMilliseconds(notification.NotifyTime);
+
+            var alarmManager = getAlarmManager();
 
             if (notification.Recurrence > 0)
             {
-                var notifTime = notifyTimeInMilliseconds(DateTime.Now.AddMinutes(notification.Recurrence));
-                alarmManager.SetRepeating(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + triggerTime, notification.Recurrence * 60 * 60 * 1000, pendingIntent);
+                alarmManager.SetRepeating(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + triggerTime, 60 * 60 * 1000, pendingIntent);
             }
-            else {
+            else
+            {
                 alarmManager.Set(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + triggerTime, pendingIntent);
             }
         }
