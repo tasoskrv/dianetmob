@@ -6,7 +6,7 @@
              Title="{iLang:Translate myfoods}">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="{iLang:Translate add}" Clicked="OnAddFoodClicked" />
+    <ToolbarItem Clicked="OnAddFoodClicked" Icon="add.png"/>
   </ContentPage.ToolbarItems>
   
   <StackLayout VerticalOptions="FillAndExpand" >

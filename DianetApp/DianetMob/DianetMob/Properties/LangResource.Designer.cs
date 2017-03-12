@@ -107,6 +107,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alert.
+        /// </summary>
+        internal static string alert {
+            get {
+                return ResourceManager.GetString("alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alerts.
         /// </summary>
         internal static string alerts {
@@ -242,7 +251,7 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string delete {
             get {
@@ -458,6 +467,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finish Loading Data.
+        /// </summary>
+        internal static string finish_loading_data {
+            get {
+                return ResourceManager.GetString("finish_loading_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Food.
         /// </summary>
         internal static string food {
@@ -616,6 +634,24 @@ namespace DianetMob.Properties {
         internal static string later {
             get {
                 return ResourceManager.GetString("later", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Data.
+        /// </summary>
+        internal static string loading_data {
+            get {
+                return ResourceManager.GetString("loading_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Database from online server.
+        /// </summary>
+        internal static string loading_db_from_online_server {
+            get {
+                return ResourceManager.GetString("loading_db_from_online_server", resourceCulture);
             }
         }
         
@@ -1133,6 +1169,15 @@ namespace DianetMob.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Goal start date.
+        /// </summary>
+        internal static string start_goal {
+            get {
+                return ResourceManager.GetString("start_goal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your subscription has expired. Do you want to reactivate?.
         /// </summary>
         internal static string subAlert {
@@ -1174,6 +1219,15 @@ namespace DianetMob.Properties {
         internal static string surname {
             get {
                 return ResourceManager.GetString("surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync process is already running!.
+        /// </summary>
+        internal static string sync_process_is_running {
+            get {
+                return ResourceManager.GetString("sync_process_is_running", resourceCulture);
             }
         }
         
@@ -1372,6 +1426,15 @@ namespace DianetMob.Properties {
         internal static string youngerror {
             get {
                 return ResourceManager.GetString("youngerror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Database is synchronized.
+        /// </summary>
+        internal static string your_db_is_synch {
+            get {
+                return ResourceManager.GetString("your_db_is_synch", resourceCulture);
             }
         }
     }

@@ -33,7 +33,7 @@ namespace DianetMob.Views
             if ((info.isTrial) || ((info.ActiveSubscription != null) && (info.ActiveSubscription.EndDate >= DateTime.UtcNow)))
             {
                 searchPage.Mode = mode;
-                //MyDayPage.ToggleAddView();
+                MyDayPage.ToggleAddView();
 
                 if (mode == 5)
                 {                    

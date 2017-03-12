@@ -6,7 +6,7 @@
              x:Class="DianetMob.Pages.AlertPageDetail">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Save"  Clicked="OnSaveAlertClicked"/>
+    <ToolbarItem Icon="save.png"  Clicked="OnSaveAlertClicked"/>
   </ContentPage.ToolbarItems>
   
   <ContentPage.Resources>

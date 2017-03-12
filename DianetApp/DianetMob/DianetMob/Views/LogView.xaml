@@ -35,10 +35,11 @@
           <ListView.GroupHeaderTemplate>
             <DataTemplate>
               <ViewCell>
-                <StackLayout Orientation="Horizontal" BackgroundColor="#FFFFFF">
+                <StackLayout Orientation="Horizontal" BackgroundColor="#FFFFFF" Padding="0,0,15,0">
                     <StackLayout BackgroundColor="#000000" />
-                    <Label   Text="{Binding Name}" VerticalTextAlignment="Center"  Font="Bold,15" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
-                    <Button  Image="addgrid.png" BackgroundColor="#FFFFFF" CommandParameter="{Binding CategoryID}" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Clicked="OnClickGridButton"/>
+                    <Label   Text="{Binding Name}" VerticalTextAlignment="Center"  Font="Bold,15" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <Button  Image="{Binding ImageN}" BackgroundColor="#FFFFFF" CommandParameter="{Binding CategoryID}" WidthRequest="25" VerticalOptions="StartAndExpand" HorizontalOptions="End" Clicked="OnClickLockButton"/>
+                    <Button  Image="addgrid.png" BackgroundColor="#FFFFFF" CommandParameter="{Binding CategoryID}" WidthRequest="25" VerticalOptions="StartAndExpand" HorizontalOptions="End" Clicked="OnClickGridButton"/>
                 </StackLayout>
               </ViewCell>
             </DataTemplate>
@@ -46,13 +47,11 @@
           <ListView.ItemTemplate>
             <DataTemplate>
               <ViewCell>
-                <ViewCell.ContextActions>
-                  <MenuItem Text="{iLang:Translate delete}" CommandParameter="{Binding .}" Clicked="OnDeleted" />
-                </ViewCell.ContextActions>
                 <ContentView>
-                  <StackLayout Padding="15,5,35,5"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                  <StackLayout Padding="15,0,10,0" HeightRequest="100" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                     <Label Text="{Binding Title}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                    <Label Text="{Binding Description}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand"  FontAttributes="Bold"/>
+                    <Button Text="{iLang:Translate delete}" BorderRadius = "5" TextColor="#FFF" BackgroundColor="#dc2828" WidthRequest="100" CommandParameter="{Binding itemS}" IsVisible="{Binding isVisible}" VerticalOptions="Center" HorizontalOptions="End" Clicked="OnClickDeleteButton"/>
+                    <Label Text="{Binding Description}" VerticalTextAlignment="Center" WidthRequest="35" HorizontalTextAlignment="End" HorizontalOptions="End"  FontAttributes="Bold"/>
                   </StackLayout>
                 </ContentView>
               </ViewCell>

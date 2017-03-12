@@ -5,8 +5,8 @@
              xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              Title="{iLang:Translate weight}">
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="{iLang:Translate addWeight}" Clicked="OnAddWeightClicked"/> 
-    <ToolbarItem Text="{iLang:Translate goalEdit}" Clicked="OnAddPlanClicked"/> 
+    <ToolbarItem  Clicked="OnAddPlanClicked" Icon="target.png"/>
+    <ToolbarItem  Clicked="OnAddWeightClicked" Icon="add.png"/>
   </ContentPage.ToolbarItems>
   <Grid Margin="0,0,0,0" RowSpacing="0" >
     <Grid.ColumnDefinitions>
@@ -15,13 +15,24 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="70*"/>
       <RowDefinition Height="2"/>
-      <RowDefinition Height="20"/>
+      <RowDefinition Height="40"/>
       <RowDefinition Height="2"/>
       <RowDefinition Height="30*"/>
     </Grid.RowDefinitions>
     <WebView x:Name="webview2" Grid.Row="0" Grid.Column="0" />
     <Label Grid.Row="1"  Grid.Column="0" Text=""  BackgroundColor="#666" TextColor="#FFF"/>
-    <Label Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Text="{iLang:Translate recordWeight}" Font="Bold,12" TextColor="#666" BackgroundColor="#FFFFFF"/>
+    <Grid Grid.Row="2"  Grid.Column="0" Margin="0,0,0,0" RowSpacing="0"  BackgroundColor="#FFF" >
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="30" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="30" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Label Grid.Row="0"  Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{iLang:Translate recordWeight}" Font="Bold,12" TextColor="#666" BackgroundColor="#FFFFFF"/>
+      <Button x:Name="btnlock" Image="lock.png"  Grid.Row="0"  Grid.Column="2" BorderRadius = "5"  BackgroundColor="#FFF"  Clicked="OnLock"/>
+    </Grid>  
     <Label Grid.Row="3"  Grid.Column="0" Text=""  BackgroundColor="#666" TextColor="#FFF"/>
     <ListView x:Name="ListViewWeight" Grid.Row="4" Grid.Column="0" ItemTapped="OnItemTapped" RowHeight="40" BackgroundColor="#FFFFFF">
       <ListView.ItemTemplate>
@@ -31,13 +42,14 @@
               <MenuItem Text="{iLang:Translate delete}" CommandParameter="{Binding .}" Clicked="OnDeleted" />              
             </ViewCell.ContextActions-->                        
             <ViewCell.View>
-              <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="5">
+              <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                 <StackLayout Orientation="Horizontal">
                   <Image HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Source="weight_list.png"/>
                   <Label Text="{Binding WeightDate, StringFormat='{0:dddd, dd MMMM}'}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" TextColor="#503026" FontSize="14"/>
                   <Label Text="{Binding WValue}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" TextColor="#2196F3" FontSize="14"/>
                   <Label Text="{iLang:Translate kgs}" HorizontalOptions="End" TextColor="#2196F3" VerticalOptions="CenterAndExpand" FontSize="14" />
-                  <Button Image="addgrid.png" BackgroundColor="#FFFFFF" CommandParameter="{Binding IDWeight}" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Clicked="OnDeleted"/>
+                  <Label Text="  " HorizontalOptions="End" TextColor="#2196F3" VerticalOptions="CenterAndExpand" />
+                  <Button  Text="Delete" BorderRadius = "5" TextColor="#FFF" BackgroundColor="#dc2828" CommandParameter="{Binding IDWeight}" IsVisible="{Binding isVisible}" VerticalOptions="Center" HorizontalOptions="End" Clicked="OnDeleted"/>
                 </StackLayout>                
               </StackLayout>
             </ViewCell.View>  

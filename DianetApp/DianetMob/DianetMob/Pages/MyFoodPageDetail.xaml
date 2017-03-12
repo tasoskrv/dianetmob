@@ -7,7 +7,7 @@
              Title="{iLang:Translate myfood}">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="{iLang:Translate save}"  Clicked="OnSaveFoodClicked"/>
+    <ToolbarItem Icon="save.png"  Clicked="OnSaveFoodClicked"/>
   </ContentPage.ToolbarItems>
 
   <ContentPage.Resources>

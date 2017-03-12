@@ -5,7 +5,7 @@
              xmlns:iLang="clr-namespace:DianetMob.Utils;assembly=DianetMob"
              Title="{iLang:Translate quantity}">
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Save" Clicked="OnChooseBtnClicked"/>
+    <ToolbarItem Icon="save.png" Clicked="OnChooseBtnClicked"/>
   </ContentPage.ToolbarItems>
   <ContentPage.Content>
      <StackLayout>

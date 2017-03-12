@@ -7,7 +7,7 @@
              Title="{iLang:Translate goalEdit}">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem x:Name="fSaveBtn" Text="{iLang:Translate save}"  Clicked="OnSavePlanClicked"/>
+    <ToolbarItem x:Name="fSaveBtn" Icon="save.png"  Clicked="OnSavePlanClicked"/>
   </ContentPage.ToolbarItems>
 
   <ContentPage.Resources>
@@ -17,7 +17,8 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <StackLayout BackgroundColor="#FFFFFF">
+    <StackLayout Padding="0,30,0,0" BackgroundColor="#FFFFFF">
+      <Label  VerticalOptions="Start" Text="{iLang:Translate start_goal}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
       <StackLayout   x:Name="datepickpanel" Orientation="Horizontal" VerticalOptions="Start" BackgroundColor="#FFFFFF" >
         <Button FontSize="Large" Text="&lt;" BackgroundColor="#FFFFFF" TextColor="#2196F3" VerticalOptions="Center"
           HorizontalOptions="EndAndExpand" Clicked="OnPrevDayClicked" />

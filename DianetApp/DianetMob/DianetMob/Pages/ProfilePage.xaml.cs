@@ -82,9 +82,8 @@ namespace DianetMob.Pages
         
         private async void OnProfileSubmitClicked(object sender, EventArgs e)
         {
-            if (ProfileBtn.Text.Equals(Properties.LangResource.edit))
+            if (!fFirstNameEntry.IsEnabled)
             {
-                ProfileBtn.Text = Properties.LangResource.save;
                 fFirstNameEntry.IsEnabled = true;
                 fSurNameEntry.IsEnabled = true;
                 //fEmailEntry.IsEnabled = true;

@@ -8,6 +8,7 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,28 +44,28 @@ namespace DianetMob.Views
             for (int i = 0; i < groupedItems.Count; i++)
                 groupedItems[i].Clear();
             groupedItems.Clear();
-            Group group = new Group(Properties.LangResource.breakfast + ": " + points.Breakfast, "1");
+            Group group = new Group(Properties.LangResource.breakfast + ": " + points.Breakfast, "1", "lock.png");
             groupedItems.Add(group);
-            group = new Group(Properties.LangResource.lunch + ": " + points.Lunch, "2");
+            group = new Group(Properties.LangResource.lunch + ": " + points.Lunch, "2", "lock.png");
             groupedItems.Add(group);
-            group = new Group(Properties.LangResource.dinner + ": " + points.Dinner, "3");
+            group = new Group(Properties.LangResource.dinner + ": " + points.Dinner, "3", "lock.png");
             groupedItems.Add(group);
-            group = new Group(Properties.LangResource.snack + ": " + points.Snack, "4");
+            group = new Group(Properties.LangResource.snack + ": " + points.Snack, "4", "lock.png");
             groupedItems.Add(group);
-            group = new Group(Properties.LangResource.water + ": 0" , "5");
+            group = new Group(Properties.LangResource.water + ": 0" , "5", "lock.png");
             groupedItems.Add(group);
-            group = new Group(Properties.LangResource.exercise + ": " + points.Exercise, "6");
+            group = new Group(Properties.LangResource.exercise + ": " + points.Exercise, "6","lock.png");
             groupedItems.Add(group);
 
             foreach (MapLogData logrecord in logrecords)
             {
-                Item item = new Item(logrecord.MealName, PointSystem.PointCalculate(logrecord.Calories).ToString(), logrecord.IDUserMeal, logrecord.IDCategory);
+                Item item = new Item(logrecord.MealName, PointSystem.PointCalculate(logrecord.Calories).ToString(), logrecord.IDUserMeal, logrecord.IDCategory,false);
                 groupedItems[logrecord.IDCategory - 1].Add(item);
             }
 
             foreach (Exercise exercise in exercises)
             {
-                Item item = new Item(Properties.LangResource.exercise, PointSystem.PointExerciseCalculate(exercise.Minutes).ToString(), exercise.IDExercise,6);
+                Item item = new Item(Properties.LangResource.exercise, PointSystem.PointExerciseCalculate(exercise.Minutes).ToString(), exercise.IDExercise,6, false);
                 groupedItems[5].Add(item);
             }
 
@@ -129,8 +130,74 @@ namespace DianetMob.Views
             }
 
         }
-    
-    
+
+        public async void OnClickDeleteButton(object sender, EventArgs e)
+        {
+            var item = (Xamarin.Forms.Button)sender;
+            Item mode = (Item)(item.CommandParameter);
+            for (int i = 0; i < groupedItems.Count; i++)
+            {
+                foreach (Item it in groupedItems[i])
+                {
+                    if (mode.ID == it.ID && mode.IDCategory == it.IDCategory)
+                    {
+                        if (it.IDCategory == 6)
+                        {
+                            Exercise exercise = conn.Get<Exercise>(it.ID);
+
+                            if (exercise.IDServer == 0)
+                            {
+                                StorageManager.DeleteData<Exercise>(exercise);
+                            }
+                            else
+                            {
+                                exercise.Deleted = 1;
+                                StorageManager.UpdateData<Exercise>(exercise);
+                            }
+                        }
+                        else
+                        {
+                            UserMeal usermeal = conn.Get<UserMeal>(it.ID);
+
+                            if (usermeal.IDServer == 0)
+                            {
+                                StorageManager.DeleteData<UserMeal>(usermeal);
+                            }
+                            else
+                            {
+                                usermeal.Deleted = 1;
+                                StorageManager.UpdateData<UserMeal>(usermeal);
+                            }
+                        }
+                        //sss
+                        RecreateDataAction();
+                        break;
+                    }
+                }
+            }
+        }
+        public async void OnClickLockButton(object sender, EventArgs e)
+        {
+            var item = (Xamarin.Forms.Button)sender;
+            int mode = int.Parse(item.CommandParameter.ToString());
+            for (int i = 0; i < groupedItems.Count; i++)
+            {
+                foreach (Item it in groupedItems[i])
+                {
+                    if (mode == it.IDCategory)
+                    {
+                        it.isVisible = !it.isVisible;
+                        if (it.isVisible && groupedItems[i].ImageN == "lock.png") {
+                            groupedItems[i].ImageN = "unlock.png";
+                        }
+                        else if (!it.isVisible && groupedItems[i].ImageN == "unlock.png")
+                        {
+                            groupedItems[i].ImageN = "lock.png";
+                        }
+                    }
+                }
+            }
+        }
 
         public void OnDeleted(object sender, EventArgs e)
         {
@@ -214,35 +281,93 @@ namespace DianetMob.Views
 
 
 
-    public class Group : ObservableCollection<Item>
+    public class Group : ObservableCollection<Item>, INotifyPropertyChanged
     {
         public String Name { get; set; }
         public String CategoryID { get; set; }
+        private string imageN;
 
-        public Group(String Name, String CategoryID)
+        public string ImageN
+        {
+            get
+            {
+                return imageN;
+            }
+            set
+            {
+                if (imageN != value)
+                {
+                    imageN = value;
+                    OnPropertyChanged("ImageN");
+                }
+            }
+        }
+
+        public Group(String Name, String CategoryID,string imageN)
         {
             this.Name = Name;
             this.CategoryID = CategoryID;
+            this.imageN = imageN;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         // Whatever other properties
     }
-    public class Item
+    public class Item: INotifyPropertyChanged
     {
         public String Title { get;  set; }
         public String Description { get;  set; }
 
         public int ID { get; set; }
         public int IDCategory { get; set; }
+        private bool isvisible;
+        public Item itemS { get; set; }
 
-        public Item(String title, String description, int id, int idcategory)
+        public bool isVisible
+        {
+            get
+            {
+                return isvisible;
+            }
+            set
+            {
+                if (isvisible != value)
+                {
+                    isvisible = value;
+                    OnPropertyChanged("isVisible");
+                }
+            }
+        }
+
+        public Item(String title, String description, int id, int idcategory,bool isvisible)
         {
             Title = title;
             Description = description;
             ID = id;
             IDCategory = idcategory;
+            isVisible = isvisible;
+            itemS = this;
         }
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         // Whatever other properties
     }
 }

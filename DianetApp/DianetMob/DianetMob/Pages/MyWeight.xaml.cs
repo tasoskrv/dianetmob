@@ -40,7 +40,7 @@ namespace DianetMob.Pages
                 IEnumerable<Weight> wghts = conn.Query<Weight>("SELECT IDWeight, WValue, WeightDate FROM Weight WHERE deleted=0 and IDUser=" + StorageManager.GetConnectionInfo().LoginUser.IDUser.ToString() + " order by WeightDate desc");
                 foreach (Weight wght in wghts)
                 {
-                    recordsWgt.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, WeightDate = wght.WeightDate });
+                    recordsWgt.Add(new Weight { IDWeight = wght.IDWeight, WValue = wght.WValue, WeightDate = wght.WeightDate, isVisible=false });
                 }
             }
             finally
@@ -72,7 +72,20 @@ namespace DianetMob.Pages
             setRecords();
             FillContent();
         }
-
+        public void OnLock(object sender, EventArgs e)
+        {
+            if (btnlock.Image == "lock.png")
+            {
+                btnlock.Image = "unlock.png";
+            }
+            else {
+                btnlock.Image = "lock.png";
+            }
+            foreach (Weight wght in recordsWgt) {
+                wght.isVisible = !wght.isVisible;
+                
+            }
+        }
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             Weight myWght = e.Item as Weight;

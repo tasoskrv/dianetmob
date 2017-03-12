@@ -58,7 +58,7 @@ namespace DianetMob.Utils
                     {
                         if (isRunning)
                         {
-                            await App.Current.MainPage.DisplayAlert("Alert", "Sync process is already running!", "OK");
+                            await App.Current.MainPage.DisplayAlert(Properties.LangResource.alert, Properties.LangResource.sync_process_is_running, "OK");
                             return;
                         }
                         isRunning = true;
@@ -70,8 +70,8 @@ namespace DianetMob.Utils
                         var notifier = DependencyService.Get<ICrossLocalNotifications>().CreateLocalNotifier();
                         notifier.Notify(new LocalNotification()
                         {
-                            Title = "Loading Data",
-                            Text = "Loading Database from online server",
+                            Title = Properties.LangResource.loading_data,
+                            Text = Properties.LangResource.loading_db_from_online_server,
                             Id = 10000,
                             NotifyTime = DateTime.Now,
                         });
@@ -82,8 +82,8 @@ namespace DianetMob.Utils
                         StorageManager.UpdateData<UserSettings>(usersettings);
                         notifier.Notify(new LocalNotification()
                         {
-                            Title = "Finish Loading Data",
-                            Text = "Your Database is synchronized",
+                            Title = Properties.LangResource.finish_loading_data,
+                            Text = Properties.LangResource.your_db_is_synch,
                             Id = 10000,
                             NotifyTime = DateTime.Now,
                         });

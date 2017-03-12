@@ -7,7 +7,7 @@
              Title="{iLang:Translate addInfo}">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Save" Clicked="OnSaveExerciseBtnClicked"/>
+    <ToolbarItem Icon="save.png" Clicked="OnSaveExerciseBtnClicked"/>
   </ContentPage.ToolbarItems>
   <ContentPage.Resources>
     <ResourceDictionary>

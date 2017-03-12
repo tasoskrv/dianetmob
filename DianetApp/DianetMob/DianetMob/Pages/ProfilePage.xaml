@@ -11,8 +11,8 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
-    <ToolbarItem x:Name="ProfileBtn" Text="{iLang:Translate edit}" Clicked="OnProfileSubmitClicked"/>
-    <ToolbarItem x:Name="UploadBtn" Text="{iLang:Translate upload}" Clicked="OnUploadClicked"/>    
+    <ToolbarItem x:Name="UploadBtn"  Clicked="OnUploadClicked" Icon="upload.png"/>
+    <ToolbarItem x:Name="ProfileBtn" Clicked="OnProfileSubmitClicked" Icon="edit.png"/>
   </ContentPage.ToolbarItems>
 
   <ContentPage.Content>

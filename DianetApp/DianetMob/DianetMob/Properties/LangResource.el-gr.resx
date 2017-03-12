@@ -130,7 +130,7 @@
     <value>Ημερομηνία γέννησης</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>ΔΙΑΓΡΑΦΗ</value>
+    <value>Διαγραφή</value>
   </data>
   <data name="enterMail" xml:space="preserve">
     <value>Εισάγετε το email σας</value>
@@ -454,7 +454,7 @@
     <value>Συμπληρώστε τα στοιχεία σας</value>
   </data>
   <data name="myfoods" xml:space="preserve">
-    <value>Το φαγητά μου</value>
+    <value>Τα φαγητά μου</value>
   </data>
   <data name="error" xml:space="preserve">
     <value>Σφάλμα</value>
@@ -554,5 +554,26 @@
   </data>
   <data name="time_to_eat" xml:space="preserve">
     <value>Ώρα για φαγητό!</value>
+  </data>
+  <data name="alert" xml:space="preserve">
+    <value>Ειδοποίηση</value>
+  </data>
+  <data name="finish_loading_data" xml:space="preserve">
+    <value>Ολοκήρωση ενημέρωσης</value>
+  </data>
+  <data name="loading_data" xml:space="preserve">
+    <value>Ενημέρωση δεδομένων</value>
+  </data>
+  <data name="loading_db_from_online_server" xml:space="preserve">
+    <value>Ενημέρωση δεδομένων από την online βάση δεδομένων.</value>
+  </data>
+  <data name="sync_process_is_running" xml:space="preserve">
+    <value>Η διαδικασία συγχονισμού είναι σε εξέλιξη!</value>
+  </data>
+  <data name="your_db_is_synch" xml:space="preserve">
+    <value>Τα δεδομένα σου είναι συγχρονισμένα.</value>
+  </data>
+  <data name="start_goal" xml:space="preserve">
+    <value>Ημερομηνία έναρξης στόχου</value>
   </data>
 </root>

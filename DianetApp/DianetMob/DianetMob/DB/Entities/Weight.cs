@@ -8,6 +8,7 @@ namespace DianetMob.DB.Entities
     {
         private double weight;
         private DateTime weightDate;
+        private bool isvisible;
 
         [PrimaryKey, AutoIncrement]
         public int IDWeight { get; set; }
@@ -54,6 +55,22 @@ namespace DianetMob.DB.Entities
         public DateTime InsertDate { get;set; }
 
         public DateTime UpdateDate { get; set; }
+
+        [Ignore]
+        public bool isVisible {
+            get
+            {
+                return isvisible;
+            }
+            set
+            {
+                if (isvisible != value)
+                {
+                    isvisible = value;
+                    OnPropertyChanged("isVisible");
+                }
+            }
+        }
 
         public Weight()
         {

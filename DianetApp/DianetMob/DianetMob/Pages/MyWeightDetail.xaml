@@ -7,7 +7,7 @@
              Title="{iLang:Translate recordWeight}">
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Text="{iLang:Translate save}"  Clicked="OnSaveWeightClicked"/>
+    <ToolbarItem Icon="save.png"  Clicked="OnSaveWeightClicked"/>
   </ContentPage.ToolbarItems>  
   
   <ContentPage.Resources>
