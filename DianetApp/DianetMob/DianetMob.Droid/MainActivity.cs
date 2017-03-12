@@ -9,6 +9,8 @@ using Android.OS;
 using Plugin.Media;
 using Android.Content;
 using Dianet.Droid.Services;
+using Xamarin.Forms;
+using DianetMob.Pages;
 
 namespace DianetMob.Droid
 {
@@ -23,13 +25,19 @@ namespace DianetMob.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-          //  this.Intent.SetFlags(ActivityFlags.ClearTop);
-          //  this.Intent.SetFlags(ActivityFlags.NewTask);
+            //  this.Intent.SetFlags(ActivityFlags.ClearTop);
+            //  this.Intent.SetFlags(ActivityFlags.NewTask);
             MainActivity.Instance = this;
             await CrossMedia.Current.Initialize();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+
+            string extraData = Intent.GetStringExtra(MainActivity.ACTIVITY_NOTIF);
+            if (extraData != null)
+                MessagingCenter.Send<MainPage, string>((MainPage)App.Current.MainPage, "NotificationAction", extraData);
+
+
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)

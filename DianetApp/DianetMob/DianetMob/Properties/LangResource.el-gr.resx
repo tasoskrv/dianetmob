@@ -559,7 +559,7 @@
     <value>Ειδοποίηση</value>
   </data>
   <data name="finish_loading_data" xml:space="preserve">
-    <value>Ολοκήρωση ενημέρωσης</value>
+    <value>Ολοκλήρωση ενημέρωσης</value>
   </data>
   <data name="loading_data" xml:space="preserve">
     <value>Ενημέρωση δεδομένων</value>

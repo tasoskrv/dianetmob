@@ -185,7 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\SQLite_Android.cs" />
-    <Compile Include="PendingActivity.cs" />
     <Compile Include="Renderers\LoginPageRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />

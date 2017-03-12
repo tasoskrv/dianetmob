@@ -36,7 +36,7 @@ namespace DianetMob.Droid.NotifLocal
         {
             var activeContext = Application.Context.ApplicationContext;
 
-            Intent intent = new Intent(activeContext, typeof(PendingActivity))
+            Intent intent = new Intent(activeContext, typeof(MainActivity))
                 .PutExtra(MainActivity.ACTIVITY_NOTIF, notification.Id.ToString());
 
             // Create a PendingIntent; we're only using one PendingIntent (ID = 0):
